@@ -1,0 +1,66 @@
+<section
+  class="lg:py-[64px] pt-[40px] pb-[62px] px-[16px] bg-[#1C2127] relative z-30 font-roboto-condensed border-t-2 border-[#C8C9CC]"
+>
+  <div class="max-w-[1280px] mx-auto">
+    <!-- Section Title -->
+    <h2 class="text-[52px] font-bold text-white mb-[8px] leading-[100%]">
+      {{ section.settings.title }}
+    </h2>
+    <p class="text-[20px] font-normal text-[#C8C9CC] leading-[100%]">
+      {{ section.settings.subtitle }}
+    </p>
+
+    <!-- Specifications Grid -->
+    <div class="flex flex-col md:flex-row flex-wrap">
+      {% assign columns = 3 %}
+      {% for i in (1..columns) %}
+        {% assign metafield_key = 'spec_column_' | append: i %}
+        {% assign metafield_value = product.metafields.custom[metafield_key] %}
+        {% if metafield_value != blank %}
+          {% assign items = metafield_value.value | split: ',' %}
+          <div class="flex-1 md:flex-[0_0_calc(50%-20px)] lg:flex-[0_0_calc(33.333%-27px)]">
+            <ul class="space-y-[8px]">
+              {% for item in items %}
+                <li class="flex items-start gap-[12px] text-white text-[16px] leading-[140%]">
+                  <span class="text-[#C8C9CC] mt-[4px]">•</span>
+                  <p class="text-[18px] md:text-[20px] leading-[160%] md:leading-[120%] tracking-[-0.01em] text-[#C8C9CC]">
+                    {{ item | strip }}
+                  </p>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="product-full-description text-white">
+      {{ product.description }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Description Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Description"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "PRO AM Setup specification:"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Description Section",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

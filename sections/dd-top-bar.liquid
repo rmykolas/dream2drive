@@ -1,0 +1,46 @@
+<!-- Top Bar -->
+<div
+  class="flex items-center justify-center  h-[26px] md:h-[42px]"
+  style="background-color: {{ section.settings.bg_color }};">
+  <p class="text-[{{ section.settings.font_size }}] font-normal leading-[100%] tracking-[-0.02em] text-[{{ section.settings.text_color }}]">
+    {{ section.settings.announcement_text }}
+  </p>
+</div>
+
+{% schema %}
+{
+  "name": "Top Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "Lorem ipsum"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "font_size",
+      "label": "Font Size (e.g. 14px)",
+      "default": "14px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Top Bar",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}

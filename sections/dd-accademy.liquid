@@ -1,0 +1,126 @@
+{% comment %}
+RACE DRIVER ACADEMY SECTION
+- Background image editable
+- Title, description, bullets, and button customizable
+- Fully Tailwind-compatible
+{% endcomment %}
+
+<section
+  class="flex items-center justify-start relative bg-cover bg-center bg-no-repeat h-[607px] md:h-[531px] px-[16px] md:px-[32px] font-roboto-condensed"
+  style="
+    {% if section.settings.bg_image != blank %}
+      background-image: url('{{ section.settings.bg_image | image_url: width: 1600 }}');
+    {% else %}
+      background-image: url('assets/images/ce3ac4ac9058679bb55c83fc7f38381c34fe9cbf.webp');
+    {% endif %}
+  "
+>
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[rgba(28,33,39,0.9)] to-[rgba(28,33,39,0.45)]"></div>
+
+  <div class="relative z-10 max-w-[1280px] w-full mx-auto">
+    <div class="max-w-[650px]">
+      <!-- Section Title -->
+      {% if section.settings.title != blank %}
+        <h2 class="text-[60px] font-medium text-white uppercase leading-[100%] mb-[6px]">
+          {{ section.settings.title }}
+        </h2>
+      {% endif %}
+
+      <!-- Description -->
+      {% if section.settings.description != blank %}
+        <p class="text-[20px] text-[#C8C9CC] mb-[24px] leading-[120%]">
+          {{ section.settings.description }}
+        </p>
+      {% endif %}
+
+      <!-- Bullet Points -->
+      {% if section.blocks.size > 0 %}
+        <ul class="space-y-[4px] mb-[56px] ml-[8px]">
+          {% for block in section.blocks %}
+            <li class="flex items-start" {{ block.shopify_attributes }}>
+              <span class="text-white text-[20px] mr-[12px]">•</span>
+              <span class="text-white font-normal text-[20px] leading-[120%]">
+                {{ block.settings.text }}
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <!-- CTA Button -->
+      {% if section.settings.button_label != blank %}
+        <a
+          href="{{ section.settings.button_link }}"
+          class="inline-flex items-center text-[#282C37] gap-[16px] bg-[#6EC7B3] hover:bg-[#B6E3D9] px-[28px] py-[14px] text-[17px] font-semibold uppercase transition-all duration-300"
+        >
+          {% if section.settings.button_icon != blank %}
+            <img src="{{ section.settings.button_icon | image_url: width: 40 }}" alt="Icon" />
+          {% endif %}
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Race Driver Academy",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "RACE DRIVER ACADEMY"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Driver development academy designed to offer year-by-year guidance, assistance, and technologies to help promising racers climb the motorsport ladder."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "WINTER TEST"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "button_icon",
+      "label": "Button Icon (optional)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Bullet Point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Bullet Text",
+          "default": "Karting and motorsport racing team;"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Race Driver Academy",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

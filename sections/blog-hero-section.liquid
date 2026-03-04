@@ -1,0 +1,114 @@
+{% comment %}
+  Blog Hero Section
+  Reusable section for blog page headers with breadcrumbs, title, and category filters
+{% endcomment %}
+
+{%- liquid
+  assign blog_title = section.settings.blog_title | default: blog.title
+  assign show_breadcrumbs = section.settings.show_breadcrumbs
+  assign show_category_filters = section.settings.show_category_filters
+  assign max_categories = section.settings.max_categories | default: 10
+-%}
+
+<div class="bg-[#1C2127] py-[64px] px-[16px]">
+  <div class="max-w-[1280px] mx-auto">
+    {% if show_breadcrumbs %}
+      <!-- Breadcrumbs -->
+      <div class="flex items-center justify-center gap-[8px] mb-[24px]">
+        <a
+          href="{{ routes.root_url }}"
+          class="text-[#C8C9CC] text-[14px] hover:text-white transition-colors"
+          >Home</a
+        >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/right_arrow.svg?v=1761390493"
+          alt=""
+          class="w-[8px] h-[8px]"
+        />
+
+
+        <span class="text-[#C8C9CC] text-[14px]">{{ blog.title }}</span>
+      </div>
+    {% endif %}
+
+    <!-- Main Title -->
+    <h1 class="text-[48px] md:text-[52px] font-bold text-white text-center leading-[100%] mb-[30px]">
+      {% if current_tags %}
+        Tagged with {{ current_tags | join: ', ' }}
+      {% else %}
+        {{ blog_title }}
+      {% endif %}
+    </h1>
+
+    {% if show_category_filters %}
+      <!-- Category Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-[24px]">
+        <!-- All Button -->
+        <a
+          href="{{ blog.url }}"
+          class="px-[16px] py-[8px] {% unless current_tags %}bg-white text-[#1C2127]{% else %}bg-[#4A4E5A] text-white{% endunless %} font-medium text-[16px] leading-[100%]"
+        >
+          All ({{ blog.articles_count }})
+        </a>
+
+        <!-- Dynamic Category Buttons -->
+        {% for tag in blog.all_tags limit: max_categories %}
+          {% assign tag_count = 0 %}
+          {% for article in blog.articles %}
+            {% if article.tags contains tag %}
+              {% assign tag_count = tag_count | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+
+          <a
+            href="{{ blog.url }}/tagged/{{ tag | handle }}"
+            class="px-[16px] py-[8px] {% if current_tags contains tag %}bg-white text-[#1C2127]{% else %}bg-[#4A4E5A] text-white{% endif %} font-medium text-[16px] leading-[100%]"
+          >
+            {{ tag }} ({{ tag_count }})
+          </a>
+        {% endfor %}
+
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "blog_title",
+      "label": "Blog Title",
+      "default": "PRO AM Simulator Setup"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_category_filters",
+      "label": "Show category filters",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "max_categories",
+      "label": "Maximum categories to show",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Hero"
+    }
+  ]
+}
+{% endschema %}

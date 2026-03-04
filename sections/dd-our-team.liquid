@@ -1,0 +1,109 @@
+{% comment %}
+OUR TEAM SECTION
+- Fully dynamic with editable section title and subtitle
+- Add or remove team members dynamically using blocks
+- Each team member: image, name, and description
+- Original HTML + Tailwind CSS preserved exactly
+{% endcomment %}
+
+<section
+  class="bg-[#1C2127] py-[80px] px-[16px] md:px-[32px] font-roboto-condensed"
+>
+  <div class="max-w-[1280px] mx-auto">
+    <!-- Section Title -->
+    {% if section.settings.title != blank %}
+      <h2
+        class="text-[52px] md:text-[60px] font-medium text-white leading-[100%] mb-[6px] text-center uppercase"
+      >
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    <!-- Subtitle -->
+    {% if section.settings.subtitle != blank %}
+      <p
+        class="text-[20px] text-[#C8C9CC] text-center mb-[60px] leading-[120%]"
+      >
+        {{ section.settings.subtitle }}
+      </p>
+    {% endif %}
+
+    <!-- Team Members Grid -->
+    <div
+      class="flex justify-center lg:justify-between flex-wrap gap-[20px]"
+    >
+      {% for block in section.blocks %}
+        <div class="flex flex-col items-center text-center w-[230px]" {{ block.shopify_attributes }}>
+          <div class="relative mb-[16px]">
+            {% if block.settings.image != blank %}
+              <img
+                src="{{ block.settings.image | image_url: width: 400 }}"
+                alt="{{ block.settings.name | escape }}"
+                class="w-full h-auto object-cover"
+              />
+            {% endif %}
+          </div>
+          <h3
+            class="text-[#6EC7B3] text-[24px] font-medium uppercase mb-[8px]"
+          >
+            {{ block.settings.name }}
+          </h3>
+          <p class="text-[#C8C9CC] font-normal text-[20px] leading-[120%]">
+            {{ block.settings.role }}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Our Team",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "OUR TEAM"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Young team with a big experience"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "team_member",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Team Member Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "NAME SURNAME"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role / Description",
+          "default": "CEO, Monster Energy athlete, Multiple circuit racing champion, Coach"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Team",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

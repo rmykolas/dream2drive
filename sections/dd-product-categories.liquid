@@ -1,0 +1,186 @@
+{% comment %}
+Product Categories Section
+Dynamic version with editable title, buttons, and repeatable product cards
+{% endcomment %}
+
+<section class="py-[82px] px-[16px] md:px-[32px] bg-[#ECECEC] font-roboto-condensed">
+  <div class="max-w-[1280px] mx-auto">
+    
+    <!-- Section Title -->
+    <h2 class="text-[52px] md:text-[60px] font-medium text-[#0F0F0F] text-center mb-[32px] leading-[100%] tracking-[-0.01em] uppercase">
+      {{ section.settings.section_title }}
+    </h2>
+
+    <!-- Filter Buttons -->
+    <div class="flex justify-center mb-[80px]">
+      <button
+        id="sim-products-btn"
+        class="px-[24px] md:px-[31px] py-[9px] text-[#282C37] font-semibold uppercase bg-[#6EC7B3] text-[17px]"
+      >
+        {{ section.settings.sim_button_text }}
+      </button>
+      <button
+        id="racing-products-btn"
+        class="px-[24px] md:px-[31px] py-[9px] text-[#282C37] font-semibold uppercase border-2 border-[#99D8CA] bg-transparent text-[15px] md:text-[17px]"
+      >
+        {{ section.settings.racing_button_text }}
+      </button>
+    </div>
+
+    <!-- SIM PRODUCTS -->
+    <div id="sim-products-container" class="flex flex-wrap max-lg:justify-center gap-[16px]">
+      {% for block in section.blocks %}
+        {% if block.type == 'sim_product' %}
+          {% if block.settings.product != blank %}
+            {% assign product = all_products[block.settings.product] %}
+
+            <a href="{{ product.url }}" 
+               class="flex md:flex-col bg-[#282C37] w-full md:w-[243px] h-[143px] md:h-[360px] 
+                      hover:bg-[#4A4E5A] transition-all duration-300">
+
+              <!-- TITLE -->
+              <h3 class="text-white text-[20px] md:text-[22px] font-semibold leading-[120%] tracking-[-0.01em] uppercase px-[16px] pt-[16px] pb-[8px]">
+                {{ product.title }}
+              </h3>
+
+              <!-- IMAGE -->
+              <div class="h-full w-full overflow-hidden flex items-center justify-center">
+                <img
+                  src="{{ product.featured_image | image_url: width: 900 }}"
+                  alt="{{ product.title }}"
+                  class="w-full h-full object-contain p-[6px]"
+                >
+              </div>
+
+            </a>
+
+          {% else %}
+
+            <!-- MANUAL ENTRY -->
+            <a href="{{ block.settings.link }}" 
+               class="flex md:flex-col bg-[#282C37] w-full md:w-[243px] h-[143px] md:h-[360px] 
+                      hover:bg-[#4A4E5A] transition-all duration-300">
+
+              <!-- TITLE -->
+              <h3 class="text-white text-[20px] md:text-[22px] font-semibold leading-[120%] tracking-[-0.01em] uppercase px-[16px] pt-[16px] pb-[8px]">
+                {{ block.settings.title }}
+              </h3>
+
+              <!-- IMAGE -->
+              <div class="h-full w-full overflow-hidden flex items-center justify-center">
+                <img
+                  src="{{ block.settings.image | image_url }}"
+                  alt="{{ block.settings.title }}"
+                  class="w-full h-full object-contain p-[6px]"
+                  onmouseover="this.src='{{ block.settings.hover_image | image_url }}'"
+                  onmouseout="this.src='{{ block.settings.image | image_url }}'"
+                >
+              </div>
+
+            </a>
+
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- RACING PRODUCTS -->
+    <div id="racing-products-container" class="flex flex-wrap max-lg:justify-center gap-[16px] hidden">
+      {% for block in section.blocks %}
+        {% if block.type == 'racing_product' %}
+          {% if block.settings.product != blank %}
+            {% assign product = all_products[block.settings.product] %}
+
+            <a href="{{ product.url }}" 
+               class="flex md:flex-col bg-[#282C37] w-full md:w-[243px] h-[143px] md:h-[360px] 
+                      hover:bg-[#4A4E5A] transition-all duration-300">
+
+              <!-- TITLE -->
+              <h3 class="text-white text-[20px] md:text-[22px] font-semibold leading-[120%] tracking-[-0.01em] uppercase px-[16px] pt-[16px] pb-[8px]">
+                {{ product.title }}
+              </h3>
+
+              <!-- IMAGE -->
+              <div class="h-full w-full overflow-hidden flex items-center justify-center">
+                <img
+                  src="{{ product.featured_image | image_url: width: 900 }}"
+                  alt="{{ product.title }}"
+                  class="w-full h-full object-contain p-[6px]"
+                >
+              </div>
+
+            </a>
+
+          {% else %}
+
+            <!-- MANUAL ENTRY -->
+            <a href="{{ block.settings.link }}" 
+               class="flex md:flex-col bg-[#282C37] w-full md:w-[243px] h-[143px] md:h-[360px] 
+                      hover:bg-[#4A4E5A] transition-all duration-300">
+
+              <!-- TITLE -->
+              <h3 class="text-white text-[20px] md:text-[22px] font-semibold leading-[120%] tracking-[-0.01em] uppercase px-[16px] pt-[16px] pb-[8px]">
+                {{ block.settings.title }}
+              </h3>
+
+              <!-- IMAGE -->
+              <div class="h-full w-full overflow-hidden flex items-center justify-center">
+                <img
+                  src="{{ block.settings.image | image_url }}"
+                  alt="{{ block.settings.title }}"
+                  class="w-full h-full object-contain p-[6px]"
+                  onmouseover="this.src='{{ block.settings.hover_image | image_url }}'"
+                  onmouseout="this.src='{{ block.settings.image | image_url }}'"
+                >
+              </div>
+
+            </a>
+
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Product Categories",
+  "settings": [
+    { "type": "text", "id": "section_title", "label": "Section Title", "default": "PRODUCT CATEGORIES" },
+    { "type": "text", "id": "sim_button_text", "label": "SIM Button Text", "default": "SIM PRODUCTS" },
+    { "type": "text", "id": "racing_button_text", "label": "RACING Button Text", "default": "RACING PRODUCTS" }
+  ],
+  "blocks": [
+    {
+      "type": "sim_product",
+      "name": "Sim Product",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Select Product (optional)" },
+        { "type": "text", "id": "title", "label": "Manual Title", "default": "COMPLETE RACING SIMULATORS" },
+        { "type": "image_picker", "id": "image", "label": "Main Image" },
+        { "type": "image_picker", "id": "hover_image", "label": "Hover Image" },
+        { "type": "url", "id": "link", "label": "Manual Link" }
+      ]
+    },
+    {
+      "type": "racing_product",
+      "name": "Racing Product",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Select Product (optional)" },
+        { "type": "text", "id": "title", "label": "Manual Title", "default": "RACING SUITS" },
+        { "type": "image_picker", "id": "image", "label": "Main Image" },
+        { "type": "image_picker", "id": "hover_image", "label": "Hover Image" },
+        { "type": "url", "id": "link", "label": "Manual Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Categories Section",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
+

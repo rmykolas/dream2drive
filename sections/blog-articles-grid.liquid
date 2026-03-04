@@ -1,0 +1,177 @@
+{% comment %}
+  Blog Articles Grid Section
+  Reusable section for displaying blog articles in a grid layout with pagination
+{% endcomment %}
+
+{%- liquid
+  assign articles_per_page = section.settings.articles_per_page | default: 8
+  assign show_articles_count = section.settings.show_articles_count
+  assign show_pagination = section.settings.show_pagination
+  assign grid_columns = section.settings.grid_columns | default: 3
+-%}
+
+<section class="bg-[#1C2127] py-[80px] px-[16px] font-roboto-condensed">
+  <div class="max-w-[1280px] mx-auto">
+    {% if show_articles_count %}
+      <!-- Articles Count -->
+      <div class="flex justify-end items-center mb-[40px]">
+        <p class="text-[#C8C9CC] text-[16px] font-normal">
+          {{ paginate.current_offset | plus: 1 }}-{{ paginate.current_offset | plus: paginate.page_size | at_most: paginate.items }} of {{ paginate.items }} Articles
+        </p>
+      </div>
+    {% endif %}
+
+    <!-- Articles Grid -->
+    <div class="articles-container flex justify-center flex-wrap gap-[32px] mb-[80px]">
+      {% for article in blog.articles %}
+        <a href="{{ article.url }}" class="article-card w-full max-w-[296px] overflow-hidden">
+          <div class="relative">
+            <!-- Category Tags -->
+            <div class="flex gap-[4px] absolute top-[8px] left-[8px] z-10">
+              {% for tag in article.tags limit: 3 %}
+                <span class="bg-[#2F333D] text-white text-[14px] px-[12px] py-[2.5px]">
+                  {{ tag }}
+                </span>
+              {% endfor %}
+            </div>
+            
+            <!-- Article Image -->
+            <div class="w-full h-[324px] mb-[16px] overflow-hidden">
+              {% if article.image %}
+                <img
+                  src="{{ article.image | img_url: '592x648' }}"
+                  alt="{{ article.image.alt | escape }}"
+                  class="w-full h-full object-cover hover:scale-110 transition-all duration-300"
+                />
+              {% else %}
+                <div class="w-full h-full bg-[#4A4E5A] flex items-center justify-center">
+                  <span class="text-white text-[16px]">No image</span>
+                </div>
+              {% endif %}
+            </div>
+
+            <!-- Date -->
+            <p class="text-[#C8C9CC] text-[14px] font-normal mb-[16px]">
+              {{ article.published_at | date: '%B %d, %Y' }}
+            </p>
+
+            <!-- Title -->
+            <h3 class="text-white text-[16px] font-medium leading-[100%] hover:underline transition-all duration-300 cursor-pointer min-h-[52px]">
+              {{ article.title }}
+            </h3>
+          </div>
+        </a>
+      {% else %}
+        <!-- No Articles Message -->
+        <div class="col-span-full text-center py-[80px]">
+          <h3 class="text-white text-[24px] font-medium mb-[16px]">
+            No articles found
+          </h3>
+          <p class="text-[#C8C9CC] text-[16px]">
+            Check back later for new content.
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if show_pagination and paginate.pages > 1 %}
+      <!-- Pagination -->
+      <div class="flex justify-center items-center gap-[16px]">
+        <!-- Previous Button -->
+        {% if paginate.previous %}
+          <a
+            href="{{ paginate.previous.url }}"
+            class="w-[32px] h-[32px] flex items-center justify-center text-white ml-[8px] hover:opacity-70 transition-opacity"
+          >
+            <img src="{{ 'left-pagination-arrow.svg' | asset_url }}" alt="Previous" />
+          </a>
+        {% else %}
+          <span class="w-[32px] h-[32px] flex items-center justify-center text-white ml-[8px] opacity-50 cursor-not-allowed">
+            <img src="{{ 'left-pagination-arrow.svg' | asset_url }}" alt="Previous" />
+          </span>
+        {% endif %}
+
+        <!-- Page Numbers -->
+        {% for part in paginate.parts %}
+          {% if part.is_link %}
+            <a
+              href="{{ part.url }}"
+              class="w-[32px] h-[32px] flex items-center justify-center text-white hover:bg-[#4A4E5A] transition-colors"
+            >
+              <span class="text-[16px] font-medium">{{ part.title }}</span>
+            </a>
+          {% else %}
+            {% if part.title == paginate.current_page %}
+              <span class="w-[32px] h-[32px] flex items-center justify-center bg-[#6EC7B3] text-[#1C2127] font-medium">
+                <span class="text-[16px] font-medium">{{ part.title }}</span>
+              </span>
+            {% else %}
+              <span class="w-[32px] h-[32px] flex items-center justify-center text-white">
+                <span class="text-[16px] font-medium">{{ part.title }}</span>
+              </span>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+
+        <!-- Next Button -->
+        {% if paginate.next %}
+          <a
+            href="{{ paginate.next.url }}"
+            class="w-[32px] h-[32px] flex items-center justify-center text-white mr-[8px] hover:opacity-70 transition-opacity"
+          >
+            <img src="{{ 'right-pagination-arrow.svg' | asset_url }}" alt="Next" />
+          </a>
+        {% else %}
+          <span class="w-[32px] h-[32px] flex items-center justify-center text-white mr-[8px] opacity-50 cursor-not-allowed">
+            <img src="{{ 'right-pagination-arrow.svg' | asset_url }}" alt="Next" />
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blog Articles Grid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "label": "Articles per page",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_articles_count",
+      "label": "Show articles count",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show pagination",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "grid_columns",
+      "label": "Grid columns (desktop)",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Articles Grid"
+    }
+  ]
+}
+{% endschema %}

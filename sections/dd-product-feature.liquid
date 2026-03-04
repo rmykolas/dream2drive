@@ -1,0 +1,95 @@
+<section
+  class="max-lg:pt-[40px] max-lg:pb-[60px] px-[16px] bg-[#ECECEC] relative z-30 font-roboto-condensed"
+>
+  <div class="max-w-[1344px] mx-auto">
+    {% for block in section.blocks %}
+      <div
+        class="feature-card flex flex-col lg:flex-row gap-[24px] items-center justify-center"
+        {{ block.shopify_attributes }}
+      >
+        <!-- Image -->
+        <div
+          class="feature-image flex items-center justify-center flex-1 max-w-[596px] max-h-[596px]"
+        >
+          {% if block.settings.image != blank %}
+            <img
+              src="{{ block.settings.image | image_url: width: 800 }}"
+              alt="{{ block.settings.title | escape }}"
+              class="w-full max-h-[596px] object-contain"
+            />
+          {% endif %}
+        </div>
+
+        <!-- Content -->
+        <div class="feature-content flex-1 max-w-[596px]">
+          <h3
+            class="text-[40px] font-bold text-[#2F333D] leading-[100%] pb-[4px] pb-[8px] sm:pb-[30px] {% if block.settings.subtitle != blank %}pb-[0px]{% endif %}"
+          >
+            {{ block.settings.title }}
+          </h3>
+          {% if block.settings.subtitle != blank %}
+            <p
+              class="text-[20px] text-[#2F333D] mb-[30px] font-normal leading-[100%]"
+            >
+              {{ block.settings.subtitle }}
+            </p>
+          {% endif %}
+          <div class="space-y-[10px]">
+            {% assign lines = block.settings.description | split: '\n' %}
+            {% for line in lines %}
+              <p
+                class="text-[20px] text-[#4A4E5A] leading-[120%] tracking-[-0.01em]"
+              >
+                {{ line }}
+              </p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Features Section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Feature Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "D2D PRO AM Frame"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Lorem ipsum"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Feature Description (each line = separate paragraph)",
+          "default": "Aluminium profile Sim Cockpit, manufactured by Dream2Drive.\nCockpit has no flex with even the mightiest wheels bases.\nAvailable silver and black color.\nDimensions: 1300mm x 600mm"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features Section",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

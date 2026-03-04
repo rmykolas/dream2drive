@@ -1,0 +1,121 @@
+{% comment %}
+Newsletter Section
+- Uses Tailwind CSS
+- Supports Shopify newsletter form or custom link
+{% endcomment %}
+
+<section class="font-roboto-condensed bg-[#1C2127]">
+  <div class="max-w-[1440px] mx-auto flex max-lg:flex-col">
+    <!-- Left Half - Image -->
+    <div class="w-full lg:max-w-[676px] h-[430px] w-full">
+      {% if section.settings.image != blank %}
+        <img
+          src="{{ section.settings.image | image_url }}"
+          alt="{{ section.settings.image.alt | escape }}"
+          class="w-full h-full object-cover"
+        />
+      {% else %}
+        <div class="w-full h-full bg-[#2A2F36] flex items-center justify-center text-white text-[20px]">
+          Add Image
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Right Half - Newsletter Form -->
+    <div
+      class="w-full bg-[#1C2127] flex items-center justify-center px-[16px] md:px-[60px] py-[60px]"
+    >
+      <div class="max-w-[604px] mx-auto w-full">
+        {% if section.settings.heading != blank %}
+          <h3
+            class="text-[40px] md:text-[60px] font-medium leading-[100%] text-white uppercase mb-[8px]"
+          >
+            {{ section.settings.heading }}
+          </h3>
+        {% endif %}
+
+        {% if section.settings.subtext != blank %}
+          <p
+            class="text-[#C8C9CC] text-[20px] leading-[120%] font-normal mb-[30px] md:mb-[60px]"
+          >
+            {{ section.settings.subtext }}
+          </p>
+        {% endif %}
+
+        <!-- Newsletter Form -->
+          {% form 'customer', id: 'newsletter', class: 'flex max-md:flex-col' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <input
+              type="email"
+              name="contact[email]"
+              placeholder="{{ section.settings.placeholder }}"
+              required
+              class="flex-1 px-[20px] py-[10px] text-[18px] leading-[160%] bg-transparent border-2 border-[#4A4E5A] text-white placeholder-[#4A4E5A] focus:outline-none focus:border-[#6EC7B3] transition-colors duration-300"
+            />
+            <button
+              type="submit"
+              class="flex items-center justify-center gap-[16px] text-[17px] bg-[#6EC7B3] hover:bg-[#B6E3D9] text-[#282C37] px-[24px] py-[12px] font-bold uppercase transition-colors duration-300"
+            >
+              {{ section.settings.button_label }}
+              {% if section.settings.button_icon != blank %}
+                <img src="{{ section.settings.button_icon | image_url }}" alt="icon" />
+              {% endif %}
+            </button>
+          {% endform %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left Side Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "SUBSCRIBE OUR NEWSLETTER"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Lorem Ipsum"
+    },
+    {
+      "type": "text",
+      "id": "custom_form_action",
+      "label": "Custom Form Action URL",
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email Placeholder",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "SUBSCRIBE"
+    },
+    {
+      "type": "image_picker",
+      "id": "button_icon",
+      "label": "Button Icon (optional)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter Section",
+      "category": "Email"
+    }
+  ]
+}
+{% endschema %}

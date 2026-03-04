@@ -1,0 +1,95 @@
+<section class="bg-[#1C2127] py-[80px] px-[16px] md:px-[32px]">
+  <div class="max-w-[800px] mx-auto">
+    <!-- Breadcrumbs -->
+    <div class="flex items-center gap-[16px] mb-[40px]">
+      <a href="{{ routes.root_url }}" class="text-[#C8C9CC] text-[14px]">Home</a>
+      <img
+        src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/right_arrow-white.svg?v=1761390493"
+        alt=""
+        class="w-[8px] h-[8px]"
+      />
+      <a href="{{ blog.url }}" class="text-[#C8C9CC] text-[14px]">Blog</a>
+      <img
+        src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/right_arrow-white.svg?v=1761390493"
+        alt=""
+        class="w-[8px] h-[8px]"
+      />
+      <span class="text-[#C8C9CC] text-[14px]">
+        {{ article.title }}
+      </span>
+    </div>
+
+    <!-- Main Article Title -->
+    <h1
+      class="text-[40px] md:text-[52px] font-bold text-white leading-[100%] mb-[30px] tracking-[-0.01em]"
+    >
+      {{ article.title }}
+    </h1>
+
+    <!-- Main Article Image -->
+    {% if article.image %}
+      <div class="w-full overflow-hidden mb-[30px]">
+        <img
+          src="{{ article.image | img_url: 'master' }}"
+          alt="{{ article.image.alt | escape }}"
+          class="w-full h-[420px] object-cover"
+        />
+      </div>
+    {% endif %}
+
+    <!-- Category Tags -->
+    {% if article.tags.size > 0 %}
+      <div class="flex flex-wrap gap-[12px] mb-[48px]">
+        {% for tag in article.tags %}
+          <span
+            class="bg-[#4A4E5A] text-white text-[14px] px-[16px] py-[8px] font-medium uppercase"
+          >
+            {{ tag }}
+          </span>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- Metadata -->
+    <div class="flex items-center gap-[40px]">
+      <span class="text-white text-[14px] font-normal">
+        Updated {{ article.published_at | date: "%d %b %Y" }}
+      </span>
+
+      {% if article.author %}
+        <div class="flex items-center gap-[4px]">
+          <span class="text-white text-[14px] font-normal">Author:</span>
+          <span class="text-white text-[14px] font-normal underline">
+            {{ article.author }}
+          </span>
+        </div>
+      {% endif %}
+
+      <div class="flex items-center gap-[6px]">
+        <img src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/clock.svg?v=1761743124" alt="Read time" />
+        <span class="text-white text-[14px] font-normal">
+          ~{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | ceil }} min
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Blog Content Section -->
+<section id="blog-content" class="py-[60px] px-[16px] md:px-[32px]">
+  <div class="max-w-[800px] mx-auto prose prose-invert">
+    {{ article.content }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blog Detail Section",
+  "settings": [],
+  "presets": [
+    {
+        "name": "Blog Detail Section",
+    }
+  ]
+}
+{% endschema %}

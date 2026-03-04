@@ -1,0 +1,324 @@
+{% comment %}
+  Custom Header Navigation Section
+  Dynamically pulls links from selected Shopify menu
+{% endcomment %}
+  <!-- Main Navigation -->
+  <nav class="bg-[#494B53] flex items-center justify-between px-[16px] md:px-[24px] lg:px-[80px] py-[8px] relative font-roboto-condensed">
+    <!-- Logo -->
+    <div class="h-[48px] w-fit">
+      <a href="{{ routes.root_url }}">
+        {% if section.settings.logo != blank %}
+          <img src="{{ section.settings.logo | image_url }}" alt="Logo" class="h-full w-auto object-contain" />
+        {% else %}
+          <span class="text-white text-lg font-bold">LOGO</span>
+        {% endif %}
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="md:hidden text-white hover:text-[#6EC7B3] transition-colors">
+      <img src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/menu.svg?v=1761390492" alt="Menu" />
+    </button>
+
+    <!-- Desktop Navigation Links -->
+    <div class="hidden md:flex items-center gap-[46px]">
+      {% assign main_menu = linklists[section.settings.main_menu] %}
+      {% if main_menu and main_menu.links.size > 0 %}
+        {% for link in main_menu.links %}
+          {% if link.links != blank %}
+            <!-- Dropdown / Mega Menu -->
+            <div class="group">
+              <a href="{{ link.url }}" class="text-white uppercase font-medium text-[17px] flex items-center hover:text-[#6EC7B3] transition-colors leading-[100%] tracking-[0.02em]">
+                {{ link.title }}
+                <img src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/chaveron.svg?v=1761390493" alt="" class="pl-[7px]" />
+              </a>
+
+              <!-- Mega Menu Dropdown -->
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-full max-w-none bg-[#0F0F0F] shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div class="py-[40px] max-w-[1280px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-[32px] px-[32px]">
+                  {% for child_link in link.links %}
+                    <div class="w-[240px]">
+                      <h3 class="text-[#C8C9CC] font-medium text-[20px] leading-[100%] uppercase mb-[18px]">
+                        {{ child_link.title }}
+                      </h3>
+                      {% if child_link.links.size > 0 %}
+                        <ul class="space-y-[8px]">
+                          {% for sub_link in child_link.links %}
+                            <li>
+                              <a href="{{ sub_link.url }}" class="text-[#C8C9CC] text-[14px] hover:text-[#6EC7B3] transition-colors leading-[140%] tracking-[-0.02em]">
+                                {{ sub_link.title }}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          {% else %}
+            <a href="{{ link.url }}" class="text-white uppercase font-medium text-[17px] hover:text-[#6EC7B3] transition-colors leading-[100%] tracking-[0.02em]">
+              {{ link.title }}
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <!-- Account Link & Cart Icon (Desktop) -->
+    <div class="hidden md:flex items-center gap-[24px]">
+      <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="text-white uppercase font-medium text-[17px] hover:text-[#6EC7B3] transition-colors leading-[100%] tracking-[0.02em]">
+        {% if customer %}Account{% else %}Login{% endif %}
+      </a>
+      <a href="{{ routes.cart_url }}" class="text-white hover:text-[#6EC7B3] transition-colors relative">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+        </svg>
+        {% if cart.item_count > 0 %}
+          <div class="flex items-center justify-center absolute -top-[6px] -right-[6px] bg-[#6EC7B3] rounded-full w-[16px] h-[16px]">
+            <span class="text-white text-[10px] font-semibold leading-[0]">{{ cart.item_count }}</span>
+          </div>
+        {% endif %}
+      </a>
+    </div>
+  </nav>
+
+  <!-- Mobile Sidebar -->
+  <div id="mobile-sidebar" class="fixed inset-y-0 right-0 w-[300px] bg-[#0F0F0F] transform translate-x-full transition-transform duration-300 ease-in-out z-50 md:hidden flex flex-col">
+    <div class="flex items-center justify-between p-6 border-b border-[#4A4E5A] flex-shrink-0">
+      <div class="h-[40px] w-fit">
+        {% if section.settings.logo != blank %}
+          <img src="{{ section.settings.logo | image_url }}" alt="Logo" class="h-full w-auto object-contain" />
+        {% endif %}
+      </div>
+      <button id="close-sidebar-btn" class="text-white p-2 hover:text-[#6EC7B3] transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-[24px]">
+  <nav class="space-y-[16px]">
+    {% assign main_menu = linklists[section.settings.main_menu] %}
+
+    <!-- SHOP with Mega Menu -->
+    {% for link in main_menu.links %}
+      {% if link.title == 'Shop' or link.title == 'SHOP' %}
+        <div class="space-y-[16px]">
+          <button
+            id="mobile-shop-btn"
+            class="flex items-center justify-between w-full text-white uppercase font-medium text-[17px] hover:text-[#6EC7B3] transition-colors text-left"
+          >
+            {{ link.title }}
+            <img
+              src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/chaveron.svg?v=1761390493"
+              alt=""
+              class="pl-[7px] transition-transform duration-300"
+            />
+          </button>
+
+          <!-- Mobile Mega Menu Content -->
+          <div id="mobile-mega-menu" class="hidden space-y-[16px] pl-[16px]">
+            {% if link.links.size > 0 %}
+              <!-- Each Subcategory -->
+              <div class="space-y-[12px]">
+                {% for sub_link in link.links %}
+                  <div>
+                    <h3
+                      class="text-[#C8C9CC] font-medium text-[16px] leading-[100%] uppercase mb-[12px]"
+                    >
+                      {{ sub_link.title }}
+                    </h3>
+
+                    {% if sub_link.links.size > 0 %}
+                      <ul class="space-y-[6px]">
+                        {% for child_link in sub_link.links %}
+                          <li>
+                            <a
+                              href="{{ child_link.url }}"
+                              class="text-[#C8C9CC] text-[12px] hover:text-[#6EC7B3] transition-colors"
+                            >
+                              {{ child_link.title }}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    <!-- Other Navigation Links -->
+    <div class="space-y-[16px]">
+      {% for link in main_menu.links %}
+        {% unless link.title == 'Shop' or link.title == 'SHOP' %}
+          <a
+            href="{{ link.url }}"
+            class="block text-white uppercase font-medium text-[17px] hover:text-[#6EC7B3] transition-colors"
+          >
+            {{ link.title }}
+          </a>
+        {% endunless %}
+      {% endfor %}
+    </div>
+
+    <!-- Account Link & Cart Icon (Mobile) -->
+    <div class="pt-[16px] border-t border-[#4A4E5A] mt-[16px] space-y-[16px]">
+      <a
+        href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+        class="block text-white uppercase font-medium text-[17px] hover:text-[#6EC7B3] transition-colors"
+      >
+        {% if customer %}Account{% else %}Login{% endif %}
+      </a>
+      <a
+        href="{{ routes.cart_url }}"
+        class="flex items-center gap-[12px] text-white uppercase font-medium text-[17px] hover:text-[#6EC7B3] transition-colors relative"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+        </svg>
+        <span>Cart</span>
+        {% if cart.item_count > 0 %}
+          <span class="bg-[#6EC7B3] text-white text-[12px] font-bold rounded-full w-5 h-5 flex items-center justify-center">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
+    </div>
+  </nav>
+</div>
+
+  </div>
+
+  <!-- Mobile Sidebar Overlay -->
+  <div id="mobile-sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
+
+{% schema %}
+{
+  "name": "Header Navigation",
+  "settings": [
+    {
+      "type": "text",
+      "id": "topbar_text",
+      "label": "Top Bar Text",
+      "default": "Lorem ipsum"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Select Main Menu"
+    }
+  ]
+}
+{% endschema %}
+      <script>
+      (function() {
+        'use strict';
+        
+        function initMobileMenu() {
+          // Mobile Menu functionality
+          const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+          const mobileSidebar = document.getElementById("mobile-sidebar");
+          const closeSidebarBtn = document.getElementById("close-sidebar-btn");
+          const mobileSidebarOverlay = document.getElementById("mobile-sidebar-overlay");
+          const mobileShopBtn = document.getElementById("mobile-shop-btn");
+          const mobileMegaMenu = document.getElementById("mobile-mega-menu");
+
+          // Check if essential elements exist
+          if (!mobileMenuBtn || !mobileSidebar || !closeSidebarBtn || !mobileSidebarOverlay) {
+            return;
+          }
+
+          function openSidebar(e) {
+            if (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+            mobileSidebar.classList.remove("translate-x-full");
+            mobileSidebarOverlay.classList.remove("hidden");
+            if (document.body) {
+              document.body.style.overflow = "hidden";
+            }
+            
+            if (mobileMegaMenu) {
+              mobileMegaMenu.classList.add("hidden");
+            }
+            if (mobileShopBtn) {
+              const chevronImg = mobileShopBtn.querySelector("img");
+              if (chevronImg) {
+                chevronImg.style.transform = "rotate(0deg)";
+              }
+            }
+          }
+
+          function toggleMobileMegaMenu(e) {
+            if (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+            if (!mobileMegaMenu || !mobileShopBtn) return;
+            
+            const chevronImg = mobileShopBtn.querySelector("img");
+            const isOpen = !mobileMegaMenu.classList.contains("hidden");
+
+            if (isOpen) {
+              mobileMegaMenu.classList.add("hidden");
+              if (chevronImg) {
+                chevronImg.style.transform = "rotate(0deg)";
+              }
+            } else {
+              mobileMegaMenu.classList.remove("hidden");
+              if (chevronImg) {
+                chevronImg.style.transform = "rotate(180deg)";
+              }
+            }
+          }
+
+          function closeSidebar(e) {
+            if (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+            mobileSidebar.classList.add("translate-x-full");
+            mobileSidebarOverlay.classList.add("hidden");
+            if (document.body) {
+              document.body.style.overflow = "auto";
+            }
+          }
+
+          // Add event listeners with capture to ensure they fire
+          mobileMenuBtn.addEventListener("click", openSidebar, true);
+          closeSidebarBtn.addEventListener("click", closeSidebar, true);
+          mobileSidebarOverlay.addEventListener("click", closeSidebar, true);
+          
+          if (mobileShopBtn) {
+            mobileShopBtn.addEventListener("click", toggleMobileMegaMenu, true);
+          }
+
+          // Close sidebar when pressing escape key
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && mobileSidebar && !mobileSidebar.classList.contains("translate-x-full")) {
+              closeSidebar();
+            }
+          });
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initMobileMenu);
+        } else {
+          // DOM is already ready
+          setTimeout(initMobileMenu, 0);
+        }
+      })();
+      </script>

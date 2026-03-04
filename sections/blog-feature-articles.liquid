@@ -1,0 +1,127 @@
+{% comment %}
+  Blog Featured Articles Section
+  Reusable section for displaying featured articles with TOP ARTICLES banner and recent articles list
+{% endcomment %}
+
+{%- liquid
+  assign show_section = section.settings.show_section | default: true
+  assign top_articles_title = section.settings.top_articles_title | default: 'TOP ARTICLES'
+  assign top_articles_bg = section.settings.top_articles_bg
+  assign recent_articles_count = section.settings.recent_articles_count | default: 5
+  assign show_recent_articles = section.settings.show_recent_articles | default: true
+-%}
+
+{% if show_section %}
+  <section class="bg-[#282C37] py-[80px] px-[16px]">
+    <div class="max-w-[1280px] mx-auto">
+      <div class="flex flex-col lg:flex-row gap-[40px]">
+        <!-- Left Column - Top Articles -->
+        <div
+          class="relative flex items-center justify-center overflow-hidden rounded-[8px] max-w-[744px] h-[534px] w-full bg-cover bg-center bg-no-repeat"
+          style="background-image: url('{% if top_articles_bg %}{{ top_articles_bg | image_url: width: 1488 }}{% endif %}');"
+        >
+          <h2 class="text-[32px] md:text-[60px] font-bold text-white uppercase leading-[100%]">
+            {{ top_articles_title }}
+          </h2>
+        </div>
+
+        <!-- Right Column - Recent Articles -->
+        {% if show_recent_articles %}
+          <div class="max-w-[496px] flex flex-col gap-[16px]">
+            {% for article in blog.articles limit: recent_articles_count %}
+              <a href="{{ article.url }}" class="flex gap-[24px]">
+                <div class="flex-shrink-0 w-[94px] h-[94px] overflow-hidden">
+                  {% if article.image %}
+                    <img
+                      src="{{ article.image | img_url: '188x188' }}"
+                      alt="{{ article.image.alt | escape }}"
+                      class="w-[94px] h-[94px] object-cover hover:scale-105 transition-all duration-300"
+                    />
+                  {% else %}
+                    <div class="w-[94px] h-[94px] bg-[#4A4E5A] flex items-center justify-center">
+                      <span class="text-white text-[12px]">No image</span>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="py-[16px] pr-[16px]">
+                  <p class="text-[#C8C9CC] text-[14px] font-normal mb-[8px]">
+                    {{ article.published_at | date: '%B %d, %Y' }}
+                  </p>
+                  <h4 class="text-white text-[16px] font-medium leading-[100%] hover:underline cursor-pointer">
+                    {{ article.title | truncate: 60 }}
+                  </h4>
+                </div>
+              </a>
+            {% else %}
+              <!-- Fallback content when no articles -->
+              {% for i in (1..5) %}
+                <div class="flex gap-[24px]">
+                  <div class="flex-shrink-0 w-[94px] h-[94px] overflow-hidden">
+                    <div class="w-[94px] h-[94px] bg-[#4A4E5A] flex items-center justify-center">
+                      <span class="text-white text-[12px]">No image</span>
+                    </div>
+                  </div>
+                  <div class="py-[16px] pr-[16px]">
+                    <p class="text-[#C8C9CC] text-[14px] font-normal mb-[8px]">
+                      September 10, 2025
+                    </p>
+                    <h4 class="text-white text-[16px] font-medium leading-[100%] hover:underline cursor-pointer">
+                      Sample Article Title {{ i }}
+                    </h4>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Blog Featured Articles",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "top_articles_title",
+      "label": "Top Articles Title",
+      "default": "TOP ARTICLES"
+    },
+    {
+      "type": "image_picker",
+      "id": "top_articles_bg",
+      "label": "Top Articles Background Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_recent_articles",
+      "label": "Show recent articles",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "recent_articles_count",
+      "label": "Number of recent articles to show",
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "default": 5
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Featured Articles"
+    }
+  ]
+}
+{% endschema %}

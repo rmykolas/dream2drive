@@ -1,0 +1,215 @@
+<style>
+.bg-hover-sim:hover {
+  background-image: url("{{ section.settings.left_bg_hover | image_url }}") !important;
+}
+
+.bg-hover-racing:hover {
+  background-image: url("{{ section.settings.right_bg_hover | image_url }}") !important;
+}
+</style>
+<section class="font-roboto-condensed">
+  <div class="flex max-lg:flex-col h-[672px]">
+    <!-- Left Half - SIM PRODUCTS -->
+    <div
+      class="flex flex-col items-center max-lg:h-[50%] lg:w-1/2 relative bg-cover bg-center bg-no-repeat bg-hover-transition bg-hover-sim"
+      style="background-image: url({% if section.settings.left_product != blank and section.settings.left_product.featured_image %}{{ section.settings.left_product.featured_image | image_url: width: 2000 }}{% else %}{{ section.settings.left_bg | image_url: width: 2000 }}{% endif %});"
+    >
+      <div class="absolute inset-0 bg-overlay"></div>
+      <div class="relative h-full flex flex-col justify-center items-center text-center">
+        <h1 class="text-[40px] md:text-[60px] font-medium leading-[100%] tracking-[-0.02em] uppercase text-white mb-[16px]">
+          {% if section.settings.left_product != blank %}
+            {{ section.settings.left_product.title }}
+          {% else %}
+            {{ section.settings.left_heading }}
+          {% endif %}
+        </h1>
+        <p class="text-[20px] text-white font-normal mb-[32px] leading-[120%] tracking-[-0.02em] max-w-[500px]">
+          {% if section.settings.left_product != blank %}
+            {{ section.settings.left_product.description | strip_html | truncate: 120 }}
+          {% else %}
+            {{ section.settings.left_text }}
+          {% endif %}
+        </p>
+        <a
+          href="{% if section.settings.left_product != blank %}{{ section.settings.left_product.url }}{% else %}{{ section.settings.left_button_link }}{% endif %}"
+          class="px-[30px] py-[18.5px] text-[17px] font-medium leading-[100%] tracking-[-0.02em] uppercase flex items-center w-fit bg-[#66c2a4] gap-[16px] mt-[20px] hover:bg-[#B6E3D9]"
+        >
+          {% if section.settings.left_product != blank %}
+            View Product
+          {% else %}
+            {{ section.settings.left_button_text }}
+          {% endif %}
+          {% if section.settings.left_button_icon != blank %}
+            <img src="{{ section.settings.left_button_icon | image_url: width: 40 }}" alt="arrow" />
+          {% endif %}
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Half - RACING PRODUCTS -->
+    <div
+      class="flex flex-col items-center max-lg:h-[50%] lg:w-1/2 relative bg-cover bg-center bg-no-repeat bg-hover-transition bg-hover-racing"
+      style="background-image: url({% if section.settings.right_product != blank and section.settings.right_product.featured_image %}{{ section.settings.right_product.featured_image | image_url: width: 2000 }}{% else %}{{ section.settings.right_bg | image_url: width: 2000 }}{% endif %});"
+    >
+      <div class="absolute inset-0 bg-overlay"></div>
+      <div class="relative h-full flex flex-col justify-center items-center text-center">
+        <h1 class="text-[40px] md:text-[60px] font-medium leading-[100%] tracking-[-0.02em] uppercase text-white mb-[16px]">
+          {% if section.settings.right_product != blank %}
+            {{ section.settings.right_product.title }}
+          {% else %}
+            {{ section.settings.right_heading }}
+          {% endif %}
+        </h1>
+        <p class="text-[20px] text-white font-normal mb-[32px] leading-[120%] tracking-[-0.02em] max-w-[500px]">
+          {% if section.settings.right_product != blank %}
+            {{ section.settings.right_product.description | strip_html | truncate: 120 }}
+          {% else %}
+            {{ section.settings.right_text }}
+          {% endif %}
+        </p>
+        <a
+          href="{% if section.settings.right_product != blank %}{{ section.settings.right_product.url }}{% else %}{{ section.settings.right_button_link }}{% endif %}"
+          class="bg-[#66c2a4] px-[30px] py-[18.5px] text-[17px] font-medium leading-[100%] tracking-[-0.02em] uppercase flex items-center w-fit gap-[16px] mt-[20px] hover:bg-[#B6E3D9]"
+        >
+          {% if section.settings.right_product != blank %}
+            View Product
+          {% else %}
+            {{ section.settings.right_button_text }}
+          {% endif %}
+          {% if section.settings.right_button_icon != blank %}
+            <img src="{{ section.settings.right_button_icon | image_url: width: 40 }}" alt="arrow" />
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Scrolling Text -->
+  <div class="flex items-center justify-center gap-[30px] py-[11px] overflow-hidden bg-[#6EC7B3]">
+    {% for i in (1..5) %}
+      <p class="whitespace-nowrap text-[#282C37] uppercase text-[16px] font-semibold animate-scroll">
+        {{ section.settings.scroll_text }}
+      </p>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Section Settings"
+    },
+    {
+      "type": "product",
+      "id": "left_product",
+      "label": "Select Left Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_bg",
+      "label": "Left Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_bg_hover",
+      "label": "Hover Left Background Image"
+    },
+    {
+      "type": "text",
+      "id": "left_heading",
+      "label": "Left Heading (Fallback)",
+      "default": "SIM PRODUCTS"
+    },
+    {
+      "type": "text",
+      "id": "left_text",
+      "label": "Left Text (Fallback)",
+      "default": "Body Text (Big)"
+    },
+    {
+      "type": "text",
+      "id": "left_button_text",
+      "label": "Left Button Text (Fallback)",
+      "default": "BUTTON TEXT"
+    },
+    {
+      "type": "url",
+      "id": "left_button_link",
+      "label": "Left Button Link (Fallback)"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_button_icon",
+      "label": "Left Button Icon"
+    },
+
+    {
+      "type": "header",
+      "content": "Right Section Settings"
+    },
+    {
+      "type": "product",
+      "id": "right_product",
+      "label": "Select Right Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_bg",
+      "label": "Right Background Image (Fallback)"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_bg_hover",
+      "label": "Hover Right Background Image"
+    },
+    {
+      "type": "text",
+      "id": "right_heading",
+      "label": "Right Heading (Fallback)",
+      "default": "RACING PRODUCTS"
+    },
+    {
+      "type": "text",
+      "id": "right_text",
+      "label": "Right Text (Fallback)",
+      "default": "Body Text (Big)"
+    },
+    {
+      "type": "text",
+      "id": "right_button_text",
+      "label": "Right Button Text (Fallback)",
+      "default": "BUTTON TEXT"
+    },
+    {
+      "type": "url",
+      "id": "right_button_link",
+      "label": "Right Button Link (Fallback)"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_button_icon",
+      "label": "Right Button Icon"
+    },
+
+    {
+      "type": "header",
+      "content": "Scrolling Text"
+    },
+    {
+      "type": "text",
+      "id": "scroll_text",
+      "label": "Scrolling Text",
+      "default": "Every product is verified by a professional racing team."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

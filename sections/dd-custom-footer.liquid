@@ -1,0 +1,194 @@
+{% comment %}
+Footer Section
+- Fully dynamic via Shopify theme editor
+- Keeps Tailwind classes & HTML identical
+{% endcomment %}
+
+<footer class="relative z-12 font-roboto-condensed bg-[#0F0F0F]" style="z-index: 12;">
+  <!-- Company Information Section -->
+  <div class="py-[80px] px-[16px] md:px-[32px]">
+    <div class="max-w-[1280px] mx-auto">
+      <div class="flex justify-between flex-wrap gap-[50px]">
+        <!-- About Us Column -->
+        <div class="max-w-[240px]">
+          <h4
+            class="text-[#C8C9CC] text-[24px] font-medium leading-[100%] uppercase mb-[30px] tracking-[-0.01em]"
+          >
+            {{ section.settings.about_title }}
+          </h4>
+          <p
+            class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal mb-[16px]"
+          >
+            {{ section.settings.about_text_1 }}
+          </p>
+          <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
+            {{ section.settings.about_text_2 }}
+          </p>
+        </div>
+
+        <!-- Services Column -->
+        <div class="max-w-[240px]">
+          <h4
+            class="text-[#C8C9CC] text-[24px] font-medium leading-[100%] uppercase mb-[30px] tracking-[-0.01em]"
+          >
+            {{ section.settings.services_title }}
+          </h4>
+          <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
+            {{ section.settings.services_text }}
+          </p>
+        </div>
+
+        <!-- Products Column -->
+        <div class="max-w-[240px]">
+          <h4
+            class="text-[#C8C9CC] text-[24px] font-medium leading-[100%] uppercase mb-[30px] tracking-[-0.01em]"
+          >
+            {{ section.settings.products_title }}
+          </h4>
+          <p
+            class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal mb-[16px]"
+          >
+            {{ section.settings.products_text_1 }}
+          </p>
+          <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
+            {{ section.settings.products_text_2 }}
+          </p>
+        </div>
+
+        <!-- Company Information Column -->
+        <div class="max-w-[240px]">
+          <h4
+            class="text-[#C8C9CC] text-[24px] font-medium leading-[100%] uppercase mb-[30px] tracking-[-0.01em]"
+          >
+            {{ section.settings.company_title }}
+          </h4>
+          <div>
+            <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
+              {{ section.settings.company_name }}
+            </p>
+            <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
+              {{ section.settings.company_code }}
+            </p>
+            <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
+              {{ section.settings.company_vat }}
+            </p>
+            <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
+              {{ section.settings.company_iban }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "About Us Column"
+    },
+    {
+      "type": "text",
+      "id": "about_title",
+      "label": "Title",
+      "default": "ABOUT US"
+    },
+    {
+      "type": "textarea",
+      "id": "about_text_1",
+      "label": "Paragraph 1",
+      "default": "Driver development program designed to offer year-by-year guidance, assistance and technologies to help promising racers to climb the motorsport ladder."
+    },
+    {
+      "type": "textarea",
+      "id": "about_text_2",
+      "label": "Paragraph 2",
+      "default": "European sim racing championship."
+    },
+
+    {
+      "type": "header",
+      "content": "Services Column"
+    },
+    {
+      "type": "text",
+      "id": "services_title",
+      "label": "Title",
+      "default": "SERVICES"
+    },
+    {
+      "type": "textarea",
+      "id": "services_text",
+      "label": "Text",
+      "default": "Individual Karting, Race car, Simulation practice sessions. Full season support. Technical support, maintenance and race preparation. Racing camps during off-season."
+    },
+
+    {
+      "type": "header",
+      "content": "Products Column"
+    },
+    {
+      "type": "text",
+      "id": "products_title",
+      "label": "Title",
+      "default": "PRODUCTS"
+    },
+    {
+      "type": "textarea",
+      "id": "products_text_1",
+      "label": "Paragraph 1",
+      "default": "Official Freem dealer in Baltics. Top level racing suits and equipement for karting and motorsport ambasador in Baltics."
+    },
+    {
+      "type": "textarea",
+      "id": "products_text_2",
+      "label": "Paragraph 2",
+      "default": "BAR-TEK motorsport parts and accessories dealer."
+    },
+
+    {
+      "type": "header",
+      "content": "Company Information Column"
+    },
+    {
+      "type": "text",
+      "id": "company_title",
+      "label": "Title",
+      "default": "COMPANY INFORMATION"
+    },
+    {
+      "type": "text",
+      "id": "company_name",
+      "label": "Company Name",
+      "default": "Tauras racing, VšĮ"
+    },
+    {
+      "type": "text",
+      "id": "company_code",
+      "label": "Company Code",
+      "default": "Company code: 302931662"
+    },
+    {
+      "type": "text",
+      "id": "company_vat",
+      "label": "VAT",
+      "default": "VAT: LT100013200915"
+    },
+    {
+      "type": "text",
+      "id": "company_iban",
+      "label": "IBAN",
+      "default": "IBAN: LT877300010133808341"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer Section",
+      "category": "Footer"
+    }
+  ]
+}
+{% endschema %}

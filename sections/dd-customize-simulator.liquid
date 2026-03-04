@@ -1,0 +1,226 @@
+{% comment %}
+CUSTOMISE YOUR SIMULATOR SECTION
+- Fixed numbered hotspots (1–6)
+- Each hotspot link is editable
+{% endcomment %}
+
+<section class="bg-[#282C37] py-[60px] md:py-[80px] px-[16px] md:px-[32px] font-roboto-condensed">
+  <div class="max-w-[1280px] mx-auto">
+    <!-- Section Title -->
+    {% if section.settings.title != blank %}
+      <h2 class="text-[40px] md:text-[60px] font-medium text-white leading-[100%] tracking-[-0.01em] text-center mb-[40px] uppercase">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    <div class="flex justify-between items-center max-lg:flex-col-reverse">
+      <!-- Left Side - Product Info -->
+      <div class="w-full sm:max-w-[345px] lg:mt-0">
+        {% if section.settings.simulator_title_1 != blank %}
+          <h3 class="text-[24px] md:text-[40px] font-medium text-white mb-[12px] leading-[100%]">
+            {{ section.settings.simulator_title_1 }}
+          </h3>
+        {% endif %}
+        {% if section.settings.simulator_price_1 != blank %}
+          <p class="text-[20px] text-[#C8C9CC] mb-[4px] leading-[120%] tracking-[-0.01em] font-normal">
+            {{ section.settings.simulator_price_1 }}
+          </p>
+        {% endif %}
+        {% if section.settings.button_label_1 != blank %}
+          <a href="{{ section.settings.button_link_1 }}" class="text-[#282C37] bg-[#6EC7B3] px-[30px] py-[18px] text-[17px] font-semibold leading-[100%] tracking-[-0.01em] uppercase flex items-center w-fit gap-[16px] mt-[20px] hover:bg-[#B6E3D9]">
+            {{ section.settings.button_label_1 }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.simulator_title_2 != blank %}
+          <h3 class="text-[24px] md:text-[40px] font-medium text-white mb-[12px] leading-[100%] mt-[40px]">
+            {{ section.settings.simulator_title_2 }}
+          </h3>
+        {% endif %}
+        {% if section.settings.simulator_price_2 != blank %}
+          <p class="text-[20px] text-[#C8C9CC] mb-[4px] leading-[120%] tracking-[-0.01em] font-normal">
+            {{ section.settings.simulator_price_2 }}
+          </p>
+        {% endif %}
+        {% if section.settings.button_label_2 != blank %}
+          <a href="{{ section.settings.button_link_2 }}" class="text-[#282C37] bg-[#6EC7B3] px-[30px] py-[18px] text-[17px] font-semibold leading-[100%] tracking-[-0.01em] uppercase flex items-center w-fit gap-[16px] mt-[20px] hover:bg-[#B6E3D9]">
+            {{ section.settings.button_label_2 }}
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- Right Side - Simulator Visual -->
+      <div class="relative">
+        <div class="relative">
+          {% if section.settings.main_image %}
+            <img
+              src="{{ section.settings.main_image | image_url: width: 733 }}"
+              alt="Racing Simulator Setup"
+              class="w-[346px] h-[346px] md:w-[733px] md:h-[533px] object-contain"
+            />
+          {% endif %}
+
+          <!-- Fixed Numbered Hotspots -->
+          <div class="absolute md:bottom-[68px] md:left-[160px] bottom-[75px] left-[70px]">
+            <a href="{{ section.settings.link_1 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">1</a>
+          </div>
+
+          <div class="absolute md:top-[110px] md:right-[320px] top-[100px] right-[145px]">
+            <a href="{{ section.settings.link_2 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">2</a>
+          </div>
+
+          <div class="absolute md:top-[240px] md:right-[260px] top-[160px] right-[115px]">
+            <a href="{{ section.settings.link_3 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">3</a>
+          </div>
+
+          <div class="absolute md:top-[249px] md:right-[340px] top-[160px] right-[150px]">
+            <a href="{{ section.settings.link_4 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">4</a>
+          </div>
+
+          <div class="absolute md:bottom-[125px] bottom-[100px] md:right-[200px] right-[100px]">
+            <a href="{{ section.settings.link_5 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">5</a>
+          </div>
+
+          <div class="absolute md:top-[305px] top-[185px] md:left-[280px] left-[128px]">
+            <a href="{{ section.settings.link_6 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">6</a>
+          </div>
+
+          <div class="absolute md:top-[270px] top-[170px] md:left-[170px] left-[80px]">
+            <a href="{{ section.settings.link_7 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">7</a>
+          </div>
+
+          {% comment %} <!-- Fixed Numbered Hotspots -->
+          <div class="absolute md:top-[75px] md:left-[107px] top-[30px] left-[40px]">
+            <a href="{{ section.settings.link_1 }}" class="w-[26px] h-[26px] md:w-[36px] md:h-[36px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[14px] md:text-[20px] font-dm-sans">1</a>
+          </div>
+
+          <div class="absolute md:top-[145px] md:right-[95px] top-[65px] right-[45px]">
+            <a href="{{ section.settings.link_2 }}" class="w-[26px] h-[26px] md:w-[36px] md:h-[36px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[14px] md:text-[20px] font-dm-sans">2</a>
+          </div>
+
+          <div class="absolute md:top-[249px] md:right-[334px] top-[115px] right-[150px]">
+            <a href="{{ section.settings.link_3 }}" class="w-[26px] h-[26px] md:w-[36px] md:h-[36px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[14px] md:text-[20px] font-dm-sans">3</a>
+          </div>
+
+          <div class="absolute md:top-[434px] md:left-[248px] top-[200px] left-[105px]">
+            <a href="{{ section.settings.link_4 }}" class="w-[26px] h-[26px] md:w-[36px] md:h-[36px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[14px] md:text-[20px] font-dm-sans">4</a>
+          </div>
+
+          <div class="absolute md:bottom-[130px] bottom-[55px] md:left-[284px] left-[140px]">
+            <a href="{{ section.settings.link_5 }}" class="w-[26px] h-[26px] md:w-[36px] md:h-[36px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[14px] md:text-[20px] font-dm-sans">5</a>
+          </div>
+
+          <div class="absolute md:top-[334px] top-[160px] md:right-[256px] right-[115px]">
+            <a href="{{ section.settings.link_6 }}" class="w-[26px] h-[26px] md:w-[36px] md:h-[36px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[14px] md:text-[20px] font-dm-sans">6</a>
+          </div> {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customise Your Simulator",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "CUSTOMISE YOUR SIMULATOR"
+    },
+    {
+      "type": "text",
+      "id": "simulator_title_1",
+      "label": "Simulator Title 1",
+      "default": "PRO AM Simulator Setup"
+    },
+    {
+      "type": "text",
+      "id": "simulator_price_1",
+      "label": "Simulator Price 1",
+      "default": "€5.865,00 – €8.720,00 + VAT"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Button Label 1",
+      "default": "START NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Button Link 1"
+    },
+    {
+      "type": "text",
+      "id": "simulator_title_2",
+      "label": "Simulator Title 2",
+      "default": "PRO AM Simulator Setup"
+    },
+    {
+      "type": "text",
+      "id": "simulator_price_2",
+      "label": "Simulator Price 2",
+      "default": "€5.865,00 – €8.720,00 + VAT"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Button Label 2",
+      "default": "START NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Button Link 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Simulator Image"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Hotspot Link 1"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Hotspot Link 2"
+    },
+    {
+      "type": "url",
+      "id": "link_3",
+      "label": "Hotspot Link 3"
+    },
+    {
+      "type": "url",
+      "id": "link_4",
+      "label": "Hotspot Link 4"
+    },
+    {
+      "type": "url",
+      "id": "link_5",
+      "label": "Hotspot Link 5"
+    },
+    {
+      "type": "url",
+      "id": "link_6",
+      "label": "Hotspot Link 6"
+    },
+    {
+      "type": "url",
+      "id": "link_7",
+      "label": "Hotspot Link 7"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customise Your Simulator",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

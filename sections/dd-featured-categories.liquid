@@ -1,0 +1,101 @@
+<section
+  class="py-[80px] px-[16px] md:px-[32px] bg-[#ECECEC] font-roboto-condensed"
+>
+  <div class="max-w-[1280px] mx-auto">
+    <!-- Section Title -->
+    <h2
+      class="text-[52px] md:text-[60px] font-medium text-[#0F0F0F] text-center mb-[40px] md:mb-[80px] leading-[100%] tracking-[-0.01em] uppercase"
+    >
+      {{ section.settings.title }}
+    </h2>
+
+    <div class="flex flex-wrap max-lg:justify-center gap-[16px]">
+      {% for block in section.blocks %}
+        <a
+          {% if block.settings.link != blank %}
+            href="{{ block.settings.link }}"
+          {% else %}
+            href="#"
+          {% endif %}
+          class="flex md:flex-col bg-[#282C37] w-full md:w-[243px] h-[143px] md:h-[360px] hover:bg-[#4A4E5A] transition-all duration-300"
+        >
+          <h3
+            class="text-white text-[22px] md:text-[28px] font-normal leading-[100%] tracking-[-0.01em] uppercase p-[16px] max-sm:pr-0 max-sm:flex-1"
+          >
+            {{ block.settings.title }}
+          </h3>
+          <div class="h-full w-full overflow-hidden max-sm:flex-1">
+            {% if block.settings.image != blank %}
+             <img
+  src="{{ block.settings.image | image_url }}"
+  alt="{{ block.settings.title }}"
+  class="w-full h-full object-contain md:object-contain md:scale-[1.15] md:p-[10px]"
+>
+            {% else %}
+              <div class="bg-[#2F333D] w-full h-full flex items-center justify-center text-white text-[14px]">
+                No image
+              </div>
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Featured CATEGORIES"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "Category Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Main Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_image",
+          "label": "Hover Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Featured Categories",
+      "category": "Custom Sections",
+      "blocks": [
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" }
+      ]
+    }
+  ]
+}
+{% endschema %}

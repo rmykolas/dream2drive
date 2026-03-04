@@ -1,0 +1,218 @@
+{% comment %}
+CUSTOMISE YOUR RACER EQUIPMENT SECTION
+- Fully dynamic content (title, button, image)
+- Fixed numbered callouts with editable links (1–6)
+- 100% original HTML & Tailwind CSS preserved
+{% endcomment %}
+
+<section
+  class="bg-[#ECECEC] py-[80px] px-[16px] md:px-[32px] font-roboto-condensed"
+>
+  <div class="max-w-[1280px] mx-auto">
+    <!-- Section Title -->
+    {% if section.settings.title != blank %}
+      <h2
+        class="text-[40px] md:text-[60px] font-medium text-[#282C37] leading-[100%] tracking-[-0.01em] text-center mb-[40px] uppercase"
+      >
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    <div
+      class="flex justify-between items-center lg:items-start max-lg:flex-col gap-[60px]"
+    >
+      <!-- Left Side -->
+      <div class="max-w-[345px] lg:mt-[150px]">
+        <h3
+          class="text-[24px] md:text-[40px] font-medium text-[#282C37] mb-[12px] leading-[100%] tracking-[-0.01em]"
+        >
+          {{ section.settings.subheading }}
+        </h3>
+
+        <!-- Selected Items List -->
+        <div class="mb-[14px] border-b border-[#C8C9CC] pb-[6px]">
+          {% for item in section.blocks %}
+            <div class="flex items-center justify-between">
+              <div>
+                <span
+                  class="text-[#282C37] font-semibold font-medium text-[17px]"
+                  >{{ item.settings.label }}:</span>
+                <span class="text-[#4A4E5A] text-[14px] font-normal ml-[4px]">
+                  {{ item.settings.text }}
+                </span>
+              </div>
+              <button class="text-[#4A4E5A] text-[20px]">×</button>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Total Price -->
+        <div
+          class="text-[20px] font-normal text-[#4A4E5A] mb-[60px] leading-[120%]"
+        >
+          {{ section.settings.total_price }}
+        </div>
+
+        <!-- Start Now Button -->
+        {% if section.settings.button_label != blank %}
+          <a
+            href="{{ section.settings.button_link }}"
+            class="text-[#282C37] bg-[#6EC7B3] px-[30px] py-[18px] text-[17px] font-semibold leading-[100%] tracking-[-0.01em] uppercase flex items-center w-fit gap-[16px] hover:bg-[#B6E3D9] transition-all duration-300"
+          >
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- Racer Model Image with Fixed Callouts -->
+      <div class="relative overflow-hidden">
+        {% if section.settings.main_image != blank %}
+          <img
+            src="{{ section.settings.main_image | image_url: width: 700 }}"
+            alt="Racer Model"
+            class="min-w-[700px] w-[700px] h-[733px] object-contain"
+          />
+        {% endif %}
+
+        <!-- Fixed Callouts -->
+        <div class="absolute bottom-[48px] left-[230px]">
+          <a href="{{ section.settings.link_1 }}" class="w-[22px] h-[22px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">1</a>
+        </div>
+
+        <div class="absolute top-[375px] left-[200px]">
+          <a href="{{ section.settings.link_2 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">2</a>
+        </div>
+
+        <div class="absolute top-[250px] left-[298px]">
+          <a href="{{ section.settings.link_3 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">3</a>
+        </div>
+
+        <div class="absolute top-[20px] left-[270px]">
+          <a href="{{ section.settings.link_4 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">4</a>
+        </div>
+
+        <div class="absolute top-[80px] left-[392px]">
+          <a href="{{ section.settings.link_5 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">5</a>
+        </div>
+
+        <div class="absolute top-[191px] left-[362px]">
+          <a href="{{ section.settings.link_6 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">6</a>
+        </div>
+
+        <div class="absolute bottom-[250px] left-[376px]">
+          <a href="{{ section.settings.link_7 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">7</a>
+        </div>
+
+        <div class="absolute bottom-[48px] left-[425px]">
+          <a href="{{ section.settings.link_8 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">8</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customise Racer Equipment",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "CUSTOMISE YOUR RACER EQUIPMENT"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Your Racer Equipment"
+    },
+    {
+      "type": "text",
+      "id": "total_price",
+      "label": "Total Price Text",
+      "default": "Total: €640,00 + VAT"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "START NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Racer Model Image"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Hotspot Link 1"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Hotspot Link 2"
+    },
+    {
+      "type": "url",
+      "id": "link_3",
+      "label": "Hotspot Link 3"
+    },
+    {
+      "type": "url",
+      "id": "link_4",
+      "label": "Hotspot Link 4"
+    },
+    {
+      "type": "url",
+      "id": "link_5",
+      "label": "Hotspot Link 5"
+    },
+    {
+      "type": "url",
+      "id": "link_6",
+      "label": "Hotspot Link 6"
+    },
+    {
+      "type": "url",
+      "id": "link_7",
+      "label": "Hotspot Link 7"
+    },
+    {
+      "type": "url",
+      "id": "link_8",
+      "label": "Hotspot Link 8"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "equipment_item",
+      "name": "Equipment Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Item Label (e.g. Gloves, Shoes)"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Item Description (e.g. Product Name or Variant)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customise Racer Equipment",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

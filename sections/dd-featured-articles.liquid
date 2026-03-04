@@ -1,0 +1,76 @@
+<section class="py-[80px] px-[16px] md:px-[32px] bg-[#1C2127] font-roboto-condensed">
+  <div class="max-w-[1280px] mx-auto">
+    <!-- Section Title -->
+    <h2
+      class="text-[52px] md:text-[60px] font-medium text-white text-center mb-[40px] md:mb-[80px] leading-[100%] tracking-[-0.01em] uppercase"
+    >
+      FEATURED ARTICLES
+    </h2>
+
+    <div class="flex justify-center flex-wrap gap-[32px]">
+      {% assign selected_blog = blogs[section.settings.blog] %}
+
+      {% if selected_blog and selected_blog.articles_count > 0 %}
+        {% for article in selected_blog.articles limit: 4 %}
+          <a href="{{ article.url }}" class="w-full max-w-[296px] overflow-hidden">
+            <div class="relative">
+              {% if article.tags.size > 0 %}
+                <div class="flex gap-[4px] absolute top-[8px] left-[8px] z-10 flex-wrap">
+                  {% for tag in article.tags limit: 3 %}
+                    <span class="bg-[#2F333D] text-white text-[14px] px-[12px] py-[2.5px]">
+                      {{ tag }}
+                    </span>
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+              <div class="w-full h-[324px] mb-[16px] overflow-hidden">
+                {% if article.image %}
+                  <img
+                    src="{{ article.image | img_url: 'master' }}"
+                    alt="{{ article.image.alt | escape }}"
+                    class="w-full h-full object-cover hover:scale-110 transition-all duration-300"
+                  />
+                {% else %}
+                  <div class="bg-[#2F333D] w-full h-full flex items-center justify-center text-white text-[14px]">
+                    No image available
+                  </div>
+                {% endif %}
+              </div>
+
+              <p class="text-[#C8C9CC] text-[14px] font-normal mb-[16px]">
+                {{ article.published_at | date: "%B %d, %Y" }}
+              </p>
+
+              <h3
+                class="text-white text-[16px] font-medium leading-[100%] hover:underline transition-all duration-300 cursor-pointer min-h-[52px]"
+              >
+                {{ article.title }}
+              </h3>
+            </div>
+          </a>
+        {% endfor %}
+      {% else %}
+        <p class="text-white text-center">Please select a blog or no articles found.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Articles",
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select Blog"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Articles"
+    }
+  ]
+}
+{% endschema %}
