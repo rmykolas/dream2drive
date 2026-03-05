@@ -1,1 +1,412 @@
-{"sections":{"dd_hero_section_T4nLCX":{"type":"dd-Hero-section","name":"Hero Section","settings":{"left_product":"","left_bg":"shopify:\/\/shop_images\/Screenshot_2025-11-13_at_10.32.42.png","left_bg_hover":"shopify:\/\/shop_images\/e4666b990403edaa6fffebad85af7cd65d272383.webp","left_heading":"SIM RACING","left_text":"","left_button_text":"Shop Now","left_button_link":"shopify:\/\/pages\/sim-products","left_button_icon":"shopify:\/\/shop_images\/right_arrow.svg","right_product":"","right_bg":"shopify:\/\/shop_images\/FIA_Karting_Henrikas_Keplikas_Kristianstad_Friday_FR-5.jpg","right_bg_hover":"shopify:\/\/shop_images\/500707855_1308121287987945_4934624880260717677_n.png","right_heading":"RACING","right_text":"","right_button_text":"Shop Now","right_button_link":"shopify:\/\/pages\/racing-products","right_button_icon":"shopify:\/\/shop_images\/right_arrow.svg","scroll_text":"Every product is tested and verified by a professional racing team."}},"dd_customize_simulator_AGUzeF":{"type":"dd-customize-simulator","name":"Customise Your Simulator","settings":{"title":"","simulator_title_1":"COMPLETE SIMULATOR","simulator_price_1":"Just unbox, connect and start racing","button_label_1":"FIND YOURS","button_link_1":"shopify:\/\/collections\/bundles","simulator_title_2":"BUILD YOUR SIMULATOR","simulator_price_2":"Pick what you need. Upgrade anytime.","button_label_2":"START NOW","button_link_2":"shopify:\/\/products\/tr120s-v2-racing-simulator-with-seat-sliders-kit","main_image":"shopify:\/\/shop_images\/Copy_of_TR120S-BLK_e04-min.png","link_1":"shopify:\/\/collections\/simulator-frames-and-cockipts","link_2":"shopify:\/\/collections\/monitors-computers","link_3":"shopify:\/\/collections\/wheelbase","link_4":"shopify:\/\/collections\/wheels","link_5":"shopify:\/\/collections\/pedals","link_6":"shopify:\/\/collections\/accessories","link_7":"shopify:\/\/collections\/seats-seats-accessories"}},"dd_product_categories_FzBLXd":{"type":"dd-product-categories","blocks":{"sim_product_adKywN":{"type":"sim_product","settings":{"product":"","title":"Racing bundles","image":"shopify:\/\/shop_images\/bundles-pro.png","hover_image":"shopify:\/\/shop_images\/bundles-pro.png","link":"shopify:\/\/collections\/bundles"}},"sim_product_6CMPP7":{"type":"sim_product","settings":{"product":"","title":"FRAMES AND COCKPITS","image":"shopify:\/\/shop_images\/Copy_of_TR120S-BLK_OA-PF-NS_01.png","hover_image":"shopify:\/\/shop_images\/TR120S-BLKe02-min_1080x_0bdee62b-08a5-42b8-996e-ff3b8fc92564.webp","link":"shopify:\/\/collections\/simulator-frames-and-cockipts"}},"sim_product_4X3bz3":{"type":"sim_product","settings":{"product":"","title":"MONITOR MOUNTS","image":"shopify:\/\/shop_images\/MS-CM-SIN-TR2_01_1080x_fd3807d6-f1b8-4fcb-ad16-8b671d0cb4eb.webp","hover_image":"shopify:\/\/shop_images\/TRR077_FrontLeft01_900x_1.webp","link":"shopify:\/\/collections\/monitor-stands"}},"sim_product_JHcA4n":{"type":"sim_product","settings":{"product":"","title":"Seats & Add-ons","image":"shopify:\/\/shop_images\/Racing_seat_simulator_GT-PRO.webp","hover_image":"shopify:\/\/shop_images\/SEAT-4.2_3b08fcd3-075d-42d8-bdea-1cca6530a3db.png","link":"shopify:\/\/collections\/seats-seats-accessories"}},"sim_product_dBf8AA":{"type":"sim_product","settings":{"product":"","title":"Wheelbase","image":"shopify:\/\/shop_images\/SC3SPORT-1.webp","hover_image":"shopify:\/\/shop_images\/20240821-141049.010-2copy.png","link":"shopify:\/\/collections\/wheelbase"}},"sim_product_CEGkiF":{"type":"sim_product","settings":{"product":"","title":"PEDALS","image":"shopify:\/\/shop_images\/DSC0846_1_-1-1-square.png","hover_image":"shopify:\/\/shop_images\/cpp-lite-3-3-1.png","link":"shopify:\/\/collections\/pedals"}},"sim_product_hVe89T":{"type":"sim_product","settings":{"product":"","title":"STEERING WHEELS","image":"shopify:\/\/shop_images\/290GP010_1_copy.png","hover_image":"shopify:\/\/shop_images\/1755679592262.webp","link":"shopify:\/\/collections\/wheels"}},"sim_product_rHkanC":{"type":"sim_product","settings":{"product":"","title":"ACCESSORIES","image":"shopify:\/\/shop_images\/DS-8X_7_1080x_4e4dcfb7-424b-4f3a-a558-3fa15431762b.webp","hover_image":"shopify:\/\/shop_images\/Conspit_CSD_dashboard.png","link":"shopify:\/\/collections\/accessories"}},"sim_product_EQHUAK":{"type":"sim_product","settings":{"product":"","title":"Motion & Haptic systems","image":"shopify:\/\/shop_images\/motion_haptics.png","hover_image":"shopify:\/\/shop_images\/QS-BT1_45_00.png","link":"shopify:\/\/collections\/motion-haptic-systems"}},"sim_product_RDYxcx":{"type":"sim_product","settings":{"product":"","title":"MONITORS & PC","image":"shopify:\/\/shop_images\/3.avif","hover_image":"shopify:\/\/shop_images\/gaming_triple.png","link":"shopify:\/\/collections\/monitors-computers"}}},"block_order":["sim_product_adKywN","sim_product_6CMPP7","sim_product_4X3bz3","sim_product_JHcA4n","sim_product_dBf8AA","sim_product_CEGkiF","sim_product_hVe89T","sim_product_rHkanC","sim_product_EQHUAK","sim_product_RDYxcx"],"name":"Product Categories Section","settings":{"section_title":"","sim_button_text":"SIM PRODUCTS","racing_button_text":"RACING PRODUCTS"}},"dd_customize_racer_PiGgHV":{"type":"dd-customize-racer","blocks":{"equipment_item_8EkBM8":{"type":"equipment_item","disabled":true,"settings":{"label":"","text":""}},"equipment_item_trhHgG":{"type":"equipment_item","disabled":true,"settings":{"label":"","text":""}}},"block_order":["equipment_item_8EkBM8","equipment_item_trhHgG"],"name":"Customise Racer Equipment","settings":{"title":"","subheading":"ORDER YOUR RACING EQUIPMENT","total_price":"Chosen by Racers. Not Marketers.","button_label":"START NOW","button_link":"shopify:\/\/pages\/clothes-and-accessories","main_image":"shopify:\/\/shop_images\/Model_Freem_Clothes.png","link_1":"shopify:\/\/collections\/gloves-copy","link_2":"shopify:\/\/collections\/motorsport-clothing","link_3":"shopify:\/\/collections\/motorsport-suits","link_4":"shopify:\/\/collections\/helmet","link_5":"shopify:\/\/collections\/underwear","link_6":"shopify:\/\/collections\/underwear","link_7":"shopify:\/\/collections\/underwear","link_8":"shopify:\/\/collections\/underwear"}},"dd_our_team_RRra6p":{"type":"dd-our-team","blocks":{"team_member_VRdmYf":{"type":"team_member","settings":{"image":"shopify:\/\/shop_images\/5f4e76040a7ef4a0843255153cbc095f4aadd468.png","name":"NAME SURNAME","role":"CEO, Monster Energy athlete, Multiple circuit racing champion, Coach"}},"team_member_qyx9nY":{"type":"team_member","settings":{"image":"shopify:\/\/shop_images\/544ce919bae025cb2c02bc67892e525e7f0d3d9b.png","name":"NAME SURNAME","role":"CO-Owner, Multiple karting race champion, Coach"}},"team_member_KBBaCn":{"type":"team_member","settings":{"image":"shopify:\/\/shop_images\/edfdf80cd8eac757a38e590a915e7401d730f2ec.png","name":"NAME SURNAME","role":"Mentor"}},"team_member_7yyMQc":{"type":"team_member","settings":{"image":"shopify:\/\/shop_images\/f03be216f83e8167f59af566980c587994e1d814.png","name":"NAME SURNAME","role":"Sales"}},"team_member_6yUgnW":{"type":"team_member","settings":{"image":"shopify:\/\/shop_images\/d4f2cc12ee1c6df9d5485e2710d8c5c01f33e898.png","name":"NAME SURNAME","role":"Communications Manager"}}},"block_order":["team_member_VRdmYf","team_member_qyx9nY","team_member_KBBaCn","team_member_7yyMQc","team_member_6yUgnW"],"disabled":true,"name":"Our Team","settings":{"title":"OUR TEAM","subtitle":"Young team with a big experience"}},"dd_accademy_DfXaWb":{"type":"dd-accademy","blocks":{"bullet_hTYaJq":{"type":"bullet","settings":{"text":"Sim racing experience"}},"bullet_b8Fbxb":{"type":"bullet","settings":{"text":"Driving experience"}},"bullet_rAwwaJ":{"type":"bullet","settings":{"text":"Racing Experience"}}},"block_order":["bullet_hTYaJq","bullet_b8Fbxb","bullet_rAwwaJ"],"name":"Race Driver Academy","settings":{"bg_image":"shopify:\/\/shop_images\/493594133_1279839104149497_1526799214720047924_n_6886be52-7e0d-4c1a-8ea9-47e053efa522.jpg","title":"RACING EXPERIENCE","description":"Driver development academy designed to offer year-by-year guidance, assistance, and technologies to help dreamers become racing drivers and start climbing the motorsport ladder.","button_label":"LEARN MORE","button_link":"shopify:\/\/collections\/driving-experience","button_icon":"shopify:\/\/shop_images\/flag.svg"}},"dd_newsletter_ygpTpG":{"type":"dd-newsletter","name":"Newsletter Section","settings":{"image":"shopify:\/\/shop_images\/journey.png","heading":"JOIN OUR NEWSLETTER","subtext":"For upcoming activities and exclusive offers.","custom_form_action":"","placeholder":"Enter your email address","button_label":"SUBSCRIBE","button_icon":"shopify:\/\/shop_images\/right_arrow.svg"}},"dd_faqs_QDtgac":{"type":"dd-faqs","blocks":{"faq_T7rzVH":{"type":"faq","settings":{"question":"Who supervises BeMyBond's activities? What license does this platform have?","answer":"The activities of the BeMyBond bond platform are supervised by the Bank of Lithuania. The platform has a crowdfunding service provider license granted by the European Union Crowdfunding Regulation 2020\/1503. The license allows to act as a crowdfunding service provider in all European Union member states according to the system established by the regulation. The regulation ensures equal investor protection and transparency in all member states and meets the high standards of the European Union. License number: No.13, date of issue: 16.04.2024."}},"faq_nb4p8Q":{"type":"faq","settings":{"question":"What is the Know Your Customer (KYC) principle and why is it necessary?","answer":"KYC (Know Your Customer) is a regulatory requirement that helps verify the identity of customers to prevent fraud, money laundering, and other illegal activities. It's necessary to ensure compliance with financial regulations and protect both the platform and its users."}},"faq_C4Jf6w":{"type":"faq","settings":{"question":"Do I get an investment account?","answer":"Yes, when you register on our platform, you will automatically receive an investment account that allows you to browse, select, and invest in various racing-related projects and opportunities."}},"faq_4jkVwe":{"type":"faq","settings":{"question":"Do I need to have a securities account before starting to invest on BeMyBond?","answer":"No, you don't need a separate securities account. Our platform provides everything you need to start investing immediately after completing the registration and verification process."}},"faq_UhNgjn":{"type":"faq","settings":{"question":"How can I find out about the latest BeMyBond bonds issues?","answer":"You can stay updated on the latest bond issues by subscribing to our newsletter, following our social media channels, or regularly checking the platform's investment opportunities section."}},"faq_i3DHYP":{"type":"faq","settings":{"question":"Can I cancel my investment?","answer":"Investment cancellation policies vary depending on the specific project and its terms. Please review the individual project details and contact our support team for specific cancellation policies."}}},"block_order":["faq_T7rzVH","faq_nb4p8Q","faq_C4Jf6w","faq_4jkVwe","faq_UhNgjn","faq_i3DHYP"],"name":"FAQ Section","settings":{"title":"FAQ"}}},"order":["dd_hero_section_T4nLCX","dd_customize_simulator_AGUzeF","dd_product_categories_FzBLXd","dd_customize_racer_PiGgHV","dd_our_team_RRra6p","dd_accademy_DfXaWb","dd_newsletter_ygpTpG","dd_faqs_QDtgac"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "dd_hero_section_T4nLCX": {
+      "type": "dd-Hero-section",
+      "name": "Hero Section",
+      "settings": {
+        "left_product": "",
+        "left_bg": "shopify://shop_images/Screenshot_2025-11-13_at_10.32.42.png",
+        "left_bg_hover": "shopify://shop_images/e4666b990403edaa6fffebad85af7cd65d272383.webp",
+        "left_heading": "SIM RACING",
+        "left_text": "",
+        "left_button_text": "Shop Now",
+        "left_button_link": "shopify://pages/sim-products",
+        "left_button_icon": "shopify://shop_images/right_arrow.svg",
+        "right_product": "",
+        "right_bg": "shopify://shop_images/FIA_Karting_Henrikas_Keplikas_Kristianstad_Friday_FR-5.jpg",
+        "right_bg_hover": "shopify://shop_images/500707855_1308121287987945_4934624880260717677_n.png",
+        "right_heading": "RACING",
+        "right_text": "",
+        "right_button_text": "Shop Now",
+        "right_button_link": "shopify://pages/racing-products",
+        "right_button_icon": "shopify://shop_images/right_arrow.svg",
+        "scroll_text": "Every product is tested and verified by a professional racing team."
+      }
+    },
+    "dd_customize_simulator_AGUzeF": {
+      "type": "dd-customize-simulator",
+      "name": "Customise Your Simulator",
+      "settings": {
+        "title": "",
+        "simulator_title_1": "COMPLETE SIMULATOR",
+        "simulator_price_1": "Just unbox, connect and start racing",
+        "button_label_1": "FIND YOURS",
+        "button_link_1": "shopify://collections/bundles",
+        "simulator_title_2": "BUILD YOUR SIMULATOR",
+        "simulator_price_2": "Pick what you need. Upgrade anytime.",
+        "button_label_2": "START NOW",
+        "button_link_2": "shopify://products/tr120s-v2-racing-simulator-with-seat-sliders-kit",
+        "main_image": "shopify://shop_images/Copy_of_TR120S-BLK_e04-min.png",
+        "link_1": "shopify://collections/simulator-frames-and-cockipts",
+        "link_2": "shopify://collections/monitors-computers",
+        "link_3": "shopify://collections/wheelbase",
+        "link_4": "shopify://collections/wheels",
+        "link_5": "shopify://collections/pedals",
+        "link_6": "shopify://collections/accessories",
+        "link_7": "shopify://collections/seats-seats-accessories"
+      }
+    },
+    "dd_product_categories_FzBLXd": {
+      "type": "dd-product-categories",
+      "blocks": {
+        "racing_product_wR4FDY": {
+          "type": "racing_product",
+          "settings": {
+            "product": "",
+            "title": "RACING GLOVES",
+            "image": "shopify://shop_images/simglove_freem.png",
+            "hover_image": "shopify://shop_images/sim_glove_freem.png",
+            "link": "shopify://collections/motorsport-clothing"
+          }
+        },
+        "sim_product_adKywN": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "Racing bundles",
+            "image": "shopify://shop_images/bundles-pro.png",
+            "hover_image": "shopify://shop_images/bundles-pro.png",
+            "link": "shopify://collections/bundles"
+          }
+        },
+        "sim_product_6CMPP7": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "FRAMES AND COCKPITS",
+            "image": "shopify://shop_images/Copy_of_TR120S-BLK_OA-PF-NS_01.png",
+            "hover_image": "shopify://shop_images/TR120S-BLKe02-min_1080x_0bdee62b-08a5-42b8-996e-ff3b8fc92564.webp",
+            "link": "shopify://collections/simulator-frames-and-cockipts"
+          }
+        },
+        "sim_product_4X3bz3": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "MONITOR MOUNTS",
+            "image": "shopify://shop_images/MS-CM-SIN-TR2_01_1080x_fd3807d6-f1b8-4fcb-ad16-8b671d0cb4eb.webp",
+            "hover_image": "shopify://shop_images/TRR077_FrontLeft01_900x_1.webp",
+            "link": "shopify://collections/monitor-stands"
+          }
+        },
+        "sim_product_JHcA4n": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "Seats & Add-ons",
+            "image": "shopify://shop_images/Racing_seat_simulator_GT-PRO.webp",
+            "hover_image": "shopify://shop_images/SEAT-4.2_3b08fcd3-075d-42d8-bdea-1cca6530a3db.png",
+            "link": "shopify://collections/seats-seats-accessories"
+          }
+        },
+        "sim_product_dBf8AA": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "Wheelbase",
+            "image": "shopify://shop_images/SC3SPORT-1.webp",
+            "hover_image": "shopify://shop_images/20240821-141049.010-2copy.png",
+            "link": "shopify://collections/wheelbase"
+          }
+        },
+        "sim_product_CEGkiF": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "PEDALS",
+            "image": "shopify://shop_images/DSC0846_1_-1-1-square.png",
+            "hover_image": "shopify://shop_images/cpp-lite-3-3-1.png",
+            "link": "shopify://collections/pedals"
+          }
+        },
+        "sim_product_hVe89T": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "STEERING WHEELS",
+            "image": "shopify://shop_images/290GP010_1_copy.png",
+            "hover_image": "shopify://shop_images/1755679592262.webp",
+            "link": "shopify://collections/wheels"
+          }
+        },
+        "sim_product_rHkanC": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "ACCESSORIES",
+            "image": "shopify://shop_images/DS-8X_7_1080x_4e4dcfb7-424b-4f3a-a558-3fa15431762b.webp",
+            "hover_image": "shopify://shop_images/Conspit_CSD_dashboard.png",
+            "link": "shopify://collections/accessories"
+          }
+        },
+        "sim_product_EQHUAK": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "Motion & Haptic systems",
+            "image": "shopify://shop_images/motion_haptics.png",
+            "hover_image": "shopify://shop_images/QS-BT1_45_00.png",
+            "link": "shopify://collections/motion-haptic-systems"
+          }
+        },
+        "sim_product_RDYxcx": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "MONITORS & PC",
+            "image": "shopify://shop_images/3.avif",
+            "hover_image": "shopify://shop_images/gaming_triple.png",
+            "link": "shopify://collections/monitors-computers"
+          }
+        }
+      },
+      "block_order": [
+        "racing_product_wR4FDY",
+        "sim_product_adKywN",
+        "sim_product_6CMPP7",
+        "sim_product_4X3bz3",
+        "sim_product_JHcA4n",
+        "sim_product_dBf8AA",
+        "sim_product_CEGkiF",
+        "sim_product_hVe89T",
+        "sim_product_rHkanC",
+        "sim_product_EQHUAK",
+        "sim_product_RDYxcx"
+      ],
+      "name": "Product Categories Section",
+      "settings": {
+        "section_title": "",
+        "sim_button_text": "SIM PRODUCTS",
+        "racing_button_text": "RACING PRODUCTS"
+      }
+    },
+    "dd_customize_racer_PiGgHV": {
+      "type": "dd-customize-racer",
+      "blocks": {
+        "equipment_item_8EkBM8": {
+          "type": "equipment_item",
+          "disabled": true,
+          "settings": {
+            "label": "",
+            "text": ""
+          }
+        },
+        "equipment_item_trhHgG": {
+          "type": "equipment_item",
+          "disabled": true,
+          "settings": {
+            "label": "",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "equipment_item_8EkBM8",
+        "equipment_item_trhHgG"
+      ],
+      "name": "Customise Racer Equipment",
+      "settings": {
+        "title": "",
+        "subheading": "ORDER YOUR RACING EQUIPMENT",
+        "total_price": "Chosen by Racers. Not Marketers.",
+        "button_label": "START NOW",
+        "button_link": "shopify://pages/clothes-and-accessories",
+        "main_image": "shopify://shop_images/Model_Freem_Clothes.png",
+        "link_1": "shopify://collections/gloves-copy",
+        "link_2": "shopify://collections/motorsport-clothing",
+        "link_3": "shopify://collections/motorsport-suits",
+        "link_4": "shopify://collections/helmet",
+        "link_5": "shopify://collections/underwear",
+        "link_6": "shopify://collections/underwear",
+        "link_7": "shopify://collections/underwear",
+        "link_8": "shopify://collections/underwear"
+      }
+    },
+    "dd_our_team_RRra6p": {
+      "type": "dd-our-team",
+      "blocks": {
+        "team_member_VRdmYf": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/5f4e76040a7ef4a0843255153cbc095f4aadd468.png",
+            "name": "NAME SURNAME",
+            "role": "CEO, Monster Energy athlete, Multiple circuit racing champion, Coach"
+          }
+        },
+        "team_member_qyx9nY": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/544ce919bae025cb2c02bc67892e525e7f0d3d9b.png",
+            "name": "NAME SURNAME",
+            "role": "CO-Owner, Multiple karting race champion, Coach"
+          }
+        },
+        "team_member_KBBaCn": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/edfdf80cd8eac757a38e590a915e7401d730f2ec.png",
+            "name": "NAME SURNAME",
+            "role": "Mentor"
+          }
+        },
+        "team_member_7yyMQc": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/f03be216f83e8167f59af566980c587994e1d814.png",
+            "name": "NAME SURNAME",
+            "role": "Sales"
+          }
+        },
+        "team_member_6yUgnW": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/d4f2cc12ee1c6df9d5485e2710d8c5c01f33e898.png",
+            "name": "NAME SURNAME",
+            "role": "Communications Manager"
+          }
+        }
+      },
+      "block_order": [
+        "team_member_VRdmYf",
+        "team_member_qyx9nY",
+        "team_member_KBBaCn",
+        "team_member_7yyMQc",
+        "team_member_6yUgnW"
+      ],
+      "disabled": true,
+      "name": "Our Team",
+      "settings": {
+        "title": "OUR TEAM",
+        "subtitle": "Young team with a big experience"
+      }
+    },
+    "dd_accademy_DfXaWb": {
+      "type": "dd-accademy",
+      "blocks": {
+        "bullet_hTYaJq": {
+          "type": "bullet",
+          "settings": {
+            "text": "Sim racing experience"
+          }
+        },
+        "bullet_b8Fbxb": {
+          "type": "bullet",
+          "settings": {
+            "text": "Driving experience"
+          }
+        },
+        "bullet_rAwwaJ": {
+          "type": "bullet",
+          "settings": {
+            "text": "Racing Experience"
+          }
+        }
+      },
+      "block_order": [
+        "bullet_hTYaJq",
+        "bullet_b8Fbxb",
+        "bullet_rAwwaJ"
+      ],
+      "name": "Race Driver Academy",
+      "settings": {
+        "bg_image": "shopify://shop_images/493594133_1279839104149497_1526799214720047924_n_6886be52-7e0d-4c1a-8ea9-47e053efa522.jpg",
+        "title": "RACING EXPERIENCE",
+        "description": "Driver development academy designed to offer year-by-year guidance, assistance, and technologies to help dreamers become racing drivers and start climbing the motorsport ladder.",
+        "button_label": "LEARN MORE",
+        "button_link": "shopify://collections/driving-experience",
+        "button_icon": "shopify://shop_images/flag.svg"
+      }
+    },
+    "dd_newsletter_ygpTpG": {
+      "type": "dd-newsletter",
+      "name": "Newsletter Section",
+      "settings": {
+        "image": "shopify://shop_images/journey.png",
+        "heading": "JOIN OUR NEWSLETTER",
+        "subtext": "For upcoming activities and exclusive offers.",
+        "custom_form_action": "",
+        "placeholder": "Enter your email address",
+        "button_label": "SUBSCRIBE",
+        "button_icon": "shopify://shop_images/right_arrow.svg"
+      }
+    },
+    "dd_faqs_QDtgac": {
+      "type": "dd-faqs",
+      "blocks": {
+        "faq_T7rzVH": {
+          "type": "faq",
+          "settings": {
+            "question": "Who supervises BeMyBond's activities? What license does this platform have?",
+            "answer": "The activities of the BeMyBond bond platform are supervised by the Bank of Lithuania. The platform has a crowdfunding service provider license granted by the European Union Crowdfunding Regulation 2020/1503. The license allows to act as a crowdfunding service provider in all European Union member states according to the system established by the regulation. The regulation ensures equal investor protection and transparency in all member states and meets the high standards of the European Union. License number: No.13, date of issue: 16.04.2024."
+          }
+        },
+        "faq_nb4p8Q": {
+          "type": "faq",
+          "settings": {
+            "question": "What is the Know Your Customer (KYC) principle and why is it necessary?",
+            "answer": "KYC (Know Your Customer) is a regulatory requirement that helps verify the identity of customers to prevent fraud, money laundering, and other illegal activities. It's necessary to ensure compliance with financial regulations and protect both the platform and its users."
+          }
+        },
+        "faq_C4Jf6w": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I get an investment account?",
+            "answer": "Yes, when you register on our platform, you will automatically receive an investment account that allows you to browse, select, and invest in various racing-related projects and opportunities."
+          }
+        },
+        "faq_4jkVwe": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need to have a securities account before starting to invest on BeMyBond?",
+            "answer": "No, you don't need a separate securities account. Our platform provides everything you need to start investing immediately after completing the registration and verification process."
+          }
+        },
+        "faq_UhNgjn": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I find out about the latest BeMyBond bonds issues?",
+            "answer": "You can stay updated on the latest bond issues by subscribing to our newsletter, following our social media channels, or regularly checking the platform's investment opportunities section."
+          }
+        },
+        "faq_i3DHYP": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I cancel my investment?",
+            "answer": "Investment cancellation policies vary depending on the specific project and its terms. Please review the individual project details and contact our support team for specific cancellation policies."
+          }
+        }
+      },
+      "block_order": [
+        "faq_T7rzVH",
+        "faq_nb4p8Q",
+        "faq_C4Jf6w",
+        "faq_4jkVwe",
+        "faq_UhNgjn",
+        "faq_i3DHYP"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "title": "FAQ"
+      }
+    }
+  },
+  "order": [
+    "dd_hero_section_T4nLCX",
+    "dd_customize_simulator_AGUzeF",
+    "dd_product_categories_FzBLXd",
+    "dd_customize_racer_PiGgHV",
+    "dd_our_team_RRra6p",
+    "dd_accademy_DfXaWb",
+    "dd_newsletter_ygpTpG",
+    "dd_faqs_QDtgac"
+  ]
+}
