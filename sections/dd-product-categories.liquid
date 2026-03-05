@@ -170,8 +170,8 @@ Dynamic version with editable title, buttons, and repeatable product cards
 </section>
 
 {% javascript %}
-  const initDdProductCategories = () => {
-    const sections = document.querySelectorAll('[data-dd-product-categories]');
+  const initDdProductCategories = (root = document) => {
+    const sections = root.querySelectorAll('[data-dd-product-categories]');
 
     if (!sections.length) return;
 
@@ -226,10 +226,14 @@ Dynamic version with editable title, buttons, and repeatable product cards
   };
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initDdProductCategories);
+    document.addEventListener('DOMContentLoaded', () => initDdProductCategories());
   } else {
     initDdProductCategories();
   }
+
+  document.addEventListener('shopify:section:load', (event) => {
+    initDdProductCategories();
+  });
 {% endjavascript %}
 {% schema %}
 {
