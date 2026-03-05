@@ -58,6 +58,16 @@
     "dd_product_categories_FzBLXd": {
       "type": "dd-product-categories",
       "blocks": {
+        "racing_product_jKLARj": {
+          "type": "racing_product",
+          "settings": {
+            "product": "",
+            "title": "RACING SUITS",
+            "image": "shopify://shop_images/A20_individual.png",
+            "hover_image": "shopify://shop_images/492232321_1263385225790771_7062242205321089041_n.png",
+            "link": "shopify://collections/motorsport-suits"
+          }
+        },
         "racing_product_wR4FDY": {
           "type": "racing_product",
           "settings": {
@@ -170,6 +180,7 @@
         }
       },
       "block_order": [
+        "racing_product_jKLARj",
         "racing_product_wR4FDY",
         "sim_product_adKywN",
         "sim_product_6CMPP7",
