@@ -1223,6 +1223,7 @@ button.shopify-payment-button__button--unbranded {
   -webkit-appearance: none;
   appearance: none;
   background-color: #6ec7b3;
+  position: relative;
 }
 
 .button:before,
