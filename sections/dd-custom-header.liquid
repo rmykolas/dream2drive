@@ -2,8 +2,10 @@
   Custom Header Navigation Section
   Dynamically pulls links from selected Shopify menu
 {% endcomment %}
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+
   <!-- Main Navigation -->
-  <nav class="bg-[#494B53] flex items-center justify-between px-[16px] md:px-[24px] lg:px-[80px] py-[8px] relative font-roboto-condensed">
+  <nav class="bg-[#494B53] flex items-center justify-between px-[16px] md:px-[24px] lg:px-[80px] py-[8px] relative font-roboto-condensed header header--has-menu">
     <!-- Logo -->
     <div class="h-[48px] w-fit">
       <a href="{{ routes.root_url }}">
@@ -15,10 +17,14 @@
       </a>
     </div>
 
-    <!-- Mobile Menu Button -->
-    <button id="mobile-menu-btn" class="md:hidden text-white hover:text-[#6EC7B3] transition-colors">
-      <img src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/menu.svg?v=1761390492" alt="Menu" />
-    </button>
+    <div class="md:hidden">
+      {% render 'header-search', input_id: 'Search-In-Modal-1' %}
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-white hover:text-[#6EC7B3] transition-colors">
+        <img src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/menu.svg?v=1761390492" alt="Menu" />
+      </button>
+    </div>
 
     <!-- Desktop Navigation Links -->
     <div class="hidden md:flex items-center gap-[46px]">
@@ -68,6 +74,7 @@
 
     <!-- Account Link & Cart Icon (Desktop) -->
     <div class="hidden md:flex items-center gap-[24px]">
+      {% render 'header-search', input_id: 'Search-In-Modal' %}
       <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="text-white uppercase font-medium text-[17px] hover:text-[#6EC7B3] transition-colors leading-[100%] tracking-[0.02em]">
         {% if customer %}Account{% else %}Login{% endif %}
       </a>
