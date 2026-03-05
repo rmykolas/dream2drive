@@ -3,7 +3,10 @@ Product Categories Section
 Dynamic version with editable title, buttons, and repeatable product cards
 {% endcomment %}
 
-<section class="py-[82px] px-[16px] md:px-[32px] bg-[#ECECEC] font-roboto-condensed">
+<section
+  class="py-[82px] px-[16px] md:px-[32px] bg-[#ECECEC] font-roboto-condensed"
+  data-dd-product-categories
+>
   <div class="max-w-[1280px] mx-auto">
     
     <!-- Section Title -->
@@ -15,20 +18,37 @@ Dynamic version with editable title, buttons, and repeatable product cards
     <div class="flex justify-center mb-[80px]">
       <button
         id="sim-products-btn"
+        type="button"
         class="px-[24px] md:px-[31px] py-[9px] text-[#282C37] font-semibold uppercase bg-[#6EC7B3] text-[17px]"
+        data-dd-filter-button
+        data-dd-filter-active-class="bg-[#6EC7B3] text-[17px]"
+        data-dd-filter-inactive-class="border-2 border-[#99D8CA] bg-transparent text-[15px] md:text-[17px]"
+        aria-controls="sim-products-container"
+        aria-pressed="true"
       >
         {{ section.settings.sim_button_text }}
       </button>
       <button
         id="racing-products-btn"
+        type="button"
         class="px-[24px] md:px-[31px] py-[9px] text-[#282C37] font-semibold uppercase border-2 border-[#99D8CA] bg-transparent text-[15px] md:text-[17px]"
+        data-dd-filter-button
+        data-dd-filter-active-class="bg-[#6EC7B3] text-[17px]"
+        data-dd-filter-inactive-class="border-2 border-[#99D8CA] bg-transparent text-[15px] md:text-[17px]"
+        aria-controls="racing-products-container"
+        aria-pressed="false"
       >
         {{ section.settings.racing_button_text }}
       </button>
     </div>
 
     <!-- SIM PRODUCTS -->
-    <div id="sim-products-container" class="flex flex-wrap max-lg:justify-center gap-[16px]">
+    <div
+      id="sim-products-container"
+      class="flex flex-wrap max-lg:justify-center gap-[16px]"
+      data-dd-filter-target
+      aria-hidden="false"
+    >
       {% for block in section.blocks %}
         {% if block.type == 'sim_product' %}
           {% if block.settings.product != blank %}
@@ -85,7 +105,12 @@ Dynamic version with editable title, buttons, and repeatable product cards
     </div>
 
     <!-- RACING PRODUCTS -->
-    <div id="racing-products-container" class="flex flex-wrap max-lg:justify-center gap-[16px] hidden">
+    <div
+      id="racing-products-container"
+      class="flex flex-wrap max-lg:justify-center gap-[16px] hidden"
+      data-dd-filter-target
+      aria-hidden="true"
+    >
       {% for block in section.blocks %}
         {% if block.type == 'racing_product' %}
           {% if block.settings.product != blank %}
@@ -143,6 +168,69 @@ Dynamic version with editable title, buttons, and repeatable product cards
 
   </div>
 </section>
+
+{% javascript %}
+  const initDdProductCategories = () => {
+    const sections = document.querySelectorAll('[data-dd-product-categories]');
+
+    if (!sections.length) return;
+
+    for (const section of sections) {
+      const buttons = section.querySelectorAll('[data-dd-filter-button]');
+      const containers = section.querySelectorAll('[data-dd-filter-target]');
+
+      if (!buttons.length || !containers.length) continue;
+
+      const showTarget = (targetId) => {
+        for (const container of containers) {
+          const isTarget = container.id === targetId;
+
+          container.classList.toggle('hidden', !isTarget);
+          container.setAttribute('aria-hidden', isTarget ? 'false' : 'true');
+        }
+
+        for (const button of buttons) {
+          const controls = button.getAttribute('aria-controls');
+          const isActive = controls === targetId;
+
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+
+           const activeClasses = button.dataset.ddFilterActiveClass || '';
+           const inactiveClasses = button.dataset.ddFilterInactiveClass || '';
+
+           if (!activeClasses || !inactiveClasses) continue;
+
+           const activeClassList = activeClasses.split(' ').filter(Boolean);
+           const inactiveClassList = inactiveClasses.split(' ').filter(Boolean);
+
+           if (isActive) {
+             button.classList.add(...activeClassList);
+             button.classList.remove(...inactiveClassList);
+           } else {
+             button.classList.add(...inactiveClassList);
+             button.classList.remove(...activeClassList);
+           }
+        }
+      };
+
+      for (const button of buttons) {
+        const targetId = button.getAttribute('aria-controls');
+        if (!targetId) continue;
+
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          showTarget(targetId);
+        });
+      }
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDdProductCategories);
+  } else {
+    initDdProductCategories();
+  }
+{% endjavascript %}
 {% schema %}
 {
   "name": "Product Categories",
