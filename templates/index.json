@@ -62,20 +62,40 @@
           "type": "racing_product",
           "settings": {
             "product": "",
-            "title": "RACING SUITS",
+            "title": "CLOTHES AND ACCESSORIES",
             "image": "shopify://shop_images/A20_individual.png",
             "hover_image": "shopify://shop_images/492232321_1263385225790771_7062242205321089041_n.png",
-            "link": "shopify://collections/motorsport-suits"
+            "link": "shopify://pages/clothes-and-accessories"
           }
         },
         "racing_product_wR4FDY": {
           "type": "racing_product",
           "settings": {
             "product": "",
-            "title": "RACING GLOVES",
-            "image": "shopify://shop_images/simglove_freem.png",
-            "hover_image": "shopify://shop_images/sim_glove_freem.png",
-            "link": "shopify://collections/motorsport-clothing"
+            "title": "MOTORSPORT PARTS",
+            "image": "shopify://shop_images/c574d9a2266ba18edd903b72968eef786acd0a89.webp",
+            "hover_image": "shopify://shop_images/c574d9a2266ba18edd903b72968eef786acd0a89.webp",
+            "link": "shopify://pages/motorsport"
+          }
+        },
+        "racing_product_TBbxPk": {
+          "type": "racing_product",
+          "settings": {
+            "product": "",
+            "title": "KART CHASSIS",
+            "image": "shopify://shop_images/FIA_Karting_Henrikas_Keplikas_Kristianstad_Friday_FR-5.jpg",
+            "hover_image": "shopify://shop_images/FIA_Karting_Henrikas_Keplikas_Kristianstad_Friday_FR-5.jpg",
+            "link": "shopify://collections/complete-chassis"
+          }
+        },
+        "racing_product_mVwHaN": {
+          "type": "racing_product",
+          "settings": {
+            "product": "",
+            "title": "DRIVING EXPERIENCE",
+            "image": "shopify://shop_images/493318316_1279839144149493_2678679558196999549_n_1.jpg",
+            "hover_image": "shopify://shop_images/493318316_1279839144149493_2678679558196999549_n_1.jpg",
+            "link": "shopify://collections/driving-experience"
           }
         },
         "sim_product_adKywN": {
@@ -182,6 +202,8 @@
       "block_order": [
         "racing_product_jKLARj",
         "racing_product_wR4FDY",
+        "racing_product_TBbxPk",
+        "racing_product_mVwHaN",
         "sim_product_adKywN",
         "sim_product_6CMPP7",
         "sim_product_4X3bz3",
