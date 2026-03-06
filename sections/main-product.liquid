@@ -41,6 +41,7 @@
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-bundle.js' | asset_url }}" defer="defer"></script>
   {%- if product.quantity_price_breaks_configured? -%}
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
@@ -495,6 +496,64 @@
 
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+              {%- when 'product_bundle_variations' -%}
+                {%- assign bundle_option_groups = product.metafields.custom.option_groups.value -%}
+                {%- if bundle_option_groups != blank and bundle_option_groups.size > 0 -%}
+                  <div
+                    class="bundle-variations"
+                    data-bundle-base-price="{{ product.selected_or_first_available_variant.price | divided_by: 100 }}"
+                    data-bundle-section="{{ section.id }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {%- for option_product in bundle_option_groups -%}
+                      <div class="bundle-variations__group" data-bundle-group-id="{{ option_product.id }}">
+                        <div class="bundle-variations__group-header">
+                          <p class="bundle-variations__group-title">
+                            {{ option_product.title }}
+                          </p>
+                        </div>
+                        <div class="bundle-variations__options">
+                          {%- for variant in option_product.variants -%}
+                            <button
+                              type="button"
+                              class="bundle-variations__option"
+                              data-variant-id="{{ variant.id }}"
+                              data-price="{{ variant.price | divided_by: 100 }}"
+                              data-product-title="{{ option_product.title | escape }}"
+                              data-option-title="{{ variant.title | escape }}"
+                            >
+                              <div class="bundle-variations__option-media">
+                                {%- if variant.featured_image -%}
+                                  {{ variant.featured_image
+                                    | image_url: width: 300
+                                    | image_tag:
+                                      loading: 'lazy',
+                                      class: 'bundle-variations__option-image'
+                                  }}
+                                {%- elsif option_product.featured_image -%}
+                                  {{ option_product.featured_image
+                                    | image_url: width: 300
+                                    | image_tag:
+                                      loading: 'lazy',
+                                      class: 'bundle-variations__option-image'
+                                  }}
+                                {%- endif -%}
+                              </div>
+                              <div class="bundle-variations__option-body">
+                                <p class="bundle-variations__option-title">
+                                  {{ variant.title }}
+                                </p>
+                                <p class="bundle-variations__option-price">
+                                  {{ variant.price | money_with_currency }}
+                                </p>
+                              </div>
+                            </button>
+                          {%- endfor -%}
+                        </div>
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
               {%- when 'buy_buttons' -%}
                 {%- render 'buy-buttons',
                   block: block,
@@ -882,6 +941,11 @@
           "default": "circle"
         }
       ]
+    },
+    {
+      "type": "product_bundle_variations",
+      "name": "t:sections.main-product.blocks.product_bundle_variations.name",
+      "limit": 1
     },
     {
       "type": "buy_buttons",
