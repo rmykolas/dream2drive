@@ -309,6 +309,7 @@
       const submitButton = form.querySelector('[type="submit"]');
       const spinner = productInfo?.querySelector('.loading__spinner');
 
+      if (submitButton?.hasAttribute('aria-disabled')) return;
       if (submitButton) {
         submitButton.setAttribute('aria-disabled', 'true');
         submitButton.classList.add('loading');
@@ -319,6 +320,9 @@
         try {
           const sectionsToRender = cart?.getSectionsToRender?.() || [];
           const sectionIds = sectionsToRender.map((s) => s.id);
+          const addUrl = window.routes?.cart_add_url || '/cart/add';
+          const jsonAddUrl = addUrl.endsWith('.js') ? addUrl : addUrl + '.js';
+
           const body = {
             items,
             ...(sectionIds.length && {
@@ -327,42 +331,34 @@
             }),
           };
 
-          const response = await fetch(window.routes?.cart_add_url || '/cart/add.js', {
+          const response = await fetch(jsonAddUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
           });
 
-          const data = await response.json();
+          const responseText = await response.text();
+          let data;
+          try {
+            data = JSON.parse(responseText);
+          } catch (parseError) {
+            // eslint-disable-next-line no-console
+            console.error('Cart add response was not JSON:', parseError);
+            alert('There was an error adding your bundle to the cart. Please try again.');
+            return;
+          }
 
           if (!response.ok) {
             // eslint-disable-next-line no-alert
-            alert(data.message || 'There was an error adding your bundle to the cart.');
+            alert(data?.message || 'There was an error adding your bundle to the cart.');
             return;
           }
 
           if (cart && data.sections && sectionIds.length) {
             if (cart.setActiveElement) cart.setActiveElement(document.activeElement);
             cart.renderContents(data);
-            if (typeof publish === 'function' && typeof PUB_SUB_EVENTS !== 'undefined' && PUB_SUB_EVENTS.cartUpdate) {
-              publish(PUB_SUB_EVENTS.cartUpdate, { source: 'product-bundle', cartData: data });
-            }
-          } else if (!cart) {
-            window.location.href = window.routes?.cart_url || '/cart';
           } else {
-            // Fallback: fetch sections manually if not in response
-            const sectionsUrl = `${window.routes?.cart_url || '/cart'}?sections=${sectionIds.join(',')}`;
-            const sectionsRes = await fetch(sectionsUrl);
-            const sectionsData = await sectionsRes.json();
-            if (sectionsData && cart.renderContents) {
-              if (cart.setActiveElement) cart.setActiveElement(document.activeElement);
-              cart.renderContents({ sections: sectionsData });
-              if (typeof publish === 'function' && typeof PUB_SUB_EVENTS !== 'undefined' && PUB_SUB_EVENTS.cartUpdate) {
-                publish(PUB_SUB_EVENTS.cartUpdate, { source: 'product-bundle', cartData: { sections: sectionsData } });
-              }
-            } else {
-              window.location.href = window.routes?.cart_url || '/cart';
-            }
+            window.location.href = window.routes?.cart_url || '/cart';
           }
         } catch (error) {
           // eslint-disable-next-line no-console
