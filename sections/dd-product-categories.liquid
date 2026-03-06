@@ -56,7 +56,7 @@ Dynamic version with editable title, buttons, and repeatable product cards
 
             <a href="{{ product.url }}" 
                class="flex md:flex-col bg-[#282C37] w-full md:w-[243px] h-[143px] md:h-[360px] 
-                      hover:bg-[#4A4E5A] transition-all duration-300">
+                      hover:bg-[#4A4E5A] transition-all duration-300 dd-product-category-item">
 
               <!-- TITLE -->
               <h3 class="text-white text-[20px] md:text-[22px] font-semibold leading-[120%] tracking-[-0.01em] uppercase px-[16px] pt-[16px] pb-[8px]">
@@ -79,7 +79,7 @@ Dynamic version with editable title, buttons, and repeatable product cards
             <!-- MANUAL ENTRY -->
             <a href="{{ block.settings.link }}" 
                class="flex md:flex-col bg-[#282C37] w-full md:w-[243px] h-[143px] md:h-[360px] 
-                      hover:bg-[#4A4E5A] transition-all duration-300">
+                      hover:bg-[#4A4E5A] transition-all duration-300 dd-product-category-item">
 
               <!-- TITLE -->
               <h3 class="text-white text-[20px] md:text-[22px] font-semibold leading-[120%] tracking-[-0.01em] uppercase px-[16px] pt-[16px] pb-[8px]">
@@ -118,7 +118,7 @@ Dynamic version with editable title, buttons, and repeatable product cards
 
             <a href="{{ product.url }}" 
                class="flex md:flex-col bg-[#282C37] w-full md:w-[243px] h-[143px] md:h-[360px] 
-                      hover:bg-[#4A4E5A] transition-all duration-300">
+                      hover:bg-[#4A4E5A] transition-all duration-300 dd-product-category-item">
 
               <!-- TITLE -->
               <h3 class="text-white text-[20px] md:text-[22px] font-semibold leading-[120%] tracking-[-0.01em] uppercase px-[16px] pt-[16px] pb-[8px]">
@@ -141,7 +141,7 @@ Dynamic version with editable title, buttons, and repeatable product cards
             <!-- MANUAL ENTRY -->
             <a href="{{ block.settings.link }}" 
                class="flex md:flex-col bg-[#282C37] w-full md:w-[243px] h-[143px] md:h-[360px] 
-                      hover:bg-[#4A4E5A] transition-all duration-300">
+                      hover:bg-[#4A4E5A] transition-all duration-300 dd-product-category-item">
 
               <!-- TITLE -->
               <h3 class="text-white text-[20px] md:text-[22px] font-semibold leading-[120%] tracking-[-0.01em] uppercase px-[16px] pt-[16px] pb-[8px]">
@@ -168,6 +168,16 @@ Dynamic version with editable title, buttons, and repeatable product cards
 
   </div>
 </section>
+
+{% style %}
+@media (max-width: 768px) {
+  .dd-product-category-item h3,
+  .dd-product-category-item div {
+    flex: 0 50%;
+    word-break: normal;
+  }
+}
+{% endstyle %}
 
 {% javascript %}
   const initDdProductCategories = (root = document) => {

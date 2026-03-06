@@ -1951,6 +1951,9 @@
         "price": {
           "name": "Price"
         },
+        "variable_price": {
+          "name": "Variable price"
+        },
         "inventory": {
           "name": "Inventory status",
           "settings": {

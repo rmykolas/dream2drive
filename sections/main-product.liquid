@@ -73,12 +73,53 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-  <div class="page-width">
-    <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid-dd grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-      <div class="grid__item product__media-wrapper">
+  <div class="w-full">
+    <div class="product product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} flex flex-col lg:flex-row">
+      {% for block in section.blocks %}
+        {% if block.type == 'title' %}
+          <div class="md:hidden px-[16px]">
+            <div class="flex flex-wrap items-center gap-[8px] mb-[24px]">
+              <a
+                href="{{ routes.root_url }}"
+                class="text-[#C8C9CC] text-[14px] hover:text-white transition-colors"
+              >
+                Home
+              </a>
+              <img
+                src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/right_arrow-white.svg?v=1761556170"
+                alt="arrow"
+                class="w-[8px] h-[8px]"
+              />
+              {% assign product_collection = collection | default: product.collections.first %}
+              {% if product_collection %}
+                  <a href="{{ product_collection.url }}" class="hover:text-[#6EC7B3] transition-colors text-[14px] font-normal text-[#C8C9CC]">{{ product_collection.title }}</a>
+              {% endif %}
+            </div>
+            <div class="product__title" {{ block.shopify_attributes }}>
+              <h2 class="text-[52px] font-bold text-white mb-[2px] leading-[100%]">{{ product.title }}</h2>
+            </div>
+            <div id="variable-price-{{ section.id }}" class="main-product__variable-price" role="status" {{ block.shopify_attributes }}>
+              {%- if product.price_varies -%}
+                <span class="price price--large">
+                  {{ product.price_min | money }} - {{ product.price_max | money }} + VAT
+                </span>
+              {%- else -%}
+                {%- render 'price',
+                  product: product,
+                  use_variant: true,
+                  show_badges: true,
+                  price_class: 'price--large'
+                -%}
+              {%- endif -%}
+            </div>
+          </div>
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      <div class="product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
-      <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="product__info-wrapper {% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <section
           id="ProductInfo-{{ section.id }}"
           class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
@@ -90,129 +131,84 @@
               {%- when '@app' -%}
                 {% render block %}
               {%- when 'text' -%}
-                <p
-                  class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
+                <div
+                  class="product__text inline-richtext text-[#C8C9CC] text-[14px]"
                   {{ block.shopify_attributes }}
                 >
                   {{- block.settings.text -}}
-                </p>
-              {%- when 'title' -%}
-                <!-- Breadcrumb -->
-                <div class="flex items-center gap-[8px] mb-[24px]">
-                  <a
-                    href="{{ routes.root_url }}"
-                    class="text-[#C8C9CC] text-[14px] hover:text-white transition-colors"
-                  >
-                    Home
-                  </a>
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/right_arrow-white.svg?v=1761556170"
-                    alt="arrow"
-                    class="w-[8px] h-[8px]"
-                  />
-                  {% assign product_collection = collection | default: product.collections.first %}
-                  {% if product_collection %}
-                      <a href="{{ product_collection.url }}" class="hover:text-[#6EC7B3] transition-colors text-[14px] font-normal text-[#C8C9CC]">{{ product_collection.title | truncate: 20 }}</a>
-                      <img src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/right_arrow-white.svg?v=1761556170" alt="" class="w-[10px] h-[10px]"/>
-                  {% endif %}
-                  <span class="text-[#C8C9CC] text-[14px]">
-                    {{ product.title }}
-                  </span>
                 </div>
-                <div class="product__title" {{ block.shopify_attributes }}>
-                  <h1>{{ product.title | escape }}</h1>
-                  <a href="{{ product.url }}" class="product__title">
-                    <h2 class="h1">
-                      {{ product.title | escape }}
-                    </h2>
-                  </a>
+              {%- when 'title' -%}
+                <div class="hidden md:block">
+                  <div class="flex flex-wrap items-center gap-[8px] mb-[24px]">
+                    <a
+                      href="{{ routes.root_url }}"
+                      class="text-[#C8C9CC] text-[14px] hover:text-white transition-colors"
+                    >
+                      Home
+                    </a>
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/right_arrow-white.svg?v=1761556170"
+                      alt="arrow"
+                      class="w-[8px] h-[8px]"
+                    />
+                    {% assign product_collection = collection | default: product.collections.first %}
+                    {% if product_collection %}
+                        <a href="{{ product_collection.url }}" class="hover:text-[#6EC7B3] transition-colors text-[14px] font-normal text-[#C8C9CC]">{{ product_collection.title }}</a>
+                    {% endif %}
+                  </div>
+                  <div class="product__title" {{ block.shopify_attributes }}>
+                    <h2 class="text-[52px] font-bold text-white mb-[2px] leading-[100%]">{{ product.title }}</h2>
+                  </div>
+                  <div id="variable-price-{{ section.id }}" class="main-product__variable-price" role="status" {{ block.shopify_attributes }}>
+                    {%- if product.price_varies -%}
+                      <span class="price price--large">
+                        {{ product.price_min | money }} - {{ product.price_max | money }} + VAT
+                      </span>
+                    {%- else -%}
+                      {%- render 'price',
+                        product: product,
+                        use_variant: true,
+                        show_badges: true,
+                        price_class: 'price--large'
+                      -%}
+                    {%- endif -%}
+                  </div>
                 </div>
               {%- when 'price' -%}
-                <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                <div id="price-{{ section.id }}" class="main-product__price" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
                     product: product,
                     use_variant: true,
-                    show_badges: true,
+                    show_badges: false,
                     price_class: 'price--large'
                   -%}
-                </div>
-                {%- if product.quantity_price_breaks_configured? -%}
-                  <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
-                    <span>{{ 'products.product.volume_pricing.note' | t }}</span>
-                  </div>
-                {%- endif -%}
-                {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
-                  <div class="product__tax caption rte">
-                    {%- if cart.duties_included and cart.taxes_included -%}
-                      {{ 'products.product.duties_and_taxes_included' | t }}
-                    {%- elsif cart.taxes_included -%}
-                      {{ 'products.product.taxes_included' | t }}
-                    {%- elsif cart.duties_included -%}
-                      {{ 'products.product.duties_included' | t }}
-                    {%- endif -%}
-                    {%- if shop.shipping_policy.body != blank -%}
-                      {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                    {%- endif -%}
-                  </div>
-                {%- endif -%}
-                <div {{ block.shopify_attributes }}>
-                  {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
-                  {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                    {{ form | payment_terms }}
-                  {%- endform -%}
-                </div>
-              {%- when 'inventory' -%}
-                <p
-                  class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
-                  {{ block.shopify_attributes }}
-                  id="Inventory-{{ section.id }}"
-                  role="status"
-                >
-                  {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
-                    {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
-                      {%- if product.selected_or_first_available_variant.inventory_quantity
-                          <= block.settings.inventory_threshold
-                      -%}
-                        <span class="svg-wrapper" style="color: rgb(238, 148, 65)">
-                          {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                        </span>
-                        {%- if block.settings.show_inventory_quantity -%}
-                          {{-
-                            'products.product.inventory_low_stock_show_count'
-                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
-                          -}}
-                        {%- else -%}
-                          {{- 'products.product.inventory_low_stock' | t -}}
-                        {%- endif -%}
+                  <div
+                    class="product__inventory{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
+                    {{ block.shopify_attributes }}
+                    id="Inventory-{{ section.id }}"
+                    role="status"
+                  >
+                    {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
+                      {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
+                        <div class="bg-[#2F6F1E] px-[9px] py-[3px]">
+                          <p class="text-[12px] font-light text-white uppercase leading-[100%]">{{- 'products.product.inventory_in_stock' | t -}}</p>
+                        </div>
                       {%- else -%}
-                        <span class="svg-wrapper" style="color: rgb(62, 214, 96)">
-                          {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                        </span>
-                        {%- if block.settings.show_inventory_quantity -%}
-                          {{-
-                            'products.product.inventory_in_stock_show_count'
-                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
-                          -}}
+                        {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
+                          <div class="bg-[#2F6F1E] px-[9px] py-[3px]">
+                            <p class="text-[12px] font-light text-white uppercase leading-[100%]">{{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
+                            </p>
+                          </div>
                         {%- else -%}
-                          {{- 'products.product.inventory_in_stock' | t -}}
+                          <div class="bg-[#ff0000] px-[9px] py-[3px]">
+                            <p class="text-[12px] font-light text-white uppercase leading-[100%]">{{- 'products.product.inventory_out_of_stock' | t -}}
+                            </p>
+                          </div>
                         {%- endif -%}
                       {%- endif -%}
-                    {%- else -%}
-                      {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
-                        <span class="svg-wrapper" style="color: rgb(62, 214, 96)">
-                          {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                        </span>
-                        {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
-                      {%- else -%}
-                        <span class="svg-wrapper" style="color: rgb(200, 200, 200)">
-                          {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                        </span>
-                        {{- 'products.product.inventory_out_of_stock' | t -}}
-                      {%- endif -%}
                     {%- endif -%}
-                  {%- endif -%}
-                </p>
+                  </div>
+                </div>
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
@@ -774,7 +770,7 @@
       "name": "t:sections.main-product.blocks.text.name",
       "settings": [
         {
-          "type": "inline_richtext",
+          "type": "richtext",
           "id": "text",
           "default": "t:sections.main-product.blocks.text.settings.text.default",
           "label": "t:sections.main-product.blocks.text.settings.text.label"
@@ -835,48 +831,6 @@
           ],
           "default": "body",
           "label": "t:sections.main-product.blocks.sku.settings.text_style.label"
-        }
-      ]
-    },
-    {
-      "type": "inventory",
-      "name": "t:sections.main-product.blocks.inventory.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "select",
-          "id": "text_style",
-          "options": [
-            {
-              "value": "body",
-              "label": "t:sections.main-product.blocks.inventory.settings.text_style.options__1.label"
-            },
-            {
-              "value": "subtitle",
-              "label": "t:sections.main-product.blocks.inventory.settings.text_style.options__2.label"
-            },
-            {
-              "value": "uppercase",
-              "label": "t:sections.main-product.blocks.inventory.settings.text_style.options__3.label"
-            }
-          ],
-          "default": "body",
-          "label": "t:sections.main-product.blocks.inventory.settings.text_style.label"
-        },
-        {
-          "type": "range",
-          "id": "inventory_threshold",
-          "label": "t:sections.main-product.blocks.inventory.settings.inventory_threshold.label",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "default": 10
-        },
-        {
-          "type": "checkbox",
-          "id": "show_inventory_quantity",
-          "label": "t:sections.main-product.blocks.inventory.settings.show_inventory_quantity.label",
-          "default": true
         }
       ]
     },

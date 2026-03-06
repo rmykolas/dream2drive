@@ -17,6 +17,11 @@ product-info {
 
 .product__media-wrapper {
   padding-left: 0;
+  background: #ECECEC;
+}
+
+.product__info-wrapper {
+  padding: 24px 16px;
 }
 
 @media screen and (min-width: 750px) {
@@ -31,8 +36,41 @@ product-info {
     padding-right: var(--media-shadow-horizontal-offset);
   }
 
+  .product__media-wrapper {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .product__media-wrapper media-gallery {
+    max-width: 60rem;
+    width: 60rem;
+    display: flex;
+  }
+
+  .product__media-wrapper media-gallery slider-component.main-product__media-gallery {
+    width: 75%;
+    order: 2;
+  }
+
+  .product__media-wrapper media-gallery slider-component.main-product__media-gallery .slider__slide {
+    width: 100% !important;
+  }
+
+  .product--thumbnail_slider .thumbnail-slider {
+    width: 25%;
+  }
+
+  .product--thumbnail_slider .thumbnail-slider .thumbnail-list {
+    flex-direction: column;
+  }
+
+  .product--thumbnail_slider .thumbnail-slider .thumbnail-list .slider__slide {
+    width: 100% !important;
+  }
+
   .product__info-wrapper {
-    padding: 0 0 0 5rem;
+    width: 50%;
   }
 
   .product__info-wrapper--extra-padding {
@@ -192,6 +230,74 @@ product-info {
 
 .product-form__submit {
   margin-bottom: 1rem;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  min-height: fit-content;
+  padding: 20px;
+}
+
+.product-form__submit span {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.product__text {
+  text-align: center;
+}
+
+.product__text p {
+  font-weight: 400;
+}
+
+.product__text p:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.product__text p a {
+  text-decoration: underline;
+}
+
+.product-form__submit span:after {
+  content: url("data:image/svg+xml, %3Csvg width='6' height='13' viewBox='0 0 6 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.624023 0.416016L4.25422 5.86132C4.47816 6.19722 4.47816 6.63482 4.25422 6.97072L0.624023 12.416' stroke='%23282C37' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+.product-form__quantity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: none;
+  border-top: 1px solid #C8C9CC;
+  border-bottom: 1px solid #C8C9CC;
+  padding: 24px 0;
+}
+
+.product-form__quantity .form__label {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin: 0 !important;
+}
+
+.product-form__quantity .quantity {
+  width: 80px;
+  color: #C8C9CC;
+  min-height: 36px;
+}
+
+.product-form__quantity .quantity:after {
+  box-shadow: none;
+  border: 1px solid #C8C9CC;
+}
+
+.product-form__quantity .quantity__button {
+  width: auto;
+  padding: 0 8px;
+  color: #C8C9CC;
 }
 
 .product-form__submit[aria-disabled='true'] + .shopify-payment-button .shopify-payment-button__button[disabled],
@@ -290,7 +396,7 @@ a.product__text {
 
 @media screen and (min-width: 750px) {
   .product__info-container {
-    max-width: 60rem;
+    max-width: 57rem;
   }
 
   .product__info-container .price--on-sale .price-item--regular {
@@ -362,10 +468,6 @@ a.product__text {
 
 .product-form__quantity-top .form__label {
   margin-bottom: 1.2rem;
-}
-
-.product-form__buttons {
-  max-width: 44rem;
 }
 
 .product--no-media .product__info-container > modal-opener {
@@ -978,7 +1080,6 @@ a.product__text {
 @media screen and (min-width: 750px) {
   .product--thumbnail_slider .thumbnail-slider {
     display: flex;
-    align-items: center;
   }
 
   .thumbnail-slider .thumbnail-list.slider--tablet-up {
@@ -1492,4 +1593,32 @@ a.product__text {
   .recipient-form > input[type='checkbox']:checked + label .icon-checkmark {
     border: none;
   }
+}
+
+/* Custom */
+.main-product__price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-product__price .price {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.product__title + .main-product__variable-price {
+  margin-top: -1.5rem;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.main-product__variable-price {
+  border-bottom: 1px solid #C8C9CC;
+  padding: 0 0 24px 0;
+}
+
+.main-product__variable-price span {
+  color: #C8C9CC;
 }

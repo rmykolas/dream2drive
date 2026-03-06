@@ -115,7 +115,7 @@
       "inventory_low_stock": "Low stock",
       "inventory_low_stock_show_count": "Low stock: {{ quantity }} left",
       "inventory_out_of_stock": "Out of stock",
-      "inventory_out_of_stock_continue_selling": "In stock",
+      "inventory_out_of_stock_continue_selling": "Available on backorder",
       "sku": "SKU",
       "on_sale": "Sale",
       "product_variants": "Product variants",
@@ -131,7 +131,7 @@
       },
       "nested_label": "{{ title }} for {{ parent_title }}",
       "quantity": {
-        "label": "Quantity",
+        "label": "Quantity:",
         "input_label": "Quantity for {{ product }}",
         "increase": "Increase quantity for {{ product }}",
         "decrease": "Decrease quantity for {{ product }}",
