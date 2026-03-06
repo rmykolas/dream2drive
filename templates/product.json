@@ -12,20 +12,8 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "<p>{{ product.vendor }}</p>",
-            "text_style": "uppercase"
-          }
-        },
         "title": {
           "type": "title",
-          "settings": {}
-        },
-        "price": {
-          "type": "price",
           "settings": {}
         },
         "variant_picker": {
@@ -37,6 +25,10 @@
         },
         "quantity_selector": {
           "type": "quantity_selector",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
           "settings": {}
         },
         "buy_buttons": {
@@ -51,22 +43,22 @@
           "disabled": true,
           "settings": {}
         },
-        "share": {
-          "type": "share",
+        "text_GkkFr6": {
+          "type": "text",
           "settings": {
-            "share_label": "Share"
+            "text": "<p>Free delivery on qualifying orders.</p><p>Returns fee charged. Exclusions apply.<br/><a href=\"http://127.0.0.1:9292/products/2-5dof-motion-set-qs-210-qs-220-qs-pivot?_pos=1&_psq=2.5&_ss=e&_v=1.0&variant=61236132315466#\">View our Delivery & Returns Policy</a></p><p>This product has shipping restrictions.</p>",
+            "text_style": "body"
           }
         }
       },
       "block_order": [
-        "vendor",
         "title",
-        "price",
         "variant_picker",
         "quantity_selector",
+        "price",
         "buy_buttons",
         "description",
-        "share"
+        "text_GkkFr6"
       ],
       "settings": {
         "enable_sticky_info": true,
