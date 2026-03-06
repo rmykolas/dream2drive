@@ -1,1 +1,277 @@
-{"sections":{"main":{"type":"main-product","blocks":{"vendor":{"type":"text","disabled":true,"settings":{"text":"{{ product.vendor }}","text_style":"uppercase"}},"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true}},"description":{"type":"description","disabled":true,"settings":{}},"share":{"type":"share","settings":{"share_label":"Share"}}},"block_order":["vendor","title","price","variant_picker","quantity_selector","buy_buttons","description","share"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-3","media_size":"medium","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"thumbnail","mobile_thumbnails":"hide","media_position":"left","image_zoom":"hover","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"dd_main_product_single_LkzjKY":{"type":"dd-main-product-single","disabled":true,"name":"Custom Main Single Product","settings":{}},"dd_main_product_P6HK4G":{"type":"dd-main-product","blocks":{"variant_block_3ijbfd":{"type":"variant_block","settings":{"title":"Frame Type:","subtitle":"Rookie","linked_product":"rookie"}},"variant_block_PJ7zcW":{"type":"variant_block","settings":{"title":"Mount type AM:","subtitle":"Single screen","linked_product":"am-copy"}},"variant_block_GGX4zV":{"type":"variant_block","settings":{"title":"Monitor:","subtitle":"Ultrawide 49 inch.","linked_product":"rookie"}},"variant_block_ixxxQF":{"type":"variant_block","settings":{"title":"Wheel Base:","subtitle":"Podium Wheel Rim Porche 911 GT3 Cup (Suede)","linked_product":"rookie"}},"variant_block_jzBtFN":{"type":"variant_block","settings":{"title":"Frame Type","subtitle":"Select an option","linked_product":"frame"}}},"block_order":["variant_block_3ijbfd","variant_block_PJ7zcW","variant_block_GGX4zV","variant_block_ixxxQF","variant_block_jzBtFN"],"disabled":true,"name":"Custom Main Product","settings":{}},"blocks_UmTpPK":{"type":"_blocks","name":"Product recommendations","settings":{}},"related-products":{"type":"related-products","settings":{"heading":"You may also like","heading_size":"h2","products_to_show":4,"columns_desktop":4,"columns_mobile":"2","color_scheme":"scheme-3","image_ratio":"square","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"padding_top":36,"padding_bottom":28}},"dd_pd_description_LwWK8e":{"type":"dd-pd-description","name":"Description Section","settings":{"title":"Description","subtitle":""}},"17641410618685954c":{"type":"_blocks","blocks":{"ai_gen_block_d3c9a02_cWUH8g":{"type":"ai_gen_block_d3c9a02","disabled":true,"settings":{"heading":"Complete Your Setup","product_1":"tr80s-racing-simulator","product_2":"tr120s-v2-racing-simulator-with-seat-sliders-kit","product_3":"conspit-rig-gt-s","product_4":"conspit-rig-gtb-kids","columns_desktop":4,"columns_mobile":"2","text_alignment":"left","grid_gap":16,"section_padding":40,"container_width":1200,"show_price":true,"show_button":true,"button_text":"","card_padding":16,"card_border_radius":8,"card_border_width":1,"background_color":"#ffffff","heading_color":"#000000","card_background":"#ffffff","card_border_color":"#e5e5e5","product_title_color":"#000000","price_color":"#000000","button_color":"#000000","button_text_color":"#ffffff","button_hover_color":"#333333","heading_size":28,"heading_spacing":24,"product_title_size":16,"price_size":16,"button_border_radius":4},"blocks":{}}},"block_order":["ai_gen_block_d3c9a02_cWUH8g"],"settings":{}},"dd_product_feature_iGC9UY":{"type":"dd-product-feature","blocks":{"feature_Qtzaad":{"type":"feature","settings":{"image":"shopify:\/\/shop_images\/9513c2782be6d191af7a62fab342afbb02421c02.png","title":"D2D PRO AM Frame","subtitle":"Lorem ipsum","description":"Aluminium profile Sim Cockpit, manufactured by Dream2Drive.\nCockpit has no flex with even the mightiest wheels bases.\nAvailable silver and black color.\nDimensions: 1300mm x 600mm"}},"feature_WeLwyL":{"type":"feature","settings":{"image":"shopify:\/\/shop_images\/0b673d6237872f17f15a169eb8e7fd444f31dbdc.png","title":"D2D PRO AM Frame","subtitle":"Lorem ipsum","description":"Aluminium profile Sim Cockpit, manufactured by Dream2Drive.\nCockpit has no flex with even the mightiest wheels bases.\nAvailable silver and black color.\nDimensions: 1300mm x 600mm"}},"feature_rnmnm7":{"type":"feature","settings":{"image":"shopify:\/\/shop_images\/9513c2782be6d191af7a62fab342afbb02421c02.png","title":"D2D PRO AM Frame","subtitle":"Lorem ipsum","description":"Aluminium profile Sim Cockpit, manufactured by Dream2Drive.\nCockpit has no flex with even the mightiest wheels bases.\nAvailable silver and black color.\nDimensions: 1300mm x 600mm"}}},"block_order":["feature_Qtzaad","feature_WeLwyL","feature_rnmnm7"],"disabled":true,"name":"Product Feature","settings":{}}},"order":["main","dd_main_product_single_LkzjKY","dd_main_product_P6HK4G","blocks_UmTpPK","related-products","dd_pd_description_LwWK8e","17641410618685954c","dd_product_feature_iGC9UY"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>{{ product.vendor }}</p>",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-3",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "dd_main_product_single_LkzjKY": {
+      "type": "dd-main-product-single",
+      "disabled": true,
+      "name": "Custom Main Single Product",
+      "settings": {}
+    },
+    "dd_main_product_P6HK4G": {
+      "type": "dd-main-product",
+      "blocks": {
+        "variant_block_3ijbfd": {
+          "type": "variant_block",
+          "settings": {
+            "title": "Frame Type:",
+            "subtitle": "Rookie",
+            "linked_product": "rookie"
+          }
+        },
+        "variant_block_PJ7zcW": {
+          "type": "variant_block",
+          "settings": {
+            "title": "Mount type AM:",
+            "subtitle": "Single screen",
+            "linked_product": "am-copy"
+          }
+        },
+        "variant_block_GGX4zV": {
+          "type": "variant_block",
+          "settings": {
+            "title": "Monitor:",
+            "subtitle": "Ultrawide 49 inch.",
+            "linked_product": "rookie"
+          }
+        },
+        "variant_block_ixxxQF": {
+          "type": "variant_block",
+          "settings": {
+            "title": "Wheel Base:",
+            "subtitle": "Podium Wheel Rim Porche 911 GT3 Cup (Suede)",
+            "linked_product": "rookie"
+          }
+        },
+        "variant_block_jzBtFN": {
+          "type": "variant_block",
+          "settings": {
+            "title": "Frame Type",
+            "subtitle": "Select an option",
+            "linked_product": "frame"
+          }
+        }
+      },
+      "block_order": [
+        "variant_block_3ijbfd",
+        "variant_block_PJ7zcW",
+        "variant_block_GGX4zV",
+        "variant_block_ixxxQF",
+        "variant_block_jzBtFN"
+      ],
+      "disabled": true,
+      "name": "Custom Main Product",
+      "settings": {}
+    },
+    "blocks_UmTpPK": {
+      "type": "_blocks",
+      "name": "Product recommendations",
+      "settings": {}
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-3",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "dd_pd_description_LwWK8e": {
+      "type": "dd-pd-description",
+      "name": "Description Section",
+      "settings": {
+        "title": "Description",
+        "subtitle": ""
+      }
+    },
+    "17641410618685954c": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d3c9a02_cWUH8g": {
+          "type": "ai_gen_block_d3c9a02",
+          "disabled": true,
+          "settings": {
+            "heading": "Complete Your Setup",
+            "product_1": "tr80s-racing-simulator",
+            "product_2": "tr120s-v2-racing-simulator-with-seat-sliders-kit",
+            "product_3": "conspit-rig-gt-s",
+            "product_4": "conspit-rig-gtb-kids",
+            "columns_desktop": 4,
+            "columns_mobile": "2",
+            "text_alignment": "left",
+            "grid_gap": 16,
+            "section_padding": 40,
+            "container_width": 1200,
+            "show_price": true,
+            "show_button": true,
+            "button_text": "",
+            "card_padding": 16,
+            "card_border_radius": 8,
+            "card_border_width": 1,
+            "background_color": "#ffffff",
+            "heading_color": "#000000",
+            "card_background": "#ffffff",
+            "card_border_color": "#e5e5e5",
+            "product_title_color": "#000000",
+            "price_color": "#000000",
+            "button_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_hover_color": "#333333",
+            "heading_size": 28,
+            "heading_spacing": 24,
+            "product_title_size": 16,
+            "price_size": 16,
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_d3c9a02_cWUH8g"
+      ],
+      "settings": {}
+    },
+    "dd_product_feature_iGC9UY": {
+      "type": "dd-product-feature",
+      "blocks": {
+        "feature_Qtzaad": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/9513c2782be6d191af7a62fab342afbb02421c02.png",
+            "title": "D2D PRO AM Frame",
+            "subtitle": "Lorem ipsum",
+            "description": "Aluminium profile Sim Cockpit, manufactured by Dream2Drive.\nCockpit has no flex with even the mightiest wheels bases.\nAvailable silver and black color.\nDimensions: 1300mm x 600mm"
+          }
+        },
+        "feature_WeLwyL": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/0b673d6237872f17f15a169eb8e7fd444f31dbdc.png",
+            "title": "D2D PRO AM Frame",
+            "subtitle": "Lorem ipsum",
+            "description": "Aluminium profile Sim Cockpit, manufactured by Dream2Drive.\nCockpit has no flex with even the mightiest wheels bases.\nAvailable silver and black color.\nDimensions: 1300mm x 600mm"
+          }
+        },
+        "feature_rnmnm7": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/9513c2782be6d191af7a62fab342afbb02421c02.png",
+            "title": "D2D PRO AM Frame",
+            "subtitle": "Lorem ipsum",
+            "description": "Aluminium profile Sim Cockpit, manufactured by Dream2Drive.\nCockpit has no flex with even the mightiest wheels bases.\nAvailable silver and black color.\nDimensions: 1300mm x 600mm"
+          }
+        }
+      },
+      "block_order": [
+        "feature_Qtzaad",
+        "feature_WeLwyL",
+        "feature_rnmnm7"
+      ],
+      "disabled": true,
+      "name": "Product Feature",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "dd_main_product_single_LkzjKY",
+    "dd_main_product_P6HK4G",
+    "blocks_UmTpPK",
+    "related-products",
+    "dd_pd_description_LwWK8e",
+    "17641410618685954c",
+    "dd_product_feature_iGC9UY"
+  ]
+}
