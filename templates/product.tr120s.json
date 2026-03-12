@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -11,13 +20,29 @@
             "text_style": "uppercase"
           }
         },
-        "title": { "type": "title", "settings": {} },
-        "price": { "type": "price", "settings": {} },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
         "variant_picker": {
           "type": "variant_picker",
-          "settings": { "picker_type": "button", "swatch_shape": "circle" }
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
         },
-        "quantity_selector": { "type": "quantity_selector", "settings": {} },
+        "product_bundle_variations_jEntCc": {
+          "type": "product_bundle_variations",
+          "settings": {}
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -25,23 +50,31 @@
             "show_gift_card_recipient": true
           }
         },
-        "description": { "type": "description", "settings": {} },
-        "share": { "type": "share", "settings": { "share_label": "Share" } }
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
       },
       "block_order": [
         "vendor",
         "title",
         "price",
         "variant_picker",
+        "product_bundle_variations_jEntCc",
         "quantity_selector",
         "buy_buttons",
         "description",
         "share"
       ],
-      "disabled": true,
       "settings": {
         "enable_sticky_info": true,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-3",
         "media_size": "large",
         "constrain_to_viewport": true,
         "media_fit": "contain",
@@ -115,6 +148,7 @@
         "variant_block_GGX4zV",
         "variant_block_4nEfMN"
       ],
+      "disabled": true,
       "name": "Custom Main Product",
       "settings": {}
     },
@@ -124,7 +158,7 @@
         "feature_Qtzaad": {
           "type": "feature",
           "settings": {
-            "image": "shopify:\/\/shop_images\/TR120S_Dims-OnLight-min.png",
+            "image": "shopify://shop_images/TR120S_Dims-OnLight-min.png",
             "title": "TRAK RACER TR120S V2",
             "subtitle": "PROFESSIONAL, MOTION-READY RACING COCKPIT",
             "description": "The TR120S V2 sees our personal creative touch which will set a new direction in the market for extruded aluminium sim rigs with a sexy curve that gives the TR120S V2 a ‘wide-body’ look. From 2008 we have learnt a lot in the sim rig space to give beginner and professional sim racers exactly what they need, for the right price\n\nTrak Racer cockpits use thicker aluminium profile walls than the competition and include heavier duty brackets and a better-designed chassis for extra rigidity in the wheel mount uprights. It's Strong, Extremely Adjustable, and has a huge list of available accessories. In the usual Trak Racer way, we gathered customer feedback from thousands of customers to develop the TR120."
@@ -133,7 +167,7 @@
         "feature_WeLwyL": {
           "type": "feature",
           "settings": {
-            "image": "shopify:\/\/shop_images\/TR120s-Racing-Pedal.webp",
+            "image": "shopify://shop_images/TR120s-Racing-Pedal.webp",
             "title": "PEDAL MOUNT",
             "subtitle": "TR One Pedal Plate or Profile Mount",
             "description": "The TR120S V2 has been improved to withstand hundreds of kilograms in braking force without flex. Select between a pre-drilled mounting plate or extruded aluminium profile with heel plate; suitable for more new pedal sets on the market. The pre-drilled pedal plate also features a fine-tune slide function - so you can get those pedals exactly where you need them!"
@@ -142,7 +176,7 @@
         "feature_rnmnm7": {
           "type": "feature",
           "settings": {
-            "image": "shopify:\/\/shop_images\/TR120S-Wheel-Mount-Swap_01.webp",
+            "image": "shopify://shop_images/TR120S-Wheel-Mount-Swap_01.webp",
             "title": "TR One Wheel Mount – the new benchmark in Sim Racing",
             "subtitle": "",
             "description": "The TR One Wheel System is a Future Proof Wheel Mounting System that allows you to upgrade by replacing only a part of the mount depending on what wheel base you mount. Fully Adjustable and ready for anything you want to add to it."
@@ -151,7 +185,7 @@
         "feature_DqQXQF": {
           "type": "feature",
           "settings": {
-            "image": "shopify:\/\/shop_images\/TR120s-Racing-Seat-Slider.webp",
+            "image": "shopify://shop_images/TR120s-Racing-Seat-Slider.webp",
             "title": "Dual-Lock Seat Slider Kit Included",
             "subtitle": "",
             "description": "The TR Premium seat slider runner kit will give you quick adjustments of the seat position and lock you in with the least amount of play."
@@ -160,10 +194,10 @@
         "feature_kwzCeB": {
           "type": "feature",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Copy_of_TR120S-BLK_OA-PF-NS_01.png",
+            "image": "shopify://shop_images/Copy_of_TR120S-BLK_OA-PF-NS_01.png",
             "title": "WHAT'S INCLUDED?",
             "subtitle": "",
-            "description": "Wheel Mount - As selected from the TR ONE system or Standard Wheel Mount \/ Selected Pedal Support Plates \/ Rubber Feet to protect floors \/ Set of 10 Cable Ties \/ Red Coloured Strips \/ 12mm x 40mm Black Anodized Aluminium Chassis \/ 120mm x 40mm Black Anodized Aluminium Wheel Supports \/ All Mounting Screws, Brackets and Fixtures included \/ Assembly Tool Kit"
+            "description": "Wheel Mount - As selected from the TR ONE system or Standard Wheel Mount / Selected Pedal Support Plates / Rubber Feet to protect floors / Set of 10 Cable Ties / Red Coloured Strips / 12mm x 40mm Black Anodized Aluminium Chassis / 120mm x 40mm Black Anodized Aluminium Wheel Supports / All Mounting Screws, Brackets and Fixtures included / Assembly Tool Kit"
           }
         }
       },
@@ -180,7 +214,10 @@
     "dd_pd_description_LwWK8e": {
       "type": "dd-pd-description",
       "name": "Description Section",
-      "settings": { "title": "Instruction  manual", "subtitle": "" }
+      "settings": {
+        "title": "Instruction  manual",
+        "subtitle": ""
+      }
     },
     "related-products": {
       "type": "related-products",
