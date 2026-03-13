@@ -514,13 +514,20 @@
                         </div>
                         <div class="bundle-variations__options">
                           {%- for variant in option_product.variants -%}
+                            {%- liquid
+                              assign is_available = variant.available
+                              assign inventory_quantity = variant.inventory_quantity | default: 0
+                            -%}
                             <button
                               type="button"
-                              class="bundle-variations__option"
+                              class="bundle-variations__option{% unless is_available %} bundle-variations__option--unavailable{% endunless %}"
                               data-variant-id="{{ variant.id }}"
                               data-price="{{ variant.price | divided_by: 100 }}"
                               data-product-title="{{ option_product.title | escape }}"
                               data-option-title="{{ variant.title | escape }}"
+                              data-available="{{ is_available }}"
+                              data-inventory="{{ inventory_quantity }}"
+                              {% unless is_available %}aria-disabled="true"{% endunless %}
                             >
                               <div class="bundle-variations__option-media">
                                 {%- if variant.featured_image -%}
@@ -538,14 +545,28 @@
                                       class: 'bundle-variations__option-image'
                                   }}
                                 {%- endif -%}
+                                {%- unless is_available -%}
+                                  <span class="bundle-variations__badge">
+                                    {{ 'products.product.inventory_out_of_stock' | t }}
+                                  </span>
+                                {%- endunless -%}
                               </div>
                               <div class="bundle-variations__option-body">
                                 <p class="bundle-variations__option-title">
                                   {{ variant.title }}
                                 </p>
-                                <p class="bundle-variations__option-price">
-                                  {{ variant.price | money_with_currency }}
-                                </p>
+                                <div class="bundle-variations__option-meta">
+                                  <p class="bundle-variations__option-stock">
+                                    {%- if is_available -%}
+                                      {{ 'products.product.inventory_in_stock' | t }}
+                                    {%- else -%}
+                                      {{ 'products.product.inventory_out_of_stock' | t }}
+                                    {%- endif -%}
+                                  </p>
+                                  <p class="bundle-variations__option-price">
+                                    {{ variant.price | money }}
+                                  </p>
+                                </div>
                               </div>
                             </button>
                           {%- endfor -%}

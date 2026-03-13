@@ -14,6 +14,23 @@
     data-section="{{ section.id }}"
     {{ block.shopify_attributes }}
   >
+    {%- liquid
+      assign options_count = product.options_with_values | size
+      assign has_single_option = false
+      if options_count == 1
+        assign has_single_option = true
+      endif
+      assign all_variants_have_image = true
+
+      if has_single_option
+        for v in product.variants
+          if v.featured_image == nil
+            assign all_variants_have_image = false
+          endif
+        endfor
+      endif
+    -%}
+
     {%- for option in product.options_with_values -%}
       {%- liquid
         assign swatch_count = option.values | map: 'swatch' | compact | size
@@ -26,8 +43,95 @@
             assign picker_type = 'swatch'
           endif
         endif
+
+        assign use_variant_cards = false
+        if has_single_option and all_variants_have_image and swatch_count == 0
+          assign use_variant_cards = true
+        endif
       -%}
-      {%- if picker_type == 'swatch' -%}
+
+      {%- if use_variant_cards -%}
+        {%- liquid
+          assign product_form_id = 'product-form-' | append: section.id
+        -%}
+        <fieldset class="product-form__input">
+          <legend class="form__label">
+            {{ option.name }}
+          </legend>
+
+          <div class="bundle-variations">
+            <div class="bundle-variations__group">
+              <div class="bundle-variations__options">
+                {%- for value in option.values -%}
+                  {%- liquid
+                    assign option_value = value
+                    assign matching_variant = nil
+
+                    for variant in product.variants
+                      assign option_index = option.position | minus: 1
+                      if variant.options[option_index] == option_value
+                        assign matching_variant = variant
+                        break
+                      endif
+                    endfor
+
+                    if matching_variant == nil or matching_variant.featured_image == nil
+                      continue
+                    endif
+
+                    assign is_available = matching_variant.available
+                  -%}
+                  <label
+                    class="bundle-variations__option{% unless is_available %} bundle-variations__option--unavailable{% endunless %}"
+                  >
+                    <input
+                      type="radio"
+                      name="options[{{ option.name | escape }}]"
+                      value="{{ option_value | escape }}"
+                      form="{{ product_form_id }}"
+                      class="visually-hidden"
+                      data-product-url="{{ value.product_url }}"
+                      data-option-value-id="{{ value.id }}"
+                      {% if matching_variant == product.selected_or_first_available_variant %}checked{% endif %}
+                      {% unless is_available %}disabled{% endunless %}
+                    >
+                    <div class="bundle-variations__option-media">
+                      {{ matching_variant.featured_image
+                        | image_url: width: 300
+                        | image_tag:
+                          loading: 'lazy',
+                          class: 'bundle-variations__option-image'
+                      }}
+                      {%- unless is_available -%}
+                        <span class="bundle-variations__badge">
+                          {{ 'products.product.inventory_out_of_stock' | t }}
+                        </span>
+                      {%- endunless -%}
+                    </div>
+                    <div class="bundle-variations__option-body">
+                      <p class="bundle-variations__option-title">
+                        {{ matching_variant.title }}
+                      </p>
+                      <div class="bundle-variations__option-meta">
+                        <p class="bundle-variations__option-stock">
+                          {%- if is_available -%}
+                            {{ 'products.product.inventory_in_stock' | t }}
+                          {%- else -%}
+                            {{ 'products.product.inventory_out_of_stock' | t }}
+                          {%- endif -%}
+                        </p>
+                        <p class="bundle-variations__option-price">
+                          {{ matching_variant.price | money }}
+                        </p>
+                      </div>
+                    </div>
+                  </label>
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      {%- elsif picker_type == 'swatch' -%}
         <fieldset class="js product-form__input product-form__input--swatch">
           <legend class="form__label">
             {{ option.name }}:

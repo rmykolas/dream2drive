@@ -2,53 +2,72 @@
   class="max-lg:pt-[40px] max-lg:pb-[60px] px-[16px] bg-[#ECECEC] relative z-30 font-roboto-condensed"
 >
   <div class="max-w-[1344px] mx-auto">
-    {% for block in section.blocks %}
-      <div
-        class="feature-card flex flex-col lg:flex-row gap-[24px] items-center justify-center"
-        {{ block.shopify_attributes }}
-      >
-        <!-- Image -->
-        <div
-          class="feature-image flex items-center justify-center flex-1 max-w-[596px] max-h-[596px]"
-        >
-          {% if block.settings.image != blank %}
-            <img
-              src="{{ block.settings.image | image_url: width: 800 }}"
-              alt="{{ block.settings.title | escape }}"
-              class="w-full max-h-[596px] object-contain"
-            />
-          {% endif %}
-        </div>
+    {% liquid
+      assign product_specs = product.metafields.custom.product_specs_with_images.value
+    %}
 
-        <!-- Content -->
-        <div class="feature-content flex-1 max-w-[596px]">
-          <h3
-            class="text-[40px] font-bold text-[#2F333D] leading-[100%] pb-[4px] pb-[8px] sm:pb-[30px] {% if block.settings.subtitle != blank %}pb-[0px]{% endif %}"
+    {% if product_specs != blank %}
+      {% for spec in product_specs %}
+        <div
+          class="feature-card flex flex-col lg:flex-row gap-[24px] items-center justify-center"
+        >
+          <!-- Image -->
+          <div
+            class="feature-image flex items-center justify-center flex-1 max-w-[596px] max-h-[596px]"
           >
-            {{ block.settings.title }}
-          </h3>
-          {% if block.settings.subtitle != blank %}
-            <p
-              class="text-[20px] text-[#2F333D] mb-[30px] font-normal leading-[100%]"
-            >
-              {{ block.settings.subtitle }}
-            </p>
-          {% endif %}
-          <div class="space-y-[10px]">
-            {% assign lines = block.settings.description | split: '\n' %}
-            {% for line in lines %}
-              <p
-                class="text-[20px] text-[#4A4E5A] leading-[120%] tracking-[-0.01em]"
-              >
-                {{ line }}
-              </p>
-            {% endfor %}
+            {% if spec.image != blank %}
+              <img
+                src="{{ spec.image | image_url: width: 800 }}"
+                alt=""
+                class="w-full max-h-[596px] object-contain"
+              />
+            {% endif %}
+          </div>
+
+          <!-- Content -->
+          <div class="feature-content flex-1 max-w-[596px]">
+            {{ spec.content | metafield_tag }}
           </div>
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    {% endif %}
   </div>
 </section>
+
+{% stylesheet %}
+  .feature-content h3 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #2F333D;
+    line-height: 1;
+    margin: 0 0 30px;
+  }
+
+  .feature-content p {
+    font-size: 20px;
+    color: #4A4E5A;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+  }
+
+  .feature-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .feature-content {
+      max-width: 100%;
+      gap: 16px;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .feature-card {
+      padding: 24px 0 !important;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {

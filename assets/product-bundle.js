@@ -24,7 +24,10 @@
         '{{ amount_with_comma_separator }} {{ currency }}';
 
       try {
-        return window.Shopify.formatMoney(cents, moneyFormat);
+        const formatted = window.Shopify.formatMoney(cents, moneyFormat);
+
+        // Strip trailing currency code if present, e.g. "€1.029,00 EUR" -> "€1.029,00"
+        return formatted.replace(/\s[A-Z]{3}$/, '');
       } catch (error) {
         // fall through to basic formatting
       }
@@ -33,7 +36,7 @@
     const fixed = (cents / 100).toFixed(2);
     const withComma = fixed.replace('.', ',');
 
-    return `€${withComma} EUR`;
+    return `€${withComma}`;
   };
 
   const getQuantityForProductInfo = (productInfo) => {
@@ -111,17 +114,11 @@
       return;
     }
 
-    const group = option.closest('.bundle-variations__group');
-    if (!group) {
+    if (option.dataset.available === 'false' || option.classList.contains('bundle-variations__option--unavailable')) {
       return;
     }
 
-    const groupOptions = group.querySelectorAll(BUNDLE_OPTION_SELECTOR);
-    for (const groupOption of groupOptions) {
-      groupOption.classList.remove('bundle-variations__option--selected');
-    }
-
-    option.classList.add('bundle-variations__option--selected');
+    option.classList.toggle('bundle-variations__option--selected');
     updateBundleTotal(container);
   };
 
@@ -195,6 +192,10 @@
 
   const initBundleForContainer = (container) => {
     if (container.dataset.bundleInitialized === 'true') {
+      return;
+    }
+
+    if (!container.dataset.bundleSection) {
       return;
     }
 
