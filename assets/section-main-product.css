@@ -54,9 +54,10 @@ product-info {
 
   .product__media-wrapper media-gallery {
     max-width: 60rem;
-    width: 60rem;
+    width: 100%;
     display: flex;
     height: fit-content;
+    gap: 4rem;
   }
 
   .product__media-wrapper media-gallery slider-component.main-product__media-gallery {
@@ -70,7 +71,9 @@ product-info {
   }
 
   .product__media-wrapper .thumbnail-slider {
-    width: 25%;
+    width: 15%;
+    height: 500px;
+    overflow: scroll;
   }
 
   .product__media-wrapper .thumbnail-slider .thumbnail-list {
@@ -509,11 +512,6 @@ a.product__text {
     margin-left: -2.5rem;
     margin-bottom: 3rem;
     width: calc(100% + 4rem);
-  }
-
-  .product__media-wrapper slider-component:not(.thumbnail-slider--no-slide) {
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
   }
 
   .slider.product__media-list::-webkit-scrollbar {
@@ -1631,7 +1629,6 @@ a.product__text {
 }
 
 .main-product__variable-price {
-  border-bottom: 1px solid #C8C9CC;
   padding: 0 0 24px 0;
 }
 
@@ -1643,7 +1640,9 @@ a.product__text {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin: 24px 0;
+  margin: 0;
+  padding: 24px 0 0;
+  border-top: 1px solid #C8C9CC;
 }
 
 .bundle-variations__group {
@@ -1656,6 +1655,48 @@ a.product__text {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.bundle-variations__info-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-decoration: none;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.bundle-variations__info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 1px solid #C8C9CC;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.bundle-variations__dialog {
+  border: none;
+  padding: 0;
+  max-width: 420px;
+  width: 100%;
+}
+
+.bundle-variations__dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bundle-variations__dialog-inner {
+  padding: 16px;
 }
 
 .bundle-variations__group-title {
@@ -1672,10 +1713,15 @@ a.product__text {
   gap: 8px;
 }
 
+.bundle-variations__option-wrapper {
+  position: relative;
+  width: calc(50% - 4px);
+}
+
 .bundle-variations__option {
   display: flex;
   align-items: stretch;
-  width: calc(50% - 4px);
+  width: 100%;
   min-height: 88px;
   background-color: #2F333D;
   color: #ffffff;
@@ -1742,6 +1788,7 @@ a.product__text {
   padding: 16px;
   gap: 16px;
   flex: 1;
+  padding-right: 40px;
 }
 
 .bundle-variations__option-title {

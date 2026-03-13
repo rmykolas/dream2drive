@@ -99,10 +99,27 @@
             <div class="product__title" {{ block.shopify_attributes }}>
               <h2 class="text-[52px] font-bold text-white mb-[2px] leading-[100%]">{{ product.title }}</h2>
             </div>
-            <div id="variable-price-{{ section.id }}" class="main-product__variable-price" role="status" {{ block.shopify_attributes }}>
+            <div class="main-product__variable-price" {{ block.shopify_attributes }}>
               {%- if product.price_varies -%}
                 <span class="price price--large">
                   {{ product.price_min | money }} - {{ product.price_max | money }} + VAT
+                </span>
+              {%- elsif product.metafields.custom.option_groups.value != blank -%}
+                {%- liquid
+                  assign base_price = product.selected_or_first_available_variant.price
+                  assign bundle_option_groups = product.metafields.custom.option_groups.value
+                  assign bundle_total_cents = 0
+
+                  for option_product in bundle_option_groups
+                    for variant in option_product.variants
+                      assign bundle_total_cents = bundle_total_cents | plus: variant.price
+                    endfor
+                  endfor
+
+                  assign max_total = base_price | plus: bundle_total_cents
+                -%}
+                <span class="price price--large">
+                  {{ base_price | money }} - {{ max_total | money }} + VAT
                 </span>
               {%- else -%}
                 {%- render 'price',
@@ -160,10 +177,27 @@
                   <div class="product__title" {{ block.shopify_attributes }}>
                     <h2 class="text-[52px] font-bold text-white mb-[2px] leading-[100%]">{{ product.title }}</h2>
                   </div>
-                  <div id="variable-price-{{ section.id }}" class="main-product__variable-price" role="status" {{ block.shopify_attributes }}>
+                  <div class="main-product__variable-price" {{ block.shopify_attributes }}>
                     {%- if product.price_varies -%}
                       <span class="price price--large">
                         {{ product.price_min | money }} - {{ product.price_max | money }} + VAT
+                      </span>
+                    {%- elsif product.metafields.custom.option_groups.value != blank -%}
+                      {%- liquid
+                        assign base_price = product.selected_or_first_available_variant.price
+                        assign bundle_option_groups = product.metafields.custom.option_groups.value
+                        assign bundle_total_cents = 0
+
+                        for option_product in bundle_option_groups
+                          for variant in option_product.variants
+                            assign bundle_total_cents = bundle_total_cents | plus: variant.price
+                          endfor
+                        endfor
+
+                        assign max_total = base_price | plus: bundle_total_cents
+                      -%}
+                      <span class="price price--large">
+                        {{ base_price | money }} - {{ max_total | money }} + VAT
                       </span>
                     {%- else -%}
                       {%- render 'price',
@@ -518,17 +552,18 @@
                               assign is_available = variant.available
                               assign inventory_quantity = variant.inventory_quantity | default: 0
                             -%}
-                            <button
-                              type="button"
-                              class="bundle-variations__option{% unless is_available %} bundle-variations__option--unavailable{% endunless %}"
-                              data-variant-id="{{ variant.id }}"
-                              data-price="{{ variant.price | divided_by: 100 }}"
-                              data-product-title="{{ option_product.title | escape }}"
-                              data-option-title="{{ variant.title | escape }}"
-                              data-available="{{ is_available }}"
-                              data-inventory="{{ inventory_quantity }}"
-                              {% unless is_available %}aria-disabled="true"{% endunless %}
-                            >
+                            <div class="bundle-variations__option-wrapper">
+                              <button
+                                type="button"
+                                class="bundle-variations__option{% unless is_available %} bundle-variations__option--unavailable{% endunless %}"
+                                data-variant-id="{{ variant.id }}"
+                                data-price="{{ variant.price | divided_by: 100 }}"
+                                data-product-title="{{ option_product.title | escape }}"
+                                data-option-title="{{ variant.title | escape }}"
+                                data-available="{{ is_available }}"
+                                data-inventory="{{ inventory_quantity }}"
+                                {% unless is_available %}aria-disabled="true"{% endunless %}
+                              >
                               <div class="bundle-variations__option-media">
                                 {%- if variant.featured_image -%}
                                   {{ variant.featured_image
@@ -568,7 +603,48 @@
                                   </p>
                                 </div>
                               </div>
-                            </button>
+                              </button>
+                              <button
+                                type="button"
+                                class="bundle-variations__info-toggle focus-inset"
+                                data-bundle-info-open="BundleInfoDialog-{{ variant.id }}"
+                                aria-haspopup="dialog"
+                                aria-controls="BundleInfoDialog-{{ variant.id }}"
+                                aria-label="{{ 'products.product.bundle_variations_info' | t }}"
+                              >
+                                <span class="bundle-variations__info-icon" aria-hidden="true">i</span>
+                                <span class="visually-hidden">
+                                  {{ 'products.product.bundle_variations_info' | t }}
+                                </span>
+                              </button>
+                            </div>
+                            <dialog
+                              id="BundleInfoDialog-{{ variant.id }}"
+                              class="bundle-variations__dialog"
+                              aria-labelledby="BundleInfoDialogTitle-{{ variant.id }}"
+                            >
+                              <div class="bundle-variations__dialog-inner">
+                                <h2
+                                  id="BundleInfoDialogTitle-{{ variant.id }}"
+                                  class="bundle-variations__info-heading"
+                                >
+                                  {{ variant.title }}
+                                </h2>
+                                <p class="bundle-variations__info-text">
+                                  {{ 'products.product.bundle_variations_info_dummy' | t }}
+                                </p>
+                                <button
+                                  type="button"
+                                  class="bundle-variations__info-close link link--text focus-inset"
+                                  data-bundle-info-close
+                                  aria-label="{{ 'accessibility.close' | t }}"
+                                >
+                                  <span class="svg-wrapper">
+                                    {{- 'icon-close.svg' | inline_asset_content -}}
+                                  </span>
+                                </button>
+                              </div>
+                            </dialog>
                           {%- endfor -%}
                         </div>
                       </div>

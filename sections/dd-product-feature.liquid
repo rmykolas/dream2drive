@@ -1,12 +1,12 @@
-<section
-  class="max-lg:pt-[40px] max-lg:pb-[60px] px-[16px] bg-[#ECECEC] relative z-30 font-roboto-condensed"
->
-  <div class="max-w-[1344px] mx-auto">
-    {% liquid
-      assign product_specs = product.metafields.custom.product_specs_with_images.value
-    %}
+{% liquid
+  assign product_specs = product.metafields.custom.product_specs_with_images.value
+%}
 
-    {% if product_specs != blank %}
+{% if product_specs != blank %}
+  <section
+    class="max-lg:pt-[40px] max-lg:pb-[60px] px-[16px] bg-[#ECECEC] relative z-30 font-roboto-condensed"
+  >
+    <div class="max-w-[1344px] mx-auto">
       {% for spec in product_specs %}
         <div
           class="feature-card flex flex-col lg:flex-row gap-[24px] items-center justify-center"
@@ -30,9 +30,10 @@
           </div>
         </div>
       {% endfor %}
-    {% endif %}
-  </div>
-</section>
+    </div>
+  </section>
+{% endif %}
+
 
 {% stylesheet %}
   .feature-content h3 {

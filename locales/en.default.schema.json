@@ -932,6 +932,9 @@
         "description": {
           "name": "Description"
         },
+        "product_bundle_variations": {
+          "name": "Bundle options"
+        },
         "share": {
           "name": "Share",
           "settings": {

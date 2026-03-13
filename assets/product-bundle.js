@@ -221,6 +221,47 @@
     }
 
     updateBundleTotal(container);
+
+    initBundleInfoDialogs(container);
+  };
+
+  const initBundleInfoDialogs = (container) => {
+    const triggers = container.querySelectorAll('[data-bundle-info-open]');
+
+    for (const trigger of triggers) {
+      const dialogId = trigger.getAttribute('data-bundle-info-open');
+      if (!dialogId) continue;
+
+      const dialog = document.getElementById(dialogId);
+      if (!dialog || typeof dialog.showModal !== 'function') continue;
+
+      const handleOpen = () => {
+        dialog.showModal();
+        const heading = dialog.querySelector('.bundle-variations__info-heading');
+        (heading || dialog).focus();
+      };
+
+      const handleClose = () => {
+        dialog.close();
+      };
+
+      trigger.addEventListener('click', handleOpen);
+
+      dialog.addEventListener('click', (event) => {
+        if (event.target === dialog) {
+          handleClose();
+        }
+      });
+
+      const closeButtons = dialog.querySelectorAll('[data-bundle-info-close]');
+      closeButtons.forEach((button) => {
+        button.addEventListener('click', handleClose);
+      });
+
+      dialog.addEventListener('close', () => {
+        trigger.focus();
+      });
+    }
   };
 
   const initBundles = () => {

@@ -139,6 +139,9 @@
         "play_video": "Play video"
       },
       "nested_label": "{{ title }} for {{ parent_title }}",
+      "bundle_variations_info": "More information about this bundle option",
+      "bundle_variations_info_title": "Bundle option details",
+      "bundle_variations_info_dummy": "This is some additional information about this bundle option. Replace this dummy text with real content when you are ready.",
       "quantity": {
         "label": "Quantity:",
         "input_label": "Quantity for {{ product }}",
