@@ -16,10 +16,6 @@
           "type": "title",
           "settings": {}
         },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -35,21 +31,33 @@
           "type": "quantity_selector",
           "settings": {}
         },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false
           }
+        },
+        "text_My6w3y": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Free delivery on qualifying orders.</p><p>Returns fee charged. Exclusions apply.<br/><a href=\"/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\">View our Delivery & Returns Policy</a></p><p>This product has shipping restrictions.</p>",
+            "text_style": "body"
+          }
         }
       },
       "block_order": [
         "title",
-        "price",
         "variant_picker",
         "product_bundle_variations_QA4hCd",
         "quantity_selector",
-        "buy_buttons"
+        "price",
+        "buy_buttons",
+        "text_My6w3y"
       ],
       "settings": {
         "enable_sticky_info": true,
