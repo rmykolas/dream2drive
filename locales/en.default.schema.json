@@ -935,6 +935,26 @@
         "product_bundle_variations": {
           "name": "Bundle options"
         },
+        "custom_field": {
+          "name": "Custom field",
+          "settings": {
+            "field_type": {
+              "label": "Field type",
+              "options__1": {
+                "label": "Text"
+              },
+              "options__2": {
+                "label": "Image upload"
+              }
+            },
+            "field_name": {
+              "label": "Field name"
+            },
+            "required": {
+              "label": "Required"
+            }
+          }
+        },
         "share": {
           "name": "Share",
           "settings": {
@@ -2016,6 +2036,29 @@
               "options__3": {
                 "label": "None"
               }
+            }
+          }
+        },
+        "product_bundle_variations": {
+          "name": "Bundle options"
+        },
+        "custom_field": {
+          "name": "Custom field",
+          "settings": {
+            "field_type": {
+              "label": "Field type",
+              "options__1": {
+                "label": "Text"
+              },
+              "options__2": {
+                "label": "Image upload"
+              }
+            },
+            "field_name": {
+              "label": "Field name"
+            },
+            "required": {
+              "label": "Required"
             }
           }
         },

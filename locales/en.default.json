@@ -142,6 +142,7 @@
       "bundle_variations_info": "More information about this bundle option",
       "bundle_variations_info_title": "Bundle option details",
       "bundle_variations_info_dummy": "This is some additional information about this bundle option. Replace this dummy text with real content when you are ready.",
+      "bundle_variations_view_product": "View product",
       "quantity": {
         "label": "Quantity:",
         "input_label": "Quantity for {{ product }}",
@@ -191,7 +192,8 @@
       "taxes_included": "Taxes included.",
       "duties_included": "Duties included.",
       "duties_and_taxes_included": "Duties and taxes included.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "custom_field_required": "This field is required."
     },
     "modal": {
       "label": "Media gallery"

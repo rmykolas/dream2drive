@@ -7,6 +7,10 @@ if (!customElements.get('product-form')) {
 
         this.form = this.querySelector('form');
         this.variantIdInput.disabled = false;
+        const hasFileInput =
+          this.form.querySelector('input[type="file"]') ||
+          document.querySelector(`input[type="file"][form="${this.form.id}"]`);
+        if (hasFileInput) this.form.enctype = 'multipart/form-data';
         this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
         this.cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
         this.submitButton = this.querySelector('[type="submit"]');

@@ -144,6 +144,19 @@
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
+          {%- assign section_has_file_upload = false -%}
+          {%- assign section_has_required_custom_field = false -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'custom_field' and block.settings.field_name != blank -%}
+              {%- if block.settings.field_type == 'image' -%}
+                {%- assign section_has_file_upload = true -%}
+              {%- endif -%}
+              {%- if block.settings.required -%}
+                {%- assign section_has_required_custom_field = true -%}
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when '@app' -%}
@@ -551,8 +564,10 @@
                             {%- liquid
                               assign is_available = variant.available
                               assign inventory_quantity = variant.inventory_quantity | default: 0
+                              assign variant_description = variant.metafields.custom.description
+                              assign enable_link = variant.metafields.custom.enable_link_to_single_product
                             -%}
-                            <div class="bundle-variations__option-wrapper">
+                            <div class="bundle-variations__option-wrapper{% if variant_description != blank %} bundle-variations__option-wrapper--has-info{% endif %}">
                               <button
                                 type="button"
                                 class="bundle-variations__option{% unless is_available %} bundle-variations__option--unavailable{% endunless %}"
@@ -604,6 +619,7 @@
                                 </div>
                               </div>
                               </button>
+                              {%- if variant_description != blank -%}
                               <button
                                 type="button"
                                 class="bundle-variations__info-toggle focus-inset"
@@ -612,44 +628,130 @@
                                 aria-controls="BundleInfoDialog-{{ variant.id }}"
                                 aria-label="{{ 'products.product.bundle_variations_info' | t }}"
                               >
-                                <span class="bundle-variations__info-icon" aria-hidden="true">i</span>
+                                <span class="bundle-variations__info-icon" aria-hidden="true">
+                                  {{ 'icon-info-circle.svg' | inline_asset_content }}
+                                </span>
                                 <span class="visually-hidden">
                                   {{ 'products.product.bundle_variations_info' | t }}
                                 </span>
                               </button>
+                              <dialog
+                                id="BundleInfoDialog-{{ variant.id }}"
+                                class="bundle-variations__dialog"
+                                aria-labelledby="BundleInfoDialogTitle-{{ variant.id }}"
+                              >
+                                <div class="bundle-variations__dialog-inner feature-content">
+                                  <button
+                                    type="button"
+                                    class="bundle-variations__dialog-close link focus-inset"
+                                    data-bundle-info-close
+                                    aria-label="{{ 'accessibility.close' | t }}"
+                                  >
+                                    <span class="svg-wrapper">
+                                      {{- 'icon-close.svg' | inline_asset_content -}}
+                                    </span>
+                                  </button>
+                                  <h2
+                                    id="BundleInfoDialogTitle-{{ variant.id }}"
+                                    class="bundle-variations__info-heading"
+                                  >
+                                    {{ variant.title }}
+                                  </h2>
+                                  <div class="bundle-variations__dialog-content rte">
+                                    {{ variant_description | metafield_tag }}
+                                  </div>
+                                  {%- if enable_link -%}
+                                    <a
+                                      href="{{ option_product.url }}?variant={{ variant.id }}"
+                                      class="bundle-variations__dialog-link px-[30px] py-[18.5px] text-[17px] font-medium leading-[100%] tracking-[-0.02em] uppercase flex items-center w-fit bg-[#66c2a4] gap-[16px] mt-[20px] hover:bg-[#B6E3D9]"
+                                    >
+                                      {{ 'products.product.bundle_variations_view_product' | t }}
+                                      <span class="bundle-variations__dialog-link-icon">
+                                        {{- 'icon-arrow.svg' | inline_asset_content -}}
+                                      </span>
+                                    </a>
+                                  {%- endif -%}
+                                </div>
+                              </dialog>
+                              {%- endif -%}
                             </div>
-                            <dialog
-                              id="BundleInfoDialog-{{ variant.id }}"
-                              class="bundle-variations__dialog"
-                              aria-labelledby="BundleInfoDialogTitle-{{ variant.id }}"
-                            >
-                              <div class="bundle-variations__dialog-inner">
-                                <h2
-                                  id="BundleInfoDialogTitle-{{ variant.id }}"
-                                  class="bundle-variations__info-heading"
-                                >
-                                  {{ variant.title }}
-                                </h2>
-                                <p class="bundle-variations__info-text">
-                                  {{ 'products.product.bundle_variations_info_dummy' | t }}
-                                </p>
-                                <button
-                                  type="button"
-                                  class="bundle-variations__info-close link link--text focus-inset"
-                                  data-bundle-info-close
-                                  aria-label="{{ 'accessibility.close' | t }}"
-                                >
-                                  <span class="svg-wrapper">
-                                    {{- 'icon-close.svg' | inline_asset_content -}}
-                                  </span>
-                                </button>
-                              </div>
-                            </dialog>
                           {%- endfor -%}
                         </div>
                       </div>
                     {%- endfor -%}
                   </div>
+                {%- endif -%}
+              {%- when 'custom_field' -%}
+                {%- assign custom_field_name = block.settings.field_name | strip -%}
+                {%- if custom_field_name != blank -%}
+                <div
+                  class="product-form__input product-form__custom-field"
+                  {{ block.shopify_attributes }}
+                >
+                  {%- if block.settings.field_type == 'text' -%}
+                    <div class="field">
+                      <input
+                        class="field__input"
+                        type="text"
+                        id="CustomField-{{ block.id }}-{{ section.id }}"
+                        name="properties[{{ custom_field_name | escape }}]"
+                        form="{{ product_form_id }}"
+                        placeholder=" "
+                        {% if block.settings.required %}
+                          required
+                          aria-required="true"
+                          aria-describedby="CustomField-error-{{ block.id }}-{{ section.id }}"
+                        {% endif %}
+                      >
+                      <label class="field__label" for="CustomField-{{ block.id }}-{{ section.id }}">
+                        {{ custom_field_name | escape }}
+                      </label>
+                    </div>
+                    {%- if block.settings.required -%}
+                      <div
+                        id="CustomField-error-{{ block.id }}-{{ section.id }}"
+                        class="form__message hidden"
+                        role="alert"
+                      >
+                        <span class="svg-wrapper">
+                          {{- 'icon-error.svg' | inline_asset_content -}}
+                        </span>
+                        <span class="error-message">{{ 'products.product.custom_field_required' | t }}</span>
+                      </div>
+                    {%- endif -%}
+                  {%- else -%}
+                    <div class="field">
+                      <input
+                        class="field__input field__input--file"
+                        type="file"
+                        accept="image/*"
+                        id="CustomField-{{ block.id }}-{{ section.id }}"
+                        name="properties[{{ custom_field_name | escape }}]"
+                        form="{{ product_form_id }}"
+                        {% if block.settings.required %}
+                          required
+                          aria-required="true"
+                          aria-describedby="CustomField-error-{{ block.id }}-{{ section.id }}"
+                        {% endif %}
+                      >
+                      <label class="field__label" for="CustomField-{{ block.id }}-{{ section.id }}">
+                        {{ custom_field_name | escape }}
+                      </label>
+                    </div>
+                    {%- if block.settings.required -%}
+                      <div
+                        id="CustomField-error-{{ block.id }}-{{ section.id }}"
+                        class="form__message hidden"
+                        role="alert"
+                      >
+                        <span class="svg-wrapper">
+                          {{- 'icon-error.svg' | inline_asset_content -}}
+                        </span>
+                        <span class="error-message">{{ 'products.product.custom_field_required' | t }}</span>
+                      </div>
+                    {%- endif -%}
+                  {%- endif -%}
+                </div>
                 {%- endif -%}
               {%- when 'buy_buttons' -%}
                 {%- render 'buy-buttons',
@@ -657,7 +759,9 @@
                   product: product,
                   product_form_id: product_form_id,
                   section_id: section.id,
-                  show_pickup_availability: true
+                  show_pickup_availability: true,
+                  has_file_upload: section_has_file_upload,
+                  has_required_custom_field: section_has_required_custom_field
                 -%}
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
@@ -1043,6 +1147,39 @@
       "type": "product_bundle_variations",
       "name": "t:sections.main-product.blocks.product_bundle_variations.name",
       "limit": 1
+    },
+    {
+      "type": "custom_field",
+      "name": "t:sections.main-product.blocks.custom_field.name",
+      "settings": [
+        {
+          "type": "select",
+          "id": "field_type",
+          "options": [
+            {
+              "value": "text",
+              "label": "t:sections.main-product.blocks.custom_field.settings.field_type.options__1.label"
+            },
+            {
+              "value": "image",
+              "label": "t:sections.main-product.blocks.custom_field.settings.field_type.options__2.label"
+            }
+          ],
+          "default": "text",
+          "label": "t:sections.main-product.blocks.custom_field.settings.field_type.label"
+        },
+        {
+          "type": "text",
+          "id": "field_name",
+          "label": "t:sections.main-product.blocks.custom_field.settings.field_name.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "default": false,
+          "label": "t:sections.main-product.blocks.custom_field.settings.required.label"
+        }
+      ]
     },
     {
       "type": "buy_buttons",
