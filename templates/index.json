@@ -241,26 +241,27 @@
     "dd_customize_racer_PiGgHV": {
       "type": "dd-customize-racer",
       "blocks": {
-        "equipment_item_8EkBM8": {
-          "type": "equipment_item",
-          "disabled": true,
+        "hotspot_KWnrUG": {
+          "type": "hotspot",
           "settings": {
-            "label": "",
-            "text": ""
-          }
-        },
-        "equipment_item_trhHgG": {
-          "type": "equipment_item",
-          "disabled": true,
-          "settings": {
-            "label": "",
-            "text": ""
+            "title": "Gloves",
+            "products": [
+              "senso-22-gloves",
+              "motorsport-gloves-freem-senso-22"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 279,
+            "position_left_desktop": 231,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 0
           }
         }
       },
       "block_order": [
-        "equipment_item_8EkBM8",
-        "equipment_item_trhHgG"
+        "hotspot_KWnrUG"
       ],
       "name": "Customise Racer Equipment",
       "settings": {
