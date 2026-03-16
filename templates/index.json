@@ -34,6 +34,29 @@
     },
     "dd_customize_simulator_AGUzeF": {
       "type": "dd-customize-simulator",
+      "blocks": {
+        "hotspot_AdqPzB": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Monitor",
+            "products": [
+              "gaming-monitor-aoc-31-5-full-hd-16-9-240-hz-1-ms",
+              "freestanding-triple-monitor-stand"
+            ],
+            "position_top_desktop": 93,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 192,
+            "position_top_mobile": 90,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 54
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_AdqPzB"
+      ],
       "name": "Customise Your Simulator",
       "settings": {
         "title": "",
@@ -45,14 +68,7 @@
         "simulator_price_2": "Pick what you need. Upgrade anytime.",
         "button_label_2": "START NOW",
         "button_link_2": "shopify://products/tr120s-v2-racing-simulator-with-seat-sliders-kit",
-        "main_image": "shopify://shop_images/Copy_of_TR120S-BLK_e04-min.png",
-        "link_1": "shopify://collections/simulator-frames-and-cockipts",
-        "link_2": "shopify://collections/monitors-computers",
-        "link_3": "shopify://collections/wheelbase",
-        "link_4": "shopify://collections/wheels",
-        "link_5": "shopify://collections/pedals",
-        "link_6": "shopify://collections/accessories",
-        "link_7": "shopify://collections/seats-seats-accessories"
+        "main_image": "shopify://shop_images/9513c2782be6d191af7a62fab342afbb02421c02_78e28836-9a4c-4bc9-b632-bb30a9c7ec5a.png"
       }
     },
     "dd_product_categories_FzBLXd": {
@@ -253,15 +269,7 @@
         "total_price": "Chosen by Racers. Not Marketers.",
         "button_label": "START NOW",
         "button_link": "shopify://pages/clothes-and-accessories",
-        "main_image": "shopify://shop_images/Model_Freem_Clothes.png",
-        "link_1": "shopify://collections/gloves-copy",
-        "link_2": "shopify://collections/motorsport-clothing",
-        "link_3": "shopify://collections/motorsport-suits",
-        "link_4": "shopify://collections/helmet",
-        "link_5": "shopify://collections/underwear",
-        "link_6": "shopify://collections/underwear",
-        "link_7": "shopify://collections/underwear",
-        "link_8": "shopify://collections/underwear"
+        "main_image": "shopify://shop_images/Model_Freem_Clothes.png"
       }
     },
     "dd_our_team_RRra6p": {
