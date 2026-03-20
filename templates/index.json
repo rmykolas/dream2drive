@@ -39,7 +39,11 @@
           "type": "hotspot",
           "settings": {
             "title": "Accessories",
-            "products": [],
+            "products": [
+              "conspit-h3-hydraulic-handbrake",
+              "simagic-seq-h-shifter-ds-8x",
+              "conspit-csd-dashboard-simhub-special-edition"
+            ],
             "position_top_desktop": 0,
             "position_right_desktop": 0,
             "position_bottom_desktop": 207,
