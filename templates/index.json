@@ -35,44 +35,6 @@
     "dd_customize_simulator_AGUzeF": {
       "type": "dd-customize-simulator",
       "blocks": {
-        "hotspot_wWf7qe": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Wheelbase",
-            "products": [
-              "conspit-ares-apex",
-              "conspit-ares-wheelbase-10nm-18nm",
-              "conspit-ares-platinum-20-nm-wheel-base"
-            ],
-            "position_top_desktop": 255,
-            "position_right_desktop": 261,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 0,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 0,
-            "position_left_mobile": 0
-          }
-        },
-        "hotspot_XhddRU": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Pedals",
-            "products": [
-              "conspit-apex-pedals",
-              "conspit-cpp-lite-pedals",
-              "conspit-cpp-evo-pedals"
-            ],
-            "position_top_desktop": 0,
-            "position_right_desktop": 204,
-            "position_bottom_desktop": 135,
-            "position_left_desktop": 0,
-            "position_top_mobile": 0,
-            "position_right_mobile": 87,
-            "position_bottom_mobile": 105,
-            "position_left_mobile": 0
-          }
-        },
         "hotspot_n4bPN9": {
           "type": "hotspot",
           "settings": {
@@ -130,6 +92,44 @@
             "position_left_mobile": 0
           }
         },
+        "hotspot_wWf7qe": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Wheelbase",
+            "products": [
+              "conspit-ares-apex",
+              "conspit-ares-wheelbase-10nm-18nm",
+              "conspit-ares-platinum-20-nm-wheel-base"
+            ],
+            "position_top_desktop": 255,
+            "position_right_desktop": 261,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 0,
+            "position_top_mobile": 162,
+            "position_right_mobile": 117,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_XhddRU": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Pedals",
+            "products": [
+              "conspit-apex-pedals",
+              "conspit-cpp-lite-pedals",
+              "conspit-cpp-evo-pedals"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 204,
+            "position_bottom_desktop": 135,
+            "position_left_desktop": 0,
+            "position_top_mobile": 0,
+            "position_right_mobile": 87,
+            "position_bottom_mobile": 105,
+            "position_left_mobile": 0
+          }
+        },
         "hotspot_pNMWTB": {
           "type": "hotspot",
           "settings": {
@@ -151,11 +151,11 @@
         }
       },
       "block_order": [
-        "hotspot_wWf7qe",
-        "hotspot_XhddRU",
         "hotspot_n4bPN9",
         "hotspot_BRM7Mp",
         "hotspot_4GRY3D",
+        "hotspot_wWf7qe",
+        "hotspot_XhddRU",
         "hotspot_pNMWTB"
       ],
       "name": "Customise Your Simulator",
