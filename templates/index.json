@@ -35,21 +35,6 @@
     "dd_customize_simulator_AGUzeF": {
       "type": "dd-customize-simulator",
       "blocks": {
-        "hotspot_4GRY3D": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Monitor:",
-            "products": [],
-            "position_top_desktop": 0,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 0,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 0,
-            "position_left_mobile": 0
-          }
-        },
         "hotspot_n4bPN9": {
           "type": "hotspot",
           "settings": {
@@ -87,12 +72,31 @@
             "position_bottom_mobile": 0,
             "position_left_mobile": 69
           }
+        },
+        "hotspot_4GRY3D": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Monitor mount",
+            "products": [
+              "cockpit-mounted-single-monitor-stand-1200mm",
+              "cockpit-mounted-triple-monitor-mount",
+              "freestanding-triple-monitor-stand"
+            ],
+            "position_top_desktop": 168,
+            "position_right_desktop": 216,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 0,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 0
+          }
         }
       },
       "block_order": [
-        "hotspot_4GRY3D",
         "hotspot_n4bPN9",
-        "hotspot_BRM7Mp"
+        "hotspot_BRM7Mp",
+        "hotspot_4GRY3D"
       ],
       "name": "Customise Your Simulator",
       "settings": {
