@@ -53,10 +53,30 @@
             "position_bottom_mobile": 0,
             "position_left_mobile": 0
           }
+        },
+        "hotspot_BRM7Mp": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Seat",
+            "products": [
+              "gt-bucket-seat",
+              "gt-pro-fixed-fiberglass",
+              "tr-series-fibreglass-gt-sim-racing-seat-high-gloss-black"
+            ],
+            "position_top_desktop": 267,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 162,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 0
+          }
         }
       },
       "block_order": [
-        "hotspot_n4bPN9"
+        "hotspot_n4bPN9",
+        "hotspot_BRM7Mp"
       ],
       "name": "Customise Your Simulator",
       "settings": {
