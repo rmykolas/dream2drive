@@ -35,27 +35,28 @@
     "dd_customize_simulator_AGUzeF": {
       "type": "dd-customize-simulator",
       "blocks": {
-        "hotspot_AdqPzB": {
+        "hotspot_n4bPN9": {
           "type": "hotspot",
           "settings": {
-            "title": "Monitor",
+            "title": "Frame",
             "products": [
-              "gaming-monitor-aoc-31-5-full-hd-16-9-240-hz-1-ms",
-              "freestanding-triple-monitor-stand"
+              "tr40s-racing-simulator-frame",
+              "tr80s-racing-simulator",
+              "tr120s-v2-racing-simulator-with-seat-sliders-kit"
             ],
-            "position_top_desktop": 93,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 192,
-            "position_top_mobile": 90,
+            "position_top_desktop": 0,
+            "position_right_desktop": 105,
+            "position_bottom_desktop": 81,
+            "position_left_desktop": 135,
+            "position_top_mobile": 0,
             "position_right_mobile": 0,
             "position_bottom_mobile": 0,
-            "position_left_mobile": 54
+            "position_left_mobile": 0
           }
         }
       },
       "block_order": [
-        "hotspot_AdqPzB"
+        "hotspot_n4bPN9"
       ],
       "name": "Customise Your Simulator",
       "settings": {
