@@ -450,6 +450,25 @@
             "position_bottom_mobile": 147,
             "position_left_mobile": 0
           }
+        },
+        "hotspot_kP7Kif": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Underwear TOP",
+            "products": [
+              "karting-underwear-shirt-freem",
+              "karting-underwear-shirt-long-sleeves-freem",
+              "motorsport-underwear-top-nomex-u21"
+            ],
+            "position_top_desktop": 210,
+            "position_right_desktop": 279,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 0,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
+          }
         }
       },
       "block_order": [
@@ -457,7 +476,8 @@
         "hotspot_MDaB3Y",
         "hotspot_mMzVWN",
         "hotspot_mMzVaf",
-        "hotspot_kw3379"
+        "hotspot_kw3379",
+        "hotspot_kP7Kif"
       ],
       "name": "Customise Racer Equipment",
       "settings": {
