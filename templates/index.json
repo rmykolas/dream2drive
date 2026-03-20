@@ -422,7 +422,11 @@
           "type": "hotspot",
           "settings": {
             "title": "Helmet",
-            "products": [],
+            "products": [
+              "arai-gp-7-helmet-fia",
+              "sparco-stealth-rf-helmet-fia",
+              "sparco-stealth-rf-carbon-8859-2024-helmet-fia"
+            ],
             "position_top_desktop": 102,
             "position_right_desktop": 0,
             "position_bottom_desktop": 0,
