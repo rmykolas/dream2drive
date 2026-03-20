@@ -35,25 +35,6 @@
     "dd_customize_simulator_AGUzeF": {
       "type": "dd-customize-simulator",
       "blocks": {
-        "hotspot_pNMWTB": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Accessories",
-            "products": [
-              "conspit-h3-hydraulic-handbrake",
-              "simagic-seq-h-shifter-ds-8x",
-              "conspit-csd-dashboard-simhub-special-edition"
-            ],
-            "position_top_desktop": 0,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 207,
-            "position_left_desktop": 279,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 0,
-            "position_left_mobile": 0
-          }
-        },
         "hotspot_n4bPN9": {
           "type": "hotspot",
           "settings": {
@@ -110,13 +91,32 @@
             "position_bottom_mobile": 0,
             "position_left_mobile": 0
           }
+        },
+        "hotspot_pNMWTB": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Accessories",
+            "products": [
+              "conspit-h3-hydraulic-handbrake",
+              "simagic-seq-h-shifter-ds-8x",
+              "conspit-csd-dashboard-simhub-special-edition"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 207,
+            "position_left_desktop": 279,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 141,
+            "position_left_mobile": 120
+          }
         }
       },
       "block_order": [
-        "hotspot_pNMWTB",
         "hotspot_n4bPN9",
         "hotspot_BRM7Mp",
-        "hotspot_4GRY3D"
+        "hotspot_4GRY3D",
+        "hotspot_pNMWTB"
       ],
       "name": "Customise Your Simulator",
       "settings": {
