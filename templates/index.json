@@ -39,10 +39,14 @@
           "type": "hotspot",
           "settings": {
             "title": "Steering wheels",
-            "products": [],
+            "products": [
+              "conspit-310-apex",
+              "conspit-330-gt-wheel",
+              "conspit-290-gp-formula-racing-wheel"
+            ],
             "position_top_desktop": 0,
             "position_right_desktop": 0,
-            "position_bottom_desktop": 258,
+            "position_bottom_desktop": 261,
             "position_left_desktop": 279,
             "position_top_mobile": 0,
             "position_right_mobile": 0,
