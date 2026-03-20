@@ -469,6 +469,23 @@
             "position_bottom_mobile": 147,
             "position_left_mobile": 0
           }
+        },
+        "hotspot_MTU9pi": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Underwear Pants",
+            "products": [
+              "motorsport-underwear-bottom-u25-nomex"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 279,
+            "position_bottom_desktop": 279,
+            "position_left_desktop": 0,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
+          }
         }
       },
       "block_order": [
@@ -477,7 +494,8 @@
         "hotspot_mMzVWN",
         "hotspot_mMzVaf",
         "hotspot_kw3379",
-        "hotspot_kP7Kif"
+        "hotspot_kP7Kif",
+        "hotspot_MTU9pi"
       ],
       "name": "Customise Racer Equipment",
       "settings": {
