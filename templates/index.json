@@ -380,10 +380,29 @@
             "position_bottom_mobile": 147,
             "position_left_mobile": 0
           }
+        },
+        "hotspot_MDaB3Y": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Shoes",
+            "products": [
+              "motorsport-shoes-s19",
+              "karting-shoes-freem-sk-24"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 42,
+            "position_left_desktop": 267,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
+          }
         }
       },
       "block_order": [
-        "hotspot_KWnrUG"
+        "hotspot_KWnrUG",
+        "hotspot_MDaB3Y"
       ],
       "name": "Customise Racer Equipment",
       "settings": {
