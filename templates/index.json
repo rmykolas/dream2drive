@@ -398,11 +398,31 @@
             "position_bottom_mobile": 147,
             "position_left_mobile": 0
           }
+        },
+        "hotspot_mMzVWN": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Racing suit",
+            "products": [
+              "a23-motorsport-suit",
+              "a20-future",
+              "a20-plus"
+            ],
+            "position_top_desktop": 210,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 279,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
+          }
         }
       },
       "block_order": [
         "hotspot_KWnrUG",
-        "hotspot_MDaB3Y"
+        "hotspot_MDaB3Y",
+        "hotspot_mMzVWN"
       ],
       "name": "Customise Racer Equipment",
       "settings": {
