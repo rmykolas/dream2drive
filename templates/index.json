@@ -417,12 +417,47 @@
             "position_bottom_mobile": 147,
             "position_left_mobile": 0
           }
+        },
+        "hotspot_mMzVaf": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Helmet",
+            "products": [],
+            "position_top_desktop": 102,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 279,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_kw3379": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Balaclava",
+            "products": [
+              "motorsport-underwear-balaclava-u25",
+              "motorsport-balaclava-freem-u25"
+            ],
+            "position_top_desktop": 102,
+            "position_right_desktop": 279,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 0,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
+          }
         }
       },
       "block_order": [
         "hotspot_KWnrUG",
         "hotspot_MDaB3Y",
-        "hotspot_mMzVWN"
+        "hotspot_mMzVWN",
+        "hotspot_mMzVaf",
+        "hotspot_kw3379"
       ],
       "name": "Customise Racer Equipment",
       "settings": {
