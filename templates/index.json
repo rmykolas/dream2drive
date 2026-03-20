@@ -82,12 +82,12 @@
               "cockpit-mounted-triple-monitor-mount",
               "freestanding-triple-monitor-stand"
             ],
-            "position_top_desktop": 168,
-            "position_right_desktop": 216,
+            "position_top_desktop": 159,
+            "position_right_desktop": 231,
             "position_bottom_desktop": 0,
             "position_left_desktop": 0,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
+            "position_top_mobile": 123,
+            "position_right_mobile": 90,
             "position_bottom_mobile": 0,
             "position_left_mobile": 0
           }
