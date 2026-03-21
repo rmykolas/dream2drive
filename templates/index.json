@@ -207,6 +207,7 @@
         },
         "racing_product_wR4FDY": {
           "type": "racing_product",
+          "disabled": true,
           "settings": {
             "product": "",
             "title": "MOTORSPORT PARTS",
