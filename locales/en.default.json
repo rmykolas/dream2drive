@@ -124,7 +124,7 @@
       "inventory_low_stock": "Low stock",
       "inventory_low_stock_show_count": "Low stock: {{ quantity }} left",
       "inventory_out_of_stock": "Out of stock",
-      "inventory_out_of_stock_continue_selling": "Available on backorder",
+      "inventory_out_of_stock_continue_selling": "Available on backorder. Delivery in 1-2 weeks",
       "sku": "SKU",
       "on_sale": "Sale",
       "product_variants": "Product variants",
@@ -288,7 +288,6 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
-
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
