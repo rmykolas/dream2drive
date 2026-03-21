@@ -1,1 +1,77 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"padding_top":28,"padding_bottom":28}},"dd_featured_categories_MQzXY4":{"type":"dd-featured-categories","blocks":{"category_WNWGpc":{"type":"category","settings":{"title":"Clothes and accessories","image":"shopify:\/\/shop_images\/A20_individual.jpg","hover_image":"shopify:\/\/shop_images\/winter-karting-undershirt-main.webp","link":"shopify:\/\/pages\/clothes-and-accessories"}},"category_4gYgdN":{"type":"category","settings":{"title":"Motorsport Parts","image":"shopify:\/\/shop_images\/c574d9a2266ba18edd903b72968eef786acd0a89.webp","hover_image":"shopify:\/\/shop_images\/c574d9a2266ba18edd903b72968eef786acd0a89.webp","link":"shopify:\/\/pages\/motorsport"}},"category_zyYAFN":{"type":"category","settings":{"title":"Kart Chassis","image":"shopify:\/\/shop_images\/FIA_Karting_Henrikas_Keplikas_Kristianstad_Friday_FR-5.jpg","hover_image":"shopify:\/\/shop_images\/FIA_Karting_Henrikas_Keplikas_Kristianstad_Friday_FR-5.jpg","link":"shopify:\/\/collections\/complete-chassis"}},"category_UUUg7W":{"type":"category","settings":{"title":"Driving experience","image":"shopify:\/\/shop_images\/493318316_1279839144149493_2678679558196999549_n_1.jpg","hover_image":"shopify:\/\/shop_images\/Bendra-foto-intro_1.jpg","link":"shopify:\/\/collections\/driving-experience"}}},"block_order":["category_WNWGpc","category_4gYgdN","category_zyYAFN","category_UUUg7W"],"name":"Featured Categories","settings":{"title":"Racing Products"}}},"order":["main","dd_featured_categories_MQzXY4"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "dd_featured_categories_MQzXY4": {
+      "type": "dd-featured-categories",
+      "blocks": {
+        "category_WNWGpc": {
+          "type": "category",
+          "settings": {
+            "title": "Clothes and accessories",
+            "image": "shopify://shop_images/A20_individual.jpg",
+            "hover_image": "shopify://shop_images/winter-karting-undershirt-main.webp",
+            "link": "shopify://pages/clothes-and-accessories"
+          }
+        },
+        "category_4gYgdN": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "title": "Motorsport Parts",
+            "image": "shopify://shop_images/c574d9a2266ba18edd903b72968eef786acd0a89.webp",
+            "hover_image": "shopify://shop_images/c574d9a2266ba18edd903b72968eef786acd0a89.webp",
+            "link": "shopify://pages/motorsport"
+          }
+        },
+        "category_zyYAFN": {
+          "type": "category",
+          "settings": {
+            "title": "Kart Chassis",
+            "image": "shopify://shop_images/FIA_Karting_Henrikas_Keplikas_Kristianstad_Friday_FR-5.jpg",
+            "hover_image": "shopify://shop_images/FIA_Karting_Henrikas_Keplikas_Kristianstad_Friday_FR-5.jpg",
+            "link": "shopify://collections/complete-chassis"
+          }
+        },
+        "category_UUUg7W": {
+          "type": "category",
+          "settings": {
+            "title": "Driving experience",
+            "image": "shopify://shop_images/493318316_1279839144149493_2678679558196999549_n_1.jpg",
+            "hover_image": "shopify://shop_images/Bendra-foto-intro_1.jpg",
+            "link": "shopify://collections/driving-experience"
+          }
+        }
+      },
+      "block_order": [
+        "category_WNWGpc",
+        "category_4gYgdN",
+        "category_zyYAFN",
+        "category_UUUg7W"
+      ],
+      "name": "Featured Categories",
+      "settings": {
+        "title": "Racing Products"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "dd_featured_categories_MQzXY4"
+  ]
+}
