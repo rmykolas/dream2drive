@@ -496,7 +496,9 @@
           "type": "hotspot",
           "settings": {
             "title": "Socks",
-            "products": [],
+            "products": [
+              "freem-nomex-socks-fia"
+            ],
             "position_top_desktop": 0,
             "position_right_desktop": 279,
             "position_bottom_desktop": 42,
