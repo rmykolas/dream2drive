@@ -27,7 +27,7 @@
           "type": "custom_field",
           "settings": {
             "field_type": "text",
-            "field_name": "Add your vision or comments",
+            "field_name": "Tell your vision or comments",
             "required": true
           }
         },
