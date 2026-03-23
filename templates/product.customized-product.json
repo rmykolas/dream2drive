@@ -39,6 +39,14 @@
             "required": true
           }
         },
+        "custom_field_tLNjtt": {
+          "type": "custom_field",
+          "settings": {
+            "field_type": "image",
+            "field_name": "Add your dimensions sheet",
+            "required": true
+          }
+        },
         "product_bundle_variations_QA4hCd": {
           "type": "product_bundle_variations",
           "settings": {}
@@ -64,6 +72,7 @@
         "variant_picker",
         "custom_field_iNRrd8",
         "custom_field_iqdgDG",
+        "custom_field_tLNjtt",
         "product_bundle_variations_QA4hCd",
         "quantity_selector",
         "price",
