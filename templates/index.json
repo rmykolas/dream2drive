@@ -463,7 +463,7 @@
             "position_bottom_desktop": 0,
             "position_left_desktop": 0,
             "position_top_mobile": 69,
-            "position_right_mobile": 147,
+            "position_right_mobile": 120,
             "position_bottom_mobile": 147,
             "position_left_mobile": 0
           }
@@ -482,8 +482,8 @@
             "position_right_desktop": 279,
             "position_bottom_desktop": 0,
             "position_left_desktop": 0,
-            "position_top_mobile": 153,
-            "position_right_mobile": 102,
+            "position_top_mobile": 120,
+            "position_right_mobile": 129,
             "position_bottom_mobile": 147,
             "position_left_mobile": 0
           }
