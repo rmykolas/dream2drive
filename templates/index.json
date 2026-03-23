@@ -44,6 +44,7 @@
               "conspit-330-gt-wheel",
               "conspit-290-gp-formula-racing-wheel"
             ],
+            "collection": "",
             "position_top_desktop": 0,
             "position_right_desktop": 0,
             "position_bottom_desktop": 261,
@@ -63,6 +64,7 @@
               "tr80s-racing-simulator",
               "tr120s-v2-racing-simulator-with-seat-sliders-kit"
             ],
+            "collection": "",
             "position_top_desktop": 0,
             "position_right_desktop": 72,
             "position_bottom_desktop": 69,
@@ -82,6 +84,7 @@
               "gt-pro-fixed-fiberglass",
               "tr-series-fibreglass-gt-sim-racing-seat-high-gloss-black"
             ],
+            "collection": "",
             "position_top_desktop": 267,
             "position_right_desktop": 0,
             "position_bottom_desktop": 0,
@@ -101,6 +104,7 @@
               "cockpit-mounted-triple-monitor-mount",
               "freestanding-triple-monitor-stand"
             ],
+            "collection": "",
             "position_top_desktop": 159,
             "position_right_desktop": 231,
             "position_bottom_desktop": 0,
@@ -120,6 +124,7 @@
               "conspit-ares-wheelbase-10nm-18nm",
               "conspit-ares-platinum-20-nm-wheel-base"
             ],
+            "collection": "",
             "position_top_desktop": 255,
             "position_right_desktop": 261,
             "position_bottom_desktop": 0,
@@ -139,6 +144,7 @@
               "conspit-cpp-lite-pedals",
               "conspit-cpp-evo-pedals"
             ],
+            "collection": "",
             "position_top_desktop": 0,
             "position_right_desktop": 204,
             "position_bottom_desktop": 135,
@@ -158,6 +164,7 @@
               "simagic-seq-h-shifter-ds-8x",
               "conspit-csd-dashboard-simhub-special-edition"
             ],
+            "collection": "",
             "position_top_desktop": 0,
             "position_right_desktop": 0,
             "position_bottom_desktop": 207,
@@ -372,6 +379,7 @@
               "motorsport-gloves-freem-senso-22",
               "karting-gloves-freem-k-slight-24"
             ],
+            "collection": "",
             "position_top_desktop": 0,
             "position_right_desktop": 0,
             "position_bottom_desktop": 279,
@@ -390,6 +398,7 @@
               "motorsport-shoes-s19",
               "karting-shoes-freem-sk-24"
             ],
+            "collection": "",
             "position_top_desktop": 0,
             "position_right_desktop": 0,
             "position_bottom_desktop": 42,
@@ -409,6 +418,7 @@
               "a20-future",
               "a20-plus"
             ],
+            "collection": "",
             "position_top_desktop": 210,
             "position_right_desktop": 0,
             "position_bottom_desktop": 0,
@@ -428,6 +438,7 @@
               "sparco-stealth-rf-helmet-fia",
               "sparco-stealth-rf-carbon-8859-2024-helmet-fia"
             ],
+            "collection": "",
             "position_top_desktop": 102,
             "position_right_desktop": 0,
             "position_bottom_desktop": 0,
@@ -446,6 +457,7 @@
               "motorsport-underwear-balaclava-u25",
               "motorsport-balaclava-freem-u25"
             ],
+            "collection": "",
             "position_top_desktop": 102,
             "position_right_desktop": 279,
             "position_bottom_desktop": 0,
@@ -465,6 +477,7 @@
               "karting-underwear-shirt-long-sleeves-freem",
               "motorsport-underwear-top-nomex-u21"
             ],
+            "collection": "",
             "position_top_desktop": 210,
             "position_right_desktop": 279,
             "position_bottom_desktop": 0,
@@ -482,9 +495,10 @@
             "products": [
               "motorsport-underwear-bottom-u25-nomex"
             ],
+            "collection": "",
             "position_top_desktop": 0,
             "position_right_desktop": 279,
-            "position_bottom_desktop": 279,
+            "position_bottom_desktop": 138,
             "position_left_desktop": 0,
             "position_top_mobile": 0,
             "position_right_mobile": 114,
@@ -499,6 +513,7 @@
             "products": [
               "freem-nomex-socks-fia"
             ],
+            "collection": "",
             "position_top_desktop": 0,
             "position_right_desktop": 279,
             "position_bottom_desktop": 42,
