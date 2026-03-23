@@ -35,7 +35,7 @@
           "type": "custom_field",
           "settings": {
             "field_type": "image",
-            "field_name": "Add your logo",
+            "field_name": "Add your vector logos (PDF/CDR files)",
             "required": true
           }
         },
