@@ -1878,7 +1878,7 @@ a.product__text {
   font-size: 12px;
   font-weight: 400;
   margin: 0;
-  white-space: nowrap;
+  line-height: 1;
 }
 
 .bundle-variations__option-wrapper:hover .bundle-variations__option:not(.bundle-variations__option--unavailable) .bundle-variations__option-stock,

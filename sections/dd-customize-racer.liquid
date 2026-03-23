@@ -136,6 +136,7 @@ CUSTOMISE YOUR RACER EQUIPMENT SECTION
             {%- continue -%}
           {%- endif -%}
           {%- assign tooltip_products = block.settings.products -%}
+          {%- assign tooltip_collection = block.settings.collection -%}
           <div
             id="dd-racer-tooltip-{{ section.id }}-{{ block.id }}"
             class="dd-customize-racer__tooltip"
@@ -146,11 +147,19 @@ CUSTOMISE YOUR RACER EQUIPMENT SECTION
             hidden
           >
             <div class="dd-customize-racer__tooltip-inner bg-[#1c2127] p-[24px] flex flex-col gap-[16px]">
-              {% if block.settings.title != blank %}
-                <div class="flex gap-[6px] items-end leading-none flex-wrap">
+              {% if block.settings.title != blank or tooltip_collection != blank %}
+                <div class="flex gap-[12px] items-end justify-between leading-none flex-wrap">
                   <p class="text-white text-[20px] font-medium tracking-[-0.2px] font-roboto-condensed">
                     {{ block.settings.title }}
                   </p>
+                  {% if tooltip_collection != blank %}
+                    <a
+                      href="{{ tooltip_collection.url }}"
+                      class="text-[#6EC7B3] text-[14px] font-semibold tracking-[-0.01em] hover:text-[#B6E3D9] transition-colors duration-300"
+                    >
+                      View all products
+                    </a>
+                  {% endif %}
                 </div>
               {% endif %}
               {% if tooltip_products != blank and tooltip_products.size > 0 %}
@@ -345,6 +354,11 @@ CUSTOMISE YOUR RACER EQUIPMENT SECTION
           "id": "products",
           "label": "Products",
           "limit": 3
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
         },
         {
           "type": "header",
