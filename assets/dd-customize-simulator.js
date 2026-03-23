@@ -10,7 +10,7 @@
   const HIDE_DELAY_MS = 100;
 
   async function init() {
-    const { computePosition, flip, shift } = await import(
+    const { computePosition, flip, shift, autoUpdate, size } = await import(
       'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.5/+esm'
     );
 
@@ -35,21 +35,28 @@
         }
 
         let hideTimeout = null;
+        let cleanupAutoUpdate = null;
 
-        function showTooltip() {
-          if (hideTimeout) {
-            clearTimeout(hideTimeout);
-            hideTimeout = null;
-          }
-          tooltipEl.removeAttribute('hidden');
-          tooltipEl.setAttribute('aria-hidden', 'false');
-          button.setAttribute('aria-expanded', 'true');
+        function updatePosition() {
           computePosition(button, tooltipEl, {
             placement: 'right',
             strategy: 'fixed',
             middleware: [
-              flip({ padding: 8 }),
-              shift({ padding: 8 })
+              flip({
+                padding: 8,
+                fallbackPlacements: ['left', 'top', 'bottom']
+              }),
+              shift({
+                padding: 8,
+                crossAxis: true
+              }),
+              size({
+                padding: 8,
+                apply({ availableWidth, elements }) {
+                  const maxWidth = Math.max(220, Math.min(303, Math.floor(availableWidth)));
+                  elements.floating.style.maxWidth = `${maxWidth}px`;
+                }
+              })
             ]
           }).then(({ x, y }) => {
             tooltipEl.style.left = `${x}px`;
@@ -57,9 +64,29 @@
           });
         }
 
+        function showTooltip() {
+          if (hideTimeout) {
+            clearTimeout(hideTimeout);
+            hideTimeout = null;
+          }
+          if (cleanupAutoUpdate) {
+            cleanupAutoUpdate();
+            cleanupAutoUpdate = null;
+          }
+          tooltipEl.removeAttribute('hidden');
+          tooltipEl.setAttribute('aria-hidden', 'false');
+          button.setAttribute('aria-expanded', 'true');
+          updatePosition();
+          cleanupAutoUpdate = autoUpdate(button, tooltipEl, updatePosition);
+        }
+
         function hideTooltip() {
           hideTimeout = setTimeout(() => {
             hideTimeout = null;
+            if (cleanupAutoUpdate) {
+              cleanupAutoUpdate();
+              cleanupAutoUpdate = null;
+            }
             tooltipEl.setAttribute('hidden', '');
             tooltipEl.setAttribute('aria-hidden', 'true');
             button.setAttribute('aria-expanded', 'false');
