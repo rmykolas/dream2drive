@@ -102,7 +102,7 @@
             <div class="main-product__variable-price" {{ block.shopify_attributes }}>
               {%- if product.price_varies -%}
                 <span class="price price--large">
-                  {{ product.price_min | money }} - {{ product.price_max | money }} + VAT
+                  {{ product.price_min | money }} - {{ product.price_max | money }}
                 </span>
               {%- elsif product.metafields.custom.option_groups.value != blank -%}
                 {%- liquid
@@ -119,7 +119,7 @@
                   assign max_total = base_price | plus: bundle_total_cents
                 -%}
                 <span class="price price--large">
-                  {{ base_price | money }} - {{ max_total | money }} + VAT
+                  {{ base_price | money }} - {{ max_total | money }}
                 </span>
               {%- else -%}
                 {%- render 'price',
@@ -193,7 +193,7 @@
                   <div class="main-product__variable-price" {{ block.shopify_attributes }}>
                     {%- if product.price_varies -%}
                       <span class="price price--large">
-                        {{ product.price_min | money }} - {{ product.price_max | money }} + VAT
+                        {{ product.price_min | money }} - {{ product.price_max | money }}
                       </span>
                     {%- elsif product.metafields.custom.option_groups.value != blank -%}
                       {%- liquid
@@ -210,7 +210,7 @@
                         assign max_total = base_price | plus: bundle_total_cents
                       -%}
                       <span class="price price--large">
-                        {{ base_price | money }} - {{ max_total | money }} + VAT
+                        {{ base_price | money }} - {{ max_total | money }}
                       </span>
                     {%- else -%}
                       {%- render 'price',
