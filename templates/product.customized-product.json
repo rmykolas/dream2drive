@@ -36,7 +36,7 @@
           "settings": {
             "field_type": "image",
             "field_name": "Add your vector logos (PDF/CDR files)",
-            "required": true
+            "required": false
           }
         },
         "custom_field_tLNjtt": {
