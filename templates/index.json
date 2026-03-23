@@ -378,8 +378,8 @@
             "position_left_desktop": 213,
             "position_top_mobile": 0,
             "position_right_mobile": 0,
-            "position_bottom_mobile": 147,
-            "position_left_mobile": 0
+            "position_bottom_mobile": 192,
+            "position_left_mobile": 66
           }
         },
         "hotspot_MDaB3Y": {
@@ -396,8 +396,8 @@
             "position_left_desktop": 267,
             "position_top_mobile": 0,
             "position_right_mobile": 0,
-            "position_bottom_mobile": 147,
-            "position_left_mobile": 0
+            "position_bottom_mobile": 42,
+            "position_left_mobile": 135
           }
         },
         "hotspot_mMzVWN": {
@@ -413,10 +413,10 @@
             "position_right_desktop": 0,
             "position_bottom_desktop": 0,
             "position_left_desktop": 279,
-            "position_top_mobile": 0,
+            "position_top_mobile": 120,
             "position_right_mobile": 0,
             "position_bottom_mobile": 147,
-            "position_left_mobile": 0
+            "position_left_mobile": 120
           }
         },
         "hotspot_mMzVaf": {
@@ -432,10 +432,10 @@
             "position_right_desktop": 0,
             "position_bottom_desktop": 0,
             "position_left_desktop": 279,
-            "position_top_mobile": 0,
+            "position_top_mobile": 60,
             "position_right_mobile": 0,
             "position_bottom_mobile": 147,
-            "position_left_mobile": 0
+            "position_left_mobile": 114
           }
         },
         "hotspot_kw3379": {
@@ -450,8 +450,8 @@
             "position_right_desktop": 279,
             "position_bottom_desktop": 0,
             "position_left_desktop": 0,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
+            "position_top_mobile": 69,
+            "position_right_mobile": 147,
             "position_bottom_mobile": 147,
             "position_left_mobile": 0
           }
@@ -469,8 +469,8 @@
             "position_right_desktop": 279,
             "position_bottom_desktop": 0,
             "position_left_desktop": 0,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
+            "position_top_mobile": 153,
+            "position_right_mobile": 102,
             "position_bottom_mobile": 147,
             "position_left_mobile": 0
           }
@@ -487,7 +487,7 @@
             "position_bottom_desktop": 279,
             "position_left_desktop": 0,
             "position_top_mobile": 0,
-            "position_right_mobile": 0,
+            "position_right_mobile": 114,
             "position_bottom_mobile": 147,
             "position_left_mobile": 0
           }
@@ -504,8 +504,8 @@
             "position_bottom_desktop": 42,
             "position_left_desktop": 0,
             "position_top_mobile": 0,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 147,
+            "position_right_mobile": 114,
+            "position_bottom_mobile": 45,
             "position_left_mobile": 0
           }
         }
