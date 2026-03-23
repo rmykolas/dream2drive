@@ -43,7 +43,7 @@
           "type": "custom_field",
           "settings": {
             "field_type": "image",
-            "field_name": "Add your fulfilled dimensions",
+            "field_name": "Add your fulfilled dimensions file/photo",
             "required": false
           }
         },
