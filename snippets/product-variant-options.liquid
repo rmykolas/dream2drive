@@ -33,6 +33,25 @@
       assign swatch_value = null
     endif
 
+    if swatch_value == null
+      assign option_metafield_key = option.name | downcase | replace: ' ', '_' | replace: '-', '_'
+      assign candidate_metafield_list = product.metafields.custom[option_metafield_key].value
+
+      if candidate_metafield_list != blank
+        for metaobject in candidate_metafield_list
+          if metaobject.title != blank
+            assign normalized_metaobject_label = metaobject.title | strip | downcase
+            assign normalized_option_value = value | strip | downcase
+
+            if normalized_metaobject_label == normalized_option_value
+              assign swatch_value = metaobject.secondary_color
+              break
+            endif
+          endif
+        endfor
+      endif
+    endif
+
     assign option_disabled = true
     if value.available
       assign option_disabled = false
@@ -63,19 +82,33 @@
       <span class="visually-hidden">{{ value | escape }}</span>
       {{ label_unavailable }}
     {%- endcapture -%}
-    {%
-      render 'swatch-input',
-      id: input_id,
-      name: input_name,
-      value: value | escape,
-      swatch: value.swatch,
-      product_form_id: product_form_id,
-      checked: value.selected,
-      visually_disabled: option_disabled,
-      shape: block.settings.swatch_shape,
-      help_text: help_text,
-      additional_props: input_dataset
-    %}
+    <input
+      type="radio"
+      id="{{ input_id }}"
+      name="{{ input_name | escape }}"
+      value="{{ value | escape }}"
+      form="{{ product_form_id }}"
+      class="swatch-input__input{% if option_disabled %} visually-disabled{% endif %}"
+      {% if value.selected %}checked{% endif %}
+      {{ input_dataset }}
+    >
+    <label
+      for="{{ input_id }}"
+      title="{{ value }}"
+      class="swatch-input__label{% if block.settings.swatch_shape == 'square' %} swatch-input__label--square{% endif %}"
+    >
+      {% if swatch_value != blank %}
+        <span
+          class="swatch{% if block.settings.swatch_shape == 'square' %} swatch--square{% endif %}"
+          style="--swatch--background: {{ swatch_value }};{% if swatch_focal_point %} --swatch-focal-point: {{ swatch_focal_point }};{% endif %}"
+        ></span>
+      {% else %}
+        <span
+          class="swatch swatch--unavailable{% if block.settings.swatch_shape == 'square' %} swatch--square{% endif %}"
+        ></span>
+      {% endif %}
+      {{ help_text }}
+    </label>
   {%- elsif picker_type == 'button' -%}
     <input
       type="radio"

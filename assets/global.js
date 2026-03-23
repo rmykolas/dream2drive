@@ -1070,6 +1070,12 @@ class VariantSelects extends HTMLElement {
       const target = this.getInputForEventTarget(event.target);
       this.updateSelectionMetadata(event);
 
+      // Only publish when the changed control represents a real Shopify variant option.
+      // Our cart line-item property swatches (primary/secondary/tertiary) don't have
+      // `data-option-value-id`, and publishing them triggers a product-info re-render
+      // that resets the selected swatch back to the first one.
+      if (!target?.dataset?.optionValueId) return;
+
       publish(PUB_SUB_EVENTS.optionValueSelectionChange, {
         data: {
           event,

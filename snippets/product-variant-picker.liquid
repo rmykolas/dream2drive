@@ -34,18 +34,44 @@
     {%- for option in product.options_with_values -%}
       {%- liquid
         assign swatch_count = option.values | map: 'swatch' | compact | size
+        assign has_metafield_swatches = false
         assign picker_type = block.settings.picker_type
 
-        if swatch_count > 0 and block.settings.swatch_shape != 'none'
-          if block.settings.picker_type == 'dropdown'
-            assign picker_type = 'swatch_dropdown'
-          else
-            assign picker_type = 'swatch'
+        assign option_metafield_key = option.name | downcase | replace: ' ', '_' | replace: '-', '_'
+        assign candidate_metafield = product.metafields.custom[option_metafield_key]
+
+        if candidate_metafield != blank and candidate_metafield.value != blank
+          for option_value in option.values
+            assign normalized_option_value = option_value | strip | downcase
+
+            for metaobject in candidate_metafield.value
+              if metaobject.title != blank
+                assign normalized_metaobject_label = metaobject.title | strip | downcase
+                if normalized_metaobject_label == normalized_option_value
+                  assign has_metafield_swatches = true
+                  break
+                endif
+              endif
+            endfor
+
+            if has_metafield_swatches
+              break
+            endif
+          endfor
+        endif
+
+        if block.settings.swatch_shape != 'none'
+          if swatch_count > 0 or has_metafield_swatches
+            if block.settings.picker_type == 'dropdown'
+              assign picker_type = 'swatch_dropdown'
+            else
+              assign picker_type = 'swatch'
+            endif
           endif
         endif
 
         assign use_variant_cards = false
-        if has_single_option and all_variants_have_image and swatch_count == 0
+        if has_single_option and all_variants_have_image and swatch_count == 0 and has_metafield_swatches == false
           assign use_variant_cards = true
         endif
       -%}
@@ -134,7 +160,7 @@
       {%- elsif picker_type == 'swatch' -%}
         <fieldset class="js product-form__input product-form__input--swatch">
           <legend class="form__label">
-            {{ option.name }}:
+            {{ option.name }}: 
             <span data-selected-value>
               {{- option.selected_value -}}
             </span>
@@ -190,6 +216,145 @@
         </div>
       {%- endif -%}
     {%- endfor -%}
+
+    {%- liquid
+      assign product_form_id = 'product-form-' | append: section.id
+    -%}
+
+    {%- comment -%}
+      Custom color properties (primary/secondary/tertiary) rendered as swatches from product metafields.
+      These inputs populate `properties[...]` so they show up on the cart line item without adding
+      extra Shopify product options (avoids variant limit issues).
+    {%- endcomment -%}
+
+    {%- if block.settings.swatch_shape != 'none' -%}
+      {%- assign primary_colors = product.metafields.custom.primary_color.value -%}
+      {%- assign secondary_colors = product.metafields.custom.secondary_color.value -%}
+      {%- assign tertiary_colors = product.metafields.custom.tertiary_color.value -%}
+
+      {%- if primary_colors != blank -%}
+        <fieldset class="js product-form__input product-form__input--swatch">
+          <legend class="form__label">
+            Primary Color:
+            <span data-selected-value>
+              {%- assign primary_default_title = '' -%}
+              {%- for metaobject in primary_colors -%}
+                {%- assign primary_default_title = metaobject.title -%}
+                {%- break -%}
+              {%- endfor -%}
+              {{- primary_default_title -}}
+            </span>
+          </legend>
+          {%- for metaobject in primary_colors -%}
+            {%- liquid
+              assign swatch_color = metaobject.color
+            -%}
+            <input
+              type="radio"
+              class="swatch-input__input"
+              id="primary-color-{{ forloop.index0 }}"
+              name="properties[Primary Color]"
+              value="{{ metaobject.title | escape }}"
+              form="{{ product_form_id }}"
+              {% if forloop.first %}checked{% endif %}
+            >
+            <label
+              for="primary-color-{{ forloop.index0 }}"
+              class="swatch-input__label{% if block.settings.swatch_shape == 'square' %} swatch-input__label--square{% endif %}"
+              title="{{ metaobject.title | escape }}"
+            >
+              <span
+                class="swatch{% if block.settings.swatch_shape == 'square' %} swatch--square{% endif %}"
+                style="--swatch--background: {{ swatch_color }};"
+              ></span>
+              <span class="visually-hidden">{{ metaobject.title | escape }}</span>
+            </label>
+          {%- endfor -%}
+        </fieldset>
+      {%- endif -%}
+
+      {%- if secondary_colors != blank -%}
+        <fieldset class="js product-form__input product-form__input--swatch">
+          <legend class="form__label">
+            Secondary Color:
+            <span data-selected-value>
+              {%- assign secondary_default_title = '' -%}
+              {%- for metaobject in secondary_colors -%}
+                {%- assign secondary_default_title = metaobject.title -%}
+                {%- break -%}
+              {%- endfor -%}
+              {{- secondary_default_title -}}
+            </span>
+          </legend>
+          {%- for metaobject in secondary_colors -%}
+            {%- liquid
+              assign swatch_color = metaobject.color
+            -%}
+            <input
+              type="radio"
+              class="swatch-input__input"
+              id="secondary-color-{{ forloop.index0 }}"
+              name="properties[Secondary Color]"
+              value="{{ metaobject.title | escape }}"
+              form="{{ product_form_id }}"
+              {% if forloop.first %}checked{% endif %}
+            >
+            <label
+              for="secondary-color-{{ forloop.index0 }}"
+              class="swatch-input__label{% if block.settings.swatch_shape == 'square' %} swatch-input__label--square{% endif %}"
+              title="{{ metaobject.title | escape }}"
+            >
+              <span
+                class="swatch{% if block.settings.swatch_shape == 'square' %} swatch--square{% endif %}"
+                style="--swatch--background: {{ swatch_color }};"
+              ></span>
+              <span class="visually-hidden">{{ metaobject.title | escape }}</span>
+            </label>
+          {%- endfor -%}
+        </fieldset>
+      {%- endif -%}
+
+      {%- if tertiary_colors != blank -%}
+        <fieldset class="js product-form__input product-form__input--swatch">
+          <legend class="form__label">
+            Tertiary Color:
+            <span data-selected-value>
+              {%- assign tertiary_default_title = '' -%}
+              {%- for metaobject in tertiary_colors -%}
+                {%- assign tertiary_default_title = metaobject.title -%}
+                {%- break -%}
+              {%- endfor -%}
+              {{- tertiary_default_title -}}
+            </span>
+          </legend>
+          {%- for metaobject in tertiary_colors -%}
+            {%- liquid
+              assign swatch_color = metaobject.color
+            -%}
+            <input
+              type="radio"
+              class="swatch-input__input"
+              id="tertiary-color-{{ forloop.index0 }}"
+              name="properties[Tertiary Color]"
+              value="{{ metaobject.title | escape }}"
+              form="{{ product_form_id }}"
+              {% if forloop.first %}checked{% endif %}
+            >
+            <label
+              for="tertiary-color-{{ forloop.index0 }}"
+              class="swatch-input__label{% if block.settings.swatch_shape == 'square' %} swatch-input__label--square{% endif %}"
+              title="{{ metaobject.title | escape }}"
+            >
+              <span
+                class="swatch{% if block.settings.swatch_shape == 'square' %} swatch--square{% endif %}"
+                style="--swatch--background: {{ swatch_color }};"
+              ></span>
+              <span class="visually-hidden">{{ metaobject.title | escape }}</span>
+            </label>
+          {%- endfor -%}
+        </fieldset>
+      {%- endif -%}
+    {%- endif -%}
 
     <script type="application/json" data-selected-variant>
       {{ product.selected_or_first_available_variant | json }}
