@@ -565,7 +565,7 @@
                               assign is_available = variant.available
                               assign inventory_quantity = variant.inventory_quantity | default: 0
                               assign variant_description = variant.metafields.custom.description
-                              assign enable_link = variant.metafields.custom.enable_link_to_single_product
+                              assign linked_product = variant.metafields.custom.linked_product.value
                             -%}
                             <div class="bundle-variations__option-wrapper{% if variant_description != blank %} bundle-variations__option-wrapper--has-info{% endif %}">
                               <button
@@ -660,9 +660,9 @@
                                   <div class="bundle-variations__dialog-content rte">
                                     {{ variant_description | metafield_tag }}
                                   </div>
-                                  {%- if enable_link -%}
+                                  {%- if linked_product != blank -%}
                                     <a
-                                      href="{{ option_product.url }}?variant={{ variant.id }}"
+                                      href="{{ linked_product.url }}"
                                       class="bundle-variations__dialog-link px-[30px] py-[18.5px] text-[17px] font-medium leading-[100%] tracking-[-0.02em] uppercase flex items-center w-fit bg-[#66c2a4] gap-[16px] mt-[20px] hover:bg-[#B6E3D9]"
                                     >
                                       {{ 'products.product.bundle_variations_view_product' | t }}
@@ -724,7 +724,7 @@
                       <input
                         class="field__input field__input--file"
                         type="file"
-                        accept="image/*"
+                        accept="image/*,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv"
                         id="CustomField-{{ block.id }}-{{ section.id }}"
                         name="properties[{{ custom_field_name | escape }}]"
                         form="{{ product_form_id }}"
