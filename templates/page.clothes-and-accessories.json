@@ -1,1 +1,100 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"padding_top":28,"padding_bottom":28}},"dd_featured_categories_6KPWnx":{"type":"dd-featured-categories","blocks":{"category_YjBL8Q":{"type":"category","settings":{"title":"Gloves","image":"shopify:\/\/shop_images\/white-2_1.webp","link":"shopify:\/\/collections\/motorsport-clothing"}},"category_NhFDGU":{"type":"category","settings":{"title":"Shoes","image":"shopify:\/\/shop_images\/freem-uk-boots-38-white-s19-boots-14623553880134.webp","link":"shopify:\/\/collections\/gloves-copy"}},"category_EyXcX8":{"type":"category","settings":{"title":"Suits","image":"shopify:\/\/shop_images\/Screenshot_2026-01-17_125147_23ba37a4-36ff-4d67-b76d-3a11bd531733.png","link":"shopify:\/\/collections\/motorsport-suits"}},"category_PbARTm":{"type":"category","settings":{"title":"Underwear","image":"shopify:\/\/shop_images\/winter-karting-undershirt-main.webp","link":"shopify:\/\/collections\/underwear"}},"category_WABpMw":{"type":"category","settings":{"title":"Helmet","image":"shopify:\/\/shop_images\/arai-gp7.png","link":"shopify:\/\/collections\/helmet"}},"category_WijYA3":{"type":"category","settings":{"title":"Safety","image":"shopify:\/\/shop_images\/ssp42282_feb21.png","link":"shopify:\/\/collections\/safety"}},"category_Dmbqc3":{"type":"category","settings":{"title":"Accessories","image":"shopify:\/\/shop_images\/s-l400.jpg","link":"shopify:\/\/collections\/driver-accessories"}}},"block_order":["category_YjBL8Q","category_NhFDGU","category_EyXcX8","category_PbARTm","category_WABpMw","category_WijYA3","category_Dmbqc3"],"name":"Featured Categories","settings":{"title":"MOTORSPORT"}}},"order":["main","dd_featured_categories_6KPWnx"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "dd_featured_categories_6KPWnx": {
+      "type": "dd-featured-categories",
+      "blocks": {
+        "category_YjBL8Q": {
+          "type": "category",
+          "settings": {
+            "title": "Gloves",
+            "image": "shopify://shop_images/white-2_1.webp",
+            "link": "shopify://collections/motorsport-clothing"
+          }
+        },
+        "category_NhFDGU": {
+          "type": "category",
+          "settings": {
+            "title": "Shoes",
+            "image": "shopify://shop_images/freem-uk-boots-38-white-s19-boots-14623553880134.webp",
+            "link": "shopify://collections/gloves-copy"
+          }
+        },
+        "category_EyXcX8": {
+          "type": "category",
+          "settings": {
+            "title": "Suits",
+            "image": "shopify://shop_images/Screenshot_2026-01-17_125147_23ba37a4-36ff-4d67-b76d-3a11bd531733.png",
+            "link": "shopify://collections/motorsport-suits"
+          }
+        },
+        "category_PbARTm": {
+          "type": "category",
+          "settings": {
+            "title": "Underwear",
+            "image": "shopify://shop_images/winter-karting-undershirt-main.webp",
+            "link": "shopify://collections/underwear"
+          }
+        },
+        "category_WABpMw": {
+          "type": "category",
+          "settings": {
+            "title": "Helmet",
+            "image": "shopify://shop_images/arai-gp7.png",
+            "link": "shopify://collections/helmet"
+          }
+        },
+        "category_WijYA3": {
+          "type": "category",
+          "settings": {
+            "title": "Safety",
+            "image": "shopify://shop_images/ssp42282_feb21.png",
+            "link": "shopify://collections/safety"
+          }
+        },
+        "category_Dmbqc3": {
+          "type": "category",
+          "settings": {
+            "title": "Accessories",
+            "image": "shopify://shop_images/sparco_bag_2.png",
+            "hover_image": "shopify://shop_images/sparco_bag_2.png",
+            "link": "shopify://collections/driver-accessories"
+          }
+        }
+      },
+      "block_order": [
+        "category_YjBL8Q",
+        "category_NhFDGU",
+        "category_EyXcX8",
+        "category_PbARTm",
+        "category_WABpMw",
+        "category_WijYA3",
+        "category_Dmbqc3"
+      ],
+      "name": "Featured Categories",
+      "settings": {
+        "title": "MOTORSPORT"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "dd_featured_categories_6KPWnx"
+  ]
+}

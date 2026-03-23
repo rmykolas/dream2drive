@@ -1,15 +1,18 @@
 {% comment %}
 CUSTOMISE YOUR RACER EQUIPMENT SECTION
-- Fully dynamic content (title, button, image)
-- Fixed numbered callouts with editable links (1–6)
-- 100% original HTML & Tailwind CSS preserved
+- Left sidebar: equipment_item blocks (label + text).
+- Hotspot blocks with title, product list, position (desktop + mobile).
+- Tooltip on hover shows title and product cards (Floating UI); hotspot number from forloop.
 {% endcomment %}
 
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+
 <section
-  class="bg-[#ECECEC] py-[80px] px-[16px] md:px-[32px] font-roboto-condensed"
+  class="dd-customize-racer bg-[#ECECEC] py-[80px] px-[16px] md:px-[32px] font-roboto-condensed"
+  id="dd-customize-racer-{{ section.id }}"
+  data-section-id="{{ section.id }}"
 >
   <div class="max-w-[1280px] mx-auto">
-    <!-- Section Title -->
     {% if section.settings.title != blank %}
       <h2
         class="text-[40px] md:text-[60px] font-medium text-[#282C37] leading-[100%] tracking-[-0.01em] text-center mb-[40px] uppercase"
@@ -21,7 +24,6 @@ CUSTOMISE YOUR RACER EQUIPMENT SECTION
     <div
       class="flex justify-between items-center lg:items-start max-lg:flex-col gap-[60px]"
     >
-      <!-- Left Side -->
       <div class="max-w-[345px] lg:mt-[150px]">
         <h3
           class="text-[24px] md:text-[40px] font-medium text-[#282C37] mb-[12px] leading-[100%] tracking-[-0.01em]"
@@ -29,31 +31,32 @@ CUSTOMISE YOUR RACER EQUIPMENT SECTION
           {{ section.settings.subheading }}
         </h3>
 
-        <!-- Selected Items List -->
         <div class="mb-[14px] border-b border-[#C8C9CC] pb-[6px]">
-          {% for item in section.blocks %}
-            <div class="flex items-center justify-between">
+          {%- for block in section.blocks -%}
+            {%- if block.type != 'equipment_item' -%}
+              {%- continue -%}
+            {%- endif -%}
+            <div class="flex items-center justify-between" {{ block.shopify_attributes }}>
               <div>
                 <span
                   class="text-[#282C37] font-semibold font-medium text-[17px]"
-                  >{{ item.settings.label }}:</span>
+                  >{{ block.settings.label }}:</span
+                >
                 <span class="text-[#4A4E5A] text-[14px] font-normal ml-[4px]">
-                  {{ item.settings.text }}
+                  {{ block.settings.text }}
                 </span>
               </div>
-              <button class="text-[#4A4E5A] text-[20px]">×</button>
+              <button class="text-[#4A4E5A] text-[20px]" type="button">×</button>
             </div>
-          {% endfor %}
+          {%- endfor -%}
         </div>
 
-        <!-- Total Price -->
         <div
           class="text-[20px] font-normal text-[#4A4E5A] mb-[60px] leading-[120%]"
         >
           {{ section.settings.total_price }}
         </div>
 
-        <!-- Start Now Button -->
         {% if section.settings.button_label != blank %}
           <a
             href="{{ section.settings.button_link }}"
@@ -64,52 +67,211 @@ CUSTOMISE YOUR RACER EQUIPMENT SECTION
         {% endif %}
       </div>
 
-      <!-- Racer Model Image with Fixed Callouts -->
-      <div class="relative overflow-hidden">
-        {% if section.settings.main_image != blank %}
-          <img
-            src="{{ section.settings.main_image | image_url: width: 700 }}"
-            alt="Racer Model"
-            class="min-w-[700px] w-[700px] h-[733px] object-contain"
-          />
-        {% endif %}
+      <div class="dd-customize-racer__visual relative overflow-hidden">
+        <div class="dd-customize-racer__image-wrapper relative">
+          {% if section.settings.main_image != blank %}
+            <img
+              src="{{ section.settings.main_image | image_url: width: 700 }}"
+              alt="Racer Model"
+              class="min-w-[700px] w-[700px] h-[733px] object-contain"
+              width="700"
+              height="733"
+            />
+          {% endif %}
 
-        <!-- Fixed Callouts -->
-        <div class="absolute bottom-[48px] left-[230px]">
-          <a href="{{ section.settings.link_1 }}" class="w-[22px] h-[22px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">1</a>
+          {%- for block in section.blocks -%}
+            {%- if block.type != 'hotspot' -%}
+              {%- continue -%}
+            {%- endif -%}
+            {%- liquid
+              assign pos_style = ''
+              if block.settings.position_top_desktop > 0
+                assign pos_style = pos_style | append: '--hotspot-top-d: ' | append: block.settings.position_top_desktop | append: 'px; '
+              endif
+              if block.settings.position_right_desktop > 0
+                assign pos_style = pos_style | append: '--hotspot-right-d: ' | append: block.settings.position_right_desktop | append: 'px; '
+              endif
+              if block.settings.position_bottom_desktop > 0
+                assign pos_style = pos_style | append: '--hotspot-bottom-d: ' | append: block.settings.position_bottom_desktop | append: 'px; '
+              endif
+              if block.settings.position_left_desktop > 0
+                assign pos_style = pos_style | append: '--hotspot-left-d: ' | append: block.settings.position_left_desktop | append: 'px; '
+              endif
+              if block.settings.position_top_mobile > 0
+                assign pos_style = pos_style | append: '--hotspot-top-m: ' | append: block.settings.position_top_mobile | append: 'px; '
+              endif
+              if block.settings.position_right_mobile > 0
+                assign pos_style = pos_style | append: '--hotspot-right-m: ' | append: block.settings.position_right_mobile | append: 'px; '
+              endif
+              if block.settings.position_bottom_mobile > 0
+                assign pos_style = pos_style | append: '--hotspot-bottom-m: ' | append: block.settings.position_bottom_mobile | append: 'px; '
+              endif
+              if block.settings.position_left_mobile > 0
+                assign pos_style = pos_style | append: '--hotspot-left-m: ' | append: block.settings.position_left_mobile | append: 'px; '
+              endif
+            -%}
+            <div
+              class="dd-customize-racer__hotspot dd-racer-hotspot"
+              style="{{ pos_style }}"
+              data-hotspot-id="{{ block.id }}"
+              data-section-id="{{ section.id }}"
+              {{ block.shopify_attributes }}
+            >
+              <button
+                type="button"
+                class="dd-customize-racer__hotspot-button w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans text-[#282C37] border-0 cursor-pointer"
+                aria-expanded="false"
+                aria-controls="dd-racer-tooltip-{{ section.id }}-{{ block.id }}"
+                aria-describedby="dd-racer-tooltip-{{ section.id }}-{{ block.id }}"
+                id="dd-racer-hotspot-{{ section.id }}-{{ block.id }}"
+              >
+                {{ forloop.index }}
+              </button>
+            </div>
+          {%- endfor -%}
         </div>
 
-        <div class="absolute top-[375px] left-[200px]">
-          <a href="{{ section.settings.link_2 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">2</a>
-        </div>
-
-        <div class="absolute top-[250px] left-[298px]">
-          <a href="{{ section.settings.link_3 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">3</a>
-        </div>
-
-        <div class="absolute top-[20px] left-[270px]">
-          <a href="{{ section.settings.link_4 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">4</a>
-        </div>
-
-        <div class="absolute top-[80px] left-[392px]">
-          <a href="{{ section.settings.link_5 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">5</a>
-        </div>
-
-        <div class="absolute top-[191px] left-[362px]">
-          <a href="{{ section.settings.link_6 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">6</a>
-        </div>
-
-        <div class="absolute bottom-[250px] left-[376px]">
-          <a href="{{ section.settings.link_7 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">7</a>
-        </div>
-
-        <div class="absolute bottom-[48px] left-[425px]">
-          <a href="{{ section.settings.link_8 }}" class="w-[24px] h-[24px] md:w-[36px] md:h-[36px] bg-[#6ec7b3] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[16px] md:text-[20px] transition-all duration-300 font-dm-sans">8</a>
-        </div>
+        {%- for block in section.blocks -%}
+          {%- if block.type != 'hotspot' -%}
+            {%- continue -%}
+          {%- endif -%}
+          {%- assign tooltip_products = block.settings.products -%}
+          <div
+            id="dd-racer-tooltip-{{ section.id }}-{{ block.id }}"
+            class="dd-customize-racer__tooltip"
+            role="tooltip"
+            aria-hidden="true"
+            data-tooltip-block-id="{{ block.id }}"
+            data-section-id="{{ section.id }}"
+            hidden
+          >
+            <div class="dd-customize-racer__tooltip-inner bg-[#1c2127] p-[24px] flex flex-col gap-[16px]">
+              {% if block.settings.title != blank %}
+                <div class="flex gap-[6px] items-end leading-none flex-wrap">
+                  <p class="text-white text-[20px] font-medium tracking-[-0.2px] font-roboto-condensed">
+                    {{ block.settings.title }}
+                  </p>
+                </div>
+              {% endif %}
+              {% if tooltip_products != blank and tooltip_products.size > 0 %}
+                <div class="dd-customize-racer__tooltip-options dd-customize-racer__tooltip-options--column bundle-variations__options">
+                  {%- for product in tooltip_products -%}
+                    {%- liquid
+                      assign is_available = product.available
+                      assign first_variant = product.selected_or_first_available_variant
+                    -%}
+                    <div class="bundle-variations__option-wrapper">
+                      <a
+                        href="{{ product.url }}"
+                        class="bundle-variations__option{% unless is_available %} bundle-variations__option--unavailable{% endunless %} bundle-variations__option--link"
+                        {% unless is_available %}aria-disabled="true"{% endunless %}
+                      >
+                        <div class="bundle-variations__option-media">
+                          {%- if first_variant.featured_image -%}
+                            {{ first_variant.featured_image
+                              | image_url: width: 300
+                              | image_tag:
+                                loading: 'lazy',
+                                class: 'bundle-variations__option-image'
+                            }}
+                          {%- elsif product.featured_image -%}
+                            {{ product.featured_image
+                              | image_url: width: 300
+                              | image_tag:
+                                loading: 'lazy',
+                                class: 'bundle-variations__option-image'
+                            }}
+                          {%- endif -%}
+                          {%- unless is_available -%}
+                            <span class="bundle-variations__badge">
+                              {{ 'products.product.inventory_out_of_stock' | t }}
+                            </span>
+                          {%- endunless -%}
+                        </div>
+                        <div class="bundle-variations__option-body">
+                          <p class="bundle-variations__option-title">
+                            {{ product.title }}
+                          </p>
+                          <div class="bundle-variations__option-meta">
+                            <p class="bundle-variations__option-stock">
+                              {%- if is_available -%}
+                                {{ 'products.product.inventory_in_stock' | t }}
+                              {%- else -%}
+                                {{ 'products.product.inventory_out_of_stock' | t }}
+                              {%- endif -%}
+                            </p>
+                            <p class="bundle-variations__option-price">
+                              {{ first_variant.price | money }}
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  {%- endfor -%}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {%- endfor -%}
       </div>
     </div>
   </div>
 </section>
+
+{% stylesheet %}
+  .dd-racer-hotspot {
+    position: absolute;
+  }
+  @media screen and (min-width: 768px) {
+    .dd-racer-hotspot {
+      top: var(--hotspot-top-d, auto);
+      right: var(--hotspot-right-d, auto);
+      bottom: var(--hotspot-bottom-d, auto);
+      left: var(--hotspot-left-d, auto);
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .dd-racer-hotspot {
+      top: var(--hotspot-top-m, auto);
+      right: var(--hotspot-right-m, auto);
+      bottom: var(--hotspot-bottom-m, auto);
+      left: var(--hotspot-left-m, auto);
+    }
+  }
+  .dd-customize-racer__tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: max-content;
+    max-width: min(303px, calc(100vw - 32px));
+    pointer-events: none;
+  }
+  .dd-customize-racer__tooltip[aria-hidden="false"] {
+    pointer-events: auto;
+  }
+  .dd-customize-racer__tooltip-inner {
+    max-width: 303px;
+    box-sizing: border-box;
+  }
+  .dd-customize-racer__tooltip-options--column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .dd-customize-racer__tooltip-options--column .bundle-variations__option-wrapper {
+    width: 100%;
+  }
+  .dd-customize-racer__tooltip-options--column .bundle-variations__option--link {
+    text-decoration: none;
+    display: flex;
+  }
+  .dd-customize-racer__tooltip-options--column .bundle-variations__option--link:hover {
+    color: inherit;
+  }
+{% endstylesheet %}
+
+<script src="{{ 'dd-customize-simulator.js' | asset_url }}" type="module" defer></script>
 
 {% schema %}
 {
@@ -148,46 +310,6 @@ CUSTOMISE YOUR RACER EQUIPMENT SECTION
       "type": "image_picker",
       "id": "main_image",
       "label": "Racer Model Image"
-    },
-    {
-      "type": "url",
-      "id": "link_1",
-      "label": "Hotspot Link 1"
-    },
-    {
-      "type": "url",
-      "id": "link_2",
-      "label": "Hotspot Link 2"
-    },
-    {
-      "type": "url",
-      "id": "link_3",
-      "label": "Hotspot Link 3"
-    },
-    {
-      "type": "url",
-      "id": "link_4",
-      "label": "Hotspot Link 4"
-    },
-    {
-      "type": "url",
-      "id": "link_5",
-      "label": "Hotspot Link 5"
-    },
-    {
-      "type": "url",
-      "id": "link_6",
-      "label": "Hotspot Link 6"
-    },
-    {
-      "type": "url",
-      "id": "link_7",
-      "label": "Hotspot Link 7"
-    },
-    {
-      "type": "url",
-      "id": "link_8",
-      "label": "Hotspot Link 8"
     }
   ],
   "blocks": [
@@ -206,12 +328,181 @@ CUSTOMISE YOUR RACER EQUIPMENT SECTION
           "label": "Item Description (e.g. Product Name or Variant)"
         }
       ]
+    },
+    {
+      "type": "hotspot",
+      "name": "Hotspot",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Gloves"
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Products",
+          "limit": 3
+        },
+        {
+          "type": "header",
+          "content": "Desktop position"
+        },
+        {
+          "type": "range",
+          "id": "position_top_desktop",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Top",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "position_right_desktop",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "position_bottom_desktop",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Bottom",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "position_left_desktop",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Left",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Mobile position"
+        },
+        {
+          "type": "range",
+          "id": "position_top_mobile",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Top",
+          "default": 0,
+          "visible_if": "{{ block.settings.position_top_desktop > 0 }}"
+        },
+        {
+          "type": "range",
+          "id": "position_right_mobile",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Right",
+          "default": 0,
+          "visible_if": "{{ block.settings.position_right_desktop > 0 }}"
+        },
+        {
+          "type": "range",
+          "id": "position_bottom_mobile",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Bottom",
+          "default": 0,
+          "visible_if": "{{ block.settings.position_bottom_desktop > 0 }}"
+        },
+        {
+          "type": "range",
+          "id": "position_left_mobile",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Left",
+          "default": 0,
+          "visible_if": "{{ block.settings.position_left_desktop > 0 }}"
+        }
+      ]
     }
   ],
   "presets": [
     {
       "name": "Customise Racer Equipment",
-      "category": "Custom Sections"
+      "category": "Custom Sections",
+      "blocks": [
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_bottom_desktop": 48,
+            "position_left_desktop": 231
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_top_desktop": 279,
+            "position_left_desktop": 201
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_top_desktop": 249,
+            "position_left_desktop": 279
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_top_desktop": 21,
+            "position_left_desktop": 270
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_top_desktop": 81,
+            "position_left_desktop": 279
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_top_desktop": 192,
+            "position_left_desktop": 279
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_bottom_desktop": 249,
+            "position_left_desktop": 279
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_bottom_desktop": 48,
+            "position_left_desktop": 279
+          }
+        }
+      ]
     }
   ]
 }

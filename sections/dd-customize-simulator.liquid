@@ -1,12 +1,17 @@
 {% comment %}
 CUSTOMISE YOUR SIMULATOR SECTION
-- Fixed numbered hotspots (1–6)
-- Each hotspot link is editable
+- Hotspot blocks with title, product list, and position (desktop + mobile).
+- Tooltip on hover shows title and product cards (Floating UI); hotspot number from forloop.
 {% endcomment %}
 
-<section class="bg-[#282C37] py-[60px] md:py-[80px] px-[16px] md:px-[32px] font-roboto-condensed">
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="dd-customize-simulator bg-[#282C37] py-[60px] md:py-[80px] px-[16px] md:px-[32px] font-roboto-condensed"
+  id="dd-customize-simulator-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+>
   <div class="max-w-[1280px] mx-auto">
-    <!-- Section Title -->
     {% if section.settings.title != blank %}
       <h2 class="text-[40px] md:text-[60px] font-medium text-white leading-[100%] tracking-[-0.01em] text-center mb-[40px] uppercase">
         {{ section.settings.title }}
@@ -14,7 +19,6 @@ CUSTOMISE YOUR SIMULATOR SECTION
     {% endif %}
 
     <div class="flex justify-between items-center max-lg:flex-col-reverse">
-      <!-- Left Side - Product Info -->
       <div class="w-full sm:max-w-[345px] lg:mt-0">
         {% if section.settings.simulator_title_1 != blank %}
           <h3 class="text-[24px] md:text-[40px] font-medium text-white mb-[12px] leading-[100%]">
@@ -49,75 +53,211 @@ CUSTOMISE YOUR SIMULATOR SECTION
         {% endif %}
       </div>
 
-      <!-- Right Side - Simulator Visual -->
-      <div class="relative">
-        <div class="relative">
+      <div class="dd-customize-simulator__visual relative">
+        <div class="dd-customize-simulator__image-wrapper relative">
           {% if section.settings.main_image %}
             <img
               src="{{ section.settings.main_image | image_url: width: 733 }}"
               alt="Racing Simulator Setup"
               class="w-[346px] h-[346px] md:w-[733px] md:h-[533px] object-contain"
+              width="733"
+              height="533"
             />
           {% endif %}
 
-          <!-- Fixed Numbered Hotspots -->
-          <div class="absolute md:bottom-[68px] md:left-[160px] bottom-[75px] left-[70px]">
-            <a href="{{ section.settings.link_1 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">1</a>
-          </div>
-
-          <div class="absolute md:top-[110px] md:right-[320px] top-[100px] right-[145px]">
-            <a href="{{ section.settings.link_2 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">2</a>
-          </div>
-
-          <div class="absolute md:top-[240px] md:right-[260px] top-[160px] right-[115px]">
-            <a href="{{ section.settings.link_3 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">3</a>
-          </div>
-
-          <div class="absolute md:top-[249px] md:right-[340px] top-[160px] right-[150px]">
-            <a href="{{ section.settings.link_4 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">4</a>
-          </div>
-
-          <div class="absolute md:bottom-[125px] bottom-[100px] md:right-[200px] right-[100px]">
-            <a href="{{ section.settings.link_5 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">5</a>
-          </div>
-
-          <div class="absolute md:top-[305px] top-[185px] md:left-[280px] left-[128px]">
-            <a href="{{ section.settings.link_6 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">6</a>
-          </div>
-
-          <div class="absolute md:top-[270px] top-[170px] md:left-[170px] left-[80px]">
-            <a href="{{ section.settings.link_7 }}" class="w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans">7</a>
-          </div>
-
-          {% comment %} <!-- Fixed Numbered Hotspots -->
-          <div class="absolute md:top-[75px] md:left-[107px] top-[30px] left-[40px]">
-            <a href="{{ section.settings.link_1 }}" class="w-[26px] h-[26px] md:w-[36px] md:h-[36px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[14px] md:text-[20px] font-dm-sans">1</a>
-          </div>
-
-          <div class="absolute md:top-[145px] md:right-[95px] top-[65px] right-[45px]">
-            <a href="{{ section.settings.link_2 }}" class="w-[26px] h-[26px] md:w-[36px] md:h-[36px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[14px] md:text-[20px] font-dm-sans">2</a>
-          </div>
-
-          <div class="absolute md:top-[249px] md:right-[334px] top-[115px] right-[150px]">
-            <a href="{{ section.settings.link_3 }}" class="w-[26px] h-[26px] md:w-[36px] md:h-[36px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[14px] md:text-[20px] font-dm-sans">3</a>
-          </div>
-
-          <div class="absolute md:top-[434px] md:left-[248px] top-[200px] left-[105px]">
-            <a href="{{ section.settings.link_4 }}" class="w-[26px] h-[26px] md:w-[36px] md:h-[36px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[14px] md:text-[20px] font-dm-sans">4</a>
-          </div>
-
-          <div class="absolute md:bottom-[130px] bottom-[55px] md:left-[284px] left-[140px]">
-            <a href="{{ section.settings.link_5 }}" class="w-[26px] h-[26px] md:w-[36px] md:h-[36px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[14px] md:text-[20px] font-dm-sans">5</a>
-          </div>
-
-          <div class="absolute md:top-[334px] top-[160px] md:right-[256px] right-[115px]">
-            <a href="{{ section.settings.link_6 }}" class="w-[26px] h-[26px] md:w-[36px] md:h-[36px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[14px] md:text-[20px] font-dm-sans">6</a>
-          </div> {% endcomment %}
+          {%- for block in section.blocks -%}
+            {%- if block.type != 'hotspot' -%}
+              {%- continue -%}
+            {%- endif -%}
+            {%- liquid
+              assign pos_style = ''
+              if block.settings.position_top_desktop > 0
+                assign pos_style = pos_style | append: '--hotspot-top-d: ' | append: block.settings.position_top_desktop | append: 'px; '
+              endif
+              if block.settings.position_right_desktop > 0
+                assign pos_style = pos_style | append: '--hotspot-right-d: ' | append: block.settings.position_right_desktop | append: 'px; '
+              endif
+              if block.settings.position_bottom_desktop > 0
+                assign pos_style = pos_style | append: '--hotspot-bottom-d: ' | append: block.settings.position_bottom_desktop | append: 'px; '
+              endif
+              if block.settings.position_left_desktop > 0
+                assign pos_style = pos_style | append: '--hotspot-left-d: ' | append: block.settings.position_left_desktop | append: 'px; '
+              endif
+              if block.settings.position_top_mobile > 0
+                assign pos_style = pos_style | append: '--hotspot-top-m: ' | append: block.settings.position_top_mobile | append: 'px; '
+              endif
+              if block.settings.position_right_mobile > 0
+                assign pos_style = pos_style | append: '--hotspot-right-m: ' | append: block.settings.position_right_mobile | append: 'px; '
+              endif
+              if block.settings.position_bottom_mobile > 0
+                assign pos_style = pos_style | append: '--hotspot-bottom-m: ' | append: block.settings.position_bottom_mobile | append: 'px; '
+              endif
+              if block.settings.position_left_mobile > 0
+                assign pos_style = pos_style | append: '--hotspot-left-m: ' | append: block.settings.position_left_mobile | append: 'px; '
+              endif
+            -%}
+            <div
+              class="dd-customize-simulator__hotspot dd-simulator-hotspot"
+              style="{{ pos_style }}"
+              data-hotspot-id="{{ block.id }}"
+              data-section-id="{{ section.id }}"
+              {{ block.shopify_attributes }}
+            >
+              <button
+                type="button"
+                class="dd-customize-simulator__hotspot-button w-[18px] h-[18px] md:w-[20px] md:h-[20px] bg-[#ffffffcc] hover:bg-[#6EC7B3] rounded-full flex items-center justify-center font-bold text-[12px] md:text-[14px] font-dm-sans text-[#282C37] border-0 cursor-pointer"
+                aria-expanded="false"
+                aria-controls="dd-simulator-tooltip-{{ section.id }}-{{ block.id }}"
+                aria-describedby="dd-simulator-tooltip-{{ section.id }}-{{ block.id }}"
+                id="dd-simulator-hotspot-{{ section.id }}-{{ block.id }}"
+              >
+                {{ forloop.index }}
+              </button>
+            </div>
+          {%- endfor -%}
         </div>
+
+        {%- for block in section.blocks -%}
+          {%- if block.type != 'hotspot' -%}
+            {%- continue -%}
+          {%- endif -%}
+          {%- assign tooltip_products = block.settings.products -%}
+          <div
+            id="dd-simulator-tooltip-{{ section.id }}-{{ block.id }}"
+            class="dd-customize-simulator__tooltip"
+            role="tooltip"
+            aria-hidden="true"
+            data-tooltip-block-id="{{ block.id }}"
+            data-section-id="{{ section.id }}"
+            hidden
+          >
+            <div class="dd-customize-simulator__tooltip-inner bg-[#1c2127] p-[24px] flex flex-col gap-[16px]">
+              {% if block.settings.title != blank %}
+                <div class="flex gap-[6px] items-end leading-none flex-wrap">
+                  <p class="text-white text-[20px] font-medium tracking-[-0.2px] font-roboto-condensed">
+                    {{ block.settings.title }}
+                  </p>
+                </div>
+              {% endif %}
+              {% if tooltip_products != blank and tooltip_products.size > 0 %}
+                <div class="dd-customize-simulator__tooltip-options dd-customize-simulator__tooltip-options--column bundle-variations__options">
+                  {%- for product in tooltip_products -%}
+                    {%- liquid
+                      assign is_available = product.available
+                      assign first_variant = product.selected_or_first_available_variant
+                    -%}
+                    <div class="bundle-variations__option-wrapper">
+                      <a
+                        href="{{ product.url }}"
+                        class="bundle-variations__option{% unless is_available %} bundle-variations__option--unavailable{% endunless %} bundle-variations__option--link"
+                        {% unless is_available %}aria-disabled="true"{% endunless %}
+                      >
+                        <div class="bundle-variations__option-media">
+                          {%- if first_variant.featured_image -%}
+                            {{ first_variant.featured_image
+                              | image_url: width: 300
+                              | image_tag:
+                                loading: 'lazy',
+                                class: 'bundle-variations__option-image'
+                            }}
+                          {%- elsif product.featured_image -%}
+                            {{ product.featured_image
+                              | image_url: width: 300
+                              | image_tag:
+                                loading: 'lazy',
+                                class: 'bundle-variations__option-image'
+                            }}
+                          {%- endif -%}
+                          {%- unless is_available -%}
+                            <span class="bundle-variations__badge">
+                              {{ 'products.product.inventory_out_of_stock' | t }}
+                            </span>
+                          {%- endunless -%}
+                        </div>
+                        <div class="bundle-variations__option-body">
+                          <p class="bundle-variations__option-title">
+                            {{ product.title }}
+                          </p>
+                          <div class="bundle-variations__option-meta">
+                            <p class="bundle-variations__option-stock">
+                              {%- if is_available -%}
+                                {{ 'products.product.inventory_in_stock' | t }}
+                              {%- else -%}
+                                {{ 'products.product.inventory_out_of_stock' | t }}
+                              {%- endif -%}
+                            </p>
+                            <p class="bundle-variations__option-price">
+                              {{ first_variant.price | money }}
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  {%- endfor -%}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {%- endfor -%}
       </div>
     </div>
   </div>
 </section>
+
+{% stylesheet %}
+  .dd-simulator-hotspot {
+    position: absolute;
+  }
+  @media screen and (min-width: 768px) {
+    .dd-simulator-hotspot {
+      top: var(--hotspot-top-d, auto);
+      right: var(--hotspot-right-d, auto);
+      bottom: var(--hotspot-bottom-d, auto);
+      left: var(--hotspot-left-d, auto);
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .dd-simulator-hotspot {
+      top: var(--hotspot-top-m, auto);
+      right: var(--hotspot-right-m, auto);
+      bottom: var(--hotspot-bottom-m, auto);
+      left: var(--hotspot-left-m, auto);
+    }
+  }
+  .dd-customize-simulator__tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: max-content;
+    max-width: min(303px, calc(100vw - 32px));
+    pointer-events: none;
+  }
+  .dd-customize-simulator__tooltip[aria-hidden="false"] {
+    pointer-events: auto;
+  }
+  .dd-customize-simulator__tooltip-inner {
+    max-width: 303px;
+    box-sizing: border-box;
+  }
+  .dd-customize-simulator__tooltip-options--column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .dd-customize-simulator__tooltip-options--column .bundle-variations__option-wrapper {
+    width: 100%;
+  }
+  .bundle-variations__option--link {
+    text-decoration: none;
+    display: flex;
+  }
+  .bundle-variations__option--link:hover {
+    color: inherit;
+  }
+{% endstylesheet %}
+
+<script src="{{ 'dd-customize-simulator.js' | asset_url }}" type="module" defer></script>
 
 {% schema %}
 {
@@ -179,47 +319,191 @@ CUSTOMISE YOUR SIMULATOR SECTION
       "type": "image_picker",
       "id": "main_image",
       "label": "Main Simulator Image"
-    },
+    }
+  ],
+  "blocks": [
     {
-      "type": "url",
-      "id": "link_1",
-      "label": "Hotspot Link 1"
-    },
-    {
-      "type": "url",
-      "id": "link_2",
-      "label": "Hotspot Link 2"
-    },
-    {
-      "type": "url",
-      "id": "link_3",
-      "label": "Hotspot Link 3"
-    },
-    {
-      "type": "url",
-      "id": "link_4",
-      "label": "Hotspot Link 4"
-    },
-    {
-      "type": "url",
-      "id": "link_5",
-      "label": "Hotspot Link 5"
-    },
-    {
-      "type": "url",
-      "id": "link_6",
-      "label": "Hotspot Link 6"
-    },
-    {
-      "type": "url",
-      "id": "link_7",
-      "label": "Hotspot Link 7"
+      "type": "hotspot",
+      "name": "Hotspot",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Monitor:"
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Products",
+          "limit": 3
+        },
+        {
+          "type": "header",
+          "content": "Desktop position"
+        },
+        {
+          "type": "range",
+          "id": "position_top_desktop",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Top",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "position_right_desktop",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "position_bottom_desktop",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Bottom",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "position_left_desktop",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Left",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Mobile position"
+        },
+        {
+          "type": "range",
+          "id": "position_top_mobile",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Top",
+          "default": 0,
+          "visible_if": "{{ block.settings.position_top_desktop > 0 }}"
+        },
+        {
+          "type": "range",
+          "id": "position_right_mobile",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Right",
+          "default": 0,
+          "visible_if": "{{ block.settings.position_right_desktop > 0 }}"
+        },
+        {
+          "type": "range",
+          "id": "position_bottom_mobile",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Bottom",
+          "default": 0,
+          "visible_if": "{{ block.settings.position_bottom_desktop > 0 }}"
+        },
+        {
+          "type": "range",
+          "id": "position_left_mobile",
+          "min": 0,
+          "max": 279,
+          "step": 3,
+          "unit": "px",
+          "label": "Left",
+          "default": 0,
+          "visible_if": "{{ block.settings.position_left_desktop > 0 }}"
+        }
+      ]
     }
   ],
   "presets": [
     {
       "name": "Customise Your Simulator",
-      "category": "Custom Sections"
+      "category": "Custom Sections",
+      "blocks": [
+        {
+          "type": "hotspot",
+          "settings": {
+            "title": "Monitor:",
+            "position_bottom_desktop": 69,
+            "position_left_desktop": 159,
+            "position_bottom_mobile": 75,
+            "position_left_mobile": 69
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_top_desktop": 111,
+            "position_right_desktop": 279,
+            "position_top_mobile": 99,
+            "position_right_mobile": 144
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_top_desktop": 240,
+            "position_right_desktop": 261,
+            "position_top_mobile": 159,
+            "position_right_mobile": 114
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_top_desktop": 249,
+            "position_right_desktop": 279,
+            "position_top_mobile": 159,
+            "position_right_mobile": 150
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_bottom_desktop": 126,
+            "position_right_desktop": 201,
+            "position_bottom_mobile": 99,
+            "position_right_mobile": 99
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_top_desktop": 279,
+            "position_left_desktop": 279,
+            "position_top_mobile": 186,
+            "position_left_mobile": 129
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_top_desktop": 270,
+            "position_left_desktop": 171,
+            "position_top_mobile": 171,
+            "position_left_mobile": 81
+          }
+        }
+      ]
     }
   ]
 }

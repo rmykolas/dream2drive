@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "password_page": {
@@ -181,7 +190,12 @@
       },
       "taxes_included": "Mokesčiai įtraukti.",
       "duties_included": "Muito mokesčiai įtraukti.",
-      "duties_and_taxes_included": "Muito ir kiti mokesčiai įtraukti."
+      "duties_and_taxes_included": "Muito ir kiti mokesčiai įtraukti.",
+      "bundle_variations_info": "Daugiau informacijos apie šį paketą",
+      "bundle_variations_info_title": "Paketo parinkties informacija",
+      "bundle_variations_info_dummy": "Tai yra papildoma informacija apie šį paketo variantą. Kai būsite pasiruošę, pakeiskite šį bandomąjį tekstą tikruoju turiniu.",
+      "bundle_variations_view_product": "Peržiūrėti produktą",
+      "custom_field_required": "Šis laukas yra privalomas."
     },
     "modal": {
       "label": "Medijų galerija"

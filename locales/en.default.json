@@ -124,7 +124,7 @@
       "inventory_low_stock": "Low stock",
       "inventory_low_stock_show_count": "Low stock: {{ quantity }} left",
       "inventory_out_of_stock": "Out of stock",
-      "inventory_out_of_stock_continue_selling": "Available on backorder",
+      "inventory_out_of_stock_continue_selling": "Available on backorder. Ships in 1-2 weeks",
       "sku": "SKU",
       "on_sale": "Sale",
       "product_variants": "Product variants",
@@ -139,6 +139,10 @@
         "play_video": "Play video"
       },
       "nested_label": "{{ title }} for {{ parent_title }}",
+      "bundle_variations_info": "More information about this bundle option",
+      "bundle_variations_info_title": "Bundle option details",
+      "bundle_variations_info_dummy": "This is some additional information about this bundle option. Replace this dummy text with real content when you are ready.",
+      "bundle_variations_view_product": "View product",
       "quantity": {
         "label": "Quantity:",
         "input_label": "Quantity for {{ product }}",
@@ -188,7 +192,8 @@
       "taxes_included": "Taxes included.",
       "duties_included": "Duties included.",
       "duties_and_taxes_included": "Duties and taxes included.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "custom_field_required": "This field is required."
     },
     "modal": {
       "label": "Media gallery"
@@ -283,7 +288,6 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
-
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",

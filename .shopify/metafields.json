@@ -578,6 +578,26 @@
         "name": "list.metaobject_reference",
         "category": "REFERENCE"
       }
+    },
+    {
+      "key": "product_specs_with_images",
+      "namespace": "custom",
+      "name": "Product Specs with Images",
+      "description": "",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "instruction_manual",
+      "namespace": "custom",
+      "name": "Instruction manual",
+      "description": "",
+      "type": {
+        "name": "file_reference",
+        "category": "REFERENCE"
+      }
     }
   ],
   "variant": [],

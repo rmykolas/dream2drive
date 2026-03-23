@@ -1583,6 +1583,10 @@ details[open] > .share-button__fallback {
   border: 0;
 }
 
+.field__input--file {
+  height: 6.5rem;
+}
+
 .field:before,
 .select:before,
 .customer .field:before,

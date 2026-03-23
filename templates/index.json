@@ -34,6 +34,150 @@
     },
     "dd_customize_simulator_AGUzeF": {
       "type": "dd-customize-simulator",
+      "blocks": {
+        "hotspot_CCaNPr": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Steering wheels",
+            "products": [
+              "conspit-310-apex",
+              "conspit-330-gt-wheel",
+              "conspit-290-gp-formula-racing-wheel"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 261,
+            "position_left_desktop": 279,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 162,
+            "position_left_mobile": 156
+          }
+        },
+        "hotspot_n4bPN9": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Frame",
+            "products": [
+              "tr40s-racing-simulator-frame",
+              "tr80s-racing-simulator",
+              "tr120s-v2-racing-simulator-with-seat-sliders-kit"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 72,
+            "position_bottom_desktop": 69,
+            "position_left_desktop": 159,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 81,
+            "position_left_mobile": 66
+          }
+        },
+        "hotspot_BRM7Mp": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Seat",
+            "products": [
+              "gt-bucket-seat",
+              "gt-pro-fixed-fiberglass",
+              "tr-series-fibreglass-gt-sim-racing-seat-high-gloss-black"
+            ],
+            "position_top_desktop": 267,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 162,
+            "position_top_mobile": 162,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 69
+          }
+        },
+        "hotspot_4GRY3D": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Monitor mount",
+            "products": [
+              "cockpit-mounted-single-monitor-stand-1200mm",
+              "cockpit-mounted-triple-monitor-mount",
+              "freestanding-triple-monitor-stand"
+            ],
+            "position_top_desktop": 159,
+            "position_right_desktop": 231,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 0,
+            "position_top_mobile": 123,
+            "position_right_mobile": 90,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_wWf7qe": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Wheelbase",
+            "products": [
+              "conspit-ares-apex",
+              "conspit-ares-wheelbase-10nm-18nm",
+              "conspit-ares-platinum-20-nm-wheel-base"
+            ],
+            "position_top_desktop": 255,
+            "position_right_desktop": 261,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 0,
+            "position_top_mobile": 162,
+            "position_right_mobile": 117,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_XhddRU": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Pedals",
+            "products": [
+              "conspit-apex-pedals",
+              "conspit-cpp-lite-pedals",
+              "conspit-cpp-evo-pedals"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 204,
+            "position_bottom_desktop": 135,
+            "position_left_desktop": 0,
+            "position_top_mobile": 0,
+            "position_right_mobile": 87,
+            "position_bottom_mobile": 105,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_pNMWTB": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Accessories",
+            "products": [
+              "conspit-h3-hydraulic-handbrake",
+              "simagic-seq-h-shifter-ds-8x",
+              "conspit-csd-dashboard-simhub-special-edition"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 207,
+            "position_left_desktop": 279,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 141,
+            "position_left_mobile": 120
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_CCaNPr",
+        "hotspot_n4bPN9",
+        "hotspot_BRM7Mp",
+        "hotspot_4GRY3D",
+        "hotspot_wWf7qe",
+        "hotspot_XhddRU",
+        "hotspot_pNMWTB"
+      ],
       "name": "Customise Your Simulator",
       "settings": {
         "title": "",
@@ -45,14 +189,7 @@
         "simulator_price_2": "Pick what you need. Upgrade anytime.",
         "button_label_2": "START NOW",
         "button_link_2": "shopify://products/tr120s-v2-racing-simulator-with-seat-sliders-kit",
-        "main_image": "shopify://shop_images/Copy_of_TR120S-BLK_e04-min.png",
-        "link_1": "shopify://collections/simulator-frames-and-cockipts",
-        "link_2": "shopify://collections/monitors-computers",
-        "link_3": "shopify://collections/wheelbase",
-        "link_4": "shopify://collections/wheels",
-        "link_5": "shopify://collections/pedals",
-        "link_6": "shopify://collections/accessories",
-        "link_7": "shopify://collections/seats-seats-accessories"
+        "main_image": "shopify://shop_images/simconfigurator_landing.png"
       }
     },
     "dd_product_categories_FzBLXd": {
@@ -64,12 +201,13 @@
             "product": "",
             "title": "CLOTHES AND ACCESSORIES",
             "image": "shopify://shop_images/A20_individual.png",
-            "hover_image": "shopify://shop_images/492232321_1263385225790771_7062242205321089041_n.png",
+            "hover_image": "shopify://shop_images/sparco_bag_2.png",
             "link": "shopify://pages/clothes-and-accessories"
           }
         },
         "racing_product_wR4FDY": {
           "type": "racing_product",
+          "disabled": true,
           "settings": {
             "product": "",
             "title": "MOTORSPORT PARTS",
@@ -83,8 +221,8 @@
           "settings": {
             "product": "",
             "title": "KART CHASSIS",
-            "image": "shopify://shop_images/FIA_Karting_Henrikas_Keplikas_Kristianstad_Friday_FR-5.jpg",
-            "hover_image": "shopify://shop_images/FIA_Karting_Henrikas_Keplikas_Kristianstad_Friday_FR-5.jpg",
+            "image": "shopify://shop_images/FK-DD2_3_ee61f19e-3f95-4232-a9b8-946e71461364.png",
+            "hover_image": "shopify://shop_images/FKMK-9530E3_3_copy.png",
             "link": "shopify://collections/complete-chassis"
           }
         },
@@ -225,26 +363,162 @@
     "dd_customize_racer_PiGgHV": {
       "type": "dd-customize-racer",
       "blocks": {
-        "equipment_item_8EkBM8": {
-          "type": "equipment_item",
-          "disabled": true,
+        "hotspot_KWnrUG": {
+          "type": "hotspot",
           "settings": {
-            "label": "",
-            "text": ""
+            "title": "Gloves",
+            "products": [
+              "senso-22-gloves",
+              "motorsport-gloves-freem-senso-22",
+              "karting-gloves-freem-k-slight-24"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 279,
+            "position_left_desktop": 213,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
           }
         },
-        "equipment_item_trhHgG": {
-          "type": "equipment_item",
-          "disabled": true,
+        "hotspot_MDaB3Y": {
+          "type": "hotspot",
           "settings": {
-            "label": "",
-            "text": ""
+            "title": "Shoes",
+            "products": [
+              "motorsport-shoes-s19",
+              "karting-shoes-freem-sk-24"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 42,
+            "position_left_desktop": 267,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_mMzVWN": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Racing suit",
+            "products": [
+              "a23-motorsport-suit",
+              "a20-future",
+              "a20-plus"
+            ],
+            "position_top_desktop": 210,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 279,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_mMzVaf": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Helmet",
+            "products": [
+              "arai-gp-7-helmet-fia",
+              "sparco-stealth-rf-helmet-fia",
+              "sparco-stealth-rf-carbon-8859-2024-helmet-fia"
+            ],
+            "position_top_desktop": 102,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 279,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_kw3379": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Balaclava",
+            "products": [
+              "motorsport-underwear-balaclava-u25",
+              "motorsport-balaclava-freem-u25"
+            ],
+            "position_top_desktop": 102,
+            "position_right_desktop": 279,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 0,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_kP7Kif": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Underwear TOP",
+            "products": [
+              "karting-underwear-shirt-freem",
+              "karting-underwear-shirt-long-sleeves-freem",
+              "motorsport-underwear-top-nomex-u21"
+            ],
+            "position_top_desktop": 210,
+            "position_right_desktop": 279,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 0,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_MTU9pi": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Underwear Pants",
+            "products": [
+              "motorsport-underwear-bottom-u25-nomex"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 279,
+            "position_bottom_desktop": 279,
+            "position_left_desktop": 0,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_PLktkF": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Socks",
+            "products": [
+              "freem-nomex-socks-fia"
+            ],
+            "position_top_desktop": 0,
+            "position_right_desktop": 279,
+            "position_bottom_desktop": 42,
+            "position_left_desktop": 0,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 147,
+            "position_left_mobile": 0
           }
         }
       },
       "block_order": [
-        "equipment_item_8EkBM8",
-        "equipment_item_trhHgG"
+        "hotspot_KWnrUG",
+        "hotspot_MDaB3Y",
+        "hotspot_mMzVWN",
+        "hotspot_mMzVaf",
+        "hotspot_kw3379",
+        "hotspot_kP7Kif",
+        "hotspot_MTU9pi",
+        "hotspot_PLktkF"
       ],
       "name": "Customise Racer Equipment",
       "settings": {
@@ -253,15 +527,7 @@
         "total_price": "Chosen by Racers. Not Marketers.",
         "button_label": "START NOW",
         "button_link": "shopify://pages/clothes-and-accessories",
-        "main_image": "shopify://shop_images/Model_Freem_Clothes.png",
-        "link_1": "shopify://collections/gloves-copy",
-        "link_2": "shopify://collections/motorsport-clothing",
-        "link_3": "shopify://collections/motorsport-suits",
-        "link_4": "shopify://collections/helmet",
-        "link_5": "shopify://collections/underwear",
-        "link_6": "shopify://collections/underwear",
-        "link_7": "shopify://collections/underwear",
-        "link_8": "shopify://collections/underwear"
+        "main_image": "shopify://shop_images/Model_Freem_Clothes.png"
       }
     },
     "dd_our_team_RRra6p": {

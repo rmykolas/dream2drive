@@ -23,6 +23,22 @@
             "swatch_shape": "circle"
           }
         },
+        "custom_field_iNRrd8": {
+          "type": "custom_field",
+          "settings": {
+            "field_type": "text",
+            "field_name": "Add your comments",
+            "required": true
+          }
+        },
+        "custom_field_iqdgDG": {
+          "type": "custom_field",
+          "settings": {
+            "field_type": "image",
+            "field_name": "Add your logo",
+            "required": true
+          }
+        },
         "product_bundle_variations_QA4hCd": {
           "type": "product_bundle_variations",
           "settings": {}
@@ -53,6 +69,8 @@
       "block_order": [
         "title",
         "variant_picker",
+        "custom_field_iNRrd8",
+        "custom_field_iqdgDG",
         "product_bundle_variations_QA4hCd",
         "quantity_selector",
         "price",
