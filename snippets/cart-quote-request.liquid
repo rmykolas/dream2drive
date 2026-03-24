@@ -9,17 +9,23 @@
 {%- assign quote_form_dom_id = 'QuoteRequestForm-' | append: quote_form_id -%}
 {%- capture quote_summary -%}
 {%- for item in cart.items -%}
-- {{ item.product.title | strip }}{% if item.variant.title != 'Default Title' %} ({{ item.variant.title | strip }}){% endif %} x {{ item.quantity }}
-  URL: {{ shop.url }}{{ item.url }}
-  {%- if item.properties.size > 0 -%}
-  Properties:
+- {{ item.product.title | strip }}
+  Qty: {{ item.quantity }}
+  Product URL: {{ shop.url }}{{ item.url }}
+  {%- if item.image -%}
+  Image URL: {{ item.image | image_url: width: 600 }}
+  {%- endif -%}
+  {%- if item.variant.title != 'Default Title' -%}
+  Variant: {{ item.variant.title | strip }}
+  {%- endif -%}
+  {%- for option in item.options_with_values -%}
+  {{ option.name | strip }}: {{ option.value | strip }}
+  {%- endfor -%}
   {%- for property in item.properties -%}
-    {%- assign property_first_char = property.first | slice: 0 -%}
-    {%- if property.last != blank and property_first_char != '_' -%}
-    - {{ property.first }}: {{ property.last }}
+    {%- if property.last != blank -%}
+  {{ property.first | remove_first: '_' | strip }}: {{ property.last | strip }}
     {%- endif -%}
   {%- endfor -%}
-  {%- endif -%}
 {%- endfor -%}
 {%- endcapture -%}
 
@@ -38,7 +44,7 @@
   aria-labelledby="QuoteRequestTitle-{{ quote_form_id }}"
   data-quote-modal
 >
-  <div class="bundle-variations__dialog-inner feature-content quote-request-modal__inner">
+  <div class="quote-request-modal__inner">
     <button
       type="button"
       class="bundle-variations__dialog-close link focus-inset"
