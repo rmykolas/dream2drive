@@ -119,14 +119,11 @@
         </ul>
       </div>
 
-      <form
-        action="{{ routes.root_url }}contact#contact_form"
-        method="post"
-        class="quote-request-modal__form"
-        data-quote-form
-      >
-        <input type="hidden" name="form_type" value="contact">
-        <input type="hidden" name="utf8" value="✓">
+      {%- form 'contact',
+        id: 'QuoteRequestForm-' | append: quote_form_id,
+        class: 'quote-request-modal__form',
+        data-quote-form: ''
+      -%}
         <input type="hidden" name="contact[tags]" value="quote-request">
         <textarea class="hidden" name="contact[cart_summary]" rows="1">{{ quote_summary | strip }}</textarea>
 
@@ -184,7 +181,7 @@
         <div class="quote-request-modal__actions">
           <button type="button" class="button" data-quote-submit>SUBMIT REQUEST</button>
         </div>
-      </form>
+      {%- endform -%}
     </div>
 
     <div class="quote-request-modal__success hidden" data-quote-success tabindex="-1">
