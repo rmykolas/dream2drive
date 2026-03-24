@@ -104,18 +104,24 @@
       form.setAttribute('target', SUBMIT_IFRAME_NAME);
 
       const onLoad = () => {
-        clearTimeout(timeoutId);
         try {
           const href = iframe.contentWindow?.location?.href || '';
           debugInfo('Iframe submit completed', { href });
 
+          if (!href || href === 'about:blank') {
+            return;
+          }
+
           if (href.includes('contact_posted=true')) {
+            clearTimeout(timeoutId);
             resolve();
             return;
           }
 
+          clearTimeout(timeoutId);
           reject(new Error('Failed to send quote request.'));
         } catch (error) {
+          clearTimeout(timeoutId);
           reject(new Error('Failed to verify quote request result.'));
         } finally {
           if (previousTarget) {
@@ -134,6 +140,43 @@
         form.submit();
       }
     });
+  }
+
+  function showSuccessState(modal) {
+    if (!modal) return;
+    const formState = modal.querySelector(SELECTORS.formState);
+    const successState = modal.querySelector(SELECTORS.successState);
+    formState?.classList.add('hidden');
+    successState?.classList.remove('hidden');
+    successState?.focus();
+  }
+
+  async function handlePostedRedirectState() {
+    const url = new URL(window.location.href);
+    const wasPosted = url.searchParams.get('contact_posted') === 'true';
+    if (!wasPosted) return;
+
+    debugInfo('Detected contact_posted redirect state.');
+
+    try {
+      await clearCartAndRefreshUI();
+    } catch (error) {
+      debugError('Post-redirect cart clear failed', error);
+    }
+
+    const hashId = window.location.hash ? window.location.hash.slice(1) : '';
+    const modal =
+      document.getElementById(hashId?.replace(/^QuoteRequestForm-/, 'QuoteRequestModal-')) ||
+      document.querySelector(SELECTORS.modal);
+
+    if (modal && !modal.open) {
+      modal.showModal();
+    }
+    showSuccessState(modal);
+
+    url.searchParams.delete('contact_posted');
+    const nextHash = modal?.id ? `#${modal.id}` : '';
+    window.history.replaceState({}, '', `${url.pathname}${url.search}${nextHash}`);
   }
 
   async function clearCartAndRefreshUI() {
@@ -275,5 +318,9 @@
     if (!modal) return;
     event.preventDefault();
     closeModal(modal);
+  });
+
+  handlePostedRedirectState().catch((error) => {
+    debugError('Failed to handle posted redirect state', error);
   });
 })();
