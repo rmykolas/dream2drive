@@ -3683,3 +3683,196 @@ details-disclosure > details {
   color: #fff !important;
   border: 1px solid #fff !important;
 }
+
+.quote-request-modal {
+  border: none;
+  inline-size: min(90vw, 640px);
+  max-block-size: calc(100vh - 4rem);
+  padding: 0;
+  background: transparent;
+}
+
+.quote-request-modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.quote-request-modal__inner {
+  position: relative;
+  padding: 2.4rem;
+  overflow-y: auto;
+  max-block-size: calc(100vh - 4rem);
+  background-color: #282c37;
+  color: #fff;
+}
+
+.quote-request-modal .bundle-variations__info-heading {
+  margin: 0 0 1.2rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff;
+  text-align: center;
+}
+
+.quote-request-modal .bundle-variations__dialog-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  inline-size: 3.2rem;
+  block-size: 3.2rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  background: transparent;
+  color: #fff;
+}
+
+.quote-request-modal .bundle-variations__dialog-close::before,
+.quote-request-modal .bundle-variations__dialog-close::after {
+  display: none;
+}
+
+.quote-request-modal .bundle-variations__dialog-close .svg-wrapper {
+  inline-size: 1.8rem;
+  block-size: 1.8rem;
+}
+
+.quote-request-modal__intro {
+  margin: 0 0 1.6rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: #c8c9cc;
+  text-align: center;
+}
+
+.quote-request-modal__summary {
+  margin-bottom: 1.6rem;
+  padding: 1.2rem;
+  border: 1px solid #404553;
+}
+
+.quote-request-modal__summary-title {
+  margin: 0 0 0.8rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-align: center;
+}
+
+.quote-request-modal__summary-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.quote-request-modal__summary-item + .quote-request-modal__summary-item {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #404553;
+}
+
+.quote-request-modal__summary-layout {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.quote-request-modal__summary-image-wrap {
+  inline-size: 70px;
+  block-size: 70px;
+  background: #1f2430;
+}
+
+.quote-request-modal__summary-image {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.quote-request-modal__summary-content {
+  min-inline-size: 0;
+}
+
+.quote-request-modal__summary-line,
+.quote-request-modal__summary-meta {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  text-align: start;
+}
+
+.quote-request-modal__summary-line {
+  font-weight: 600;
+}
+
+.quote-request-modal__summary-variant {
+  color: #c8c9cc;
+}
+
+.quote-request-modal__summary-meta {
+  color: #c8c9cc;
+}
+
+.quote-request-modal__properties {
+  margin: 0.6rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.quote-request-modal__property {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #c8c9cc;
+}
+
+.quote-request-modal__property a {
+  color: #6ec7b3;
+}
+
+.quote-request-modal__form {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.quote-request-modal__actions {
+  margin-top: 0.4rem;
+}
+
+.quote-request-modal__actions .button {
+  inline-size: 100%;
+}
+
+.quote-request-modal__error {
+  margin: 0;
+}
+
+.quote-request-modal__success {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media screen and (max-width: 749px) {
+  .quote-request-modal__inner {
+    padding: 1.6rem;
+    padding-top: 2.8rem;
+  }
+
+  .quote-request-modal__summary-layout {
+    grid-template-columns: 56px 1fr;
+    gap: 0.8rem;
+  }
+
+  .quote-request-modal__summary-image-wrap {
+    inline-size: 56px;
+    block-size: 56px;
+  }
+}

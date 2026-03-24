@@ -2,6 +2,15 @@
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'quote-request.js' | asset_url }}" defer="defer"></script>
+
+{%- assign has_quotable_items = false -%}
+{%- for item in cart.items -%}
+  {%- if item.product.metafields.custom.quotable.value -%}
+    {%- assign has_quotable_items = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -105,21 +114,25 @@
               </div>
             {%- else -%}
               <div class="cart__ctas" {{ block.shopify_attributes }}>
-                <button
-                  type="submit"
-                  id="checkout"
-                  class="cart__checkout-button button"
-                  name="checkout"
-                  {% if cart == empty %}
-                    disabled
-                  {% endif %}
-                  form="cart"
-                >
-                  {{ 'sections.cart.checkout' | t }}
-                </button>
+                {%- if has_quotable_items -%}
+                  {%- render 'cart-quote-request', form_id: 'page' -%}
+                {%- else -%}
+                  <button
+                    type="submit"
+                    id="checkout"
+                    class="cart__checkout-button button"
+                    name="checkout"
+                    {% if cart == empty %}
+                      disabled
+                    {% endif %}
+                    form="cart"
+                  >
+                    {{ 'sections.cart.checkout' | t }}
+                  </button>
+                {%- endif -%}
               </div>
 
-              {%- if additional_checkout_buttons -%}
+              {%- if additional_checkout_buttons and has_quotable_items == false -%}
                 <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
                   {{ content_for_additional_checkout_buttons }}
                 </div>

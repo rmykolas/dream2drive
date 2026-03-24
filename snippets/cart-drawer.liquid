@@ -10,6 +10,15 @@
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quote-request.js' | asset_url }}" defer="defer"></script>
+
+{%- assign has_quotable_items = false -%}
+{%- for item in cart.items -%}
+  {%- if item.product.metafields.custom.quotable.value -%}
+    {%- assign has_quotable_items = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
 
 <style>
   .drawer {
@@ -562,18 +571,22 @@
         <!-- CTAs -->
 
         <div class="cart__ctas" {{ block.shopify_attributes }}>
-          <button
-            type="submit"
-            id="CartDrawer-Checkout"
-            class="cart__checkout-button button"
-            name="checkout"
-            form="CartDrawer-Form"
-            {% if cart == empty %}
-              disabled
-            {% endif %}
-          >
-            {{ 'sections.cart.checkout' | t }}
-          </button>
+          {%- if has_quotable_items -%}
+            {%- render 'cart-quote-request', form_id: 'drawer' -%}
+          {%- else -%}
+            <button
+              type="submit"
+              id="CartDrawer-Checkout"
+              class="cart__checkout-button button"
+              name="checkout"
+              form="CartDrawer-Form"
+              {% if cart == empty %}
+                disabled
+              {% endif %}
+            >
+              {{ 'sections.cart.checkout' | t }}
+            </button>
+          {%- endif -%}
         </div>
       </div>
     </div>

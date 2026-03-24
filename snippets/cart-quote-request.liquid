@@ -1,0 +1,196 @@
+{% comment %}
+  Renders quote request CTA and modal for cart contexts.
+
+  Accepts:
+  - form_id: {String} unique id suffix for modal/form
+{% endcomment %}
+
+{%- assign quote_form_id = form_id | default: 'cart' -%}
+{%- capture quote_summary -%}
+{%- for item in cart.items -%}
+- {{ item.product.title | strip }}{% if item.variant.title != 'Default Title' %} ({{ item.variant.title | strip }}){% endif %} x {{ item.quantity }}
+  URL: {{ shop.url }}{{ item.url }}
+  {%- if item.properties.size > 0 -%}
+  Properties:
+  {%- for property in item.properties -%}
+    {%- assign property_first_char = property.first | slice: 0 -%}
+    {%- if property.last != blank and property_first_char != '_' -%}
+    - {{ property.first }}: {{ property.last }}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- endcapture -%}
+
+<button
+  type="button"
+  class="cart__checkout-button button"
+  data-quote-open
+  data-quote-target="QuoteRequestModal-{{ quote_form_id }}"
+>
+  REQUEST A QUOTE
+</button>
+
+<dialog
+  id="QuoteRequestModal-{{ quote_form_id }}"
+  class="bundle-variations__dialog quote-request-modal"
+  aria-labelledby="QuoteRequestTitle-{{ quote_form_id }}"
+  data-quote-modal
+>
+  <div class="bundle-variations__dialog-inner feature-content quote-request-modal__inner">
+    <button
+      type="button"
+      class="bundle-variations__dialog-close link focus-inset"
+      data-quote-close
+      aria-label="{{ 'accessibility.close' | t }}"
+    >
+      <span class="svg-wrapper">
+        {{- 'icon-close.svg' | inline_asset_content -}}
+      </span>
+    </button>
+
+    <div data-quote-form-state>
+      <h2 id="QuoteRequestTitle-{{ quote_form_id }}" class="bundle-variations__info-heading">
+        REQUEST A QUOTE
+      </h2>
+      <p class="quote-request-modal__intro">Submit your details and we will contact you with a quote.</p>
+      <div class="quote-request-modal__summary">
+        <h3 class="quote-request-modal__summary-title">QUOTE SUMMARY</h3>
+        <ul class="quote-request-modal__summary-list" role="list">
+          {%- for item in cart.items -%}
+            <li class="quote-request-modal__summary-item">
+              <div class="quote-request-modal__summary-layout">
+                <div class="quote-request-modal__summary-image-wrap">
+                  {%- if item.image -%}
+                    <img
+                      class="quote-request-modal__summary-image"
+                      src="{{ item.image | image_url: width: 140 }}"
+                      alt="{{ item.product.title | escape }}"
+                      loading="lazy"
+                      width="70"
+                      height="{{ 70 | divided_by: item.image.aspect_ratio | ceil }}"
+                    >
+                  {%- endif -%}
+                </div>
+                <div class="quote-request-modal__summary-content">
+                  <p class="quote-request-modal__summary-line">
+                    <span>{{ item.product.title | escape }}</span>
+                  </p>
+                  <p class="quote-request-modal__summary-meta">Qty: {{ item.quantity }}</p>
+                  <ul class="quote-request-modal__properties" role="list">
+                    {%- if item.variant.title != 'Default Title' -%}
+                      <li class="quote-request-modal__property">
+                        <span>Variant:</span>
+                        <span>{{ item.variant.title | escape }}</span>
+                      </li>
+                    {%- endif -%}
+
+                    {%- for option in item.options_with_values -%}
+                      <li class="quote-request-modal__property">
+                        <span>{{ option.name | escape }}:</span>
+                        <span>{{ option.value | escape }}</span>
+                      </li>
+                    {%- endfor -%}
+
+                    {%- for property in item.properties -%}
+                      {%- if property.last != blank -%}
+                        <li class="quote-request-modal__property">
+                          <span>{{ property.first | remove_first: '_' | escape }}:</span>
+                          {%- if property.last contains '/uploads/' -%}
+                            <a
+                              href="{{ property.last }}"
+                              class="link"
+                              target="_blank"
+                              aria-describedby="a11y-new-window-message"
+                            >
+                              {{ property.last | split: '/' | last | escape }}
+                            </a>
+                          {%- else -%}
+                            <span>{{ property.last | escape }}</span>
+                          {%- endif -%}
+                        </li>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <form
+        action="{{ routes.root_url }}contact#contact_form"
+        method="post"
+        class="quote-request-modal__form"
+        data-quote-form
+      >
+        <input type="hidden" name="form_type" value="contact">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="contact[subject]" value="Quote request">
+        <textarea class="hidden" name="contact[cart_summary]" rows="1">{{ quote_summary | strip }}</textarea>
+
+        <div class="field">
+          <input
+            class="field__input"
+            type="text"
+            id="QuoteRequestName-{{ quote_form_id }}"
+            name="contact[name]"
+            autocomplete="name"
+            required
+            placeholder=" "
+          >
+          <label class="field__label" for="QuoteRequestName-{{ quote_form_id }}">Name</label>
+        </div>
+
+        <div class="field">
+          <input
+            class="field__input"
+            type="email"
+            id="QuoteRequestEmail-{{ quote_form_id }}"
+            name="contact[email]"
+            autocomplete="email"
+            required
+            placeholder=" "
+          >
+          <label class="field__label" for="QuoteRequestEmail-{{ quote_form_id }}">Email</label>
+        </div>
+
+        <div class="field">
+          <input
+            class="field__input"
+            type="tel"
+            id="QuoteRequestPhone-{{ quote_form_id }}"
+            name="contact[phone]"
+            autocomplete="tel"
+            placeholder=" "
+          >
+          <label class="field__label" for="QuoteRequestPhone-{{ quote_form_id }}">Phone (optional)</label>
+        </div>
+
+        <div class="field">
+          <textarea
+            class="text-area field__input"
+            id="QuoteRequestNotes-{{ quote_form_id }}"
+            name="contact[body]"
+            rows="4"
+            placeholder=" "
+          ></textarea>
+          <label class="field__label" for="QuoteRequestNotes-{{ quote_form_id }}">Notes (optional)</label>
+        </div>
+
+        <p class="quote-request-modal__error form__message hidden" data-quote-error role="alert"></p>
+
+        <div class="quote-request-modal__actions">
+          <button type="submit" class="button" data-quote-submit>SUBMIT REQUEST</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="quote-request-modal__success hidden" data-quote-success tabindex="-1">
+      <h2 class="bundle-variations__info-heading">REQUEST SENT</h2>
+      <p>Your quote request has been sent successfully.</p>
+      <p>Our team will reach out shortly.</p>
+    </div>
+  </div>
+</dialog>
