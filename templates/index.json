@@ -44,13 +44,13 @@
               "conspit-330-gt-wheel",
               "conspit-290-gp-formula-racing-wheel"
             ],
-            "position_top_desktop": 0,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 261,
-            "position_left_desktop": 279,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 162,
+            "position_top_desktop": 24,
+            "position_right_desktop": 24,
+            "position_bottom_desktop": 260,
+            "position_left_desktop": 280,
+            "position_top_mobile": 24,
+            "position_right_mobile": 24,
+            "position_bottom_mobile": 160,
             "position_left_mobile": 156
           }
         },
@@ -63,14 +63,14 @@
               "tr80s-racing-simulator",
               "tr120s-v2-racing-simulator-with-seat-sliders-kit"
             ],
-            "position_top_desktop": 0,
+            "position_top_desktop": 24,
             "position_right_desktop": 72,
-            "position_bottom_desktop": 69,
-            "position_left_desktop": 159,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 81,
-            "position_left_mobile": 66
+            "position_bottom_desktop": 68,
+            "position_left_desktop": 160,
+            "position_top_mobile": 24,
+            "position_right_mobile": 24,
+            "position_bottom_mobile": 80,
+            "position_left_mobile": 64
           }
         },
         "hotspot_BRM7Mp": {
@@ -82,14 +82,14 @@
               "gt-pro-fixed-fiberglass",
               "tr-series-fibreglass-gt-sim-racing-seat-high-gloss-black"
             ],
-            "position_top_desktop": 267,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 162,
-            "position_top_mobile": 162,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 0,
-            "position_left_mobile": 69
+            "position_top_desktop": 268,
+            "position_right_desktop": 24,
+            "position_bottom_desktop": 24,
+            "position_left_desktop": 160,
+            "position_top_mobile": 160,
+            "position_right_mobile": 24,
+            "position_bottom_mobile": 24,
+            "position_left_mobile": 68
           }
         },
         "hotspot_4GRY3D": {
@@ -101,14 +101,14 @@
               "cockpit-mounted-triple-monitor-mount",
               "freestanding-triple-monitor-stand"
             ],
-            "position_top_desktop": 159,
-            "position_right_desktop": 231,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 0,
-            "position_top_mobile": 123,
-            "position_right_mobile": 90,
-            "position_bottom_mobile": 0,
-            "position_left_mobile": 0
+            "position_top_desktop": 160,
+            "position_right_desktop": 232,
+            "position_bottom_desktop": 24,
+            "position_left_desktop": 24,
+            "position_top_mobile": 124,
+            "position_right_mobile": 88,
+            "position_bottom_mobile": 24,
+            "position_left_mobile": 24
           }
         },
         "hotspot_wWf7qe": {
@@ -120,14 +120,14 @@
               "conspit-ares-wheelbase-10nm-18nm",
               "conspit-ares-platinum-20-nm-wheel-base"
             ],
-            "position_top_desktop": 255,
-            "position_right_desktop": 261,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 0,
-            "position_top_mobile": 162,
-            "position_right_mobile": 117,
-            "position_bottom_mobile": 0,
-            "position_left_mobile": 0
+            "position_top_desktop": 256,
+            "position_right_desktop": 260,
+            "position_bottom_desktop": 24,
+            "position_left_desktop": 24,
+            "position_top_mobile": 160,
+            "position_right_mobile": 116,
+            "position_bottom_mobile": 24,
+            "position_left_mobile": 24
           }
         },
         "hotspot_XhddRU": {
@@ -139,14 +139,14 @@
               "conspit-cpp-lite-pedals",
               "conspit-cpp-evo-pedals"
             ],
-            "position_top_desktop": 0,
+            "position_top_desktop": 24,
             "position_right_desktop": 204,
-            "position_bottom_desktop": 135,
-            "position_left_desktop": 0,
-            "position_top_mobile": 0,
-            "position_right_mobile": 87,
-            "position_bottom_mobile": 105,
-            "position_left_mobile": 0
+            "position_bottom_desktop": 136,
+            "position_left_desktop": 24,
+            "position_top_mobile": 24,
+            "position_right_mobile": 88,
+            "position_bottom_mobile": 104,
+            "position_left_mobile": 24
           }
         },
         "hotspot_pNMWTB": {
@@ -158,13 +158,13 @@
               "simagic-seq-h-shifter-ds-8x",
               "conspit-csd-dashboard-simhub-special-edition"
             ],
-            "position_top_desktop": 0,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 207,
-            "position_left_desktop": 279,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 141,
+            "position_top_desktop": 24,
+            "position_right_desktop": 24,
+            "position_bottom_desktop": 208,
+            "position_left_desktop": 280,
+            "position_top_mobile": 24,
+            "position_right_mobile": 24,
+            "position_bottom_mobile": 140,
             "position_left_mobile": 120
           }
         }
@@ -372,14 +372,14 @@
               "motorsport-gloves-freem-senso-22",
               "karting-gloves-freem-k-slight-24"
             ],
-            "position_top_desktop": 0,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 279,
-            "position_left_desktop": 213,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
+            "position_top_desktop": 24,
+            "position_right_desktop": 24,
+            "position_bottom_desktop": 280,
+            "position_left_desktop": 212,
+            "position_top_mobile": 24,
+            "position_right_mobile": 24,
             "position_bottom_mobile": 192,
-            "position_left_mobile": 66
+            "position_left_mobile": 64
           }
         },
         "hotspot_MDaB3Y": {
@@ -390,14 +390,14 @@
               "motorsport-shoes-s19",
               "karting-shoes-freem-sk-24"
             ],
-            "position_top_desktop": 0,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 42,
-            "position_left_desktop": 267,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 42,
-            "position_left_mobile": 135
+            "position_top_desktop": 24,
+            "position_right_desktop": 24,
+            "position_bottom_desktop": 40,
+            "position_left_desktop": 268,
+            "position_top_mobile": 24,
+            "position_right_mobile": 24,
+            "position_bottom_mobile": 40,
+            "position_left_mobile": 136
           }
         },
         "hotspot_mMzVWN": {
@@ -409,13 +409,13 @@
               "a20-future",
               "a20-plus"
             ],
-            "position_top_desktop": 210,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 279,
+            "position_top_desktop": 208,
+            "position_right_desktop": 24,
+            "position_bottom_desktop": 24,
+            "position_left_desktop": 280,
             "position_top_mobile": 120,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 147,
+            "position_right_mobile": 24,
+            "position_bottom_mobile": 148,
             "position_left_mobile": 120
           }
         },
@@ -428,14 +428,14 @@
               "sparco-stealth-rf-helmet-fia",
               "sparco-stealth-rf-carbon-8859-2024-helmet-fia"
             ],
-            "position_top_desktop": 102,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 279,
+            "position_top_desktop": 104,
+            "position_right_desktop": 24,
+            "position_bottom_desktop": 24,
+            "position_left_desktop": 280,
             "position_top_mobile": 60,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 147,
-            "position_left_mobile": 114
+            "position_right_mobile": 24,
+            "position_bottom_mobile": 148,
+            "position_left_mobile": 112
           }
         },
         "hotspot_kw3379": {
@@ -446,14 +446,14 @@
               "motorsport-underwear-balaclava-u25",
               "motorsport-balaclava-freem-u25"
             ],
-            "position_top_desktop": 102,
-            "position_right_desktop": 279,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 0,
-            "position_top_mobile": 69,
-            "position_right_mobile": 147,
-            "position_bottom_mobile": 147,
-            "position_left_mobile": 0
+            "position_top_desktop": 104,
+            "position_right_desktop": 280,
+            "position_bottom_desktop": 24,
+            "position_left_desktop": 24,
+            "position_top_mobile": 68,
+            "position_right_mobile": 148,
+            "position_bottom_mobile": 148,
+            "position_left_mobile": 24
           }
         },
         "hotspot_kP7Kif": {
@@ -465,14 +465,14 @@
               "karting-underwear-shirt-long-sleeves-freem",
               "motorsport-underwear-top-nomex-u21"
             ],
-            "position_top_desktop": 210,
-            "position_right_desktop": 279,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 0,
-            "position_top_mobile": 153,
-            "position_right_mobile": 102,
-            "position_bottom_mobile": 147,
-            "position_left_mobile": 0
+            "position_top_desktop": 208,
+            "position_right_desktop": 280,
+            "position_bottom_desktop": 24,
+            "position_left_desktop": 24,
+            "position_top_mobile": 152,
+            "position_right_mobile": 104,
+            "position_bottom_mobile": 148,
+            "position_left_mobile": 24
           }
         },
         "hotspot_MTU9pi": {
@@ -482,14 +482,14 @@
             "products": [
               "motorsport-underwear-bottom-u25-nomex"
             ],
-            "position_top_desktop": 0,
-            "position_right_desktop": 279,
-            "position_bottom_desktop": 279,
-            "position_left_desktop": 0,
-            "position_top_mobile": 0,
-            "position_right_mobile": 114,
-            "position_bottom_mobile": 147,
-            "position_left_mobile": 0
+            "position_top_desktop": 24,
+            "position_right_desktop": 280,
+            "position_bottom_desktop": 280,
+            "position_left_desktop": 24,
+            "position_top_mobile": 24,
+            "position_right_mobile": 112,
+            "position_bottom_mobile": 148,
+            "position_left_mobile": 24
           }
         },
         "hotspot_PLktkF": {
@@ -499,14 +499,14 @@
             "products": [
               "freem-nomex-socks-fia"
             ],
-            "position_top_desktop": 0,
-            "position_right_desktop": 279,
-            "position_bottom_desktop": 42,
-            "position_left_desktop": 0,
-            "position_top_mobile": 0,
-            "position_right_mobile": 114,
-            "position_bottom_mobile": 45,
-            "position_left_mobile": 0
+            "position_top_desktop": 24,
+            "position_right_desktop": 280,
+            "position_bottom_desktop": 40,
+            "position_left_desktop": 24,
+            "position_top_mobile": 24,
+            "position_right_mobile": 112,
+            "position_bottom_mobile": 44,
+            "position_left_mobile": 24
           }
         }
       },
