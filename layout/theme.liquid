@@ -390,6 +390,7 @@
         );
 
         function filterProducts(type) {
+          if (!simProductsBtn || !racingProductsBtn) return;
           // Remove active class from all buttons
           simProductsBtn.className =
             "px-[32px] py-[10px] text-[#282C37] font-semibold uppercase border-2 border-[#99D8CA] bg-transparent text-[17px]";
@@ -410,15 +411,19 @@
         }
 
         // Add event listeners for product filters
-        simProductsBtn.addEventListener("click", function (e) {
-          e.preventDefault();
-          filterProducts("sim");
-        });
+        if (simProductsBtn) {
+          simProductsBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            filterProducts("sim");
+          });
+        }
 
-        racingProductsBtn.addEventListener("click", function (e) {
-          e.preventDefault();
-          filterProducts("racing");
-        });
+        if (racingProductsBtn) {
+          racingProductsBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            filterProducts("racing");
+          });
+        }
 
         // FAQ Accordion functionality
         const faqItems = document.querySelectorAll(".faq-item");
@@ -462,25 +467,6 @@
           });
         });
 
-          // Remove active class from all buttons
-          simProductsBtn.className =
-            "px-[32px] py-[10px] text-[#282C37] font-semibold uppercase border-2 border-[#99D8CA] bg-transparent text-[17px]";
-          racingProductsBtn.className =
-            "px-[36px] py-[10px] text-[#282C37] font-semibold uppercase border-2 border-[#99D8CA] bg-transparent text-[17px]";
-
-          // Add active class to clicked button and show/hide containers
-          if (type === "sim") {
-            simProductsBtn.className =
-              "px-[32px] py-[10px] text-[#282C37] font-semibold uppercase bg-[#6EC7B3] text-[17px]";
-            simContainer.classList.remove("hidden");
-            racingContainer.classList.add("hidden");
-          } else if (type === "racing") {
-            racingProductsBtn.className =
-              "px-[36px] py-[10px] text-[#282C37] font-semibold uppercase bg-[#6EC7B3] text-[17px]";
-            racingContainer.classList.remove("hidden");
-            simContainer.classList.add("hidden");
-          }
-        }
       });
     </script>
     {% comment %} <script>
@@ -687,9 +673,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const qtyIncrease = document.getElementById("qty-increase");
 
   // Ensures consistent quantity tracking
-  let quantity = parseInt(qtyText.textContent) || 1;
+  let quantity = qtyText ? parseInt(qtyText.textContent) || 1 : 1;
 
   function updateQty() {
+    if (!qtyText) return;
     qtyText.textContent = quantity;
   }
 
@@ -740,6 +727,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const page1Btn = document.getElementById("page-1");
         const page2Btn = document.getElementById("page-2");
         const page3Btn = document.getElementById("page-3");
+
+        if (!prevBtn || !nextBtn || !page1Btn || !page2Btn || !page3Btn) return;
 
         let currentPage = 1; // Start on page 1 as it's active
         const articlesPerPage = 8;

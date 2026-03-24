@@ -1,6 +1,17 @@
 (() => {
   if (window.__quoteRequestInitialized) return;
   window.__quoteRequestInitialized = true;
+  const DEBUG = true;
+
+  function debugInfo(...args) {
+    if (!DEBUG) return;
+    console.info('[quote-request]', ...args);
+  }
+
+  function debugError(...args) {
+    if (!DEBUG) return;
+    console.error('[quote-request]', ...args);
+  }
 
   const SELECTORS = {
     openButton: '[data-quote-open]',
@@ -38,6 +49,7 @@
   }
 
   async function clearCartAndRefreshUI() {
+    debugInfo('Clearing cart...');
     const clearResponse = await fetch(window.routes?.cart_clear_url || '/cart/clear.js', {
       method: 'POST',
       headers: {
@@ -48,8 +60,20 @@
     });
 
     if (!clearResponse.ok) {
+      let clearBody = '';
+      try {
+        clearBody = await clearResponse.text();
+      } catch (error) {
+        debugError('Unable to read cart clear response body', error);
+      }
+      debugError('Cart clear failed', {
+        status: clearResponse.status,
+        statusText: clearResponse.statusText,
+        body: clearBody,
+      });
       throw new Error('Quote sent, but cart could not be cleared. Please refresh your cart.');
     }
+    debugInfo('Cart cleared successfully.');
 
     const cartDrawer = document.querySelector('cart-drawer');
     cartDrawer?.classList.add('is-empty');
@@ -69,6 +93,10 @@
 
     setError(form, '');
     submitButton?.setAttribute('disabled', 'disabled');
+    debugInfo('Submit started', {
+      action: form.action,
+      modalId: modal?.id || null,
+    });
 
     try {
       const formData = new FormData(form);
@@ -76,12 +104,36 @@
       const notes = formData.get('contact[body]');
       const combinedBody = [notes, '', '--- Cart summary ---', summary].filter(Boolean).join('\n');
       formData.set('contact[body]', combinedBody);
+      debugInfo('Prepared payload', {
+        name: formData.get('contact[name]'),
+        email: formData.get('contact[email]'),
+        hasPhone: Boolean(formData.get('contact[phone]')),
+        bodyLength: String(formData.get('contact[body]') || '').length,
+      });
+
       const response = await fetch(form.action, {
         method: 'POST',
         body: formData,
       });
+      debugInfo('Contact submit response', {
+        status: response.status,
+        ok: response.ok,
+        redirected: response.redirected,
+        finalUrl: response.url,
+      });
 
       if (!response.ok) {
+        let responseBody = '';
+        try {
+          responseBody = await response.text();
+        } catch (error) {
+          debugError('Unable to read contact response body', error);
+        }
+        debugError('Contact submit failed', {
+          status: response.status,
+          statusText: response.statusText,
+          body: responseBody,
+        });
         throw new Error('Failed to send quote request.');
       }
 
@@ -90,10 +142,13 @@
       formState?.classList.add('hidden');
       successState?.classList.remove('hidden');
       successState?.focus();
+      debugInfo('Quote flow completed successfully.');
     } catch (error) {
+      debugError('Quote flow failed', error);
       setError(form, error.message || 'Unable to submit quote request. Please try again.');
     } finally {
       submitButton?.removeAttribute('disabled');
+      debugInfo('Submit finalized.');
     }
   }
 
@@ -129,7 +184,11 @@
     const form = event.target.closest(SELECTORS.form);
     if (!form) return;
     event.preventDefault();
-    onSubmit(form);
+    debugInfo('Intercepted form submit event.');
+    onSubmit(form).catch((error) => {
+      debugError('Unhandled submit error', error);
+      setError(form, 'Unable to submit quote request. Please try again.');
+    });
   });
 
   document.addEventListener('keydown', (event) => {
