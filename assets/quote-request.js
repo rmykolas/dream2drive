@@ -17,7 +17,7 @@
     openButton: '[data-quote-open]',
     closeButton: '[data-quote-close]',
     modal: '[data-quote-modal]',
-    form: '[data-quote-form]',
+    form: '.quote-request-modal__form',
     formState: '[data-quote-form-state]',
     successState: '[data-quote-success]',
     error: '[data-quote-error]',
