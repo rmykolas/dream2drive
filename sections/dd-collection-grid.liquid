@@ -1,6 +1,16 @@
 <!-- Header Section -->
 <div class="bg-[#1C2127] py-[64px] px-[16px]">
-  <div class="max-w-[1280px] mx-auto">
+  <div class="max-w-[1280px] mx-auto text-center">
+    <a
+      onclick="event.preventDefault(); if (window.history.length > 1) { window.history.back(); } else { window.location.href='{{ routes.root_url }}'; }"
+      href="{{ routes.root_url }}"
+      class="inline-flex items-center gap-[8px] text-[14px] font-medium uppercase tracking-[0.02em] text-[#C8C9CC] mb-[20px]"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 13" height="13" width="6" class="rotate-180">
+        <path stroke-width="1.5" stroke="#C8C9CC" d="M0.624023 0.416016L4.25422 5.86132C4.47816 6.19722 4.47816 6.63482 4.25422 6.97072L0.624023 12.416"/>
+      </svg>
+      <span>Back</span>
+    </a>
     <!-- Breadcrumb -->
     <div class="flex items-center justify-center gap-[8px] mb-[24px]">
       <a
