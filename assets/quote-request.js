@@ -2,6 +2,7 @@
   if (window.__quoteRequestInitialized) return;
   window.__quoteRequestInitialized = true;
   const DEBUG = true;
+  const SUBMIT_IFRAME_NAME = 'quote-request-submit-frame';
 
   function debugInfo(...args) {
     if (!DEBUG) return;
@@ -79,6 +80,62 @@
     return getCaptchaValue(form);
   }
 
+  function ensureSubmitIframe() {
+    let iframe = document.querySelector(`iframe[name="${SUBMIT_IFRAME_NAME}"]`);
+    if (iframe) return iframe;
+
+    iframe = document.createElement('iframe');
+    iframe.name = SUBMIT_IFRAME_NAME;
+    iframe.setAttribute('aria-hidden', 'true');
+    iframe.tabIndex = -1;
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    return iframe;
+  }
+
+  function submitThroughIframe(form) {
+    return new Promise((resolve, reject) => {
+      const iframe = ensureSubmitIframe();
+      const timeoutId = setTimeout(() => {
+        reject(new Error('Quote request timed out. Please try again.'));
+      }, 15000);
+
+      const previousTarget = form.getAttribute('target');
+      form.setAttribute('target', SUBMIT_IFRAME_NAME);
+
+      const onLoad = () => {
+        clearTimeout(timeoutId);
+        try {
+          const href = iframe.contentWindow?.location?.href || '';
+          debugInfo('Iframe submit completed', { href });
+
+          if (href.includes('contact_posted=true')) {
+            resolve();
+            return;
+          }
+
+          reject(new Error('Failed to send quote request.'));
+        } catch (error) {
+          reject(new Error('Failed to verify quote request result.'));
+        } finally {
+          if (previousTarget) {
+            form.setAttribute('target', previousTarget);
+          } else {
+            form.removeAttribute('target');
+          }
+        }
+      };
+
+      iframe.addEventListener('load', onLoad, { once: true });
+
+      if (typeof form.requestSubmit === 'function') {
+        form.requestSubmit();
+      } else {
+        form.submit();
+      }
+    });
+  }
+
   async function clearCartAndRefreshUI() {
     debugInfo('Clearing cart...');
     const clearResponse = await fetch(window.routes?.cart_clear_url || '/cart/clear.js', {
@@ -131,63 +188,28 @@
 
     try {
       await ensureCaptchaReady(form);
-
-      const captchaValue = await waitForCaptchaToken(form);
+      const captchaValue = await waitForCaptchaToken(form, 1200);
       debugInfo('Captcha token status', {
         present: Boolean(captchaValue),
         length: captchaValue.length,
       });
 
-      if (window.Shopify?.captcha?.protect && !captchaValue) {
-        throw new Error('Captcha validation did not initialize. Please wait a moment and try again.');
-      }
-
       const formData = new FormData(form);
       const summary = formData.get('contact[cart_summary]');
       const notes = formData.get('contact[body]');
       const combinedBody = [notes, '', '--- Cart summary ---', summary].filter(Boolean).join('\n');
-      formData.set('contact[body]', combinedBody);
-      formData.delete('contact[cart_summary]');
-      const encodedBody = new URLSearchParams();
-      for (const [key, value] of formData.entries()) {
-        encodedBody.append(key, value);
+      const bodyInput = form.querySelector('[name="contact[body]"]');
+      if (bodyInput) {
+        bodyInput.value = combinedBody;
       }
       debugInfo('Prepared payload', {
         name: formData.get('contact[name]'),
         email: formData.get('contact[email]'),
         hasPhone: Boolean(formData.get('contact[phone]')),
-        bodyLength: String(formData.get('contact[body]') || '').length,
+        bodyLength: String(combinedBody || '').length,
       });
 
-      const response = await fetch(form.action, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          Accept: 'text/html',
-        },
-        body: encodedBody.toString(),
-      });
-      debugInfo('Contact submit response', {
-        status: response.status,
-        ok: response.ok,
-        redirected: response.redirected,
-        finalUrl: response.url,
-      });
-
-      if (!response.ok) {
-        let responseBody = '';
-        try {
-          responseBody = await response.text();
-        } catch (error) {
-          debugError('Unable to read contact response body', error);
-        }
-        debugError('Contact submit failed', {
-          status: response.status,
-          statusText: response.statusText,
-          body: responseBody,
-        });
-        throw new Error('Failed to send quote request.');
-      }
+      await submitThroughIframe(form);
 
       await clearCartAndRefreshUI();
 
@@ -230,19 +252,6 @@
     if (!modal) return;
     const isDialogBackdropClick = event.target === modal;
     if (isDialogBackdropClick) closeModal(modal);
-  });
-
-  document.addEventListener('submit', (event) => {
-    const form = event.target.closest(SELECTORS.form);
-    if (!form) return;
-    event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation();
-    debugInfo('Intercepted form submit event.');
-    onSubmit(form).catch((error) => {
-      debugError('Unhandled submit error', error);
-      setError(form, 'Unable to submit quote request. Please try again.');
-    });
   });
 
   document.addEventListener('click', (event) => {
