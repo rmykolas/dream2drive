@@ -127,7 +127,7 @@
       >
         <input type="hidden" name="form_type" value="contact">
         <input type="hidden" name="utf8" value="✓">
-        <input type="hidden" name="contact[subject]" value="Quote request">
+        <input type="hidden" name="contact[tags]" value="quote-request">
         <textarea class="hidden" name="contact[cart_summary]" rows="1">{{ quote_summary | strip }}</textarea>
 
         <div class="field">
@@ -182,7 +182,7 @@
         <p class="quote-request-modal__error form__message hidden" data-quote-error role="alert"></p>
 
         <div class="quote-request-modal__actions">
-          <button type="submit" class="button" data-quote-submit>SUBMIT REQUEST</button>
+          <button type="button" class="button" data-quote-submit>SUBMIT REQUEST</button>
         </div>
       </form>
     </div>

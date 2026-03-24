@@ -104,6 +104,11 @@
       const notes = formData.get('contact[body]');
       const combinedBody = [notes, '', '--- Cart summary ---', summary].filter(Boolean).join('\n');
       formData.set('contact[body]', combinedBody);
+      formData.delete('contact[cart_summary]');
+      const encodedBody = new URLSearchParams();
+      for (const [key, value] of formData.entries()) {
+        encodedBody.append(key, value);
+      }
       debugInfo('Prepared payload', {
         name: formData.get('contact[name]'),
         email: formData.get('contact[email]'),
@@ -113,7 +118,11 @@
 
       const response = await fetch(form.action, {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          Accept: 'text/html',
+        },
+        body: encodedBody.toString(),
       });
       debugInfo('Contact submit response', {
         status: response.status,
@@ -184,9 +193,26 @@
     const form = event.target.closest(SELECTORS.form);
     if (!form) return;
     event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
     debugInfo('Intercepted form submit event.');
     onSubmit(form).catch((error) => {
       debugError('Unhandled submit error', error);
+      setError(form, 'Unable to submit quote request. Please try again.');
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    const submitButton = event.target.closest(SELECTORS.submit);
+    if (!submitButton) return;
+    const form = submitButton.closest(SELECTORS.form);
+    if (!form) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (!form.reportValidity()) return;
+    debugInfo('Submit button click intercepted.');
+    onSubmit(form).catch((error) => {
+      debugError('Unhandled submit error from button click', error);
       setError(form, 'Unable to submit quote request. Please try again.');
     });
   });
