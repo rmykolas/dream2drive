@@ -48,6 +48,37 @@
     errorEl.classList.toggle('hidden', !message);
   }
 
+  function getCaptchaValue(form) {
+    const captchaInput = form.querySelector('[name="h-captcha-response"]');
+    return captchaInput ? String(captchaInput.value || '').trim() : '';
+  }
+
+  function ensureCaptchaReady(form) {
+    return new Promise((resolve) => {
+      if (!window.Shopify?.captcha?.protect) {
+        debugInfo('Shopify captcha helper not available; continuing without explicit protect.');
+        resolve();
+        return;
+      }
+
+      debugInfo('Wiring Shopify captcha protection.');
+      window.Shopify.captcha.protect(form, () => {
+        debugInfo('Shopify captcha protection callback fired.');
+        resolve();
+      });
+    });
+  }
+
+  async function waitForCaptchaToken(form, timeoutMs = 2000) {
+    const start = Date.now();
+    while (Date.now() - start < timeoutMs) {
+      const token = getCaptchaValue(form);
+      if (token) return token;
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+    return getCaptchaValue(form);
+  }
+
   async function clearCartAndRefreshUI() {
     debugInfo('Clearing cart...');
     const clearResponse = await fetch(window.routes?.cart_clear_url || '/cart/clear.js', {
@@ -99,6 +130,18 @@
     });
 
     try {
+      await ensureCaptchaReady(form);
+
+      const captchaValue = await waitForCaptchaToken(form);
+      debugInfo('Captcha token status', {
+        present: Boolean(captchaValue),
+        length: captchaValue.length,
+      });
+
+      if (window.Shopify?.captcha?.protect && !captchaValue) {
+        throw new Error('Captcha validation did not initialize. Please wait a moment and try again.');
+      }
+
       const formData = new FormData(form);
       const summary = formData.get('contact[cart_summary]');
       const notes = formData.get('contact[body]');

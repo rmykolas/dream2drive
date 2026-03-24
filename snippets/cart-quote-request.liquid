@@ -120,7 +120,11 @@
         </ul>
       </div>
 
-      {%- form 'contact', id: quote_form_dom_id, class: 'quote-request-modal__form' -%}
+      {%- form 'contact',
+        id: quote_form_dom_id,
+        class: 'quote-request-modal__form',
+        data-shopify-captcha: 'true'
+      -%}
         <input type="hidden" name="contact[tags]" value="quote-request">
         <textarea class="hidden" name="contact[cart_summary]" rows="1">{{ quote_summary | strip }}</textarea>
 
