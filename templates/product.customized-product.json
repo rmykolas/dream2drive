@@ -27,7 +27,7 @@
           "type": "custom_field",
           "settings": {
             "field_type": "text",
-            "field_name": "Add your comments",
+            "field_name": "Tell your vision or comments",
             "required": true
           }
         },
@@ -35,16 +35,16 @@
           "type": "custom_field",
           "settings": {
             "field_type": "image",
-            "field_name": "Add your logo",
-            "required": true
+            "field_name": "Add your vector logos (PDF/CDR files)",
+            "required": false
           }
         },
         "custom_field_tLNjtt": {
           "type": "custom_field",
           "settings": {
             "field_type": "image",
-            "field_name": "Add your dimensions sheet",
-            "required": true
+            "field_name": "Add your fulfilled dimensions file/photo",
+            "required": false
           }
         },
         "product_bundle_variations_QA4hCd": {
