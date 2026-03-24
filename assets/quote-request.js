@@ -38,17 +38,17 @@
   }
 
   async function clearCartAndRefreshUI() {
-    await fetch(window.routes?.cart_clear_url || '/cart/clear.js', {
+    const clearResponse = await fetch(window.routes?.cart_clear_url || '/cart/clear.js', {
       method: 'POST',
       headers: {
+        'Content-Type': 'application/json',
         Accept: 'application/json',
       },
+      body: '{}',
     });
 
-    if (window.publish && window.PUB_SUB_EVENTS?.cartUpdate) {
-      window.publish(window.PUB_SUB_EVENTS.cartUpdate, {
-        source: 'quote-request',
-      });
+    if (!clearResponse.ok) {
+      throw new Error('Quote sent, but cart could not be cleared. Please refresh your cart.');
     }
 
     const cartDrawer = document.querySelector('cart-drawer');
@@ -72,12 +72,13 @@
 
     try {
       const formData = new FormData(form);
+      const summary = formData.get('contact[cart_summary]');
+      const notes = formData.get('contact[body]');
+      const combinedBody = [notes, '', '--- Cart summary ---', summary].filter(Boolean).join('\n');
+      formData.set('contact[body]', combinedBody);
       const response = await fetch(form.action, {
         method: 'POST',
         body: formData,
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-        },
       });
 
       if (!response.ok) {
