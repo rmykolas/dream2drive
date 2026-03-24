@@ -663,6 +663,7 @@
                                   {%- if linked_product != blank -%}
                                     <a
                                       href="{{ linked_product.url }}"
+                                      target="_blank"
                                       class="bundle-variations__dialog-link px-[30px] py-[18.5px] text-[17px] font-medium leading-[100%] tracking-[-0.02em] uppercase flex items-center w-fit bg-[#66c2a4] gap-[16px] mt-[20px] hover:bg-[#B6E3D9]"
                                     >
                                       {{ 'products.product.bundle_variations_view_product' | t }}
@@ -763,6 +764,16 @@
                   has_file_upload: section_has_file_upload,
                   has_required_custom_field: section_has_required_custom_field
                 -%}
+                {%- assign instruction_manual = product.metafields.custom.instruction_manual.value -%}
+                {%- if instruction_manual != blank -%}
+                  <a
+                    href="{{ instruction_manual.url }}"
+                    download
+                    class="text-white bg-transparent px-[30px] py-[18px] text-[17px] font-semibold leading-[100%] tracking-[-0.01em] uppercase flex items-center w-fit gap-[16px] mt-[20px] border border-white transition-colors duration-200 ease-in-out hover:bg-[#6EC7B3] hover:text-[#282C37]"
+                  >
+                    INSTRUCTION MANUAL
+                  </a>
+                {%- endif -%}
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">

@@ -1774,6 +1774,12 @@ a.product__text {
 .bundle-variations__option-wrapper {
   position: relative;
   width: calc(50% - 4px);
+  border: 2px solid transparent;
+  transition: border-color 150ms ease;
+}
+
+.bundle-variations__option-wrapper:has(.bundle-variations__option--selected) {
+  border-color: #6EC7B3;
 }
 
 .bundle-variations__option {

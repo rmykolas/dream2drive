@@ -1,14 +1,25 @@
 <section
   class="py-[80px] px-[16px] md:px-[32px] bg-[#ECECEC] font-roboto-condensed"
 >
-  <div class="max-w-[1280px] mx-auto">
+  <div class="max-w-[1280px] mx-auto text-center">
+    <a
+      href="{{ routes.root_url }}"
+      class="inline-flex items-center gap-[8px] text-[14px] font-medium uppercase tracking-[0.02em] text-[#282C37] mb-[20px]"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 13" height="13" width="6" class="rotate-180">
+        <path stroke-width="1.5" stroke="#282C37" d="M0.624023 0.416016L4.25422 5.86132C4.47816 6.19722 4.47816 6.63482 4.25422 6.97072L0.624023 12.416"/>
+      </svg>
+      <span>Back</span>
+    </a>
+
     <!-- Section Title -->
     <h2
       class="text-[52px] md:text-[60px] font-medium text-[#0F0F0F] text-center mb-[40px] md:mb-[80px] leading-[100%] tracking-[-0.01em] uppercase"
     >
       {{ section.settings.title }}
     </h2>
-
+  </div>
+  <div class="max-w-[1280px] mx-auto">
     <div class="flex flex-wrap max-lg:justify-center gap-[16px]">
       {% for block in section.blocks %}
         <a
