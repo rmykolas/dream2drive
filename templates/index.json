@@ -199,174 +199,6 @@
         "main_image": "shopify://shop_images/simconfigurator_landing.png"
       }
     },
-    "dd_product_categories_FzBLXd": {
-      "type": "dd-product-categories",
-      "blocks": {
-        "racing_product_jKLARj": {
-          "type": "racing_product",
-          "settings": {
-            "product": "",
-            "title": "CLOTHES AND ACCESSORIES",
-            "image": "shopify://shop_images/A20_individual.png",
-            "hover_image": "shopify://shop_images/sparco_bag_2.png",
-            "link": "shopify://pages/clothes-and-accessories"
-          }
-        },
-        "racing_product_wR4FDY": {
-          "type": "racing_product",
-          "disabled": true,
-          "settings": {
-            "product": "",
-            "title": "MOTORSPORT PARTS",
-            "image": "shopify://shop_images/c574d9a2266ba18edd903b72968eef786acd0a89.webp",
-            "hover_image": "shopify://shop_images/c574d9a2266ba18edd903b72968eef786acd0a89.webp",
-            "link": "shopify://pages/motorsport"
-          }
-        },
-        "racing_product_TBbxPk": {
-          "type": "racing_product",
-          "settings": {
-            "product": "",
-            "title": "KART CHASSIS",
-            "image": "shopify://shop_images/FK-DD2_3_ee61f19e-3f95-4232-a9b8-946e71461364.png",
-            "hover_image": "shopify://shop_images/FKMK-9530E3_3_copy.png",
-            "link": "shopify://collections/complete-chassis"
-          }
-        },
-        "racing_product_mVwHaN": {
-          "type": "racing_product",
-          "settings": {
-            "product": "",
-            "title": "DRIVING EXPERIENCE",
-            "image": "shopify://shop_images/493318316_1279839144149493_2678679558196999549_n_1.jpg",
-            "hover_image": "shopify://shop_images/493318316_1279839144149493_2678679558196999549_n_1.jpg",
-            "link": "shopify://collections/driving-experience"
-          }
-        },
-        "sim_product_adKywN": {
-          "type": "sim_product",
-          "settings": {
-            "product": "",
-            "title": "Racing bundles",
-            "image": "shopify://shop_images/bundles-pro.png",
-            "hover_image": "shopify://shop_images/bundles-pro.png",
-            "link": "shopify://collections/bundles"
-          }
-        },
-        "sim_product_6CMPP7": {
-          "type": "sim_product",
-          "settings": {
-            "product": "",
-            "title": "FRAMES AND COCKPITS",
-            "image": "shopify://shop_images/Copy_of_TR120S-BLK_OA-PF-NS_01.png",
-            "hover_image": "shopify://shop_images/TR120S-BLKe02-min_1080x_0bdee62b-08a5-42b8-996e-ff3b8fc92564.webp",
-            "link": "shopify://collections/simulator-frames-and-cockipts"
-          }
-        },
-        "sim_product_4X3bz3": {
-          "type": "sim_product",
-          "settings": {
-            "product": "",
-            "title": "MONITOR MOUNTS",
-            "image": "shopify://shop_images/MS-CM-SIN-TR2_01_1080x_fd3807d6-f1b8-4fcb-ad16-8b671d0cb4eb.webp",
-            "hover_image": "shopify://shop_images/TRR077_FrontLeft01_900x_1.webp",
-            "link": "shopify://collections/monitor-stands"
-          }
-        },
-        "sim_product_JHcA4n": {
-          "type": "sim_product",
-          "settings": {
-            "product": "",
-            "title": "Seats & Add-ons",
-            "image": "shopify://shop_images/Racing_seat_simulator_GT-PRO.webp",
-            "hover_image": "shopify://shop_images/SEAT-4.2_3b08fcd3-075d-42d8-bdea-1cca6530a3db.png",
-            "link": "shopify://collections/seats-seats-accessories"
-          }
-        },
-        "sim_product_dBf8AA": {
-          "type": "sim_product",
-          "settings": {
-            "product": "",
-            "title": "Wheelbase",
-            "image": "shopify://shop_images/SC3SPORT-1.webp",
-            "hover_image": "shopify://shop_images/20240821-141049.010-2copy.png",
-            "link": "shopify://collections/wheelbase"
-          }
-        },
-        "sim_product_CEGkiF": {
-          "type": "sim_product",
-          "settings": {
-            "product": "",
-            "title": "PEDALS",
-            "image": "shopify://shop_images/DSC0846_1_-1-1-square.png",
-            "hover_image": "shopify://shop_images/cpp-lite-3-3-1.png",
-            "link": "shopify://collections/pedals"
-          }
-        },
-        "sim_product_hVe89T": {
-          "type": "sim_product",
-          "settings": {
-            "product": "",
-            "title": "STEERING WHEELS",
-            "image": "shopify://shop_images/290GP010_1_copy.png",
-            "hover_image": "shopify://shop_images/1755679592262.webp",
-            "link": "shopify://collections/wheels"
-          }
-        },
-        "sim_product_rHkanC": {
-          "type": "sim_product",
-          "settings": {
-            "product": "",
-            "title": "ACCESSORIES",
-            "image": "shopify://shop_images/DS-8X_7_1080x_4e4dcfb7-424b-4f3a-a558-3fa15431762b.webp",
-            "hover_image": "shopify://shop_images/Conspit_CSD_dashboard.png",
-            "link": "shopify://collections/accessories"
-          }
-        },
-        "sim_product_EQHUAK": {
-          "type": "sim_product",
-          "settings": {
-            "product": "",
-            "title": "Motion & Haptic systems",
-            "image": "shopify://shop_images/motion_haptics.png",
-            "hover_image": "shopify://shop_images/QS-BT1_45_00.png",
-            "link": "shopify://collections/motion-haptic-systems"
-          }
-        },
-        "sim_product_RDYxcx": {
-          "type": "sim_product",
-          "settings": {
-            "product": "",
-            "title": "MONITORS & PC",
-            "image": "shopify://shop_images/3.avif",
-            "hover_image": "shopify://shop_images/gaming_triple.png",
-            "link": "shopify://collections/monitors-computers"
-          }
-        }
-      },
-      "block_order": [
-        "racing_product_jKLARj",
-        "racing_product_wR4FDY",
-        "racing_product_TBbxPk",
-        "racing_product_mVwHaN",
-        "sim_product_adKywN",
-        "sim_product_6CMPP7",
-        "sim_product_4X3bz3",
-        "sim_product_JHcA4n",
-        "sim_product_dBf8AA",
-        "sim_product_CEGkiF",
-        "sim_product_hVe89T",
-        "sim_product_rHkanC",
-        "sim_product_EQHUAK",
-        "sim_product_RDYxcx"
-      ],
-      "name": "Product Categories Section",
-      "settings": {
-        "section_title": "",
-        "sim_button_text": "SIM PRODUCTS",
-        "racing_button_text": "RACING PRODUCTS"
-      }
-    },
     "dd_customize_racer_PiGgHV": {
       "type": "dd-customize-racer",
       "blocks": {
@@ -545,6 +377,174 @@
         "main_image": "shopify://shop_images/Model_Freem_Clothes.png"
       }
     },
+    "dd_product_categories_FzBLXd": {
+      "type": "dd-product-categories",
+      "blocks": {
+        "racing_product_jKLARj": {
+          "type": "racing_product",
+          "settings": {
+            "product": "",
+            "title": "CLOTHES AND ACCESSORIES",
+            "image": "shopify://shop_images/A20_individual.png",
+            "hover_image": "shopify://shop_images/sparco_bag_2.png",
+            "link": "shopify://pages/clothes-and-accessories"
+          }
+        },
+        "racing_product_wR4FDY": {
+          "type": "racing_product",
+          "disabled": true,
+          "settings": {
+            "product": "",
+            "title": "MOTORSPORT PARTS",
+            "image": "shopify://shop_images/c574d9a2266ba18edd903b72968eef786acd0a89.webp",
+            "hover_image": "shopify://shop_images/c574d9a2266ba18edd903b72968eef786acd0a89.webp",
+            "link": "shopify://pages/motorsport"
+          }
+        },
+        "racing_product_TBbxPk": {
+          "type": "racing_product",
+          "settings": {
+            "product": "",
+            "title": "KART CHASSIS",
+            "image": "shopify://shop_images/FK-DD2_3_ee61f19e-3f95-4232-a9b8-946e71461364.png",
+            "hover_image": "shopify://shop_images/FKMK-9530E3_3_copy.png",
+            "link": "shopify://collections/complete-chassis"
+          }
+        },
+        "racing_product_mVwHaN": {
+          "type": "racing_product",
+          "settings": {
+            "product": "",
+            "title": "DRIVING EXPERIENCE",
+            "image": "shopify://shop_images/493318316_1279839144149493_2678679558196999549_n_1.jpg",
+            "hover_image": "shopify://shop_images/493318316_1279839144149493_2678679558196999549_n_1.jpg",
+            "link": "shopify://collections/driving-experience"
+          }
+        },
+        "sim_product_adKywN": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "Racing bundles",
+            "image": "shopify://shop_images/bundles-pro.png",
+            "hover_image": "shopify://shop_images/bundles-pro.png",
+            "link": "shopify://collections/bundles"
+          }
+        },
+        "sim_product_6CMPP7": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "FRAMES AND COCKPITS",
+            "image": "shopify://shop_images/Copy_of_TR120S-BLK_OA-PF-NS_01.png",
+            "hover_image": "shopify://shop_images/TR120S-BLKe02-min_1080x_0bdee62b-08a5-42b8-996e-ff3b8fc92564.webp",
+            "link": "shopify://collections/simulator-frames-and-cockipts"
+          }
+        },
+        "sim_product_4X3bz3": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "MONITOR MOUNTS",
+            "image": "shopify://shop_images/MS-CM-SIN-TR2_01_1080x_fd3807d6-f1b8-4fcb-ad16-8b671d0cb4eb.webp",
+            "hover_image": "shopify://shop_images/TRR077_FrontLeft01_900x_1.webp",
+            "link": "shopify://collections/monitor-stands"
+          }
+        },
+        "sim_product_JHcA4n": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "Seats & Add-ons",
+            "image": "shopify://shop_images/Racing_seat_simulator_GT-PRO.webp",
+            "hover_image": "shopify://shop_images/SEAT-4.2_3b08fcd3-075d-42d8-bdea-1cca6530a3db.png",
+            "link": "shopify://collections/seats-seats-accessories"
+          }
+        },
+        "sim_product_dBf8AA": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "Wheelbase",
+            "image": "shopify://shop_images/SC3SPORT-1.webp",
+            "hover_image": "shopify://shop_images/20240821-141049.010-2copy.png",
+            "link": "shopify://collections/wheelbase"
+          }
+        },
+        "sim_product_CEGkiF": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "PEDALS",
+            "image": "shopify://shop_images/DSC0846_1_-1-1-square.png",
+            "hover_image": "shopify://shop_images/cpp-lite-3-3-1.png",
+            "link": "shopify://collections/pedals"
+          }
+        },
+        "sim_product_hVe89T": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "STEERING WHEELS",
+            "image": "shopify://shop_images/290GP010_1_copy.png",
+            "hover_image": "shopify://shop_images/1755679592262.webp",
+            "link": "shopify://collections/wheels"
+          }
+        },
+        "sim_product_rHkanC": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "ACCESSORIES",
+            "image": "shopify://shop_images/DS-8X_7_1080x_4e4dcfb7-424b-4f3a-a558-3fa15431762b.webp",
+            "hover_image": "shopify://shop_images/Conspit_CSD_dashboard.png",
+            "link": "shopify://collections/accessories"
+          }
+        },
+        "sim_product_EQHUAK": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "Motion & Haptic systems",
+            "image": "shopify://shop_images/motion_haptics.png",
+            "hover_image": "shopify://shop_images/QS-BT1_45_00.png",
+            "link": "shopify://collections/motion-haptic-systems"
+          }
+        },
+        "sim_product_RDYxcx": {
+          "type": "sim_product",
+          "settings": {
+            "product": "",
+            "title": "MONITORS & PC",
+            "image": "shopify://shop_images/3.avif",
+            "hover_image": "shopify://shop_images/gaming_triple.png",
+            "link": "shopify://collections/monitors-computers"
+          }
+        }
+      },
+      "block_order": [
+        "racing_product_jKLARj",
+        "racing_product_wR4FDY",
+        "racing_product_TBbxPk",
+        "racing_product_mVwHaN",
+        "sim_product_adKywN",
+        "sim_product_6CMPP7",
+        "sim_product_4X3bz3",
+        "sim_product_JHcA4n",
+        "sim_product_dBf8AA",
+        "sim_product_CEGkiF",
+        "sim_product_hVe89T",
+        "sim_product_rHkanC",
+        "sim_product_EQHUAK",
+        "sim_product_RDYxcx"
+      ],
+      "name": "Product Categories Section",
+      "settings": {
+        "section_title": "",
+        "sim_button_text": "SIM PRODUCTS",
+        "racing_button_text": "RACING PRODUCTS"
+      }
+    },
     "dd_our_team_RRra6p": {
       "type": "dd-our-team",
       "blocks": {
@@ -717,8 +717,8 @@
   "order": [
     "dd_hero_section_T4nLCX",
     "dd_customize_simulator_AGUzeF",
-    "dd_product_categories_FzBLXd",
     "dd_customize_racer_PiGgHV",
+    "dd_product_categories_FzBLXd",
     "dd_our_team_RRra6p",
     "dd_accademy_DfXaWb",
     "dd_newsletter_ygpTpG",
