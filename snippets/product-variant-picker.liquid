@@ -235,7 +235,7 @@
       {%- if primary_colors != blank -%}
         <fieldset class="js product-form__input product-form__input--swatch">
           <legend class="form__label">
-            Primary Color:
+            {{ product.metafields.custom.primary_color_label.value | default: 'Primary Color' }}:
             <span data-selected-value>
               {%- assign primary_default_title = '' -%}
               {%- for metaobject in primary_colors -%}
@@ -276,7 +276,7 @@
       {%- if secondary_colors != blank -%}
         <fieldset class="js product-form__input product-form__input--swatch">
           <legend class="form__label">
-            Secondary Color:
+            {{ product.metafields.custom.secondary_color_label.value | default: 'Secondary Color' }}:
             <span data-selected-value>
               {%- assign secondary_default_title = '' -%}
               {%- for metaobject in secondary_colors -%}
@@ -317,7 +317,7 @@
       {%- if tertiary_colors != blank -%}
         <fieldset class="js product-form__input product-form__input--swatch">
           <legend class="form__label">
-            Tertiary Color:
+            {{ product.metafields.custom.tertiary_color_label.value | default: 'Tertiary Color' }}:
             <span data-selected-value>
               {%- assign tertiary_default_title = '' -%}
               {%- for metaobject in tertiary_colors -%}
