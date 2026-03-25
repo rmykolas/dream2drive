@@ -1,7 +1,17 @@
-{% comment %}theme-check-disable UndefinedObject{% endcomment %}
-{%- assign pick_up_availabilities = product_variant.store_availabilities | where: 'pick_up_enabled', true -%}
+{%- comment %}theme-check-disable UndefinedObject{% endcomment %}
 
-{%- if pick_up_availabilities.size > 0 -%}
+{%- liquid
+  assign hide_pickup_availability = false
+  assign pickup_inventory_quantity = product_variant.inventory_quantity | default: 0
+  if product_variant.inventory_management == 'shopify' and product_variant.inventory_policy == 'continue' and pickup_inventory_quantity <= 0
+    assign hide_pickup_availability = true
+  endif
+-%}
+
+{%- unless hide_pickup_availability -%}
+  {%- assign pick_up_availabilities = product_variant.store_availabilities | where: 'pick_up_enabled', true -%}
+
+  {%- if pick_up_availabilities.size > 0 -%}
   <pickup-availability-preview class="pickup-availability-preview">
     {% assign closest_location = pick_up_availabilities.first %}
 
@@ -105,4 +115,5 @@
       {%- endfor -%}
     </ul>
   </pickup-availability-drawer>
-{%- endif -%}
+  {%- endif -%}
+{%- endunless -%}

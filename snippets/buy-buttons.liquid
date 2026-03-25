@@ -190,7 +190,19 @@
     </div>
   {%- endif -%}
 
-  {%- if show_pickup_availability -%}
+  {%- liquid
+    assign pickup_variant = product.selected_or_first_available_variant
+    assign pickup_inventory_quantity = pickup_variant.inventory_quantity | default: 0
+    assign hide_pickup_availability = false
+
+    if pickup_variant != null
+      if pickup_variant.inventory_management == 'shopify' and pickup_variant.inventory_policy == 'continue' and pickup_inventory_quantity <= 0
+        assign hide_pickup_availability = true
+      endif
+    endif
+  -%}
+
+  {%- if show_pickup_availability and hide_pickup_availability == false -%}
     {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
 
     {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities
