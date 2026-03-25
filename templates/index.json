@@ -199,6 +199,184 @@
         "main_image": "shopify://shop_images/simconfigurator_landing.png"
       }
     },
+    "dd_customize_racer_PiGgHV": {
+      "type": "dd-customize-racer",
+      "blocks": {
+        "hotspot_KWnrUG": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Gloves",
+            "products": [
+              "senso-22-gloves",
+              "motorsport-gloves-freem-senso-22",
+              "karting-gloves-freem-k-slight-24"
+            ],
+            "collection": "",
+            "position_top_desktop": 0,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 236,
+            "position_left_desktop": 240,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 220,
+            "position_left_mobile": 72
+          }
+        },
+        "hotspot_MDaB3Y": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Shoes",
+            "products": [
+              "motorsport-shoes-s19",
+              "karting-shoes-freem-sk-24"
+            ],
+            "collection": "",
+            "position_top_desktop": 0,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 40,
+            "position_left_desktop": 268,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 40,
+            "position_left_mobile": 96
+          }
+        },
+        "hotspot_mMzVWN": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Racing suit",
+            "products": [
+              "a23-motorsport-suit",
+              "a20-future",
+              "a20-plus"
+            ],
+            "collection": "",
+            "position_top_desktop": 148,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 288,
+            "position_top_mobile": 140,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 124
+          }
+        },
+        "hotspot_mMzVaf": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Helmet",
+            "products": [
+              "arai-gp-7-helmet-fia",
+              "sparco-stealth-rf-helmet-fia",
+              "sparco-stealth-rf-carbon-8859-2024-helmet-fia"
+            ],
+            "collection": "",
+            "position_top_desktop": 52,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 276,
+            "position_top_mobile": 48,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 128
+          }
+        },
+        "hotspot_kw3379": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Balaclava",
+            "products": [
+              "motorsport-underwear-balaclava-u25",
+              "motorsport-balaclava-freem-u25"
+            ],
+            "collection": "",
+            "position_top_desktop": 52,
+            "position_right_desktop": 280,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 0,
+            "position_top_mobile": 52,
+            "position_right_mobile": 124,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_kP7Kif": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Underwear TOP",
+            "products": [
+              "karting-underwear-shirt-freem",
+              "karting-underwear-shirt-long-sleeves-freem",
+              "motorsport-underwear-top-nomex-u21"
+            ],
+            "collection": "",
+            "position_top_desktop": 148,
+            "position_right_desktop": 288,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 0,
+            "position_top_mobile": 140,
+            "position_right_mobile": 132,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_MTU9pi": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Underwear Pants",
+            "products": [
+              "motorsport-underwear-bottom-u25-nomex"
+            ],
+            "collection": "",
+            "position_top_desktop": 0,
+            "position_right_desktop": 288,
+            "position_bottom_desktop": 184,
+            "position_left_desktop": 0,
+            "position_top_mobile": 0,
+            "position_right_mobile": 112,
+            "position_bottom_mobile": 148,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_PLktkF": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Socks",
+            "products": [
+              "freem-nomex-socks-fia"
+            ],
+            "collection": "",
+            "position_top_desktop": 0,
+            "position_right_desktop": 280,
+            "position_bottom_desktop": 40,
+            "position_left_desktop": 0,
+            "position_top_mobile": 0,
+            "position_right_mobile": 112,
+            "position_bottom_mobile": 44,
+            "position_left_mobile": 0
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_KWnrUG",
+        "hotspot_MDaB3Y",
+        "hotspot_mMzVWN",
+        "hotspot_mMzVaf",
+        "hotspot_kw3379",
+        "hotspot_kP7Kif",
+        "hotspot_MTU9pi",
+        "hotspot_PLktkF"
+      ],
+      "name": "Customise Racer Equipment",
+      "settings": {
+        "title": "",
+        "subheading": "ORDER YOUR RACING EQUIPMENT",
+        "total_price": "Chosen by Racers. Not Marketers.",
+        "button_label": "START NOW",
+        "button_link": "shopify://pages/clothes-and-accessories",
+        "main_image": "shopify://shop_images/Model_Freem_Clothes.png"
+      }
+    },
     "dd_product_categories_FzBLXd": {
       "type": "dd-product-categories",
       "blocks": {
@@ -365,184 +543,6 @@
         "section_title": "",
         "sim_button_text": "SIM PRODUCTS",
         "racing_button_text": "RACING PRODUCTS"
-      }
-    },
-    "dd_customize_racer_PiGgHV": {
-      "type": "dd-customize-racer",
-      "blocks": {
-        "hotspot_KWnrUG": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Gloves",
-            "products": [
-              "senso-22-gloves",
-              "motorsport-gloves-freem-senso-22",
-              "karting-gloves-freem-k-slight-24"
-            ],
-            "collection": "",
-            "position_top_desktop": 0,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 280,
-            "position_left_desktop": 212,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 192,
-            "position_left_mobile": 64
-          }
-        },
-        "hotspot_MDaB3Y": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Shoes",
-            "products": [
-              "motorsport-shoes-s19",
-              "karting-shoes-freem-sk-24"
-            ],
-            "collection": "",
-            "position_top_desktop": 0,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 40,
-            "position_left_desktop": 268,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 40,
-            "position_left_mobile": 136
-          }
-        },
-        "hotspot_mMzVWN": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Racing suit",
-            "products": [
-              "a23-motorsport-suit",
-              "a20-future",
-              "a20-plus"
-            ],
-            "collection": "",
-            "position_top_desktop": 208,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 280,
-            "position_top_mobile": 120,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 0,
-            "position_left_mobile": 120
-          }
-        },
-        "hotspot_mMzVaf": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Helmet",
-            "products": [
-              "arai-gp-7-helmet-fia",
-              "sparco-stealth-rf-helmet-fia",
-              "sparco-stealth-rf-carbon-8859-2024-helmet-fia"
-            ],
-            "collection": "",
-            "position_top_desktop": 104,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 280,
-            "position_top_mobile": 60,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 0,
-            "position_left_mobile": 112
-          }
-        },
-        "hotspot_kw3379": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Balaclava",
-            "products": [
-              "motorsport-underwear-balaclava-u25",
-              "motorsport-balaclava-freem-u25"
-            ],
-            "collection": "",
-            "position_top_desktop": 104,
-            "position_right_desktop": 280,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 0,
-            "position_top_mobile": 68,
-            "position_right_mobile": 148,
-            "position_bottom_mobile": 0,
-            "position_left_mobile": 0
-          }
-        },
-        "hotspot_kP7Kif": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Underwear TOP",
-            "products": [
-              "karting-underwear-shirt-freem",
-              "karting-underwear-shirt-long-sleeves-freem",
-              "motorsport-underwear-top-nomex-u21"
-            ],
-            "collection": "",
-            "position_top_desktop": 208,
-            "position_right_desktop": 280,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 0,
-            "position_top_mobile": 152,
-            "position_right_mobile": 104,
-            "position_bottom_mobile": 0,
-            "position_left_mobile": 0
-          }
-        },
-        "hotspot_MTU9pi": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Underwear Pants",
-            "products": [
-              "motorsport-underwear-bottom-u25-nomex"
-            ],
-            "collection": "",
-            "position_top_desktop": 0,
-            "position_right_desktop": 280,
-            "position_bottom_desktop": 280,
-            "position_left_desktop": 0,
-            "position_top_mobile": 0,
-            "position_right_mobile": 112,
-            "position_bottom_mobile": 148,
-            "position_left_mobile": 0
-          }
-        },
-        "hotspot_PLktkF": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Socks",
-            "products": [
-              "freem-nomex-socks-fia"
-            ],
-            "collection": "",
-            "position_top_desktop": 0,
-            "position_right_desktop": 280,
-            "position_bottom_desktop": 40,
-            "position_left_desktop": 0,
-            "position_top_mobile": 0,
-            "position_right_mobile": 112,
-            "position_bottom_mobile": 44,
-            "position_left_mobile": 0
-          }
-        }
-      },
-      "block_order": [
-        "hotspot_KWnrUG",
-        "hotspot_MDaB3Y",
-        "hotspot_mMzVWN",
-        "hotspot_mMzVaf",
-        "hotspot_kw3379",
-        "hotspot_kP7Kif",
-        "hotspot_MTU9pi",
-        "hotspot_PLktkF"
-      ],
-      "name": "Customise Racer Equipment",
-      "settings": {
-        "title": "",
-        "subheading": "ORDER YOUR RACING EQUIPMENT",
-        "total_price": "Chosen by Racers. Not Marketers.",
-        "button_label": "START NOW",
-        "button_link": "shopify://pages/clothes-and-accessories",
-        "main_image": "shopify://shop_images/Model_Freem_Clothes.png"
       }
     },
     "dd_our_team_RRra6p": {
@@ -717,8 +717,8 @@
   "order": [
     "dd_hero_section_T4nLCX",
     "dd_customize_simulator_AGUzeF",
-    "dd_product_categories_FzBLXd",
     "dd_customize_racer_PiGgHV",
+    "dd_product_categories_FzBLXd",
     "dd_our_team_RRra6p",
     "dd_accademy_DfXaWb",
     "dd_newsletter_ygpTpG",
