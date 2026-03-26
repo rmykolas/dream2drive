@@ -222,6 +222,25 @@
     "dd_customize_racer_PiGgHV": {
       "type": "dd-customize-racer",
       "blocks": {
+        "hotspot_MDaB3Y": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Shoes",
+            "products": [
+              "motorsport-shoes-s19",
+              "karting-shoes-freem-sk-24"
+            ],
+            "collection": "gloves-copy",
+            "position_top_desktop": 0,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 40,
+            "position_left_desktop": 268,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 40,
+            "position_left_mobile": 96
+          }
+        },
         "hotspot_KWnrUG": {
           "type": "hotspot",
           "settings": {
@@ -231,7 +250,7 @@
               "motorsport-gloves-freem-senso-22",
               "karting-gloves-freem-k-slight-24"
             ],
-            "collection": "",
+            "collection": "motorsport-clothing",
             "position_top_desktop": 0,
             "position_right_desktop": 0,
             "position_bottom_desktop": 236,
@@ -240,25 +259,6 @@
             "position_right_mobile": 0,
             "position_bottom_mobile": 220,
             "position_left_mobile": 72
-          }
-        },
-        "hotspot_MDaB3Y": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Shoes",
-            "products": [
-              "motorsport-shoes-s19",
-              "karting-shoes-freem-sk-24"
-            ],
-            "collection": "",
-            "position_top_desktop": 0,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 40,
-            "position_left_desktop": 268,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 40,
-            "position_left_mobile": 96
           }
         },
         "hotspot_mMzVWN": {
@@ -270,7 +270,7 @@
               "a20-future",
               "a20-plus"
             ],
-            "collection": "",
+            "collection": "motorsport-suits",
             "position_top_desktop": 148,
             "position_right_desktop": 0,
             "position_bottom_desktop": 0,
@@ -378,8 +378,8 @@
         }
       },
       "block_order": [
-        "hotspot_KWnrUG",
         "hotspot_MDaB3Y",
+        "hotspot_KWnrUG",
         "hotspot_mMzVWN",
         "hotspot_mMzVaf",
         "hotspot_kw3379",
