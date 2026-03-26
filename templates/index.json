@@ -290,7 +290,7 @@
               "sparco-stealth-rf-helmet-fia",
               "sparco-stealth-rf-carbon-8859-2024-helmet-fia"
             ],
-            "collection": "",
+            "collection": "helmet",
             "position_top_desktop": 52,
             "position_right_desktop": 0,
             "position_bottom_desktop": 0,
@@ -309,7 +309,7 @@
               "motorsport-underwear-balaclava-u25",
               "motorsport-balaclava-freem-u25"
             ],
-            "collection": "",
+            "collection": "underwear",
             "position_top_desktop": 52,
             "position_right_desktop": 280,
             "position_bottom_desktop": 0,
@@ -329,7 +329,7 @@
               "karting-underwear-shirt-long-sleeves-freem",
               "motorsport-underwear-top-nomex-u21"
             ],
-            "collection": "",
+            "collection": "underwear",
             "position_top_desktop": 148,
             "position_right_desktop": 288,
             "position_bottom_desktop": 0,
@@ -347,7 +347,7 @@
             "products": [
               "motorsport-underwear-bottom-u25-nomex"
             ],
-            "collection": "",
+            "collection": "underwear",
             "position_top_desktop": 0,
             "position_right_desktop": 288,
             "position_bottom_desktop": 184,
@@ -365,7 +365,7 @@
             "products": [
               "freem-nomex-socks-fia"
             ],
-            "collection": "",
+            "collection": "underwear",
             "position_top_desktop": 0,
             "position_right_desktop": 280,
             "position_bottom_desktop": 40,
