@@ -44,7 +44,7 @@
               "conspit-330-gt-wheel",
               "conspit-290-gp-formula-racing-wheel"
             ],
-            "collection": "",
+            "collection": "wheels",
             "position_top_desktop": 0,
             "position_right_desktop": 0,
             "position_bottom_desktop": 288,
@@ -64,7 +64,7 @@
               "tr80s-racing-simulator",
               "tr120s-v2-racing-simulator-with-seat-sliders-kit"
             ],
-            "collection": "",
+            "collection": "simulator-frames-and-cockipts",
             "position_top_desktop": 0,
             "position_right_desktop": 0,
             "position_bottom_desktop": 68,
