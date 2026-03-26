@@ -35,26 +35,6 @@
     "dd_customize_simulator_AGUzeF": {
       "type": "dd-customize-simulator",
       "blocks": {
-        "hotspot_CCaNPr": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Steering wheels",
-            "products": [
-              "conspit-310-apex",
-              "conspit-330-gt-wheel",
-              "conspit-290-gp-formula-racing-wheel"
-            ],
-            "collection": "wheels",
-            "position_top_desktop": 0,
-            "position_right_desktop": 0,
-            "position_bottom_desktop": 288,
-            "position_left_desktop": 360,
-            "position_top_mobile": 0,
-            "position_right_mobile": 0,
-            "position_bottom_mobile": 160,
-            "position_left_mobile": 156
-          }
-        },
         "hotspot_n4bPN9": {
           "type": "hotspot",
           "settings": {
@@ -84,7 +64,7 @@
               "gt-pro-fixed-fiberglass",
               "tr-series-fibreglass-gt-sim-racing-seat-high-gloss-black"
             ],
-            "collection": "",
+            "collection": "seats-seats-accessories",
             "position_top_desktop": 268,
             "position_right_desktop": 0,
             "position_bottom_desktop": 0,
@@ -104,33 +84,13 @@
               "cockpit-mounted-triple-monitor-mount",
               "freestanding-triple-monitor-stand"
             ],
-            "collection": "",
+            "collection": "monitor-stands",
             "position_top_desktop": 160,
             "position_right_desktop": 232,
             "position_bottom_desktop": 0,
             "position_left_desktop": 0,
             "position_top_mobile": 124,
             "position_right_mobile": 88,
-            "position_bottom_mobile": 0,
-            "position_left_mobile": 0
-          }
-        },
-        "hotspot_wWf7qe": {
-          "type": "hotspot",
-          "settings": {
-            "title": "Wheelbase",
-            "products": [
-              "conspit-ares-apex",
-              "conspit-ares-wheelbase-10nm-18nm",
-              "conspit-ares-platinum-20-nm-wheel-base"
-            ],
-            "collection": "",
-            "position_top_desktop": 256,
-            "position_right_desktop": 260,
-            "position_bottom_desktop": 0,
-            "position_left_desktop": 0,
-            "position_top_mobile": 160,
-            "position_right_mobile": 116,
             "position_bottom_mobile": 0,
             "position_left_mobile": 0
           }
@@ -144,7 +104,7 @@
               "conspit-cpp-lite-pedals",
               "conspit-cpp-evo-pedals"
             ],
-            "collection": "",
+            "collection": "pedals",
             "position_top_desktop": 0,
             "position_right_desktop": 204,
             "position_bottom_desktop": 136,
@@ -153,6 +113,46 @@
             "position_right_mobile": 88,
             "position_bottom_mobile": 104,
             "position_left_mobile": 0
+          }
+        },
+        "hotspot_wWf7qe": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Wheelbase",
+            "products": [
+              "conspit-ares-apex",
+              "conspit-ares-wheelbase-10nm-18nm",
+              "conspit-ares-platinum-20-nm-wheel-base"
+            ],
+            "collection": "wheelbase",
+            "position_top_desktop": 256,
+            "position_right_desktop": 260,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 0,
+            "position_top_mobile": 160,
+            "position_right_mobile": 116,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 0
+          }
+        },
+        "hotspot_CCaNPr": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Steering wheels",
+            "products": [
+              "conspit-310-apex",
+              "conspit-330-gt-wheel",
+              "conspit-290-gp-formula-racing-wheel"
+            ],
+            "collection": "wheels",
+            "position_top_desktop": 0,
+            "position_right_desktop": 0,
+            "position_bottom_desktop": 288,
+            "position_left_desktop": 360,
+            "position_top_mobile": 0,
+            "position_right_mobile": 0,
+            "position_bottom_mobile": 160,
+            "position_left_mobile": 156
           }
         },
         "hotspot_pNMWTB": {
@@ -164,7 +164,7 @@
               "simagic-seq-h-shifter-ds-8x",
               "conspit-csd-dashboard-simhub-special-edition"
             ],
-            "collection": "",
+            "collection": "accessories",
             "position_top_desktop": 0,
             "position_right_desktop": 0,
             "position_bottom_desktop": 208,
@@ -177,12 +177,12 @@
         }
       },
       "block_order": [
-        "hotspot_CCaNPr",
         "hotspot_n4bPN9",
         "hotspot_BRM7Mp",
         "hotspot_4GRY3D",
-        "hotspot_wWf7qe",
         "hotspot_XhddRU",
+        "hotspot_wWf7qe",
+        "hotspot_CCaNPr",
         "hotspot_pNMWTB"
       ],
       "name": "Customise Your Simulator",
