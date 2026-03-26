@@ -180,11 +180,10 @@
           "settings": {
             "title": "Monitors and PCs",
             "products": [
-              "cockpit-mounted-single-monitor-stand-1200mm",
-              "cockpit-mounted-triple-monitor-mount",
-              "freestanding-triple-monitor-stand"
+              "gaming-monitor-aoc-31-5-full-hd-16-9-240-hz-1-ms",
+              "gaming-pc-with-ryzen-7-7800x3d-and-rtx-5070-ti"
             ],
-            "collection": "monitor-stands",
+            "collection": "monitors-computers",
             "position_top_desktop": 120,
             "position_right_desktop": 316,
             "position_bottom_desktop": 0,
