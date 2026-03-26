@@ -174,6 +174,26 @@
             "position_bottom_mobile": 140,
             "position_left_mobile": 120
           }
+        },
+        "hotspot_mRXbB3": {
+          "type": "hotspot",
+          "settings": {
+            "title": "Monitors and PCs",
+            "products": [
+              "cockpit-mounted-single-monitor-stand-1200mm",
+              "cockpit-mounted-triple-monitor-mount",
+              "freestanding-triple-monitor-stand"
+            ],
+            "collection": "monitor-stands",
+            "position_top_desktop": 120,
+            "position_right_desktop": 316,
+            "position_bottom_desktop": 0,
+            "position_left_desktop": 0,
+            "position_top_mobile": 104,
+            "position_right_mobile": 136,
+            "position_bottom_mobile": 0,
+            "position_left_mobile": 0
+          }
         }
       },
       "block_order": [
@@ -183,7 +203,8 @@
         "hotspot_XhddRU",
         "hotspot_wWf7qe",
         "hotspot_CCaNPr",
-        "hotspot_pNMWTB"
+        "hotspot_pNMWTB",
+        "hotspot_mRXbB3"
       ],
       "name": "Customise Your Simulator",
       "settings": {
