@@ -14,6 +14,30 @@
       'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.5/+esm'
     );
 
+    const instances = [];
+
+    function isOpen(tooltipEl) {
+      return tooltipEl.getAttribute('aria-hidden') === 'false' && !tooltipEl.hasAttribute('hidden');
+    }
+
+    function hideImmediately(instance) {
+      instance.cancelHide();
+      if (instance.cleanupAutoUpdate) {
+        instance.cleanupAutoUpdate();
+        instance.cleanupAutoUpdate = null;
+      }
+      instance.tooltipEl.setAttribute('hidden', '');
+      instance.tooltipEl.setAttribute('aria-hidden', 'true');
+      instance.button.setAttribute('aria-expanded', 'false');
+    }
+
+    function hideAllImmediately(except) {
+      for (const inst of instances) {
+        if (except && inst === except) continue;
+        if (isOpen(inst.tooltipEl)) hideImmediately(inst);
+      }
+    }
+
     const sections = document.querySelectorAll(SECTION_SELECTOR);
     for (const section of sections) {
       const sectionId = section.dataset.sectionId;
@@ -105,12 +129,63 @@
         button.addEventListener('focus', showTooltip);
         button.addEventListener('blur', hideTooltip);
 
+        // Mobile: tapping the hotspot should toggle, and tapping elsewhere / scrolling should close.
+        button.addEventListener('pointerdown', (e) => {
+          if (e.pointerType === 'mouse') return;
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (isOpen(tooltipEl)) {
+            hideAllImmediately();
+          } else {
+            hideAllImmediately();
+            showTooltip();
+          }
+        });
+
         tooltipEl.addEventListener('mouseenter', cancelHide);
         tooltipEl.addEventListener('mouseleave', hideTooltip);
         tooltipEl.addEventListener('focusin', cancelHide);
         tooltipEl.addEventListener('focusout', hideTooltip);
+
+        instances.push({
+          button,
+          tooltipEl,
+          cancelHide,
+          get cleanupAutoUpdate() {
+            return cleanupAutoUpdate;
+          },
+          set cleanupAutoUpdate(v) {
+            cleanupAutoUpdate = v;
+          }
+        });
       }
     }
+
+    // Close on outside tap/click.
+    document.addEventListener(
+      'pointerdown',
+      (e) => {
+        for (const inst of instances) {
+          if (!isOpen(inst.tooltipEl)) continue;
+          const t = e.target;
+          if (inst.tooltipEl.contains(t) || inst.button.contains(t)) continue;
+          hideImmediately(inst);
+        }
+      },
+      true
+    );
+
+    // Close on any scroll (mobile UX: tooltips shouldn't linger while page moves).
+    window.addEventListener(
+      'scroll',
+      () => {
+        hideAllImmediately();
+      },
+      { passive: true, capture: true }
+    );
+
+    window.addEventListener('resize', () => hideAllImmediately(), { passive: true });
   }
 
   if (document.readyState === 'loading') {

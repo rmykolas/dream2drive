@@ -315,6 +315,7 @@
   line-height: calc(1 + 0.8 / var(--font-body-scale));
   color: rgba(var(--color-foreground), 0.75);
   word-break: break-word;
+  align-items: center;
 }
 
 .disclosure__link:hover {
@@ -349,6 +350,7 @@
   height: auto;
   min-height: initial;
   background: transparent;
+  color: #fff;
 }
 
 .header-localization .disclosure .localization-form__select:hover {

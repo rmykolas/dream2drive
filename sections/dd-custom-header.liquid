@@ -5,21 +5,28 @@
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 
   <!-- Main Navigation -->
-  <nav class="bg-[#494B53] flex items-center justify-between px-[16px] md:px-[24px] lg:px-[80px] py-[8px] relative font-roboto-condensed header header--has-menu">
+  <nav class="bg-[#494B53] flex items-center justify-between px-[16px] md:px-[24px] lg:px-[80px] py-[8px] relative font-roboto-condensed header header--has-menu header--has-localizations">
     <!-- Logo -->
     <div class="h-[48px] w-fit">
       <a href="{{ routes.root_url }}">
         {% if section.settings.logo != blank %}
-          <img src="{{ section.settings.logo | image_url }}" alt="Logo" class="h-full w-auto object-contain" />
+          {{ section.settings.logo | image_url: width: 300 | image_tag: width: 300, class: 'h-full w-auto object-contain' }}
         {% else %}
           <span class="text-white text-lg font-bold">LOGO</span>
         {% endif %}
       </a>
     </div>
 
-    <div class="md:hidden">
+    <div class="md:hidden flex items-center header__icons--localization header-localization">
+      <localization-form data-prevent-hide>
+        {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
+          <div>
+            <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
+            {%- render 'language-localization', localPosition: 'HeaderLanguage' -%}
+          </div>
+        {%- endform -%}
+      </localization-form>
       {% render 'header-search', input_id: 'Search-In-Modal-1' %}
-
       <!-- Mobile Menu Button -->
       <button id="mobile-menu-btn" class="md:hidden text-white hover:text-[#6EC7B3] transition-colors">
         <img src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/menu.svg?v=1761390492" alt="Menu" />
@@ -73,8 +80,16 @@
     </div>
 
     <!-- Account Link & Cart Icon (Desktop) -->
-    <div class="hidden md:flex items-center gap-[24px]">
+    <div class="hidden md:flex items-center gap-[24px] header__icons--localization header-localization">
       {% render 'header-search', input_id: 'Search-In-Modal' %}
+      <localization-form data-prevent-hide>
+        {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
+          <div>
+            <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
+            {%- render 'language-localization', localPosition: 'HeaderLanguage' -%}
+          </div>
+        {%- endform -%}
+      </localization-form>
       <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="text-white uppercase font-medium text-[17px] hover:text-[#6EC7B3] transition-colors leading-[100%] tracking-[0.02em]">
         {% if customer %}Account{% else %}Login{% endif %}
       </a>
