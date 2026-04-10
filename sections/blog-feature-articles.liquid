@@ -6,7 +6,7 @@
 {%- liquid
   assign show_section = section.settings.show_section | default: true
   assign top_articles_title = section.settings.top_articles_title | default: 'TOP ARTICLES'
-  assign top_articles_bg = section.settings.top_articles_bg
+  assign latest_instagram_title = section.settings.latest_instagram_title | default: 'LATEST INSTAGRAM'
   assign recent_articles_count = section.settings.recent_articles_count | default: 5
   assign show_recent_articles = section.settings.show_recent_articles | default: true
 -%}
@@ -17,17 +17,26 @@
       <div class="flex flex-col lg:flex-row gap-[40px]">
         <!-- Left Column - Top Articles -->
         <div
-          class="relative flex items-center justify-center overflow-hidden rounded-[8px] max-w-[744px] h-[534px] w-full bg-cover bg-center bg-no-repeat"
-          style="background-image: url('{% if top_articles_bg %}{{ top_articles_bg | image_url: width: 1488 }}{% endif %}');"
+          class="flex-1"
         >
-          <h2 class="text-[32px] md:text-[60px] font-bold text-white uppercase leading-[100%]">
-            {{ top_articles_title }}
-          </h2>
+          <p class="text-[32px] font-bold text-white uppercase leading-[100%] mb-[24px]">
+            {{ latest_instagram_title }}
+          </p>
+          <behold-widget feed-id="uTyDvYBB5PXhTdECciIO"></behold-widget>
+          <script>
+            (() => {
+              const d=document,s=d.createElement("script");s.type="module";
+              s.src="https://w.behold.so/widget.js";d.head.append(s);
+            })();
+          </script>
         </div>
 
         <!-- Right Column - Recent Articles -->
         {% if show_recent_articles %}
-          <div class="max-w-[496px] flex flex-col gap-[16px]">
+          <div class="flex flex-col gap-[16px]">
+            <p class="text-[32px] font-bold text-white uppercase leading-[100%] mb-[24px]">
+              {{ top_articles_title }}
+            </p>
             {% for article in blog.articles limit: recent_articles_count %}
               <a href="{{ article.url }}" class="flex gap-[24px]">
                 <div class="flex-shrink-0 w-[94px] h-[94px] overflow-hidden">
@@ -98,9 +107,10 @@
       "default": "TOP ARTICLES"
     },
     {
-      "type": "image_picker",
-      "id": "top_articles_bg",
-      "label": "Top Articles Background Image"
+      "type": "text",
+      "id": "latest_instagram_title",
+      "label": "Latest Instagram Title",
+      "default": "LATEST INSTAGRAM POSTS"
     },
     {
       "type": "checkbox",
