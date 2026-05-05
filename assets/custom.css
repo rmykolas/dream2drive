@@ -45,7 +45,7 @@
   }
 }
 .animate-scroll {
-  animation: scroll 20s linear infinite;
+  animation: scroll 50s linear infinite;
 }
 
 /* Product Features Section - Alternating Layout */

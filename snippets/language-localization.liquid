@@ -6,6 +6,27 @@
 {%- endcomment -%}
 
 <div class="disclosure">
+  {%- assign current_language_code = localization.language.iso_code | downcase -%}
+  {%- case current_language_code -%}
+    {%- when 'en', 'en-us', 'en-ca', 'en-au', 'en-nz', 'en-ie', 'en-sg' -%}
+      {%- assign current_language_flag = '🇬🇧' -%}
+    {%- when 'de', 'de-de', 'de-at', 'de-ch' -%}
+      {%- assign current_language_flag = '🇩🇪' -%}
+    {%- when 'fr', 'fr-fr', 'fr-ca', 'fr-be', 'fr-ch' -%}
+      {%- assign current_language_flag = '🇫🇷' -%}
+    {%- when 'it', 'it-it', 'it-ch' -%}
+      {%- assign current_language_flag = '🇮🇹' -%}
+    {%- when 'es', 'es-es', 'es-mx' -%}
+      {%- assign current_language_flag = '🇪🇸' -%}
+    {%- when 'lt', 'lt-lt' -%}
+      {%- assign current_language_flag = '🇱🇹' -%}
+    {%- when 'lv', 'lv-lv' -%}
+      {%- assign current_language_flag = '🇱🇻' -%}
+    {%- when 'et', 'et-ee' -%}
+      {%- assign current_language_flag = '🇪🇪' -%}
+    {%- else -%}
+      {%- assign current_language_flag = '🌐' -%}
+  {%- endcase -%}
   <button
     type="button"
     class="disclosure__button localization-form__select localization-selector link link--text caption-large text-white uppercase font-medium text-[17px] hover:text-[#6EC7B3] transition-colors leading-[100%] tracking-[0.02em]"
@@ -13,12 +34,33 @@
     aria-controls="{{ localPosition }}List"
     aria-describedby="{{ localPosition }}Label"
   >
-    <span>{{ localization.language.endonym_name | capitalize }}</span>
+    <span>{{ current_language_flag }} {{ localization.language.endonym_name | capitalize }}</span>
     {{ 'icon-caret.svg' | inline_asset_content }}
   </button>
   <div class="disclosure__list-wrapper language-selector" hidden>
     <ul id="{{ localPosition }}List" role="list" class="disclosure__list list-unstyled">
       {%- for language in localization.available_languages -%}
+        {%- assign language_code = language.iso_code | downcase -%}
+        {%- case language_code -%}
+          {%- when 'en', 'en-us', 'en-ca', 'en-au', 'en-nz', 'en-ie', 'en-sg' -%}
+            {%- assign language_flag = '🇬🇧' -%}
+          {%- when 'de', 'de-de', 'de-at', 'de-ch' -%}
+            {%- assign language_flag = '🇩🇪' -%}
+          {%- when 'fr', 'fr-fr', 'fr-ca', 'fr-be', 'fr-ch' -%}
+            {%- assign language_flag = '🇫🇷' -%}
+          {%- when 'it', 'it-it', 'it-ch' -%}
+            {%- assign language_flag = '🇮🇹' -%}
+          {%- when 'es', 'es-es', 'es-mx' -%}
+            {%- assign language_flag = '🇪🇸' -%}
+          {%- when 'lt', 'lt-lt' -%}
+            {%- assign language_flag = '🇱🇹' -%}
+          {%- when 'lv', 'lv-lv' -%}
+            {%- assign language_flag = '🇱🇻' -%}
+          {%- when 'et', 'et-ee' -%}
+            {%- assign language_flag = '🇪🇪' -%}
+          {%- else -%}
+            {%- assign language_flag = '🌐' -%}
+        {%- endcase -%}
         <li class="disclosure__item" tabindex="-1">
           <a
             class="link link--text disclosure__link caption-large focus-inset"
@@ -38,7 +80,7 @@
               {{- 'icon-checkmark.svg' | inline_asset_content -}}
             </span>
             <span>
-              {{ language.endonym_name | capitalize }}
+              {{ language_flag }} {{ language.endonym_name | capitalize }}
             </span>
           </a>
         </li>
