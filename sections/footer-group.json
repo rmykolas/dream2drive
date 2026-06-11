@@ -13,7 +13,6 @@
   "sections": {
     "dd_custom_footer_EJQB9F": {
       "type": "dd-custom-footer",
-      "name": "Footer Section",
       "blocks": {
         "about": {
           "type": "text",
@@ -45,13 +44,21 @@
         },
         "company": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "title": "COMPANY INFORMATION",
             "text": "Tauras racing, VšĮ\nCompany code: 302931662\nVAT: LT100013200915\nIBAN: LT877300010133808341"
           }
         }
       },
-      "block_order": ["about", "services", "products", "information", "company"],
+      "block_order": [
+        "about",
+        "services",
+        "products",
+        "information",
+        "company"
+      ],
+      "name": "Footer Section",
       "settings": {}
     },
     "footer": {
@@ -73,5 +80,8 @@
       }
     }
   },
-  "order": ["dd_custom_footer_EJQB9F", "footer"]
+  "order": [
+    "dd_custom_footer_EJQB9F",
+    "footer"
+  ]
 }
