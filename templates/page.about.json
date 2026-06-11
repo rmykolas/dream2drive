@@ -479,19 +479,22 @@
         "logo-monster": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/d2d-partner-monster.jpg"
+            "logo": "shopify://shop_images/d2d-partner-monster.jpg",
+            "scale": 125
           }
         },
         "logo-freem": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/d2d-partner-freem.jpg"
+            "logo": "shopify://shop_images/d2d-partner-freem.jpg",
+            "scale": 120
           }
         },
         "logo-f": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/d2d-partner-f.jpg"
+            "logo": "shopify://shop_images/d2d-partner-f.jpg",
+            "scale": 120
           }
         },
         "logo-liteblox": {
@@ -509,13 +512,15 @@
         "logo-pakelo": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/d2d-partner-pakelo.jpg"
+            "logo": "shopify://shop_images/d2d-partner-pakelo.jpg",
+            "scale": 120
           }
         },
         "logo-simucube": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/d2d-partner-simucube.jpg"
+            "logo": "shopify://shop_images/d2d-partner-simucube.jpg",
+            "scale": 120
           }
         },
         "logo-trak-racer": {
