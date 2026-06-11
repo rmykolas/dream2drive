@@ -1,0 +1,405 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "hero": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "It's not just a race, it's a journey to victory.",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Dream 2 Drive — a driver development academy turning dreamers into racers.",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": ["heading", "text"],
+      "settings": {
+        "image": "shopify://shop_images/d2d-about-hero.jpg",
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-2",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "intro": {
+      "type": "rich-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Who we are",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Driver development academy",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Dream 2 Drive offers year-by-year guidance, assistance and technology to help racers climb the motorsport ladder: a karting and motorsport racing team competing in Baltic, European and World championships, private SIM coaching sessions, an international esports championship, and premium racing simulators and accessories.</p>"
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "karting": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Racing team",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Karting",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We are proud to support and raise young drivers on their journey up the professional motorsport ladder. Working head to head in partnership with the Formula K karting factory has achieved unprecedented success.</p><p>The Dream 2 Drive racing team has started in the Lithuanian, Latvian, Estonian, Polish, Spanish and Italian championships, and spends more than 180 days per year on karting tracks working with and coaching the future racing stars.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text"],
+      "settings": {
+        "image": "shopify://shop_images/d2d-about-karting.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-3",
+        "color_scheme": "scheme-3",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "motorsport": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Championship winners",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Motorsport",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Overall winning team of the Porsche Sprint Challenge Central Europe.</p><p>2025 season participation: Porsche Sprint Challenge Central Europe, Porsche Michelin Endurance Cup 992, Porsche Sports Cup Deutschland, Aurum 1006 km powered by Hankook and the Baltic Touring Car Championship.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text"],
+      "settings": {
+        "image": "shopify://shop_images/d2d-about-motorsport.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-2",
+        "color_scheme": "scheme-2",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "simulators": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Individual simulators",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Simulators",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Production and development of individual simulators with more than 15 years of experience — and a constant drive to create new products that replicate every detail of reality. More than 100 professional simulators made for individual clients.</p><p>Distributors of the best worldwide hardware products, with more than 10 years of professional racing simulation experience. Karting, rally, drift, circuit racing — you name it.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text"],
+      "settings": {
+        "image": "shopify://shop_images/d2d-about-simulators.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-3",
+        "color_scheme": "scheme-3",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "esport": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Social project",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Esport",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every year since 2018, Dream 2 Drive organizes an esport championship in search of racing talent — making the dream come true. The winner takes the dream to reality: all the necessary equipment, a racing licence, safety accessories and the most qualified professionals transfer the new champion from screen to real racing and victory.</p><p>After 7 fulfilled seasons, 7 drivers have been raised as professional athletes who continue their careers as racing drivers and coaches, and the esports events have brought tens of thousands of participants into sim racing. Last year's winner Grantas Kareckas dominated his entry race in the Porsche Sprint Challenge 100 miles at the Brno circuit.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text"],
+      "settings": {
+        "image": "shopify://shop_images/d2d-about-esport.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-2",
+        "color_scheme": "scheme-2",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "stats": {
+      "type": "dd-stats",
+      "blocks": {
+        "stat-events": {
+          "type": "stat",
+          "settings": { "number": "37", "label": "Racing events in Europe" }
+        },
+        "stat-km": {
+          "type": "stat",
+          "settings": { "number": "19 343", "label": "Racing kilometers" }
+        },
+        "stat-days": {
+          "type": "stat",
+          "settings": { "number": "251", "label": "Days on the race tracks" }
+        },
+        "stat-tv": {
+          "type": "stat",
+          "settings": { "number": "500 000+", "label": "Spectators on TV" }
+        },
+        "stat-spectators": {
+          "type": "stat",
+          "settings": { "number": "200 500+", "label": "Spectators at racing events" }
+        },
+        "stat-esport": {
+          "type": "stat",
+          "settings": { "number": "1 367", "label": "Esport participants" }
+        },
+        "stat-fb": {
+          "type": "stat",
+          "settings": { "number": "476 700", "label": "Organic Facebook views" }
+        },
+        "stat-news": {
+          "type": "stat",
+          "settings": { "number": "4", "label": "TV news appearances" }
+        }
+      },
+      "block_order": [
+        "stat-events",
+        "stat-km",
+        "stat-days",
+        "stat-tv",
+        "stat-spectators",
+        "stat-esport",
+        "stat-fb",
+        "stat-news"
+      ],
+      "settings": {
+        "heading": "Numbers of 2025",
+        "background_image": "shopify://shop_images/d2d-about-stats-bg.jpg",
+        "overlay_opacity": 80,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "hq": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "2026 — New HQ",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "HQ + shop launch — 2026.07",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The first ever shop in the Baltics for motorsport parts, racing gear, individual simulators and sim racing gear.</p><p>Services under one roof: race car preparation, premium car service and storage, driver development, racing service and open office space.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text"],
+      "settings": {
+        "image": "shopify://shop_images/d2d-about-hq.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "partners": {
+      "type": "dd-partners",
+      "blocks": {
+        "logo-porsche": { "type": "logo", "settings": { "logo": "shopify://shop_images/d2d-partner-porsche-motorsport.jpg" } },
+        "logo-monster": { "type": "logo", "settings": { "logo": "shopify://shop_images/d2d-partner-monster.jpg" } },
+        "logo-freem": { "type": "logo", "settings": { "logo": "shopify://shop_images/d2d-partner-freem.jpg" } },
+        "logo-f": { "type": "logo", "settings": { "logo": "shopify://shop_images/d2d-partner-f.jpg" } },
+        "logo-liteblox": { "type": "logo", "settings": { "logo": "shopify://shop_images/d2d-partner-liteblox.jpg" } },
+        "logo-eventuri": { "type": "logo", "settings": { "logo": "shopify://shop_images/d2d-partner-eventuri.jpg" } },
+        "logo-pakelo": { "type": "logo", "settings": { "logo": "shopify://shop_images/d2d-partner-pakelo.jpg" } },
+        "logo-simucube": { "type": "logo", "settings": { "logo": "shopify://shop_images/d2d-partner-simucube.jpg" } },
+        "logo-trak-racer": { "type": "logo", "settings": { "logo": "shopify://shop_images/d2d-partner-trak-racer.jpg" } },
+        "logo-ascher": { "type": "logo", "settings": { "logo": "shopify://shop_images/d2d-partner-ascher-racing.jpg" } },
+        "logo-conspit": { "type": "logo", "settings": { "logo": "shopify://shop_images/d2d-partner-conspit.jpg" } },
+        "logo-wss": { "type": "logo", "settings": { "logo": "shopify://shop_images/d2d-partner-wss.jpg" } }
+      },
+      "block_order": [
+        "logo-porsche",
+        "logo-monster",
+        "logo-freem",
+        "logo-f",
+        "logo-liteblox",
+        "logo-eventuri",
+        "logo-pakelo",
+        "logo-simucube",
+        "logo-trak-racer",
+        "logo-ascher",
+        "logo-conspit",
+        "logo-wss"
+      ],
+      "settings": {
+        "heading": "Official partners",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hero",
+    "intro",
+    "karting",
+    "motorsport",
+    "simulators",
+    "esport",
+    "stats",
+    "hq",
+    "partners"
+  ]
+}
