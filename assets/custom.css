@@ -209,3 +209,95 @@
   font-weight: normal;
   list-style-type: decimal;
 }
+/* ------------------------------------------------------------
+   Shop policy pages (/policies/*)
+   Shopify renders these in its own .shopify-policy__* wrapper,
+   which the theme leaves unstyled. These classes exist only on
+   policy pages, so nothing else is affected.
+   ------------------------------------------------------------ */
+.shopify-policy__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 56px 20px 80px;
+}
+
+.shopify-policy__title {
+  margin: 0 0 32px;
+}
+
+.shopify-policy__title h1 {
+  margin: 0;
+  font-size: 32px;
+  line-height: 110%;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.shopify-policy__body {
+  font-size: 16px;
+  line-height: 170%;
+}
+
+.shopify-policy__body h2,
+.shopify-policy__body h3,
+.shopify-policy__body h4 {
+  margin: 40px 0 14px;
+  line-height: 120%;
+}
+
+.shopify-policy__body h2 {
+  font-size: 24px;
+}
+
+.shopify-policy__body h3 {
+  font-size: 20px;
+}
+
+.shopify-policy__body h4 {
+  font-size: 17px;
+}
+
+.shopify-policy__body p {
+  margin: 0 0 16px;
+}
+
+.shopify-policy__body ul,
+.shopify-policy__body ol {
+  margin: 0 0 20px;
+  padding-left: 24px;
+}
+
+.shopify-policy__body li {
+  margin-bottom: 8px;
+}
+
+.shopify-policy__body a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.shopify-policy__body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 15px;
+}
+
+.shopify-policy__body th,
+.shopify-policy__body td {
+  border: 1px solid rgba(18, 18, 18, 0.15);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+@media screen and (min-width: 750px) {
+  .shopify-policy__container {
+    padding: 80px 32px 112px;
+  }
+
+  .shopify-policy__title h1 {
+    font-size: 44px;
+  }
+}
