@@ -1,0 +1,118 @@
+<section
+  class="relative font-roboto-condensed bg-[#121212] bg-cover bg-center bg-no-repeat"
+  {% if section.settings.background_image != blank %}
+    style="background-image: url({{ section.settings.background_image | image_url: width: 2400 }});"
+  {% endif %}
+>
+  <div
+    class="absolute inset-0"
+    style="background-color: rgba(18, 18, 18, {{ section.settings.overlay_opacity | divided_by: 100.0 }});"
+  ></div>
+  <div
+    class="relative max-w-[1200px] mx-auto px-[20px]"
+    style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+  >
+    {% if section.settings.heading != blank %}
+      <h2 class="text-center text-[#6EC7B3] uppercase font-medium text-[24px] md:text-[32px] leading-[100%] tracking-[0.08em] mb-[56px]">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-[32px] gap-y-[56px] text-center">
+      {% for block in section.blocks %}
+        <div {{ block.shopify_attributes }}>
+          <p class="text-white font-semibold leading-[100%] tracking-[-0.02em] text-[40px] md:text-[60px] whitespace-nowrap">
+            {{ block.settings.number }}
+          </p>
+          <p class="text-[#C8C9CC] uppercase text-[13px] md:text-[15px] leading-[130%] tracking-[0.06em] mt-[12px]">
+            {{ block.settings.label }}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "DD Stats",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Numbers of 2025"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "37"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Racing events in Europe"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "DD Stats",
+      "blocks": [
+        { "type": "stat", "settings": { "number": "37", "label": "Racing events in Europe" } },
+        { "type": "stat", "settings": { "number": "19 343", "label": "Racing kilometers" } },
+        { "type": "stat", "settings": { "number": "251", "label": "Days on the race tracks" } },
+        { "type": "stat", "settings": { "number": "500 000+", "label": "Spectators on TV" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
