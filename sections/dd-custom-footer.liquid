@@ -1,82 +1,48 @@
 {% comment %}
-Footer Section
-- Fully dynamic via Shopify theme editor
-- Keeps Tailwind classes & HTML identical
+  Footer Section
+  - Block-based: add/remove/reorder columns in the theme editor
+  - Block types: text column, menu column
 {% endcomment %}
 
 <footer class="relative z-12 font-roboto-condensed bg-[#0F0F0F]" style="z-index: 12;">
-  <!-- Company Information Section -->
   <div class="py-[80px] px-[16px] md:px-[32px]">
     <div class="max-w-[1280px] mx-auto">
       <div class="flex justify-between flex-wrap gap-[50px]">
-        <!-- About Us Column -->
-        <div class="max-w-[240px]">
-          <h4
-            class="text-[#C8C9CC] text-[24px] font-medium leading-[100%] uppercase mb-[30px] tracking-[-0.01em]"
-          >
-            {{ section.settings.about_title }}
-          </h4>
-          <p
-            class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal mb-[16px]"
-          >
-            {{ section.settings.about_text_1 }}
-          </p>
-          <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
-            {{ section.settings.about_text_2 }}
-          </p>
-        </div>
-
-        <!-- Services Column -->
-        <div class="max-w-[240px]">
-          <h4
-            class="text-[#C8C9CC] text-[24px] font-medium leading-[100%] uppercase mb-[30px] tracking-[-0.01em]"
-          >
-            {{ section.settings.services_title }}
-          </h4>
-          <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
-            {{ section.settings.services_text }}
-          </p>
-        </div>
-
-        <!-- Products Column -->
-        <div class="max-w-[240px]">
-          <h4
-            class="text-[#C8C9CC] text-[24px] font-medium leading-[100%] uppercase mb-[30px] tracking-[-0.01em]"
-          >
-            {{ section.settings.products_title }}
-          </h4>
-          <p
-            class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal mb-[16px]"
-          >
-            {{ section.settings.products_text_1 }}
-          </p>
-          <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
-            {{ section.settings.products_text_2 }}
-          </p>
-        </div>
-
-        <!-- Company Information Column -->
-        <div class="max-w-[240px]">
-          <h4
-            class="text-[#C8C9CC] text-[24px] font-medium leading-[100%] uppercase mb-[30px] tracking-[-0.01em]"
-          >
-            {{ section.settings.company_title }}
-          </h4>
-          <div>
-            <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
-              {{ section.settings.company_name }}
-            </p>
-            <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
-              {{ section.settings.company_code }}
-            </p>
-            <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
-              {{ section.settings.company_vat }}
-            </p>
-            <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
-              {{ section.settings.company_iban }}
-            </p>
-          </div>
-        </div>
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'text' %}
+              <div class="max-w-[240px]" {{ block.shopify_attributes }}>
+                {% if block.settings.title != blank %}
+                  <h4 class="text-[#C8C9CC] text-[24px] font-medium leading-[100%] uppercase mb-[30px] tracking-[-0.01em]">
+                    {{ block.settings.title }}
+                  </h4>
+                {% endif %}
+                <p class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal">
+                  {{ block.settings.text | newline_to_br }}
+                </p>
+              </div>
+            {% when 'menu' %}
+              <div class="max-w-[240px]" {{ block.shopify_attributes }}>
+                {% if block.settings.title != blank %}
+                  <h4 class="text-[#C8C9CC] text-[24px] font-medium leading-[100%] uppercase mb-[30px] tracking-[-0.01em]">
+                    {{ block.settings.title }}
+                  </h4>
+                {% endif %}
+                <ul class="list-none p-0 m-0">
+                  {% for link in block.settings.menu.links %}
+                    <li>
+                      <a
+                        href="{{ link.url }}"
+                        class="text-[#C8C9CC] text-[18px] leading-[160%] font-normal no-underline hover:text-white"
+                      >
+                        {{ link.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+          {% endcase %}
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -85,109 +51,56 @@ Footer Section
 {% schema %}
 {
   "name": "Custom Footer",
-  "settings": [
-    {
-      "type": "header",
-      "content": "About Us Column"
-    },
+  "max_blocks": 8,
+  "settings": [],
+  "blocks": [
     {
       "type": "text",
-      "id": "about_title",
-      "label": "Title",
-      "default": "ABOUT US"
+      "name": "Text column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "info": "Line breaks are kept.",
+          "default": "Text"
+        }
+      ]
     },
     {
-      "type": "textarea",
-      "id": "about_text_1",
-      "label": "Paragraph 1",
-      "default": "Driver development program designed to offer year-by-year guidance, assistance and technologies to help promising racers to climb the motorsport ladder."
-    },
-    {
-      "type": "textarea",
-      "id": "about_text_2",
-      "label": "Paragraph 2",
-      "default": "European sim racing championship."
-    },
-
-    {
-      "type": "header",
-      "content": "Services Column"
-    },
-    {
-      "type": "text",
-      "id": "services_title",
-      "label": "Title",
-      "default": "SERVICES"
-    },
-    {
-      "type": "textarea",
-      "id": "services_text",
-      "label": "Text",
-      "default": "Individual Karting, Race car, Simulation practice sessions. Full season support. Technical support, maintenance and race preparation. Racing camps during off-season."
-    },
-
-    {
-      "type": "header",
-      "content": "Products Column"
-    },
-    {
-      "type": "text",
-      "id": "products_title",
-      "label": "Title",
-      "default": "PRODUCTS"
-    },
-    {
-      "type": "textarea",
-      "id": "products_text_1",
-      "label": "Paragraph 1",
-      "default": "Official Freem dealer in Baltics. Top level racing suits and equipement for karting and motorsport ambasador in Baltics."
-    },
-    {
-      "type": "textarea",
-      "id": "products_text_2",
-      "label": "Paragraph 2",
-      "default": "BAR-TEK motorsport parts and accessories dealer."
-    },
-
-    {
-      "type": "header",
-      "content": "Company Information Column"
-    },
-    {
-      "type": "text",
-      "id": "company_title",
-      "label": "Title",
-      "default": "COMPANY INFORMATION"
-    },
-    {
-      "type": "text",
-      "id": "company_name",
-      "label": "Company Name",
-      "default": "Tauras racing, VšĮ"
-    },
-    {
-      "type": "text",
-      "id": "company_code",
-      "label": "Company Code",
-      "default": "Company code: 302931662"
-    },
-    {
-      "type": "text",
-      "id": "company_vat",
-      "label": "VAT",
-      "default": "VAT: LT100013200915"
-    },
-    {
-      "type": "text",
-      "id": "company_iban",
-      "label": "IBAN",
-      "default": "IBAN: LT877300010133808341"
+      "type": "menu",
+      "name": "Menu column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Information"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "footer"
+        }
+      ]
     }
   ],
   "presets": [
     {
       "name": "Footer Section",
-      "category": "Footer"
+      "category": "Footer",
+      "blocks": [
+        { "type": "text" },
+        { "type": "text" },
+        { "type": "menu" }
+      ]
     }
   ]
 }
