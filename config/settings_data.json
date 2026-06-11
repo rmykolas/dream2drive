@@ -130,13 +130,13 @@
       "main-password-header": {
         "type": "main-password-header",
         "settings": {
-          "color_scheme": "scheme-1"
+          "color_scheme": "scheme-3e3cedc9-e106-4623-8bb2-3101b24198d4"
         }
       },
       "main-password-footer": {
         "type": "main-password-footer",
         "settings": {
-          "color_scheme": "scheme-1"
+          "color_scheme": "scheme-3e3cedc9-e106-4623-8bb2-3101b24198d4"
         }
       }
     },
