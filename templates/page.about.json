@@ -513,14 +513,14 @@
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/d2d-partner-pakelo.jpg",
-            "scale": 145
+            "scale": 85
           }
         },
         "logo-simucube": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/d2d-partner-simucube.jpg",
-            "scale": 140
+            "scale": 100
           }
         },
         "logo-trak-racer": {
