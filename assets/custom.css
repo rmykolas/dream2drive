@@ -267,8 +267,20 @@
   padding-left: 24px;
 }
 
+.shopify-policy__body ul {
+  list-style: disc outside;
+}
+
+.shopify-policy__body ol {
+  list-style: decimal outside;
+}
+
 .shopify-policy__body li {
   margin-bottom: 8px;
+}
+
+.shopify-policy__body li > p {
+  margin: 0;
 }
 
 .shopify-policy__body a {
