@@ -1,3 +1,12 @@
+<style>
+  @keyframes dd-partners-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
+  .dd-partners-strip {
+    animation: dd-partners-marquee {{ section.settings.speed }}s linear infinite;
+  }
+</style>
 <section
   class="font-roboto-condensed bg-black overflow-hidden"
   style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
@@ -7,9 +16,9 @@
       {{ section.settings.heading }}
     </h2>
   {% endif %}
-  <div class="flex items-center gap-[80px] overflow-hidden">
+  <div class="flex items-center overflow-hidden">
     {% for i in (1..3) %}
-      <div class="flex items-center gap-[80px] shrink-0 animate-scroll" {% if i > 1 %}aria-hidden="true"{% endif %}>
+      <div class="flex items-center gap-[80px] pr-[80px] shrink-0 dd-partners-strip" {% if i > 1 %}aria-hidden="true"{% endif %}>
         {% for block in section.blocks %}
           {% if block.settings.logo != blank %}
             <img
@@ -45,6 +54,16 @@
     {
       "type": "paragraph",
       "content": "Logos scroll in a continuous marquee. Logos with a solid black background blend into the section automatically."
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 20,
+      "max": 90,
+      "step": 5,
+      "unit": "s",
+      "label": "Scroll duration",
+      "default": 45
     },
     {
       "type": "range",
