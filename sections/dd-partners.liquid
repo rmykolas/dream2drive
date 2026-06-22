@@ -1,14 +1,5 @@
-<style>
-  @keyframes dd-partners-marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
-  }
-  .dd-partners-strip {
-    animation: dd-partners-marquee {{ section.settings.speed }}s linear infinite;
-  }
-</style>
 <section
-  class="font-roboto-condensed bg-black overflow-hidden"
+  class="font-roboto-condensed bg-black"
   style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
 >
   {% if section.settings.heading != blank %}
@@ -16,23 +7,24 @@
       {{ section.settings.heading }}
     </h2>
   {% endif %}
-  <div class="flex items-center overflow-hidden">
-    {% for i in (1..3) %}
-      <div class="flex items-center gap-[80px] pr-[80px] shrink-0 dd-partners-strip" {% if i > 1 %}aria-hidden="true"{% endif %}>
-        {% for block in section.blocks %}
-          {% if block.settings.logo != blank %}
-            <img
-              src="{{ block.settings.logo | image_url: height: 96 }}"
-              alt="{{ block.settings.logo.alt | escape }}"
-              class="h-[36px] md:h-[44px] w-auto max-w-none mix-blend-screen"
-              width="{{ block.settings.logo.aspect_ratio | times: 44 | round }}"
-              height="44"
-              loading="lazy"
-              {% if i == 1 %}{{ block.shopify_attributes }}{% endif %}
-            >
-          {% endif %}
-        {% endfor %}
-      </div>
+  <div class="max-w-[1000px] mx-auto px-[20px] grid grid-cols-2 md:grid-cols-4 gap-x-[24px] gap-y-[40px]">
+    {% for block in section.blocks %}
+      {% if block.settings.logo != blank %}
+        <div
+          class="flex items-center justify-center h-[64px] md:h-[80px]"
+          style="--logo-scale: {{ block.settings.scale | default: 100 | divided_by: 100.0 }};"
+          {{ block.shopify_attributes }}
+        >
+          <img
+            src="{{ block.settings.logo | image_url: height: 160 }}"
+            alt="{{ block.settings.logo.alt | escape }}"
+            class="max-h-[calc(42px*var(--logo-scale,1))] md:max-h-[calc(52px*var(--logo-scale,1))] max-w-[calc(130px*var(--logo-scale,1))] md:max-w-[calc(170px*var(--logo-scale,1))] w-auto h-auto object-contain mix-blend-screen"
+            width="{{ block.settings.logo.aspect_ratio | times: 52 | round }}"
+            height="52"
+            loading="lazy"
+          >
+        </div>
+      {% endif %}
     {% endfor %}
   </div>
 </section>
@@ -53,17 +45,7 @@
     },
     {
       "type": "paragraph",
-      "content": "Logos scroll in a continuous marquee. Logos with a solid black background blend into the section automatically."
-    },
-    {
-      "type": "range",
-      "id": "speed",
-      "min": 20,
-      "max": 90,
-      "step": 5,
-      "unit": "s",
-      "label": "Scroll duration",
-      "default": 45
+      "content": "Logos display in a grid: 4 per row on desktop, 2 per row on mobile. Logos with a solid black background blend into the section automatically."
     },
     {
       "type": "range",
@@ -95,6 +77,17 @@
           "type": "image_picker",
           "id": "logo",
           "label": "Logo image"
+        },
+        {
+          "type": "range",
+          "id": "scale",
+          "min": 60,
+          "max": 160,
+          "step": 5,
+          "unit": "%",
+          "label": "Logo size",
+          "info": "Fine-tune so logos look visually balanced.",
+          "default": 100
         }
       ]
     }
