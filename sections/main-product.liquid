@@ -111,8 +111,15 @@
                   assign bundle_total_cents = 0
 
                   for option_product in bundle_option_groups
-                    for variant in option_product.variants
-                      assign bundle_total_cents = bundle_total_cents | plus: variant.price
+                    unless option_product.tags contains 'group-only'
+                      for variant in option_product.variants
+                        assign bundle_total_cents = bundle_total_cents | plus: variant.price
+                      endfor
+                    endunless
+                    for extra_product in option_product.metafields.custom.group_products.value
+                      for variant in extra_product.variants
+                        assign bundle_total_cents = bundle_total_cents | plus: variant.price
+                      endfor
                     endfor
                   endfor
 
@@ -202,8 +209,15 @@
                         assign bundle_total_cents = 0
 
                         for option_product in bundle_option_groups
-                          for variant in option_product.variants
-                            assign bundle_total_cents = bundle_total_cents | plus: variant.price
+                          unless option_product.tags contains 'group-only'
+                            for variant in option_product.variants
+                              assign bundle_total_cents = bundle_total_cents | plus: variant.price
+                            endfor
+                          endunless
+                          for extra_product in option_product.metafields.custom.group_products.value
+                            for variant in extra_product.variants
+                              assign bundle_total_cents = bundle_total_cents | plus: variant.price
+                            endfor
                           endfor
                         endfor
 
@@ -560,121 +574,64 @@
                           </p>
                         </div>
                         <div class="bundle-variations__options">
-                          {%- for variant in option_product.variants -%}
-                            {%- liquid
-                              assign is_available = variant.available
-                              assign inventory_quantity = variant.inventory_quantity | default: 0
-                              assign variant_description = variant.metafields.custom.description
-                              assign enable_link = variant.metafields.custom.enable_link_to_single_product
-                            -%}
-                            <div class="bundle-variations__option-wrapper{% if variant_description != blank %} bundle-variations__option-wrapper--has-info{% endif %}">
-                              <button
-                                type="button"
-                                class="bundle-variations__option{% unless is_available %} bundle-variations__option--unavailable{% endunless %}"
-                                data-variant-id="{{ variant.id }}"
-                                data-price="{{ variant.price | divided_by: 100 }}"
-                                data-product-title="{{ option_product.title | escape }}"
-                                data-option-title="{{ variant.title | escape }}"
-                                data-available="{{ is_available }}"
-                                data-inventory="{{ inventory_quantity }}"
-                                {% unless is_available %}aria-disabled="true"{% endunless %}
-                              >
-                              <div class="bundle-variations__option-media">
-                                {%- if variant.featured_image -%}
-                                  {{ variant.featured_image
-                                    | image_url: width: 300
-                                    | image_tag:
-                                      loading: 'lazy',
-                                      class: 'bundle-variations__option-image'
-                                  }}
-                                {%- elsif option_product.featured_image -%}
-                                  {{ option_product.featured_image
-                                    | image_url: width: 300
-                                    | image_tag:
-                                      loading: 'lazy',
-                                      class: 'bundle-variations__option-image'
-                                  }}
-                                {%- endif -%}
-                                {%- unless is_available -%}
-                                  <span class="bundle-variations__badge">
-                                    {{ 'products.product.inventory_out_of_stock' | t }}
-                                  </span>
-                                {%- endunless -%}
-                              </div>
-                              <div class="bundle-variations__option-body">
-                                <p class="bundle-variations__option-title">
-                                  {{ variant.title }}
-                                </p>
-                                <div class="bundle-variations__option-meta">
-                                  <p class="bundle-variations__option-stock">
-                                    {%- if is_available -%}
-                                      {{ 'products.product.inventory_in_stock' | t }}
-                                    {%- else -%}
-                                      {{ 'products.product.inventory_out_of_stock' | t }}
-                                    {%- endif -%}
-                                  </p>
-                                  <p class="bundle-variations__option-price">
-                                    {{ variant.price | money }}
-                                  </p>
-                                </div>
-                              </div>
-                              </button>
-                              {%- if variant_description != blank -%}
-                              <button
-                                type="button"
-                                class="bundle-variations__info-toggle focus-inset"
-                                data-bundle-info-open="BundleInfoDialog-{{ variant.id }}"
-                                aria-haspopup="dialog"
-                                aria-controls="BundleInfoDialog-{{ variant.id }}"
-                                aria-label="{{ 'products.product.bundle_variations_info' | t }}"
-                              >
-                                <span class="bundle-variations__info-icon" aria-hidden="true">
-                                  {{ 'icon-info-circle.svg' | inline_asset_content }}
-                                </span>
-                                <span class="visually-hidden">
-                                  {{ 'products.product.bundle_variations_info' | t }}
-                                </span>
-                              </button>
-                              <dialog
-                                id="BundleInfoDialog-{{ variant.id }}"
-                                class="bundle-variations__dialog"
-                                aria-labelledby="BundleInfoDialogTitle-{{ variant.id }}"
-                              >
-                                <div class="bundle-variations__dialog-inner feature-content">
-                                  <button
-                                    type="button"
-                                    class="bundle-variations__dialog-close link focus-inset"
-                                    data-bundle-info-close
-                                    aria-label="{{ 'accessibility.close' | t }}"
-                                  >
-                                    <span class="svg-wrapper">
-                                      {{- 'icon-close.svg' | inline_asset_content -}}
-                                    </span>
-                                  </button>
-                                  <h2
-                                    id="BundleInfoDialogTitle-{{ variant.id }}"
-                                    class="bundle-variations__info-heading"
-                                  >
-                                    {{ variant.title }}
-                                  </h2>
-                                  <div class="bundle-variations__dialog-content rte">
-                                    {{ variant_description | metafield_tag }}
-                                  </div>
-                                  {%- if enable_link -%}
-                                    <a
-                                      href="{{ option_product.url }}?variant={{ variant.id }}"
-                                      class="bundle-variations__dialog-link px-[30px] py-[18.5px] text-[17px] font-medium leading-[100%] tracking-[-0.02em] uppercase flex items-center w-fit bg-[#66c2a4] gap-[16px] mt-[20px] hover:bg-[#B6E3D9]"
-                                    >
-                                      {{ 'products.product.bundle_variations_view_product' | t }}
-                                      <span class="bundle-variations__dialog-link-icon">
-                                        {{- 'icon-arrow.svg' | inline_asset_content -}}
-                                      </span>
-                                    </a>
-                                  {%- endif -%}
-                                </div>
-                              </dialog>
-                              {%- endif -%}
-                            </div>
+                          {%- liquid
+                            assign group_products = option_product.metafields.custom.group_products.value
+                            assign hide_own_variants = false
+                            if option_product.tags contains 'group-only'
+                              assign hide_own_variants = true
+                            endif
+                          -%}
+                          {%- comment -%} Own variants of the group product (rig-only options) {%- endcomment -%}
+                          {%- unless hide_own_variants -%}
+                            {%- for variant in option_product.variants -%}
+                              {%- liquid
+                                assign variant_description = variant.metafields.custom.description
+                                assign enable_link = variant.metafields.custom.enable_link_to_single_product
+                                assign description_html = ''
+                                if variant_description != blank
+                                  assign description_html = variant_description | metafield_tag
+                                endif
+                                assign link = ''
+                                if enable_link
+                                  assign link = option_product.url | append: '?variant=' | append: variant.id
+                                endif
+                              -%}
+                              {%- render 'bundle-variation-option',
+                                variant: variant,
+                                item: option_product,
+                                group_title: option_product.title,
+                                label: variant.title,
+                                description_html: description_html,
+                                link: link
+                              -%}
+                            {%- endfor -%}
+                          {%- endunless -%}
+                          {%- comment -%} Real products picked in the group product's custom.group_products {%- endcomment -%}
+                          {%- for item in group_products -%}
+                            {%- for variant in item.variants -%}
+                              {%- liquid
+                                if item.has_only_default_variant
+                                  assign label = item.title
+                                else
+                                  assign label = item.title | append: ' – ' | append: variant.title
+                                endif
+                                assign variant_description = variant.metafields.custom.description
+                                if variant_description != blank
+                                  assign description_html = variant_description | metafield_tag
+                                else
+                                  assign description_html = item.description | strip_html | truncatewords: 60
+                                endif
+                                assign link = item.url | append: '?variant=' | append: variant.id
+                              -%}
+                              {%- render 'bundle-variation-option',
+                                variant: variant,
+                                item: item,
+                                group_title: option_product.title,
+                                label: label,
+                                description_html: description_html,
+                                link: link
+                              -%}
+                            {%- endfor -%}
                           {%- endfor -%}
                         </div>
                       </div>
