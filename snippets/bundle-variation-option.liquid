@@ -1,0 +1,116 @@
+{%- comment -%}
+  One configurator option (used by main-product.liquid → product_bundle_variations).
+  Params:
+    variant          – the variant added to cart
+    item             – product the variant belongs to (image fallback)
+    group_title      – group name (data-product-title)
+    label            – title shown on the option
+    description_html – optional HTML for the info dialog
+    link             – optional URL for the "View product" button
+{%- endcomment -%}
+{%- liquid
+  assign is_available = variant.available
+  assign inventory_quantity = variant.inventory_quantity | default: 0
+  assign option_image = variant.featured_image | default: item.featured_image
+-%}
+<div class="bundle-variations__option-wrapper{% if description_html != blank %} bundle-variations__option-wrapper--has-info{% endif %}">
+  <button
+    type="button"
+    class="bundle-variations__option{% unless is_available %} bundle-variations__option--unavailable{% endunless %}"
+    data-variant-id="{{ variant.id }}"
+    data-price="{{ variant.price | divided_by: 100 }}"
+    data-product-title="{{ group_title | escape }}"
+    data-option-title="{{ label | escape }}"
+    data-available="{{ is_available }}"
+    data-inventory="{{ inventory_quantity }}"
+    {% unless is_available %}aria-disabled="true"{% endunless %}
+  >
+    <div class="bundle-variations__option-media">
+      {%- if option_image -%}
+        {{ option_image
+          | image_url: width: 300
+          | image_tag:
+            loading: 'lazy',
+            class: 'bundle-variations__option-image'
+        }}
+      {%- endif -%}
+      {%- unless is_available -%}
+        <span class="bundle-variations__badge">
+          {{ 'products.product.inventory_out_of_stock' | t }}
+        </span>
+      {%- endunless -%}
+    </div>
+    <div class="bundle-variations__option-body">
+      <p class="bundle-variations__option-title">
+        {{ label }}
+      </p>
+      <div class="bundle-variations__option-meta">
+        <p class="bundle-variations__option-stock">
+          {%- if is_available -%}
+            {{ 'products.product.inventory_in_stock' | t }}
+          {%- else -%}
+            {{ 'products.product.inventory_out_of_stock' | t }}
+          {%- endif -%}
+        </p>
+        <p class="bundle-variations__option-price">
+          {{ variant.price | money }}
+        </p>
+      </div>
+    </div>
+  </button>
+  {%- if description_html != blank -%}
+    <button
+      type="button"
+      class="bundle-variations__info-toggle focus-inset"
+      data-bundle-info-open="BundleInfoDialog-{{ variant.id }}"
+      aria-haspopup="dialog"
+      aria-controls="BundleInfoDialog-{{ variant.id }}"
+      aria-label="{{ 'products.product.bundle_variations_info' | t }}"
+    >
+      <span class="bundle-variations__info-icon" aria-hidden="true">
+        {{ 'icon-info-circle.svg' | inline_asset_content }}
+      </span>
+      <span class="visually-hidden">
+        {{ 'products.product.bundle_variations_info' | t }}
+      </span>
+    </button>
+    <dialog
+      id="BundleInfoDialog-{{ variant.id }}"
+      class="bundle-variations__dialog"
+      aria-labelledby="BundleInfoDialogTitle-{{ variant.id }}"
+    >
+      <div class="bundle-variations__dialog-inner feature-content">
+        <button
+          type="button"
+          class="bundle-variations__dialog-close link focus-inset"
+          data-bundle-info-close
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          <span class="svg-wrapper">
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </span>
+        </button>
+        <h2
+          id="BundleInfoDialogTitle-{{ variant.id }}"
+          class="bundle-variations__info-heading"
+        >
+          {{ label }}
+        </h2>
+        <div class="bundle-variations__dialog-content rte">
+          {{ description_html }}
+        </div>
+        {%- if link != blank -%}
+          <a
+            href="{{ link }}"
+            class="bundle-variations__dialog-link px-[30px] py-[18.5px] text-[17px] font-medium leading-[100%] tracking-[-0.02em] uppercase flex items-center w-fit bg-[#66c2a4] gap-[16px] mt-[20px] hover:bg-[#B6E3D9]"
+          >
+            {{ 'products.product.bundle_variations_view_product' | t }}
+            <span class="bundle-variations__dialog-link-icon">
+              {{- 'icon-arrow.svg' | inline_asset_content -}}
+            </span>
+          </a>
+        {%- endif -%}
+      </div>
+    </dialog>
+  {%- endif -%}
+</div>
