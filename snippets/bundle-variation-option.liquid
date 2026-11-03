@@ -18,7 +18,7 @@
     type="button"
     class="bundle-variations__option{% unless is_available %} bundle-variations__option--unavailable{% endunless %}"
     data-variant-id="{{ variant.id }}"
-    data-price="{{ variant.price | divided_by: 100 }}"
+    data-price="{{ variant.price | divided_by: 100.0 }}"
     data-product-title="{{ group_title | escape }}"
     data-option-title="{{ label | escape }}"
     data-available="{{ is_available }}"
