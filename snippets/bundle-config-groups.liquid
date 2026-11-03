@@ -1,0 +1,57 @@
+{%- comment -%}
+  Configurator / upsell container for main-product.liquid (block: product_bundle_variations).
+  Source of groups (first match wins):
+    1. product.metafields.custom.config_groups – list of "Config group" metaobjects
+    2. product.metafields.custom.option_groups – legacy list of group products
+  Params:
+    product, section_id, block_attributes
+{%- endcomment -%}
+{%- liquid
+  assign config_groups = product.metafields.custom.config_groups.value
+  assign legacy_groups = product.metafields.custom.option_groups.value
+  assign has_groups = false
+  if config_groups != blank
+    assign has_groups = true
+  elsif legacy_groups != blank and legacy_groups.size > 0
+    assign has_groups = true
+  endif
+-%}
+{%- if has_groups -%}
+  <style>
+    .bundle-variations__group-subtitle { margin: 4px 0 0; font-size: 14px; color: #C8C9CC; }
+    .bundle-variations__group-error { margin: 0 0 12px; font-size: 14px; color: #ff8a8a; }
+    .bundle-variations__group--error .bundle-variations__group-title { color: #ff8a8a; }
+  </style>
+  <div
+    class="bundle-variations"
+    data-bundle-base-price="{{ product.selected_or_first_available_variant.price | divided_by: 100.0 }}"
+    data-bundle-section="{{ section_id }}"
+    {{ block_attributes }}
+  >
+    {%- if config_groups != blank -%}
+      {%- for group in config_groups -%}
+        {%- render 'bundle-config-group',
+          group_id: group.system.id,
+          title: group.title.value,
+          subtitle: group.subtitle.value,
+          items: group.products.value,
+          own_product: nil,
+          multi_select: group.multi_select.value,
+          required: group.required.value
+        -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for option_product in legacy_groups -%}
+        {%- render 'bundle-config-group',
+          group_id: option_product.id,
+          title: option_product.title,
+          subtitle: '',
+          items: option_product.metafields.custom.group_products.value,
+          own_product: option_product,
+          multi_select: true,
+          required: false
+        -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+{%- endif -%}

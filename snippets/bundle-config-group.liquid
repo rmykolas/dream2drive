@@ -1,0 +1,113 @@
+{%- comment -%}
+  One configurator / upsell group.
+  Params:
+    group_id      – unique id for the group
+    title         – group heading
+    subtitle      – optional sub heading
+    items         – list of products shown as options (each variant = option)
+    own_product   – legacy: group product whose own variants are options (optional)
+    multi_select  – true = several options can be selected, false = one
+    required      – true = an option must be selected before add to cart
+  Option rules for `items`:
+    - product with one variant          → one option, product title
+    - product tagged `config-only`      → each variant, variant title only
+    - other product with variants       → each variant, "Product – Variant"
+  Product metafield custom.config_label (single line text) overrides the product title.
+{%- endcomment -%}
+<div
+  class="bundle-variations__group"
+  data-bundle-group-id="{{ group_id }}"
+  data-multi-select="{{ multi_select | default: false }}"
+  data-required="{{ required | default: false }}"
+  data-group-title="{{ title | escape }}"
+>
+  <div class="bundle-variations__group-header">
+    <p class="bundle-variations__group-title">
+      {{ title }}
+    </p>
+    {%- if subtitle != blank -%}
+      <p class="bundle-variations__group-subtitle">{{ subtitle }}</p>
+    {%- endif -%}
+  </div>
+  <p class="bundle-variations__group-error" hidden>Please select an option.</p>
+  <div class="bundle-variations__options">
+    {%- comment -%} Legacy: own variants of the group product {%- endcomment -%}
+    {%- if own_product != blank -%}
+      {%- unless own_product.tags contains 'group-only' -%}
+        {%- for variant in own_product.variants -%}
+          {%- liquid
+            assign variant_description = variant.metafields.custom.description
+            assign description_html = ''
+            if variant_description != blank
+              assign description_html = variant_description | metafield_tag
+            endif
+            assign link = ''
+            assign linked = variant.metafields.custom.linked_product.value
+            if linked != blank
+              assign link = linked.url
+            endif
+          -%}
+          {%- render 'bundle-variation-option',
+            variant: variant,
+            item: own_product,
+            group_title: title,
+            label: variant.title,
+            description_html: description_html,
+            link: link
+          -%}
+        {%- endfor -%}
+      {%- endunless -%}
+    {%- endif -%}
+
+    {%- comment -%} Picked products {%- endcomment -%}
+    {%- for item in items -%}
+      {%- liquid
+        assign config_only = false
+        if item.tags contains 'config-only' or item.tags contains 'group-only'
+          assign config_only = true
+        endif
+        assign base_label = item.metafields.custom.config_label.value | default: item.title
+      -%}
+      {%- for variant in item.variants -%}
+        {%- liquid
+          if item.has_only_default_variant
+            assign label = base_label
+          elsif config_only
+            assign label = variant.title
+          else
+            assign label = base_label | append: ' – ' | append: variant.title
+          endif
+
+          assign variant_description = variant.metafields.custom.description
+          if variant_description != blank
+            assign description_html = variant_description | metafield_tag
+          elsif config_only
+            assign description_html = ''
+          else
+            assign description_html = item.description | strip_html | truncatewords: 60
+          endif
+
+          assign link = ''
+          assign linked = variant.metafields.custom.linked_product.value
+          if linked != blank
+            assign link = linked.url
+          elsif config_only == false
+            if item.has_only_default_variant
+              assign link = item.url
+            else
+              assign link = item.url | append: '?variant=' | append: variant.id
+            endif
+          endif
+        -%}
+        {%- render 'bundle-variation-option',
+          variant: variant,
+          item: item,
+          group_title: title,
+          label: label,
+          description_html: description_html,
+          link: link
+        -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>

@@ -1,0 +1,59 @@
+{%- comment -%}
+  Price range for products with a configurator (config_groups or legacy option_groups).
+  min = base price + cheapest option of every required group
+  max = base price + (single-select group: most expensive option | multi-select group: all options)
+  Params: product
+{%- endcomment -%}
+{%- liquid
+  assign base_price = product.selected_or_first_available_variant.price
+  assign min_total = base_price
+  assign max_total = base_price
+  assign config_groups = product.metafields.custom.config_groups.value
+
+  if config_groups != blank
+    for group in config_groups
+      assign g_min = -1
+      assign g_max = 0
+      assign g_sum = 0
+      for item in group.products.value
+        for v in item.variants
+          assign g_sum = g_sum | plus: v.price
+          if v.price > g_max
+            assign g_max = v.price
+          endif
+          if g_min == -1 or v.price < g_min
+            assign g_min = v.price
+          endif
+        endfor
+      endfor
+      if group.multi_select.value == true
+        assign max_total = max_total | plus: g_sum
+      else
+        assign max_total = max_total | plus: g_max
+      endif
+      if group.required.value == true and g_min > 0
+        assign min_total = min_total | plus: g_min
+      endif
+    endfor
+  else
+    for option_product in product.metafields.custom.option_groups.value
+      unless option_product.tags contains 'group-only'
+        for v in option_product.variants
+          assign max_total = max_total | plus: v.price
+        endfor
+      endunless
+      for extra_product in option_product.metafields.custom.group_products.value
+        for v in extra_product.variants
+          assign max_total = max_total | plus: v.price
+        endfor
+      endfor
+    endfor
+  endif
+-%}
+<span class="price price--large">
+  {%- if max_total > min_total -%}
+    {{ min_total | money }} - {{ max_total | money }} + VAT
+  {%- else -%}
+    {{ min_total | money }} + VAT
+  {%- endif -%}
+</span>
