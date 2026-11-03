@@ -104,30 +104,8 @@
                 <span class="price price--large">
                   {{ product.price_min | money }} - {{ product.price_max | money }} + VAT
                 </span>
-              {%- elsif product.metafields.custom.option_groups.value != blank -%}
-                {%- liquid
-                  assign base_price = product.selected_or_first_available_variant.price
-                  assign bundle_option_groups = product.metafields.custom.option_groups.value
-                  assign bundle_total_cents = 0
-
-                  for option_product in bundle_option_groups
-                    unless option_product.tags contains 'group-only'
-                      for variant in option_product.variants
-                        assign bundle_total_cents = bundle_total_cents | plus: variant.price
-                      endfor
-                    endunless
-                    for extra_product in option_product.metafields.custom.group_products.value
-                      for variant in extra_product.variants
-                        assign bundle_total_cents = bundle_total_cents | plus: variant.price
-                      endfor
-                    endfor
-                  endfor
-
-                  assign max_total = base_price | plus: bundle_total_cents
-                -%}
-                <span class="price price--large">
-                  {{ base_price | money }} - {{ max_total | money }} + VAT
-                </span>
+              {%- elsif product.metafields.custom.config_groups.value != blank or product.metafields.custom.option_groups.value != blank -%}
+                {%- render 'bundle-price-range', product: product -%}
               {%- else -%}
                 {%- render 'price',
                   product: product,
@@ -202,30 +180,8 @@
                       <span class="price price--large">
                         {{ product.price_min | money }} - {{ product.price_max | money }} + VAT
                       </span>
-                    {%- elsif product.metafields.custom.option_groups.value != blank -%}
-                      {%- liquid
-                        assign base_price = product.selected_or_first_available_variant.price
-                        assign bundle_option_groups = product.metafields.custom.option_groups.value
-                        assign bundle_total_cents = 0
-
-                        for option_product in bundle_option_groups
-                          unless option_product.tags contains 'group-only'
-                            for variant in option_product.variants
-                              assign bundle_total_cents = bundle_total_cents | plus: variant.price
-                            endfor
-                          endunless
-                          for extra_product in option_product.metafields.custom.group_products.value
-                            for variant in extra_product.variants
-                              assign bundle_total_cents = bundle_total_cents | plus: variant.price
-                            endfor
-                          endfor
-                        endfor
-
-                        assign max_total = base_price | plus: bundle_total_cents
-                      -%}
-                      <span class="price price--large">
-                        {{ base_price | money }} - {{ max_total | money }} + VAT
-                      </span>
+                    {%- elsif product.metafields.custom.config_groups.value != blank or product.metafields.custom.option_groups.value != blank -%}
+                      {%- render 'bundle-price-range', product: product -%}
                     {%- else -%}
                       {%- render 'price',
                         product: product,
@@ -558,86 +514,11 @@
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
               {%- when 'product_bundle_variations' -%}
-                {%- assign bundle_option_groups = product.metafields.custom.option_groups.value -%}
-                {%- if bundle_option_groups != blank and bundle_option_groups.size > 0 -%}
-                  <div
-                    class="bundle-variations"
-                    data-bundle-base-price="{{ product.selected_or_first_available_variant.price | divided_by: 100 }}"
-                    data-bundle-section="{{ section.id }}"
-                    {{ block.shopify_attributes }}
-                  >
-                    {%- for option_product in bundle_option_groups -%}
-                      <div class="bundle-variations__group" data-bundle-group-id="{{ option_product.id }}">
-                        <div class="bundle-variations__group-header">
-                          <p class="bundle-variations__group-title">
-                            {{ option_product.title }}
-                          </p>
-                        </div>
-                        <div class="bundle-variations__options">
-                          {%- liquid
-                            assign group_products = option_product.metafields.custom.group_products.value
-                            assign hide_own_variants = false
-                            if option_product.tags contains 'group-only'
-                              assign hide_own_variants = true
-                            endif
-                          -%}
-                          {%- comment -%} Own variants of the group product (rig-only options) {%- endcomment -%}
-                          {%- unless hide_own_variants -%}
-                            {%- for variant in option_product.variants -%}
-                              {%- liquid
-                                assign variant_description = variant.metafields.custom.description
-                                assign enable_link = variant.metafields.custom.enable_link_to_single_product
-                                assign description_html = ''
-                                if variant_description != blank
-                                  assign description_html = variant_description | metafield_tag
-                                endif
-                                assign link = ''
-                                if enable_link
-                                  assign link = option_product.url | append: '?variant=' | append: variant.id
-                                endif
-                              -%}
-                              {%- render 'bundle-variation-option',
-                                variant: variant,
-                                item: option_product,
-                                group_title: option_product.title,
-                                label: variant.title,
-                                description_html: description_html,
-                                link: link
-                              -%}
-                            {%- endfor -%}
-                          {%- endunless -%}
-                          {%- comment -%} Real products picked in the group product's custom.group_products {%- endcomment -%}
-                          {%- for item in group_products -%}
-                            {%- for variant in item.variants -%}
-                              {%- liquid
-                                if item.has_only_default_variant
-                                  assign label = item.title
-                                else
-                                  assign label = item.title | append: ' – ' | append: variant.title
-                                endif
-                                assign variant_description = variant.metafields.custom.description
-                                if variant_description != blank
-                                  assign description_html = variant_description | metafield_tag
-                                else
-                                  assign description_html = item.description | strip_html | truncatewords: 60
-                                endif
-                                assign link = item.url | append: '?variant=' | append: variant.id
-                              -%}
-                              {%- render 'bundle-variation-option',
-                                variant: variant,
-                                item: item,
-                                group_title: option_product.title,
-                                label: label,
-                                description_html: description_html,
-                                link: link
-                              -%}
-                            {%- endfor -%}
-                          {%- endfor -%}
-                        </div>
-                      </div>
-                    {%- endfor -%}
-                  </div>
-                {%- endif -%}
+                {%- render 'bundle-config-groups',
+                  product: product,
+                  section_id: section.id,
+                  block_attributes: block.shopify_attributes
+                -%}
               {%- when 'custom_field' -%}
                 {%- assign custom_field_name = block.settings.field_name | strip -%}
                 {%- if custom_field_name != blank -%}
@@ -711,15 +592,21 @@
                 </div>
                 {%- endif -%}
               {%- when 'buy_buttons' -%}
-                {%- render 'buy-buttons',
-                  block: block,
-                  product: product,
-                  product_form_id: product_form_id,
-                  section_id: section.id,
-                  show_pickup_availability: true,
-                  has_file_upload: section_has_file_upload,
-                  has_required_custom_field: section_has_required_custom_field
-                -%}
+                {%- if product.tags contains 'config-only' or product.tags contains 'group-only' -%}
+                  <p class="product__config-only" {{ block.shopify_attributes }} style="font-size:16px;color:#C8C9CC;margin:16px 0;">
+                    Available only as part of a simulator configuration.
+                  </p>
+                {%- else -%}
+                  {%- render 'buy-buttons',
+                    block: block,
+                    product: product,
+                    product_form_id: product_form_id,
+                    section_id: section.id,
+                    show_pickup_availability: true,
+                    has_file_upload: section_has_file_upload,
+                    has_required_custom_field: section_has_required_custom_field
+                  -%}
+                {%- endif -%}
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
