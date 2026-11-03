@@ -118,8 +118,50 @@
       return;
     }
 
+    const group = option.closest('.bundle-variations__group');
+    const isMulti = !group || group.dataset.multiSelect === 'true';
+
+    if (!isMulti && !option.classList.contains('bundle-variations__option--selected')) {
+      // Single-select group: deselect the other options first
+      group
+        .querySelectorAll(`${BUNDLE_OPTION_SELECTOR}.bundle-variations__option--selected`)
+        .forEach((selected) => selected.classList.remove('bundle-variations__option--selected'));
+    }
+
     option.classList.toggle('bundle-variations__option--selected');
+
+    if (group) {
+      clearGroupError(group);
+    }
+
     updateBundleTotal(container);
+  };
+
+  const clearGroupError = (group) => {
+    group.classList.remove('bundle-variations__group--error');
+    const message = group.querySelector('.bundle-variations__group-error');
+    if (message) message.hidden = true;
+  };
+
+  // Returns the required groups that have no selected option and marks them
+  const getMissingRequiredGroups = (container) => {
+    const missing = [];
+    const groups = container.querySelectorAll('.bundle-variations__group[data-required="true"]');
+
+    groups.forEach((group) => {
+      const hasSelection = group.querySelector(`${BUNDLE_OPTION_SELECTOR}.bundle-variations__option--selected`);
+      if (hasSelection) {
+        clearGroupError(group);
+        return;
+      }
+
+      group.classList.add('bundle-variations__group--error');
+      const message = group.querySelector('.bundle-variations__group-error');
+      if (message) message.hidden = false;
+      missing.push(group);
+    });
+
+    return missing;
   };
 
   const buildBundleItems = (container, productInfo) => {
@@ -330,6 +372,14 @@
 
       const container = productInfo.querySelector(BUNDLE_CONTAINER_SELECTOR);
       if (!container) {
+        return;
+      }
+
+      const missingGroups = getMissingRequiredGroups(container);
+      if (missingGroups.length) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        missingGroups[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
 
