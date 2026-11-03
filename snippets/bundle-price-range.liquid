@@ -1,5 +1,7 @@
 {%- comment -%}
-  Price range for products with a configurator (config_groups or legacy option_groups).
+  Price next to the product title for products with config_groups or legacy option_groups.
+  - Only configurator groups count. Groups marked "Upsell" never change this price.
+  - No configurator groups → the theme's normal price.
   min = base price + cheapest option of every required group
   max = base price + (single-select group: most expensive option | multi-select group: all options)
   Params: product
@@ -8,10 +10,15 @@
   assign base_price = product.selected_or_first_available_variant.price
   assign min_total = base_price
   assign max_total = base_price
+  assign has_config = false
   assign config_groups = product.metafields.custom.config_groups.value
 
   if config_groups != blank
     for group in config_groups
+      if group.upsell.value == true
+        continue
+      endif
+      assign has_config = true
       assign g_min = -1
       assign g_max = 0
       assign g_sum = 0
@@ -37,6 +44,7 @@
     endfor
   else
     for option_product in product.metafields.custom.option_groups.value
+      assign has_config = true
       unless option_product.tags contains 'group-only'
         for v in option_product.variants
           assign max_total = max_total | plus: v.price
@@ -50,10 +58,19 @@
     endfor
   endif
 -%}
-<span class="price price--large">
-  {%- if max_total > min_total -%}
-    {{ min_total | money }} - {{ max_total | money }} + VAT
-  {%- else -%}
-    {{ min_total | money }} + VAT
-  {%- endif -%}
-</span>
+{%- if has_config -%}
+  <span class="price price--large">
+    {%- if max_total > min_total -%}
+      {{ min_total | money }} - {{ max_total | money }} + VAT
+    {%- else -%}
+      {{ min_total | money }} + VAT
+    {%- endif -%}
+  </span>
+{%- else -%}
+  {%- render 'price',
+    product: product,
+    use_variant: true,
+    show_badges: true,
+    price_class: 'price--large'
+  -%}
+{%- endif -%}
