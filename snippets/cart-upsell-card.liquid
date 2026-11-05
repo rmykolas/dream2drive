@@ -1,0 +1,61 @@
+{%- comment -%}
+  One cart upsell card. Params: product, context ('drawer' | 'page')
+{%- endcomment -%}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign label = product.metafields.custom.config_label.value | default: product.title
+  if request.locale.iso_code == 'lt'
+    assign add_label = 'Pridėti'
+    assign choose_label = 'Pasirinkite variantą'
+  else
+    assign add_label = 'Add'
+    assign choose_label = 'Choose option'
+  endif
+-%}
+<li class="cart-upsell__item" data-cart-upsell-item>
+  <a href="{{ product.url }}" class="cart-upsell__media" tabindex="-1" aria-hidden="true">
+    {%- if product.featured_image -%}
+      {{
+        product.featured_image
+        | image_url: width: 240
+        | image_tag: loading: 'lazy', widths: '120, 240', sizes: '120px'
+      }}
+    {%- endif -%}
+  </a>
+  <div class="cart-upsell__info">
+    <a href="{{ product.url }}" class="cart-upsell__title">{{ label | escape }}</a>
+    <span class="cart-upsell__price" data-cart-upsell-price>{{ variant.price | money }}</span>
+    {%- unless product.has_only_default_variant -%}
+      <select
+        class="cart-upsell__select"
+        aria-label="{{ choose_label }}"
+        data-cart-upsell-select
+        id="CartUpsell-{{ context }}-{{ product.id }}"
+      >
+        {%- for v in product.variants -%}
+          {%- if v.available -%}
+            <option
+              value="{{ v.id }}"
+              data-price="{{ v.price | money | escape }}"
+              {% if v.id == variant.id %}
+                selected
+              {% endif %}
+            >
+              {{ v.title | escape }}
+            </option>
+          {%- endif -%}
+        {%- endfor -%}
+      </select>
+    {%- endunless -%}
+  </div>
+  <button
+    type="button"
+    class="cart-upsell__add button button--secondary"
+    data-cart-upsell-add
+    data-variant-id="{{ variant.id }}"
+    aria-label="{{ add_label }}: {{ label | escape }}"
+  >
+    <span class="cart-upsell__add-label">+ {{ add_label }}</span>
+    <span class="cart-upsell__spinner" hidden aria-hidden="true"></span>
+  </button>
+</li>
