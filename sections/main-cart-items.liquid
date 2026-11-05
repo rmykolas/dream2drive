@@ -1,5 +1,6 @@
 {{ 'component-cart.css' | asset_url | stylesheet_tag }}
 {{ 'component-cart-items.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cart-upsell.js' | asset_url }}" defer="defer"></script>
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
@@ -439,6 +440,7 @@
                 {%- endfor -%}
               </tbody>
             </table>
+            {%- render 'cart-upsell', context: 'page' -%}
           {%- endif -%}
         </div>
       </div>
