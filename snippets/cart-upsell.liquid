@@ -1,0 +1,258 @@
+{%- comment -%}
+  Cart upsell: suggests up to `limit` products based on what is in the cart.
+
+  Sources, in order (first match wins, duplicates skipped):
+    1. Upsell config groups (upsell = true) of cart products, most expensive cart line first
+    2. Other config groups of cart products (configurator add-ons that can be bought on their own)
+    3. Fallback collections: accessories, driver-accessories
+
+  Skipped: products already in cart, unavailable, tagged config-only / group-only,
+  seo.hidden = 1, gift cards, price 0.
+
+  Usage: {% render 'cart-upsell', context: 'drawer' %}  (or 'page')
+  Styles are inline below; cart-upsell.js must be loaded by the parent (cart-drawer / main-cart-items).
+{%- endcomment -%}
+{%- liquid
+  assign limit = 3
+  assign context = context | default: 'drawer'
+
+  assign in_cart = ','
+  for line in cart.items
+    assign in_cart = in_cart | append: line.product_id | append: ','
+  endfor
+
+  assign lines_sorted = cart.items | sort: 'final_price' | reverse
+  assign picked = ','
+  assign picked_count = 0
+-%}
+
+{%- capture upsell_cards -%}
+  {%- if cart.item_count > 0 -%}
+  {%- for pass in (1..3) -%}
+    {%- if picked_count >= limit -%}{%- break -%}{%- endif -%}
+
+    {%- if pass < 3 -%}
+      {%- for line in lines_sorted -%}
+        {%- if picked_count >= limit -%}{%- break -%}{%- endif -%}
+        {%- assign groups = line.product.metafields.custom.config_groups.value -%}
+        {%- if groups == blank -%}{%- continue -%}{%- endif -%}
+        {%- for group in groups -%}
+          {%- if picked_count >= limit -%}{%- break -%}{%- endif -%}
+          {%- liquid
+            assign is_upsell = false
+            if group.upsell.value == true
+              assign is_upsell = true
+            endif
+            if pass == 1 and is_upsell == false
+              continue
+            endif
+            if pass == 2 and is_upsell
+              continue
+            endif
+          -%}
+          {%- for p in group.products.value -%}
+            {%- if picked_count >= limit -%}{%- break -%}{%- endif -%}
+            {%- liquid
+              assign key = ',' | append: p.id | append: ','
+              if in_cart contains key or picked contains key
+                continue
+              endif
+              if p.available == false or p.gift_card? or p.price == 0
+                continue
+              endif
+              if p.tags contains 'config-only' or p.tags contains 'group-only'
+                continue
+              endif
+              if p.metafields.seo.hidden.value == 1
+                continue
+              endif
+              assign picked = picked | append: p.id | append: ','
+              assign picked_count = picked_count | plus: 1
+            -%}
+            {%- render 'cart-upsell-card', product: p, context: context -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- assign fallback_handles = 'accessories,driver-accessories' | split: ',' -%}
+      {%- for handle in fallback_handles -%}
+        {%- if picked_count >= limit -%}{%- break -%}{%- endif -%}
+        {%- for p in collections[handle].products limit: 30 -%}
+          {%- if picked_count >= limit -%}{%- break -%}{%- endif -%}
+          {%- liquid
+            assign key = ',' | append: p.id | append: ','
+            if in_cart contains key or picked contains key
+              continue
+            endif
+            if p.available == false or p.gift_card? or p.price == 0
+              continue
+            endif
+            if p.tags contains 'config-only' or p.tags contains 'group-only'
+              continue
+            endif
+            if p.metafields.seo.hidden.value == 1
+              continue
+            endif
+            assign picked = picked | append: p.id | append: ','
+            assign picked_count = picked_count | plus: 1
+          -%}
+          {%- render 'cart-upsell-card', product: p, context: context -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if picked_count > 0 -%}
+  {%- liquid
+    if request.locale.iso_code == 'lt'
+      assign upsell_heading = 'Jums taip pat gali prireikti'
+    else
+      assign upsell_heading = 'You may also like'
+    endif
+  -%}
+  <style>
+.cart-upsell {
+  margin-top: 2.4rem;
+  padding-top: 1.6rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.cart-upsell__heading {
+  margin: 0 0 1.2rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground));
+}
+
+.cart-upsell__list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.cart-upsell__item {
+  display: grid;
+  grid-template-columns: 6.4rem 1fr auto;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.8rem;
+  background: rgba(var(--color-foreground), 0.03);
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.cart-upsell__media {
+  display: block;
+  width: 6.4rem;
+  height: 6.4rem;
+  background: rgb(var(--color-background));
+}
+
+.cart-upsell .cart-upsell__media img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cart-upsell__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.cart-upsell__title {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  color: rgb(var(--color-foreground));
+  text-decoration: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cart-upsell__title:hover {
+  text-decoration: underline;
+}
+
+.cart-upsell__price {
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.cart-upsell__select {
+  max-width: 100%;
+  font: inherit;
+  font-size: 1.2rem;
+  padding: 0.3rem 0.6rem;
+  color: rgb(var(--color-foreground));
+  background: rgb(var(--color-background));
+  border: 0.1rem solid rgba(var(--color-foreground), 0.3);
+}
+
+.cart-upsell__add.button {
+  position: relative;
+  min-width: auto;
+  min-height: 3.6rem;
+  padding: 0 1.4rem;
+  font-size: 1.3rem;
+  white-space: nowrap;
+}
+
+.cart-upsell__add.loading .cart-upsell__add-label {
+  visibility: hidden;
+}
+
+.cart-upsell__spinner {
+  position: absolute;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 0.2rem solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: cart-upsell-spin 0.7s linear infinite;
+}
+
+@keyframes cart-upsell-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cart-upsell__error {
+  margin: 0.8rem 0 0;
+  font-size: 1.3rem;
+  color: rgb(var(--color-foreground));
+  opacity: 0.85;
+}
+
+/* Cart page: three cards side by side on wider screens */
+@media screen and (min-width: 990px) {
+  .cart-upsell--page .cart-upsell__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cart-upsell--page .cart-upsell__item {
+    grid-template-columns: 6.4rem 1fr;
+  }
+
+  .cart-upsell--page .cart-upsell__add.button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+  </style>
+  <div class="cart-upsell cart-upsell--{{ context }}" data-cart-upsell>
+    <p class="cart-upsell__heading">{{ upsell_heading }}</p>
+    <ul class="cart-upsell__list list-unstyled" role="list">
+      {{ upsell_cards }}
+    </ul>
+    <p class="cart-upsell__error" role="alert" hidden></p>
+  </div>
+{%- endif -%}
