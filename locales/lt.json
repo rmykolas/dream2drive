@@ -564,5 +564,29 @@
       "expanded": "Išskleista dovanų kortelės gavėjo forma",
       "collapsed": "Suskleista dovanų kortelės gavėjo forma"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "local_pickup": {
+        "stock_details": {
+          "in_stock": "Yra sandėlyje"
+        }
+      },
+      "split_delivery": {
+        "delivery_updated_toast": {
+          "shipping_only": "Jūsų pristatymas atnaujintas. {{shipping}}",
+          "removal_only": "Jūsų pristatymas atnaujintas. {{removal}}",
+          "shipping_and_removal": "Jūsų pristatymas atnaujintas. {{shipping}} {{removal}}",
+          "shipping": {
+            "one": "{{count}} prekė perkelta į siuntimą.",
+            "other": "Prekių perkelta į siuntimą: {{count}}."
+          },
+          "removal": {
+            "one": "{{count}} prekė pašalinta.",
+            "other": "Pašalinta prekių: {{count}}."
+          }
+        }
+      }
+    }
   }
 }
