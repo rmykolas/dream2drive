@@ -9,6 +9,8 @@
   - has_file_upload: {Boolean} if true, form uses multipart encoding for file inputs (optional, default false).
   - has_required_custom_field: {Boolean} if true, native required validation is enabled (optional, default false).
 
+  Product metafield custom.instruction_manual (file) adds an "Instruction manual (PDF)" button under Add to cart.
+
   Usage:
   {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true, has_file_upload: section_has_file_upload, has_required_custom_field: section_has_required_custom_field %}
 {% endcomment %}
@@ -188,6 +190,26 @@
         </button>
       </div>
     </div>
+  {%- endif -%}
+
+  {%- assign instruction_manual = product.metafields.custom.instruction_manual.value -%}
+  {%- if instruction_manual != blank and instruction_manual.url != blank -%}
+    <a
+      href="{{ instruction_manual.url }}"
+      target="_blank"
+      rel="noopener"
+      class="product__instruction-manual"
+      style="display:flex;align-items:center;justify-content:center;gap:12px;width:100%;margin-top:12px;padding:18px 24px;border:1px solid #C8C9CC;color:#ffffff;text-decoration:none;font-size:17px;font-weight:500;line-height:100%;text-transform:uppercase;letter-spacing:-0.02em;box-sizing:border-box;"
+      onmouseover="this.style.borderColor='#66C2A4';this.style.color='#66C2A4';"
+      onmouseout="this.style.borderColor='#C8C9CC';this.style.color='#ffffff';"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+      {%- if request.locale.iso_code == 'lt' -%}
+        Surinkimo instrukcija (PDF)
+      {%- else -%}
+        Instruction manual (PDF)
+      {%- endif -%}
+    </a>
   {%- endif -%}
 
   {%- liquid
