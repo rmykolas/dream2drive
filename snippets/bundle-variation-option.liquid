@@ -8,7 +8,7 @@
     description_html – optional HTML for the info dialog
     link             – optional URL for the "View product" button
   Product metafield custom.config_max_qty (integer) > 1 shows a quantity selector
-  under the option once it is selected (e.g. 3 monitors for a triple stand).
+  in place of the stock label once the option is selected (e.g. 3 monitors for a triple stand).
 {%- endcomment -%}
 {%- liquid
   assign is_available = variant.available
@@ -19,7 +19,7 @@
     assign max_qty = 1
   endif
 -%}
-<div class="bundle-variations__option-wrapper{% if description_html != blank %} bundle-variations__option-wrapper--has-info{% endif %}" style="position:relative;">
+<div class="bundle-variations__option-wrapper{% if description_html != blank %} bundle-variations__option-wrapper--has-info{% endif %}">
   <button
     type="button"
     class="bundle-variations__option{% unless is_available %} bundle-variations__option--unavailable{% endunless %}"
@@ -54,44 +54,40 @@
         {{ label }}
       </p>
       <div class="bundle-variations__option-meta">
-        <p class="bundle-variations__option-stock">
+        <p class="bundle-variations__option-stock" data-bundle-stock>
           {%- if is_available -%}
             {{ 'products.product.inventory_in_stock' | t }}
           {%- else -%}
             {{ 'products.product.inventory_out_of_stock' | t }}
           {%- endif -%}
         </p>
+        {%- if max_qty > 1 and is_available -%}
+          <span
+            class="bundle-variations__qty"
+            data-bundle-qty
+            style="display:none;align-items:center;height:30px;border:1px solid #282C37;color:#0F0F0F;font-size:15px;line-height:1;"
+          >
+            <span
+              data-bundle-qty-minus
+              role="button"
+              aria-label="{{ 'products.product.quantity.decrease' | t: product: label | escape }}"
+              style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:100%;cursor:pointer;user-select:none;font-size:17px;"
+            >−</span>
+            <span data-bundle-qty-value aria-live="polite" style="min-width:22px;text-align:center;font-weight:500;">1</span>
+            <span
+              data-bundle-qty-plus
+              role="button"
+              aria-label="{{ 'products.product.quantity.increase' | t: product: label | escape }}"
+              style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:100%;cursor:pointer;user-select:none;font-size:17px;"
+            >+</span>
+          </span>
+        {%- endif -%}
         <p class="bundle-variations__option-price">
           {{ variant.price | money }}
         </p>
       </div>
     </div>
   </button>
-  {%- if max_qty > 1 and is_available -%}
-    <div
-      class="bundle-variations__qty"
-      data-bundle-qty
-      style="display:none;position:absolute;left:10px;bottom:10px;z-index:2;align-items:center;background:#282C37;border:1px solid #66C2A4;height:34px;"
-    >
-      <button
-        type="button"
-        data-bundle-qty-minus
-        aria-label="{{ 'products.product.quantity.decrease' | t: product: label | escape }}"
-        style="width:34px;height:32px;background:none;border:0;color:#fff;font-size:18px;line-height:1;cursor:pointer;padding:0;"
-      >−</button>
-      <span
-        data-bundle-qty-value
-        aria-live="polite"
-        style="min-width:26px;text-align:center;color:#fff;font-size:16px;font-weight:500;"
-      >1</span>
-      <button
-        type="button"
-        data-bundle-qty-plus
-        aria-label="{{ 'products.product.quantity.increase' | t: product: label | escape }}"
-        style="width:34px;height:32px;background:none;border:0;color:#fff;font-size:18px;line-height:1;cursor:pointer;padding:0;"
-      >+</button>
-    </div>
-  {%- endif -%}
   {%- if description_html != blank -%}
     <button
       type="button"
