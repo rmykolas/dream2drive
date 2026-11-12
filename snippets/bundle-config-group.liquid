@@ -13,6 +13,7 @@
     - product tagged `config-only`      → each variant, variant title only
     - other product with variants       → each variant, "Product – Variant"
   Product metafield custom.config_label (single line text) overrides the product title.
+  Variant metafield custom.hide_in_config (true/false) hides that variant from all groups.
 {%- endcomment -%}
 <div
   class="bundle-variations__group"
@@ -35,6 +36,7 @@
     {%- if own_product != blank -%}
       {%- unless own_product.tags contains 'group-only' -%}
         {%- for variant in own_product.variants -%}
+          {%- if variant.metafields.custom.hide_in_config == true -%}{%- continue -%}{%- endif -%}
           {%- liquid
             assign variant_description = variant.metafields.custom.description
             assign description_html = ''
@@ -69,6 +71,7 @@
         assign base_label = item.metafields.custom.config_label.value | default: item.title
       -%}
       {%- for variant in item.variants -%}
+        {%- if variant.metafields.custom.hide_in_config == true -%}{%- continue -%}{%- endif -%}
         {%- liquid
           if item.has_only_default_variant
             assign label = base_label
