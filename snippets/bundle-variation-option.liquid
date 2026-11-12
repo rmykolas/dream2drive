@@ -7,11 +7,17 @@
     label            – title shown on the option
     description_html – optional HTML for the info dialog
     link             – optional URL for the "View product" button
+  Product metafield custom.config_max_qty (integer) > 1 shows a quantity selector
+  under the option once it is selected (e.g. 3 monitors for a triple stand).
 {%- endcomment -%}
 {%- liquid
   assign is_available = variant.available
   assign inventory_quantity = variant.inventory_quantity | default: 0
   assign option_image = variant.featured_image | default: item.featured_image
+  assign max_qty = item.metafields.custom.config_max_qty.value | default: 1
+  if max_qty < 1
+    assign max_qty = 1
+  endif
 -%}
 <div class="bundle-variations__option-wrapper{% if description_html != blank %} bundle-variations__option-wrapper--has-info{% endif %}">
   <button
@@ -23,6 +29,9 @@
     data-option-title="{{ label | escape }}"
     data-available="{{ is_available }}"
     data-inventory="{{ inventory_quantity }}"
+    data-inventory-tracked="{% if variant.inventory_management == 'shopify' and variant.inventory_policy == 'deny' %}true{% else %}false{% endif %}"
+    data-max-qty="{{ max_qty }}"
+    data-qty="1"
     {% unless is_available %}aria-disabled="true"{% endunless %}
   >
     <div class="bundle-variations__option-media">
@@ -58,6 +67,30 @@
       </div>
     </div>
   </button>
+  {%- if max_qty > 1 and is_available -%}
+    <div
+      class="bundle-variations__qty"
+      data-bundle-qty
+      style="display:none;align-items:center;gap:12px;margin-top:8px;font-size:15px;color:#C8C9CC;"
+    >
+      <span>{{ 'products.product.quantity.label' | t }}</span>
+      <div style="display:inline-flex;align-items:center;border:1px solid #C8C9CC;">
+        <button
+          type="button"
+          data-bundle-qty-minus
+          aria-label="{{ 'products.product.quantity.decrease' | t: product: label | escape }}"
+          style="width:36px;height:36px;background:none;border:0;color:#fff;font-size:18px;cursor:pointer;"
+        >−</button>
+        <span data-bundle-qty-value style="min-width:28px;text-align:center;color:#fff;font-weight:500;">1</span>
+        <button
+          type="button"
+          data-bundle-qty-plus
+          aria-label="{{ 'products.product.quantity.increase' | t: product: label | escape }}"
+          style="width:36px;height:36px;background:none;border:0;color:#fff;font-size:18px;cursor:pointer;"
+        >+</button>
+      </div>
+    </div>
+  {%- endif -%}
   {%- if description_html != blank -%}
     <button
       type="button"
