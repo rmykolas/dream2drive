@@ -103,7 +103,9 @@
     }
 
     const isSelected = option.classList.contains('bundle-variations__option--selected');
-    control.style.display = isSelected ? 'flex' : 'none';
+    control.style.display = isSelected ? 'inline-flex' : 'none';
+    const stock = option.querySelector('[data-bundle-stock]');
+    if (stock) stock.style.display = isSelected ? 'none' : '';
     if (!isSelected) {
       setOptionQty(option, 1);
     }
@@ -158,7 +160,8 @@
     const minus = event.target.closest('[data-bundle-qty-minus]');
     const plus = event.target.closest('[data-bundle-qty-plus]');
     if (!minus && !plus) {
-      return false;
+      // A click on the counter itself must not deselect the option
+      return Boolean(event.target.closest('[data-bundle-qty]'));
     }
 
     const wrapper = event.target.closest('.bundle-variations__option-wrapper');
