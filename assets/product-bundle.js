@@ -64,13 +64,58 @@
     return Array.from(container.querySelectorAll(`${BUNDLE_OPTION_SELECTOR}.bundle-variations__option--selected`));
   };
 
+  // Quantity of one option (product metafield custom.config_max_qty > 1 enables the selector)
+  const getOptionQty = (option) => {
+    return Math.max(1, parseNumber(option.dataset.qty || '1'));
+  };
+
+  const getOptionMaxQty = (option) => {
+    let max = Math.max(1, parseNumber(option.dataset.maxQty || '1'));
+    const inventory = parseNumber(option.dataset.inventory || '0');
+    if (option.dataset.inventoryTracked === 'true' && inventory > 0) {
+      max = Math.min(max, inventory);
+    }
+
+    return max;
+  };
+
+  const getQtyControl = (option) => {
+    const wrapper = option.closest('.bundle-variations__option-wrapper');
+
+    return wrapper ? wrapper.querySelector('[data-bundle-qty]') : null;
+  };
+
+  const setOptionQty = (option, qty) => {
+    const value = Math.min(Math.max(1, qty), getOptionMaxQty(option));
+    option.dataset.qty = String(value);
+    const control = getQtyControl(option);
+    if (control) {
+      const label = control.querySelector('[data-bundle-qty-value]');
+      if (label) label.textContent = String(value);
+    }
+  };
+
+  // Show the quantity selector only while the option is selected; reset it to 1 when deselected
+  const syncQtyControl = (option) => {
+    const control = getQtyControl(option);
+    if (!control) {
+      return;
+    }
+
+    const isSelected = option.classList.contains('bundle-variations__option--selected');
+    control.style.display = isSelected ? 'flex' : 'none';
+    if (!isSelected) {
+      setOptionQty(option, 1);
+    }
+  };
+
   const calculateAddOnTotal = (container) => {
     const selectedOptions = getSelectedOptions(container);
     let total = 0;
 
     for (const option of selectedOptions) {
       const price = parseNumber(option.dataset.price || '0');
-      total += price;
+      total += price * getOptionQty(option);
     }
 
     return total;
@@ -108,6 +153,26 @@
     });
   };
 
+  // +/- buttons of an option's quantity selector. Returns true if the click was handled.
+  const handleQtyClick = (event, container) => {
+    const minus = event.target.closest('[data-bundle-qty-minus]');
+    const plus = event.target.closest('[data-bundle-qty-plus]');
+    if (!minus && !plus) {
+      return false;
+    }
+
+    const wrapper = event.target.closest('.bundle-variations__option-wrapper');
+    const option = wrapper ? wrapper.querySelector(BUNDLE_OPTION_SELECTOR) : null;
+    if (!option) {
+      return true;
+    }
+
+    setOptionQty(option, getOptionQty(option) + (plus ? 1 : -1));
+    updateBundleTotal(container);
+
+    return true;
+  };
+
   const handleOptionClick = (event, container) => {
     const option = event.target.closest(BUNDLE_OPTION_SELECTOR);
     if (!option) {
@@ -125,10 +190,14 @@
       // Single-select group: deselect the other options first
       group
         .querySelectorAll(`${BUNDLE_OPTION_SELECTOR}.bundle-variations__option--selected`)
-        .forEach((selected) => selected.classList.remove('bundle-variations__option--selected'));
+        .forEach((selected) => {
+          selected.classList.remove('bundle-variations__option--selected');
+          syncQtyControl(selected);
+        });
     }
 
     option.classList.toggle('bundle-variations__option--selected');
+    syncQtyControl(option);
 
     if (group) {
       clearGroupError(group);
@@ -184,6 +253,7 @@
         optionTitle: option.dataset.optionTitle || '',
         variantId: parseNumber(option.dataset.variantId || '0'),
         price: parseNumber(option.dataset.price || '0'),
+        qty: getOptionQty(option),
       };
     });
 
@@ -200,13 +270,15 @@
 
     for (const [index, item] of bundleDetails.entries()) {
       const suffix = index + 1;
-      const label = `${item.productTitle} - ${item.optionTitle} (${formatPrice(item.price)})`;
+      const qtyLabel = item.qty > 1 ? ` × ${item.qty}` : '';
+      const label = `${item.productTitle} - ${item.optionTitle}${qtyLabel} (${formatPrice(item.price * item.qty)})`;
 
       properties[`Item ${suffix}`] = label;
       properties[`_bundle_item_${suffix}_title`] = item.productTitle;
       properties[`_bundle_item_${suffix}_option`] = item.optionTitle;
       properties[`_bundle_item_${suffix}_variant_id`] = item.variantId;
       properties[`_bundle_item_${suffix}_price`] = formatPrice(item.price);
+      properties[`_bundle_item_${suffix}_qty`] = item.qty;
     }
 
     const parentItem = {
@@ -220,7 +292,7 @@
       .map((item) => {
         return {
           id: item.variantId,
-          quantity,
+          quantity: quantity * item.qty,
           properties: {
             _child_of: parseNumber(mainVariantId),
             _bundle_id: bundleId,
@@ -249,6 +321,10 @@
     container.dataset.bundleInitialized = 'true';
 
     container.addEventListener('click', (event) => {
+      if (handleQtyClick(event, container)) {
+        return;
+      }
+
       handleOptionClick(event, container);
     });
 
@@ -470,4 +546,3 @@
     true
   );
 })();
-
