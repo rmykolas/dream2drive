@@ -1,1 +1,46 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"padding_top":36,"padding_bottom":36}},"form":{"type":"contact-form","settings":{"heading":"","heading_size":"h1","color_scheme":"scheme-3","padding_top":36,"padding_bottom":36}}},"order":["main","form"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_liquid_rm6atw": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{%- liquid\n  assign lt = false\n  if request.locale.iso_code == 'lt'\n    assign lt = true\n  endif\n-%}\n\n<style>\n  .d2d-contact { max-width: 1320px; margin: 0 auto; padding: 48px 20px 8px; color: inherit; }\n  .d2d-contact__title { text-align: center; text-transform: uppercase; margin: 0 0 12px; font-size: clamp(28px, 4vw, 44px); letter-spacing: .02em; }\n  .d2d-contact__intro { text-align: center; opacity: .8; margin: 0 auto 40px; max-width: 640px; }\n  .d2d-contact__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }\n  .d2d-contact__card { border: 1px solid rgba(255,255,255,.25); padding: 28px 32px; }\n  .d2d-contact__card h3 { margin: 0 0 16px; text-transform: uppercase; font-size: 20px; color: #86c8b5; letter-spacing: .04em; }\n  .d2d-contact__card p { margin: 0 0 8px; line-height: 1.6; }\n  .d2d-contact__card a { color: inherit; text-decoration: underline; }\n  .d2d-contact__label { opacity: .7; }\n  .d2d-contact__form-title { text-align: center; text-transform: uppercase; margin: 56px 0 0; font-size: clamp(22px, 3vw, 32px); }\n  @media (max-width: 749px) {\n    .d2d-contact__grid { grid-template-columns: 1fr; }\n    .d2d-contact__card { padding: 22px; }\n  }\n</style>\n\n<div class=\"d2d-contact\">\n  <h1 class=\"d2d-contact__title\">{% if lt %}Susisiekite su mumis{% else %}Contact us{% endif %}</h1>\n  <p class=\"d2d-contact__intro\">\n    {%- if lt -%}\n      Turite klausimų dėl simuliatorių, užsakymo ar vairavimo patirties? Parašykite mums – atsakysime kuo greičiau.\n    {%- else -%}\n      Have questions about our simulators, an order or a driving experience? Send us a message and we'll get back to you shortly.\n    {%- endif -%}\n  </p>\n\n  <div class=\"d2d-contact__grid\">\n    <div class=\"d2d-contact__card\">\n      <h3>{% if lt %}Kontaktai{% else %}Contact{% endif %}</h3>\n      <p><span class=\"d2d-contact__label\">{% if lt %}El. paštas:{% else %}Email:{% endif %}</span> <a href=\"mailto:info@dream2drive.lt\">info@dream2drive.lt</a></p>\n      <p><span class=\"d2d-contact__label\">{% if lt %}Adresas:{% else %}Address:{% endif %}</span> Austėjos g. 2A, Vilnius, {% if lt %}Lietuva{% else %}Lithuania{% endif %}</p>\n    </div>\n\n    <div class=\"d2d-contact__card\">\n      <h3>{% if lt %}Rekvizitai{% else %}Company details{% endif %}</h3>\n      <p>VšĮ „Tauras Racing“</p>\n      <p><span class=\"d2d-contact__label\">{% if lt %}Įmonės kodas:{% else %}Company code:{% endif %}</span> 302931662</p>\n      <p><span class=\"d2d-contact__label\">{% if lt %}PVM mokėtojo kodas:{% else %}VAT code:{% endif %}</span> LT100013200915</p>\n    </div>\n  </div>\n\n  <h2 class=\"d2d-contact__form-title\">{% if lt %}Parašykite mums{% else %}Send us a message{% endif %}</h2>\n</div>",
+        "color_scheme": "scheme-3",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "color_scheme": "scheme-3",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "custom_liquid_rm6atw",
+    "main",
+    "form"
+  ]
+}
