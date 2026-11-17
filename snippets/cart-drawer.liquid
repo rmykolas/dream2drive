@@ -576,18 +576,14 @@
           {%- if has_quotable_items -%}
             {%- render 'cart-quote-request', form_id: 'drawer' -%}
           {%- else -%}
-            <button
-              type="submit"
+            <a
+              href="{{ routes.cart_url }}"
               id="CartDrawer-Checkout"
               class="cart__checkout-button button"
-              name="checkout"
-              form="CartDrawer-Form"
-              {% if cart == empty %}
-                disabled
-              {% endif %}
+              {% if cart == empty %}aria-disabled="true" style="pointer-events:none;opacity:.5"{% endif %}
             >
-              {{ 'sections.cart.checkout' | t }}
-            </button>
+              {{ 'general.cart.view_empty_cart' | t }}
+            </a>
           {%- endif -%}
         </div>
       </div>
