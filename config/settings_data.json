@@ -141,6 +141,13 @@
       }
     },
     "content_for_index": [],
+    "blocks": {
+      "9660143156311636656": {
+        "type": "shopify://apps/parcely-app/blocks/delay/cbdd14b4-8c8a-445b-bf69-fadc23ab031d",
+        "disabled": false,
+        "settings": {}
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
