@@ -20,6 +20,12 @@
     "cart-footer": {
       "type": "main-cart-footer",
       "blocks": {
+        "parcely_app_parcely_list_widget_VhQJ7b": {
+          "type": "shopify://apps/parcely-app/blocks/parcely_list_widget/cbdd14b4-8c8a-445b-bf69-fadc23ab031d",
+          "settings": {
+            "use_custom_anchor": false
+          }
+        },
         "subtotal": {
           "type": "subtotal",
           "settings": {}
@@ -30,6 +36,7 @@
         }
       },
       "block_order": [
+        "parcely_app_parcely_list_widget_VhQJ7b",
         "subtotal",
         "buttons"
       ],
