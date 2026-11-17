@@ -3876,3 +3876,74 @@ details-disclosure > details {
     block-size: 56px;
   }
 }
+
+/* Dream2Drive – Parcely paštomato pasirinkimo stilius krepšelyje */
+#parcelyWidget .parcely_app,
+#parcelyWidget .parcely_app * {
+  font-family: "Roboto Condensed", sans-serif !important;
+}
+#parcelyWidget .parcely_app { color: #121212; }
+
+#parcelyWidget .parcely_app > div {
+  background: #fff !important;
+  border: 1px solid rgba(18, 18, 18, .15) !important;
+  border-radius: 0 !important;
+  padding: 20px 24px !important;
+  margin-bottom: 12px;
+}
+
+#parcelyWidget .parcely_app_shipping_method-label {
+  color: #121212 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .06em !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  margin: 0 0 14px !important;
+}
+
+#parcelyWidget .parcely_app span {
+  color: rgba(18, 18, 18, .8) !important;
+  font-size: 16px !important;
+  letter-spacing: .02em;
+}
+
+#parcelyWidget input.parcelyRadio {
+  accent-color: #6ec7b3;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+#parcelyWidget .parcely_app_shipping_method,
+#parcelyWidget .parcely_shipping_provider { padding: 6px 0; }
+
+/* Paštomato paieškos laukas */
+#parcelyWidget [class*="-control"] {
+  background: #fff !important;
+  border: 1px solid rgba(18, 18, 18, .35) !important;
+  border-radius: 0 !important;
+  min-height: 46px;
+  box-shadow: none !important;
+  margin-top: 8px;
+}
+#parcelyWidget [class*="-control"]:hover,
+#parcelyWidget [class*="-control"]:focus-within {
+  border-color: #6ec7b3 !important;
+  box-shadow: 0 0 0 1px #6ec7b3 !important;
+}
+#parcelyWidget [class*="-placeholder"],
+#parcelyWidget [class*="-singleValue"] { color: rgba(18, 18, 18, .75) !important; }
+
+/* Paštomatų sąrašas */
+#parcelyWidget [class*="-menu"] {
+  border-radius: 0 !important;
+  border: 1px solid rgba(18, 18, 18, .15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .08) !important;
+  z-index: 20;
+}
+#parcelyWidget [class*="-option"] { cursor: pointer; }
+#parcelyWidget [class*="-option"]:hover,
+#parcelyWidget [class*="-option"][aria-selected="true"] {
+  background: rgba(110, 199, 179, .18) !important;
+  color: #121212 !important;
+}
