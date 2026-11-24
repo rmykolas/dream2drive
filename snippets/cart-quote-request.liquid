@@ -223,6 +223,59 @@
           <label class="field__label" for="QuoteRequestCountry-{{ quote_form_id }}">Country</label>
         </div>
 
+                <details class="quote-request-business">
+          <summary class="quote-request-business__summary">
+            Buying as a company? Add business details
+          </summary>
+
+          <div class="quote-request-business__fields">
+            <div class="field">
+              <input
+                class="field__input"
+                type="text"
+                id="QuoteRequestCompany-{{ quote_form_id }}"
+                name="contact[company_name]"
+                autocomplete="organization"
+                placeholder=" "
+              >
+              <label class="field__label" for="QuoteRequestCompany-{{ quote_form_id }}">Company name</label>
+            </div>
+
+            <div class="field">
+              <input
+                class="field__input"
+                type="text"
+                id="QuoteRequestCompanyCode-{{ quote_form_id }}"
+                name="contact[company_code]"
+                placeholder=" "
+              >
+              <label class="field__label" for="QuoteRequestCompanyCode-{{ quote_form_id }}">Company code</label>
+            </div>
+
+            <div class="field">
+              <input
+                class="field__input"
+                type="text"
+                id="QuoteRequestVat-{{ quote_form_id }}"
+                name="contact[vat_number]"
+                placeholder=" "
+              >
+              <label class="field__label" for="QuoteRequestVat-{{ quote_form_id }}">VAT number</label>
+            </div>
+
+            <div class="field">
+              <input
+                class="field__input"
+                type="text"
+                id="QuoteRequestBillingAddress-{{ quote_form_id }}"
+                name="contact[billing_address]"
+                placeholder=" "
+              >
+              <label class="field__label" for="QuoteRequestBillingAddress-{{ quote_form_id }}">Registered / billing address (if different from delivery)</label>
+            </div>
+          </div>
+        </details>
+
         <div class="field">
           <textarea
             class="text-area field__input"
