@@ -3961,7 +3961,7 @@ details-disclosure > details {
   font-size: 1.3rem;
   text-decoration: underline;
   text-underline-offset: 0.3rem;
-  color: rgba(var(--color-foreground), 0.75);
+  color: #ffffff;
 }
 
 .quote-request-business__summary::-webkit-details-marker {
