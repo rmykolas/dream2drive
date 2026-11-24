@@ -171,6 +171,57 @@
           >
           <label class="field__label" for="QuoteRequestPhone-{{ quote_form_id }}">Phone (optional)</label>
         </div>
+                <div class="field">
+          <input
+            class="field__input"
+            type="text"
+            id="QuoteRequestAddress-{{ quote_form_id }}"
+            name="contact[delivery_address]"
+            autocomplete="street-address"
+            required
+            placeholder=" "
+          >
+          <label class="field__label" for="QuoteRequestAddress-{{ quote_form_id }}">Delivery address (street, house no.)</label>
+        </div>
+
+        <div class="field">
+          <input
+            class="field__input"
+            type="text"
+            id="QuoteRequestCity-{{ quote_form_id }}"
+            name="contact[delivery_city]"
+            autocomplete="address-level2"
+            required
+            placeholder=" "
+          >
+          <label class="field__label" for="QuoteRequestCity-{{ quote_form_id }}">City</label>
+        </div>
+
+        <div class="field">
+          <input
+            class="field__input"
+            type="text"
+            id="QuoteRequestZip-{{ quote_form_id }}"
+            name="contact[delivery_postal_code]"
+            autocomplete="postal-code"
+            required
+            placeholder=" "
+          >
+          <label class="field__label" for="QuoteRequestZip-{{ quote_form_id }}">Postal code</label>
+        </div>
+
+        <div class="field">
+          <input
+            class="field__input"
+            type="text"
+            id="QuoteRequestCountry-{{ quote_form_id }}"
+            name="contact[delivery_country]"
+            autocomplete="country-name"
+            required
+            placeholder=" "
+          >
+          <label class="field__label" for="QuoteRequestCountry-{{ quote_form_id }}">Country</label>
+        </div>
 
         <div class="field">
           <textarea
