@@ -3947,3 +3947,41 @@ details-disclosure > details {
   background: rgba(110, 199, 179, .18) !important;
   color: #121212 !important;
 }
+
+.quote-request-business {
+  margin: 0.4rem 0 1.6rem;
+}
+
+.quote-request-business__summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  list-style: none;
+  font-size: 1.3rem;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.quote-request-business__summary::-webkit-details-marker {
+  display: none;
+}
+
+.quote-request-business__summary::after {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  border-right: 0.15rem solid currentColor;
+  border-bottom: 0.15rem solid currentColor;
+  transform: rotate(45deg) translateY(-0.2rem);
+  transition: transform 0.2s ease;
+}
+
+.quote-request-business[open] .quote-request-business__summary::after {
+  transform: rotate(-135deg) translateY(-0.2rem);
+}
+
+.quote-request-business__fields {
+  margin-top: 1.2rem;
+}
