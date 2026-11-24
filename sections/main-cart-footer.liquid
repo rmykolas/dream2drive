@@ -6,7 +6,7 @@
 
 {%- assign has_quotable_items = false -%}
 {%- for item in cart.items -%}
-  {%- if item.product.metafields.custom.quotable.value -%}
+  {%- if item.product.metafields.custom.quotable.value or item.variant.metafields.custom.quotable.value -%}
     {%- assign has_quotable_items = true -%}
     {%- break -%}
   {%- endif -%}
