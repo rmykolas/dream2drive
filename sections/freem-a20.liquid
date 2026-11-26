@@ -88,11 +88,9 @@
 
         <div class="fc-group">
           <label class="fc-l" for="FcMeas-{{ section.id }}">{{ section.settings.meas_label | escape }}</label>
+          {%- render 'fc-measure-guide', url: section.settings.meas_form_url, label: section.settings.meas_form_text -%}
           <input class="fc-file" type="file" id="FcMeas-{{ section.id }}" data-fc-meas name="properties[{{ section.settings.meas_label | escape }}]" accept=".xls,.xlsx,.pdf,.jpg,.jpeg,.png,.heic,image/*,application/pdf">
           {%- if section.settings.meas_note != blank -%}<div class="fc__fine">{{ section.settings.meas_note }}</div>{%- endif -%}
-          {%- if section.settings.meas_form_url != blank -%}
-            <p class="fc__fine"><a class="fc-link" href="{{ section.settings.meas_form_url }}" target="_blank" rel="noopener">{{ section.settings.meas_form_text | escape }}</a></p>
-          {%- endif -%}
         </div>
 
         <div class="fc-group fc__belt">
