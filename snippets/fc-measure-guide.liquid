@@ -1,0 +1,28 @@
+{%- comment -%}
+  Measuring guide button for the FREEM configurators.
+  Uses the product metafield custom.instruction_manual (file), or the url passed in.
+  Params: url (optional override), label (optional), lt_label (optional)
+{%- endcomment -%}
+{%- liquid
+  assign guide_url = url
+  if guide_url == blank
+    assign guide_file = product.metafields.custom.instruction_manual.value
+    if guide_file != blank
+      assign guide_url = guide_file.url
+    endif
+  endif
+  assign guide_label = label | default: 'How to measure – download the guide'
+  if request.locale.iso_code == 'lt'
+    assign guide_label = lt_label | default: 'Kaip išsimatuoti – atsisiųsti instrukciją'
+  endif
+-%}
+{%- if guide_url != blank -%}
+  <a class="fc-guide" href="{{ guide_url }}" target="_blank" rel="noopener" download>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+    <span>{{ guide_label | escape }}</span>
+  </a>
+  <style>
+    .fc-guide{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin:0 0 12px;padding:13px 16px;border:1.5px solid var(--fc-line,#c8c9cc);border-radius:8px;color:var(--fc-ink,#fff);text-decoration:none;font-weight:600;font-size:15px;line-height:1.25;text-align:center;box-sizing:border-box}
+    .fc-guide:hover,.fc-guide:focus-visible{border-color:var(--fc-accent,#66c2a4);color:var(--fc-accent,#66c2a4);outline:none}
+  </style>
+{%- endif -%}
