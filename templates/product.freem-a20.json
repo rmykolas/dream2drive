@@ -9,72 +9,16 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-product",
-      "blocks": {
-        "title": {
-          "type": "title",
-          "settings": {}
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
-        },
-        "product_bundle_variations_QA4hCd": {
-          "type": "product_bundle_variations",
-          "settings": {}
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": false,
-            "show_gift_card_recipient": false
-          }
-        }
-      },
-      "block_order": [
-        "title",
-        "variant_picker",
-        "product_bundle_variations_QA4hCd",
-        "quantity_selector",
-        "price",
-        "buy_buttons"
-      ],
-      "settings": {
-        "enable_sticky_info": true,
-        "color_scheme": "scheme-3",
-        "media_size": "medium",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "thumbnail",
-        "mobile_thumbnails": "hide",
-        "media_position": "left",
-        "image_zoom": "hover",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
-      }
-    },
-    "dd_product_feature_iGC9UY": {
-      "type": "dd-product-feature",
-      "name": "Product Feature",
+    "configurator": {
+      "type": "freem-a20",
       "settings": {}
     },
-    "dd_pd_description_LwWK8e": {
+    "inquiry": {
+      "type": "custom-inquiry",
+      "settings": {}
+    },
+    "description": {
       "type": "dd-pd-description",
-      "name": "Description Section",
       "settings": {
         "title": "Description",
         "subtitle": ""
@@ -99,10 +43,5 @@
       }
     }
   },
-  "order": [
-    "main",
-    "dd_product_feature_iGC9UY",
-    "dd_pd_description_LwWK8e",
-    "related-products"
-  ]
+  "order": ["configurator", "inquiry", "description", "related-products"]
 }
