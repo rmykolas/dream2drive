@@ -103,6 +103,7 @@
           <label class="fc-l" for="FcSize-{{ section.id }}">{{ section.settings.size_label | escape }}</label>
           <select id="FcSize-{{ section.id }}" data-fc-size></select>
           {%- if section.settings.size_note != blank -%}<div class="fc__fine">{{ section.settings.size_note }}</div>{%- endif -%}
+          <div style="margin-top:12px">{%- render 'fc-measure-guide', label: 'Size guide – how to measure', lt_label: 'Dydžių lentelė – kaip išsimatuoti' -%}</div>
         </div>
 
         <div class="fc-group fc__belt">
