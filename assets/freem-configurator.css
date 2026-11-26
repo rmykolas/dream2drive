@@ -67,3 +67,4 @@
 .fc__belt{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12px}
 .fc input[type=text]{width:100%;font:inherit;font-size:16px;padding:11px 12px;border-radius:8px;border:1.5px solid var(--fc-line);background:var(--fc-bg);color:var(--fc-ink);min-height:46px;text-transform:uppercase}
 .fc input[type=text]:focus{outline:none;border-color:var(--fc-accent)}
+@media (max-width:520px){.fc__views button{padding:9px 14px;font-size:14px}}
