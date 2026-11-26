@@ -1,0 +1,210 @@
+{{ 'freem-configurator.css' | asset_url | stylesheet_tag }}
+{{ 'freem-a20.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'freem-a20.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign form_id = 'FreemA20Form-' | append: section.id
+  assign title = section.settings.heading
+  if title == blank
+    assign title = product.title
+  endif
+-%}
+
+<div class="fc" data-freem-a20 style="--fc-accent-c: {{ section.settings.accent }};" {{ section.shopify_attributes }}>
+  <script type="application/json" data-fc-config>
+    {
+      "title": {{ title | json }},
+      "selected": {{ current_variant.id | json }},
+      "variants": [
+        {%- for v in product.variants -%}
+          {"id": {{ v.id }}, "available": {{ v.available | json }}}{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ],
+      "index": {{ 'freem-a20-index.json' | file_url | json }},
+      "thumbs": {{ 'freem-a20-thumbs.webp' | file_url | json }},
+      "defaultDesign": {{ section.settings.default_design | json }},
+      "fabric": {{ section.settings.fabric_colours | json }},
+      "stretch": {{ section.settings.stretch_colours | json }},
+      "cuff": {{ section.settings.cuff_colours | json }},
+      "zoneLabel": {{ section.settings.zone_label | json }},
+      "designLabel": {{ section.settings.design_label | json }},
+      "stretchLabel": {{ section.settings.stretch_label | json }},
+      "cuffLabel": {{ section.settings.cuff_label | json }},
+      "logoPrefix": {{ section.settings.logo_prefix | json }},
+      "addText": {{ section.settings.add_logo_text | json }},
+      "changeText": {{ section.settings.change_logo_text | json }},
+      "addToCart": {{ section.settings.button_label | json }},
+      "soldOut": {{ 'products.product.sold_out' | t | json }},
+      "measRequired": {{ section.settings.meas_required | json }},
+      "measMissing": {{ section.settings.meas_missing_text | json }},
+      "tooBig": {{ section.settings.too_big_text | json }},
+      "failText": {{ section.settings.fail_text | json }}
+    }
+  </script>
+
+  <div class="fc__wrap">
+    <div class="fc__stage">
+      <div class="fc__views" role="group" aria-label="{{ section.settings.view_label | escape }}">
+        <button type="button" data-fc-view="front" aria-pressed="true">{{ section.settings.front_label | escape }}</button>
+        <button type="button" data-fc-view="left" aria-pressed="false">{{ section.settings.right_side_label | escape }}</button>
+        <button type="button" data-fc-view="back" aria-pressed="false">{{ section.settings.back_label | escape }}</button>
+        <button type="button" data-fc-view="right" aria-pressed="false">{{ section.settings.left_side_label | escape }}</button>
+      </div>
+      <div class="fc__fig is-loading" data-fc-fig></div>
+      {%- if section.settings.stage_note != blank -%}<div class="fc__note">{{ section.settings.stage_note }}</div>{%- endif -%}
+    </div>
+
+    <div class="fc__panel">
+      {%- if product.vendor != blank -%}<p class="fc__vendor">{{ product.vendor | escape }}</p>{%- endif -%}
+      <h1 class="fc__title">{{ title | escape }}</h1>
+      <p class="fc__price">{{ current_variant.price | money }}</p>
+      {%- if section.settings.intro != blank -%}<div class="fc__intro">{{ section.settings.intro }}</div>{%- endif -%}
+
+      <div class="fc-group">
+        <h3>{{ section.settings.design_label | escape }}</h3>
+        <div class="fc-design">
+          <span class="fc-design__thumb" data-fc-current-thumb></span>
+          <div class="fc-design__body">
+            <span class="fc-design__name" data-fc-design-name></span>
+            <button type="button" class="fc-btn" data-fc-open-gallery>{{ section.settings.gallery_button | escape }}</button>
+          </div>
+        </div>
+      </div>
+      <div data-fc-colours></div>
+      <div class="fc-group">
+        <h3>{{ section.settings.stretch_label | escape }} <span data-fc-stretch-name></span></h3>
+        <div class="fc-sws" data-fc-stretch></div>
+      </div>
+      <div class="fc-group">
+        <h3>{{ section.settings.cuff_label | escape }} <span data-fc-cuff-name></span></h3>
+        <div class="fc-sws" data-fc-cuff></div>
+      </div>
+
+      {%- form 'product', product, id: form_id, class: 'fc__form', novalidate: 'novalidate' -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}">
+        <div class="fc__hidden" data-fc-props></div>
+        <div class="fc__hidden" data-fc-files></div>
+
+        <div class="fc-group">
+          <label class="fc-l" for="FcMeas-{{ section.id }}">{{ section.settings.meas_label | escape }}</label>
+          <input class="fc-file" type="file" id="FcMeas-{{ section.id }}" data-fc-meas name="properties[{{ section.settings.meas_label | escape }}]" accept=".xls,.xlsx,.pdf,.jpg,.jpeg,.png,.heic,image/*,application/pdf">
+          {%- if section.settings.meas_note != blank -%}<div class="fc__fine">{{ section.settings.meas_note }}</div>{%- endif -%}
+          {%- if section.settings.meas_form_url != blank -%}
+            <p class="fc__fine"><a class="fc-link" href="{{ section.settings.meas_form_url }}" target="_blank" rel="noopener">{{ section.settings.meas_form_text | escape }}</a></p>
+          {%- endif -%}
+        </div>
+
+        <div class="fc-group fc__belt">
+          <div>
+            <label class="fc-l" for="FcBelt-{{ section.id }}">{{ section.settings.belt_label | escape }}</label>
+            <input type="text" id="FcBelt-{{ section.id }}" data-fc-belt name="properties[{{ section.settings.belt_label | escape }}]" maxlength="20" autocomplete="off">
+          </div>
+          <div>
+            <label class="fc-l" for="FcFlag-{{ section.id }}">{{ section.settings.flag_label | escape }}</label>
+            <select id="FcFlag-{{ section.id }}" data-fc-flag name="properties[{{ section.settings.flag_label | escape }}]"></select>
+          </div>
+        </div>
+
+        <div class="fc-group">
+          <h3>{{ section.settings.logos_label | escape }} <span>{{ section.settings.logos_hint | escape }}</span></h3>
+          <ul class="fc__logos" data-fc-logos></ul>
+        </div>
+
+        <div class="fc-group">
+          <label class="fc-l" for="FcNote-{{ section.id }}">{{ section.settings.comments_label | escape }}</label>
+          <textarea id="FcNote-{{ section.id }}" name="properties[{{ section.settings.comments_label | escape }}]" maxlength="800"></textarea>
+        </div>
+
+        <div class="fc-group">
+          <button type="submit" class="fc__submit" data-fc-submit {% unless current_variant.available %}disabled{% endunless %}><span>{{ section.settings.button_label | escape }}</span></button>
+          <p class="fc__msg" data-fc-msg role="alert" hidden></p>
+          {%- if section.settings.fine_print != blank -%}<div class="fc__fine">{{ section.settings.fine_print }}</div>{%- endif -%}
+          {%- if section.settings.inquiry_button != blank -%}<button type="button" class="fc-inq" data-fc-inquiry>{{ section.settings.inquiry_button | escape }}</button>{%- endif -%}
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+
+  <dialog class="fc-gallery" data-fc-gallery aria-labelledby="FcGal-{{ section.id }}">
+    <div class="fcg">
+      <div class="fcg__head">
+        <h3 id="FcGal-{{ section.id }}">{{ section.settings.gallery_title | escape }}<span data-fc-gcount></span></h3>
+        <input type="search" data-fc-gsearch placeholder="{{ section.settings.gallery_search | escape }}" aria-label="{{ section.settings.gallery_search | escape }}">
+        <button type="button" class="fc-btn" data-fc-gclose>{{ section.settings.close_text | escape }}</button>
+      </div>
+      <div class="fcg__grid" data-fc-grid></div>
+    </div>
+  </dialog>
+
+  <dialog data-fc-logo-dlg aria-labelledby="FcDlg-{{ section.id }}">
+    <div class="fc__dlg">
+      <h3 id="FcDlg-{{ section.id }}" data-fc-dlg-title></h3>
+      {%- if section.settings.upload_help != blank -%}<p>{{ section.settings.upload_help }}</p>{%- endif -%}
+      <button type="button" class="fc__drop" data-fc-drop data-fc-choose>{{ section.settings.upload_button | escape }}</button>
+      <div class="fc__acts">
+        <button type="button" class="fc-btn" data-fc-remove hidden>{{ section.settings.remove_logo_text | escape }}</button>
+        <button type="button" class="fc-btn" data-fc-close>{{ section.settings.close_text | escape }}</button>
+      </div>
+    </div>
+  </dialog>
+</div>
+
+{% schema %}
+{
+  "name": "FREEM A20 configurator",
+  "tag": "section",
+  "class": "section-freem-a20",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave empty to use the product title." },
+    { "type": "richtext", "id": "intro", "label": "Intro text", "default": "<p>Choose one of more than 200 FREEM A20 designs, set every colour and add your logos. The suit is tailor made to your measurements, and our team sends you a final mock-up for approval before production.</p>" },
+    { "type": "richtext", "id": "stage_note", "label": "Note under the suit", "default": "<p>FREEM drawing, for visualisation only. On-screen colours differ from the real fabric.</p>" },
+    { "type": "text", "id": "default_design", "label": "Design shown first", "default": "001-BASE", "info": "Code without A20-, e.g. 002-TRIS" },
+    { "type": "text", "id": "button_label", "label": "Add to cart button", "default": "Add custom suit to cart" },
+    { "type": "richtext", "id": "fine_print", "label": "Text under the button", "default": "<p>Tailor made by FREEM in Italy. FIA 8856-2018 homologated. We confirm every detail with you before production starts.</p>" },
+    { "type": "text", "id": "inquiry_button", "label": "Fully custom inquiry button", "default": "Want a completely custom design? Send an inquiry", "info": "Opens the inquiry form section on this page. Leave empty to hide." },
+    { "type": "color", "id": "accent", "label": "Accent colour", "default": "#6fd3c0" },
+    { "type": "header", "content": "Measurements" },
+    { "type": "text", "id": "meas_label", "label": "Measurements field", "default": "Measurements file" },
+    { "type": "checkbox", "id": "meas_required", "label": "Require measurements file", "default": false },
+    { "type": "richtext", "id": "meas_note", "label": "Measurements note", "default": "<p>Upload the completed FREEM measurement form or a photo of your measurements. You can also send it to us after ordering.</p>" },
+    { "type": "url", "id": "meas_form_url", "label": "Measurement form download link" },
+    { "type": "text", "id": "meas_form_text", "label": "Measurement form link text", "default": "Download the measurement form" },
+    { "type": "text", "id": "meas_missing_text", "label": "Missing measurements message", "default": "Please upload your measurements file." },
+    { "type": "header", "content": "Colours" },
+    { "type": "textarea", "id": "fabric_colours", "label": "Fabric colours", "info": "One per line: Name|#hex", "default": "White 103|#f6f6f3\nEcru 01|#ece4cf\nSilver 071|#c4c7cc\nMedium Grey 850|#7d7f85\nCarbon C00|#34353a\nBlack 090|#1d1d1f\nNavy Blue 664|#14244a\nRoyal 051|#1f4fbf\nSky Blue 0423|#3fa9f5\nLight Blue C38|#7cc0ea\nPetrol Green C10|#0f5c63\nBritish Green 609|#123f2c\nGreen 713|#1f8a3c\nKawa Green C59|#4fae3a\nLight Green C42|#62b23a\nAcid Green C89|#b6e61e\nFluo Green B44|#45f53a\nLemon Yellow 778|#fff04a\nYellow 908|#ffd200\nFluo Yellow C31|#e6ff1c\nGold B22|#c9a227\nOrange C95|#ff7a1a\nFluo Red C30|#ff3b30\nRed 446|#c8102e\nBordeaux Darkest B11|#4b0e1b\nPink C29|#f29bc4\nFluo Pink C85|#ff3fa4\nPurple B04|#5b2a86" },
+    { "type": "textarea", "id": "stretch_colours", "label": "Stretch panel colours", "info": "Names from the fabric list, one per line", "default": "Black 090\nLight Green C42\nMedium Grey 850\nNavy Blue 664\nRed 446\nRoyal 051\nWhite 103\nYellow 908" },
+    { "type": "textarea", "id": "cuff_colours", "label": "Cuff colours", "info": "Names from the fabric list, one per line", "default": "Black 090\nLight Green C42\nMedium Grey 850\nNavy Blue 664\nRed 446\nRoyal 051\nSilver 071\nWhite 103\nYellow 908" },
+    { "type": "header", "content": "Logos" },
+    { "type": "text", "id": "logos_label", "label": "Logos heading", "default": "Logos" },
+    { "type": "text", "id": "logos_hint", "label": "Logos hint", "default": "tap a number on the suit" },
+    { "type": "text", "id": "logo_prefix", "label": "Order field prefix", "default": "Logo" },
+    { "type": "text", "id": "add_logo_text", "label": "Add logo button", "default": "Add" },
+    { "type": "text", "id": "change_logo_text", "label": "Change logo button", "default": "Change" },
+    { "type": "text", "id": "remove_logo_text", "label": "Remove logo button", "default": "Remove logo" },
+    { "type": "text", "id": "upload_button", "label": "Upload button", "default": "Choose a file or drop it here" },
+    { "type": "richtext", "id": "upload_help", "label": "Upload help", "default": "<p>Vector files (PDF, AI, EPS, SVG) are best for printing. PNG with a transparent background also shows in the preview. Max 20 MB.</p>" },
+    { "type": "text", "id": "too_big_text", "label": "File too big message", "default": "That file is larger than 20 MB. Please choose a smaller file or email it to us after ordering." },
+    { "type": "header", "content": "Labels" },
+    { "type": "text", "id": "design_label", "label": "Design", "default": "Design" },
+    { "type": "text", "id": "gallery_button", "label": "Change design button", "default": "Browse designs" },
+    { "type": "text", "id": "gallery_title", "label": "Gallery title", "default": "FREEM A20 designs" },
+    { "type": "text", "id": "gallery_search", "label": "Gallery search placeholder", "default": "Search code, e.g. 093" },
+    { "type": "text", "id": "zone_label", "label": "Colour zone label", "default": "Colour #", "info": "# is replaced by the zone number" },
+    { "type": "text", "id": "stretch_label", "label": "Stretch panels", "default": "Stretch panels" },
+    { "type": "text", "id": "cuff_label", "label": "Cuffs", "default": "Cuffs" },
+    { "type": "text", "id": "belt_label", "label": "Name on belt field", "default": "Name on belt" },
+    { "type": "text", "id": "flag_label", "label": "Flag field", "default": "Flag" },
+    { "type": "text", "id": "comments_label", "label": "Comments field", "default": "Comments" },
+    { "type": "text", "id": "close_text", "label": "Close button", "default": "Close" },
+    { "type": "text", "id": "view_label", "label": "View switch", "default": "View" },
+    { "type": "text", "id": "front_label", "label": "Front", "default": "Front" },
+    { "type": "text", "id": "back_label", "label": "Back", "default": "Back" },
+    { "type": "text", "id": "right_side_label", "label": "Right side", "default": "Right" },
+    { "type": "text", "id": "left_side_label", "label": "Left side", "default": "Left" },
+    { "type": "text", "id": "fail_text", "label": "Loading error", "default": "The preview couldn't load. You can still place your order below." }
+  ],
+  "presets": [{ "name": "FREEM A20 configurator" }]
+}
+{% endschema %}
