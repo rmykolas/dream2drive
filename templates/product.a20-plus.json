@@ -17,7 +17,7 @@
         "stretch_colours": "Black\nWhite\nGrey\nRoyal Blue\nRed\nNavy Blue\nLight Green\nYellow",
         "cuff_colours": "Black\nWhite\nGrey\nSilver\nRoyal Blue\nRed\nNavy Blue\nLight Green\nGreen\nYellow",
         "upload_help": "<p>Upload a vector logo file: PDF, AI, EPS, SVG or CDR (max 20 MB). JPG and PNG files are not accepted, as they are not sharp enough for printing.</p>",
-        "only_designs": "069-BPF"
+        "only_designs": "069-BPF", "intro": "<p>The FREEM A20 Plus, tailor made to your measurements. Choose every colour and add your logos. Our team sends you a final mock-up for approval before production.</p>"
       }
     },
     "inquiry": {
