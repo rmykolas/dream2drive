@@ -93,53 +93,27 @@
     return iframe;
   }
 
-  function submitThroughIframe(form) {
-    return new Promise((resolve, reject) => {
-      const iframe = ensureSubmitIframe();
-      const timeoutId = setTimeout(() => {
-        reject(new Error('Quote request timed out. Please try again.'));
-      }, 15000);
-
-      const previousTarget = form.getAttribute('target');
-      form.setAttribute('target', SUBMIT_IFRAME_NAME);
-
-      const onLoad = () => {
-        try {
-          const href = iframe.contentWindow?.location?.href || '';
-          debugInfo('Iframe submit completed', { href });
-
-          if (!href || href === 'about:blank') {
-            return;
-          }
-
-          if (href.includes('contact_posted=true')) {
-            clearTimeout(timeoutId);
-            resolve();
-            return;
-          }
-
-          clearTimeout(timeoutId);
-          reject(new Error('Failed to send quote request.'));
-        } catch (error) {
-          clearTimeout(timeoutId);
-          reject(new Error('Failed to verify quote request result.'));
-        } finally {
-          if (previousTarget) {
-            form.setAttribute('target', previousTarget);
-          } else {
-            form.removeAttribute('target');
-          }
-        }
-      };
-
-      iframe.addEventListener('load', onLoad, { once: true });
-
-      if (typeof form.requestSubmit === 'function') {
-        form.requestSubmit();
-      } else {
-        form.submit();
-      }
+  async function submitThroughIframe(form) {
+    // Shopify storefronts refuse to be framed (frame-ancestors 'none'), so post with fetch instead of a hidden iframe.
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      credentials: 'same-origin',
+      redirect: 'follow',
     });
+    const finalUrl = response.url || '';
+    debugInfo('Fetch submit completed', { status: response.status, finalUrl });
+
+    if (finalUrl.includes('contact_posted=true')) return;
+
+    if (finalUrl.includes('/challenge')) {
+      // Shopify asks for a captcha: hand over to a normal page submit, the posted state is handled on return.
+      form.removeAttribute('target');
+      form.submit();
+      return new Promise(() => {});
+    }
+
+    throw new Error('Failed to send quote request. Please check your details and try again.');
   }
 
   function showSuccessState(modal) {
