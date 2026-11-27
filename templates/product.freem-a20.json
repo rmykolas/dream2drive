@@ -11,11 +11,15 @@
   "sections": {
     "configurator": {
       "type": "freem-a20",
-      "settings": {}
+      "settings": {
+        "default_design": "014-BULC"
+      }
     },
     "inquiry": {
       "type": "custom-inquiry",
-      "settings": {}
+      "settings": {
+        "show_banner": false
+      }
     },
     "description": {
       "type": "dd-pd-description",
