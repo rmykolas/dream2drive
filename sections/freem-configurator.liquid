@@ -73,7 +73,7 @@
     </div>
 
     <div class="fc__panel">
-      {%- if product.vendor != blank -%}<p class="fc__vendor">{{ product.vendor | escape }}</p>{%- endif -%}
+      {%- render 'fc-breadcrumb' -%}
       <h1 class="fc__title">{{ title | escape }}</h1>
       <p class="fc__price" data-fc-price>{{ current_variant.price | money }}</p>
       {%- if section.settings.intro != blank -%}
