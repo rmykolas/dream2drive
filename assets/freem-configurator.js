@@ -76,7 +76,7 @@
     this.form = this.$('form');
     var files = this.$('[data-fc-files]'), lp = c.logoPrefix || 'Logo';
     files.innerHTML = SPOTS_BASE.concat([SPOT_BELT]).map(function (s) {
-      return '<input type="file" disabled data-k="' + s[0] + '" name="properties[' + esc(lp + ' – ' + s[1]) + ']" accept=".png,.jpg,.jpeg,.svg,.webp,.pdf,.ai,.eps,image/*,application/pdf" tabindex="-1">';
+      return '<input type="file" disabled data-k="' + s[0] + '" name="properties[' + esc(lp + ' – ' + s[1]) + ']" tabindex="-1">';
     }).join('') + '<input type="file" disabled data-fc-preview name="properties[_Mock-up]" tabindex="-1">';
     this.bind();
     this.renderControls();
