@@ -27,9 +27,10 @@
   .ci__ok{background:#1c3b35;border:1px solid {{ section.settings.accent }};border-radius:8px;padding:12px 14px;color:#d8f6ef;font-size:15px}
   .ci__err{background:#3b1f1f;border:1px solid #ff8a7a;border-radius:8px;padding:12px 14px;color:#ffd6cf;font-size:14px}
   @media (max-width:560px){.ci__row{grid-template-columns:1fr}.ci__btn{width:100%}}
+  .ci--nobanner{padding:0}.ci--nobanner .ci__in{display:none}
 </style>
 
-<div class="ci" id="custom-inquiry" {{ section.shopify_attributes }}>
+<div class="ci{% unless section.settings.show_banner %} ci--nobanner{% endunless %}" id="custom-inquiry" {{ section.shopify_attributes }}>
   <div class="ci__in">
     <div class="ci__txt">
       {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
@@ -83,6 +84,7 @@
   "tag": "section",
   "class": "section-custom-inquiry",
   "settings": [
+    { "type": "checkbox", "id": "show_banner", "label": "Show banner", "default": true, "info": "Turn off when the page already has its own inquiry button. The form still opens from that button." },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Want a completely custom suit?" },
     { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Bring your own design, colours or team livery. Tell us your idea and we will prepare a design and quote together with FREEM.</p>" },
     { "type": "text", "id": "button_label", "label": "Button", "default": "Send an inquiry" },
