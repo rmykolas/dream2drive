@@ -12,7 +12,10 @@
     "configurator": {
       "type": "freem-a20",
       "settings": {
-        "default_design": "014-BULC"
+        "default_design": "014-BULC",
+        "fabric_colours": "Black|#2b2a29\nWhite|#ffffff\nGrey|#737373\nSilver|#d9d9d9\nEcru|#fcf2dd\nCarbon|#282828\nRoyal Blue|#1d4d9a\nNavy Blue|#1a1a4a\nLight Blue|#39bdde\nSky Blue|#abe9f5\nGreen|#0a7d2d\nBritish Racing Green|#00420e\nLight Green|#2aba06\nKawasaki Green|#01ff00\nAcid Green|#a6ff00\nPetronas Green|#1cbf83\nYellow|#ffd500\nLemon Yellow|#ffff00\nGold|#debc4c\nOrange|#ff6600\nRed|#ff0000\nVodafone Red|#ff3300\nBordeaux Red|#ab1b20\nPink|#ff5996\nPurple|#5e258f\nFluo Yellow|#e1ff00\nFluo Green|#3cff00\nFluo Red|#ff1b0b\nFluo Pink|#f71166",
+        "stretch_colours": "Black\nWhite\nGrey\nRoyal Blue\nRed\nNavy Blue\nLight Green\nYellow",
+        "cuff_colours": "Black\nWhite\nGrey\nSilver\nRoyal Blue\nRed\nNavy Blue\nLight Green\nGreen\nYellow"
       }
     },
     "inquiry": {
@@ -47,5 +50,10 @@
       }
     }
   },
-  "order": ["configurator", "inquiry", "description", "related-products"]
+  "order": [
+    "configurator",
+    "inquiry",
+    "description",
+    "related-products"
+  ]
 }
