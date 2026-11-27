@@ -19,7 +19,8 @@
         "default_2": "Navy Blue",
         "default_3": "Light Green",
         "default_stretch": "Black",
-        "default_cuff": "Navy Blue"
+        "default_cuff": "Navy Blue",
+        "upload_help": "<p>Upload a vector logo file: PDF, AI, EPS, SVG or CDR (max 20 MB). JPG and PNG files are not accepted, as they are not sharp enough for printing.</p>"
       }
     },
     "description": {
