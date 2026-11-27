@@ -253,9 +253,18 @@
     d.querySelector('[data-fc-remove]').hidden = !this.st.logos[k];
     try { d.showModal(); } catch (e) { d.setAttribute('open', ''); }
   };
+  // Logos must be vector files (print quality); raster images are refused with a message inside the logo dialog
+  function vecErr(self) {
+    var d = self.$('[data-fc-logo-dlg]') || self.$('dialog'), p = d.querySelector('[data-fc-vec-err]');
+    if (!p) { p = document.createElement('p'); p.setAttribute('data-fc-vec-err', ''); p.setAttribute('role', 'alert'); p.style.cssText = 'color:#ff8a7a;font-weight:600;margin:10px 0 0'; var drop = d.querySelector('[data-fc-drop]'); drop.parentNode.insertBefore(p, drop.nextSibling); }
+    p.textContent = /^lt/i.test(document.documentElement.lang) ? 'Įkelkite vektorinį logotipo failą: PDF, AI, EPS, SVG arba CDR. JPG ir PNG failai netinka spaudai.' : 'Please upload a vector logo file: PDF, AI, EPS, SVG or CDR. JPG and PNG files are not suitable for printing.';
+    p.hidden = false;
+  }
+
   Configurator.prototype.useFile = function (file) {
     var self = this, k = this.cur; if (!file || !k) return;
     var inp = this.form.querySelector('input[type=file][data-k="' + k + '"]');
+    var ve = this.$('[data-fc-vec-err]'); if (ve) ve.hidden = true; if (!/\.(pdf|ai|eps|svg|cdr)$/i.test(file.name || '')) { try { if (inp) inp.value = ''; } catch (e2) {} vecErr(this); return; }
     if (file.size > 20 * 1024 * 1024) { alertText(this, this.cfg.tooBig); return; }
     try { var dt = new DataTransfer(); dt.items.add(file); inp.files = dt.files; } catch (e) { /* older browser: picked straight into the input */ }
     var show = function (url) { self.st.logos[k] = { name: file.name, url: url }; self.$('dialog').close(); self.draw(); };
