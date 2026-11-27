@@ -9,72 +9,21 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-product",
-      "blocks": {
-        "title": {
-          "type": "title",
-          "settings": {}
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
-        },
-        "product_bundle_variations_QA4hCd": {
-          "type": "product_bundle_variations",
-          "settings": {}
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": false,
-            "show_gift_card_recipient": false
-          }
-        }
-      },
-      "block_order": [
-        "title",
-        "variant_picker",
-        "product_bundle_variations_QA4hCd",
-        "quantity_selector",
-        "price",
-        "buy_buttons"
-      ],
+    "configurator": {
+      "type": "freem-configurator",
       "settings": {
-        "enable_sticky_info": true,
-        "color_scheme": "scheme-3",
-        "media_size": "medium",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "thumbnail",
-        "mobile_thumbnails": "hide",
-        "media_position": "left",
-        "image_zoom": "hover",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
+        "fabric_colours": "Black|#2b2a29\nWhite|#ffffff\nGrey|#737373\nSilver|#d9d9d9\nEcru|#fcf2dd\nCarbon|#282828\nRoyal Blue|#1d4d9a\nNavy Blue|#1a1a4a\nLight Blue|#39bdde\nSky Blue|#abe9f5\nGreen|#0a7d2d\nBritish Racing Green|#00420e\nLight Green|#2aba06\nKawasaki Green|#01ff00\nAcid Green|#a6ff00\nPetronas Green|#1cbf83\nYellow|#ffd500\nLemon Yellow|#ffff00\nGold|#debc4c\nOrange|#ff6600\nRed|#ff0000\nVodafone Red|#ff3300\nBordeaux Red|#ab1b20\nPink|#ff5996\nPurple|#5e258f\nFluo Yellow|#e1ff00\nFluo Green|#3cff00\nFluo Red|#ff1b0b\nFluo Pink|#f71166",
+        "stretch_colours": "Black\nWhite\nGrey\nRoyal Blue\nRed\nNavy Blue\nLight Green\nYellow",
+        "cuff_colours": "Black\nWhite\nGrey\nSilver\nRoyal Blue\nRed\nNavy Blue\nLight Green\nGreen\nYellow",
+        "default_1": "White",
+        "default_2": "Navy Blue",
+        "default_3": "Light Green",
+        "default_stretch": "Black",
+        "default_cuff": "Navy Blue"
       }
     },
-    "dd_product_feature_iGC9UY": {
-      "type": "dd-product-feature",
-      "name": "Product Feature",
-      "settings": {}
-    },
-    "dd_pd_description_LwWK8e": {
+    "description": {
       "type": "dd-pd-description",
-      "name": "Description Section",
       "settings": {
         "title": "Description",
         "subtitle": ""
@@ -100,9 +49,8 @@
     }
   },
   "order": [
-    "main",
-    "dd_product_feature_iGC9UY",
-    "dd_pd_description_LwWK8e",
+    "configurator",
+    "description",
     "related-products"
   ]
 }
