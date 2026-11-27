@@ -59,7 +59,7 @@
     var lp = c.logoPrefix || 'Logo';
     this.$('[data-fc-files]').innerHTML = SPOTS.map(function (s) {
       return '<input type="file" disabled data-k="' + s[0] + '" name="properties[' + esc(lp + ' – ' + s[1]) + ']" tabindex="-1">';
-    }).join('') + '<input type="file" disabled data-fc-preview name="properties[_Mock-up]" tabindex="-1">';
+    }).join('') + '<input type="file" disabled data-fc-preview name="properties[_Mock-up]" tabindex="-1"><input type="file" disabled data-fc-svg name="properties[_Design file (SVG)]" tabindex="-1">';
     this.bind();
     this.syncVariant();
     fetch(c.index).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (idx) {
@@ -262,6 +262,25 @@
     this.draw();
   };
 
+  // Vector design file for the order: same SVG as the mock-up, with colours written as plain fills (CorelDRAW / Illustrator friendly)
+  function vectorFile(svg, name) {
+    var map = {}, m, re = /\.([\w-]+)\{fill:([^};]+)\}/g;
+    while ((m = re.exec(svg))) map[m[1]] = m[2];
+    try {
+      var doc = new DOMParser().parseFromString(svg, 'image/svg+xml'), root = doc.documentElement;
+      if (root.nodeName !== 'svg') throw new Error('bad svg');
+      var own = root.querySelector('style'); if (own) own.parentNode.removeChild(own);
+      Array.prototype.forEach.call(root.querySelectorAll('[class]'), function (el) {
+        var cls = el.getAttribute('class').split(/\s+/), hit = cls.filter(function (c) { return map[c]; });
+        if (hit.length) { el.setAttribute('fill', map[hit[hit.length - 1]]); el.removeAttribute('class'); }
+      });
+      root.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+      Array.prototype.forEach.call(root.querySelectorAll('image'), function (im) { var h = im.getAttribute('href'); if (h) im.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', h); });
+      svg = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(root);
+    } catch (e) {}
+    return new File([svg], name, { type: 'image/svg+xml' });
+  }
+
   A20.prototype.preview = function () {
     var self = this;
     return new Promise(function (resolve) {
@@ -340,6 +359,7 @@
         if (blob && pv) {
           try { var dt = new DataTransfer(); dt.items.add(new File([blob], 'suit-mockup-A20-' + self.st.design + '.png', { type: 'image/png' })); pv.files = dt.files; pv.disabled = false; } catch (err) { pv.disabled = true; }
         }
+        try { var sv = self.form.querySelector('[data-fc-svg]'); var dt2 = new DataTransfer(); dt2.items.add(vectorFile(self.svgMarkup('both', true), 'suit-design-A20-' + self.st.design + '.svg')); sv.files = dt2.files; sv.disabled = false; } catch (err2) {}
         HTMLFormElement.prototype.submit.call(self.form);
       });
     });
