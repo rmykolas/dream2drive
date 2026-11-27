@@ -63,7 +63,7 @@
     this.bind();
     this.syncVariant();
     fetch(c.index).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (idx) {
-      self.index = idx;
+      idx.forEach(function (d, i) { d.i = i; }); var only = names(c.onlyDesigns); if (only.length) { var fo = idx.filter(function (d) { return only.indexOf(d.k) > -1; }); if (fo.length) idx = fo; } self.index = idx; if (idx.length < 2) { var og = self.$('[data-fc-open-gallery]'); if (og) og.closest('.fc-group').hidden = true; }
       var want = (location.hash.match(/design=([\w-]+)/) || [])[1] || c.defaultDesign;
       var first = idx.filter(function (d) { return d.k === want; })[0] || idx[0];
       self.renderGallery();
@@ -155,7 +155,7 @@
     var self = this, st = this.st, m = this.meta(), c = this.cfg;
     if (!m) return;
     this.$('[data-fc-design-name]').textContent = 'A20-' + st.design;
-    this.thumbStyle(this.$('[data-fc-current-thumb]'), this.index.indexOf(m), 0.55);
+    this.thumbStyle(this.$('[data-fc-current-thumb]'), m.i, 0.55);
     var cg = this.$('[data-fc-colours]');
     cg.innerHTML = m.z.map(function (z, i) {
       return '<div class="fc-group"><h3>' + esc(c.zoneLabel.replace('#', i + 1)) + ' <span>' + esc(st.colours[z]) + '</span></h3><div class="fc-sws" data-z="' + z + '"></div></div>';
@@ -185,7 +185,7 @@
     grid.innerHTML = this.index.map(function (d) {
       return '<button type="button" class="fcg-item" data-k="' + esc(d.k) + '" aria-label="A20-' + esc(d.k) + '"><span class="fcg-thumb"></span><span class="fcg-code">' + esc(d.k) + '</span></button>';
     }).join('');
-    grid.querySelectorAll('.fcg-thumb').forEach(function (el, i) { self.thumbStyle(el, i, 0.8); });
+    grid.querySelectorAll('.fcg-thumb').forEach(function (el, i) { self.thumbStyle(el, self.index[i].i, 0.8); });
     this.$('[data-fc-gcount]').textContent = this.index.length;
   };
   A20.prototype.highlightThumb = function () {
