@@ -94,26 +94,15 @@
   }
 
   async function submitThroughIframe(form) {
-    // Shopify storefronts refuse to be framed (frame-ancestors 'none'), so post with fetch instead of a hidden iframe.
-    const response = await fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      credentials: 'same-origin',
-      redirect: 'follow',
-    });
-    const finalUrl = response.url || '';
-    debugInfo('Fetch submit completed', { status: response.status, finalUrl });
-
-    if (finalUrl.includes('contact_posted=true')) return;
-
-    if (finalUrl.includes('/challenge')) {
-      // Shopify asks for a captcha: hand over to a normal page submit, the posted state is handled on return.
-      form.removeAttribute('target');
+    // Shopify pages can't be framed and the contact form needs Shopify's captcha token,
+    // so submit the form normally. The success state is shown after the redirect (contact_posted=true).
+    form.removeAttribute('target');
+    if (typeof form.requestSubmit === 'function') {
+      form.requestSubmit();
+    } else {
       form.submit();
-      return new Promise(() => {});
     }
-
-    throw new Error('Failed to send quote request. Please check your details and try again.');
+    return new Promise(() => {});
   }
 
   function showSuccessState(modal) {
