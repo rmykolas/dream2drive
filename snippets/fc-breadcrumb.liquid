@@ -1,0 +1,9 @@
+{%- comment -%} Breadcrumb for the FREEM configurator pages, same look as the standard product page {%- endcomment -%}
+{%- assign product_collection = collection | default: product.collections.first -%}
+<div class="flex flex-wrap items-center gap-[8px] mb-[24px]">
+  <a href="{{ routes.root_url }}" class="text-[#C8C9CC] text-[14px] hover:text-white transition-colors">Home</a>
+  <img src="https://cdn.shopify.com/s/files/1/0976/8622/5226/files/right_arrow-white.svg?v=1761556170" alt="" width="8" height="8" class="w-[8px] h-[8px]">
+  {%- if product_collection -%}
+    <a href="{{ product_collection.url }}" class="hover:text-[#6EC7B3] transition-colors text-[14px] font-normal text-[#C8C9CC]">{{ product_collection.title }}</a>
+  {%- endif -%}
+</div>
